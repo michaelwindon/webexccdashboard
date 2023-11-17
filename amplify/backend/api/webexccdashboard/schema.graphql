@@ -1,0 +1,98 @@
+type QueueModel @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  group: String
+}
+
+enum RoleEnum {
+  ADMIN
+  MANAGER
+  VIEW
+}
+
+type UserModel @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  email: AWSEmail
+  telephone: AWSPhone
+  profilepic: AWSURL
+  role: RoleEnum
+  group: [String]
+  contactcentermodels: [ContactCenterModel] @manyToMany(relationName: "ContactCenterModelUserModel")
+}
+
+enum SubmenuTypeENUM {
+  MSG
+  FORWARD
+  QUEUE
+}
+
+type SubmenuType {
+  option0: SubmenuTypeENUM
+  option1: SubmenuTypeENUM
+  option2: SubmenuTypeENUM
+  option3: SubmenuTypeENUM
+  opiton4: SubmenuTypeENUM
+  option5: SubmenuTypeENUM
+  option6: SubmenuTypeENUM
+  option7: SubmenuTypeENUM
+  option8: SubmenuTypeENUM
+  option9: SubmenuTypeENUM
+}
+
+enum MenuTypeENUM {
+  MSG
+  FORWARD
+  QUEUE
+  SUBMENU
+}
+
+type MenuType {
+  msg: String
+  type: MenuTypeENUM
+  value: String
+}
+
+type ContactCenterModel @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  mainnumber: String!
+  menu0: MenuType
+  menu1: MenuType
+  menu2: MenuType
+  menu3: MenuType
+  menu4: MenuType
+  menu5: MenuType
+  menu6: MenuType
+  menu7: MenuType
+  menu8: MenuType
+  menu9: MenuType
+  holiday: [String]
+  secondarytodclose: [String]
+  secondarytodopen: [String]
+  daysopen: [String]
+  daystodopen: [String]
+  daystodclose: [String]
+  welcomeprompt: String
+  afterhours: MenuType
+  ccdescription: String
+  ccname: String
+  defaultroute: String
+  holidayoption: MenuType
+  isoverride: Boolean
+  submenu2: SubmenuType
+  welcomeprompt_sp: String
+  submenu2_sp: SubmenuType
+  menu0_sp: MenuTypeENUM
+  menu1_sp: MenuType
+  menu2_sp: MenuType
+  menu3_sp: MenuType
+  menu4_sp: MenuType
+  menu5_sp: MenuType
+  menu6_sp: MenuType
+  menu7_sp: MenuType
+  menu8_sp: MenuType
+  menu9_sp: MenuType
+  group: String
+  version: String
+  UserModels: [UserModel] @manyToMany(relationName: "ContactCenterModelUserModel")
+}
