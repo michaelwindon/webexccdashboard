@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "paths": {
+    "/webexccadmin": {
+      "name": "/webexccadmin",
+      "lambdaFunction": "webexccdashboard1fe66cea",
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "create",
+          "read",
+          "update",
+          "delete"
+        ]
+      }
+    }
+  }
+}

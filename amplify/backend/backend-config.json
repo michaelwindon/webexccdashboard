@@ -1,5 +1,19 @@
 {
   "api": {
+    "api8e4b8cf1": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "webexccdashboard1fe66cea"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    },
     "webexccdashboard": {
       "dependsOn": [],
       "output": {
@@ -20,6 +34,57 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "AppSync"
+    }
+  },
+  "auth": {
+    "webexccdashboard": {
+      "dependsOn": [],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyCharacters": [],
+          "passwordPolicyMinLength": 8
+        },
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "socialProviders": [],
+        "usernameAttributes": [],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito",
+      "serviceType": "managed"
+    }
+  },
+  "function": {
+    "webexccdashboard1fe66cea": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_webexccdashboard1fe66cea_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "webexccdashboard1fe66cea"
+        }
+      ]
+    },
+    "AMPLIFY_function_webexccdashboard1fe66cea_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "webexccdashboard1fe66cea"
+        }
+      ]
     }
   }
 }
