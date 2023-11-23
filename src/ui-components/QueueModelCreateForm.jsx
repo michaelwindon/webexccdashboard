@@ -6,11 +6,182 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
-import { fetchByPath, getOverrideProps, validateField } from "./utils";
-import { generateClient } from "aws-amplify/api";
-import { createQueueModel } from "../graphql/mutations";
-const client = generateClient();
+import {
+  Autocomplete,
+  Badge,
+  Button,
+  Divider,
+  Flex,
+  Grid,
+  Icon,
+  ScrollView,
+  Text,
+  TextField,
+  useTheme,
+} from "@aws-amplify/ui-react";
+import { QueueModel, GroupModel } from "../models";
+import {
+  fetchByPath,
+  getOverrideProps,
+  useDataStoreBinding,
+  validateField,
+} from "./utils";
+import { DataStore } from "aws-amplify/datastore";
+function ArrayField({
+  items = [],
+  onChange,
+  label,
+  inputFieldRef,
+  children,
+  hasError,
+  setFieldValue,
+  currentFieldValue,
+  defaultFieldValue,
+  lengthLimit,
+  getBadgeText,
+  runValidationTasks,
+  errorMessage,
+}) {
+  const labelElement = <Text>{label}</Text>;
+  const {
+    tokens: {
+      components: {
+        fieldmessages: { error: errorStyles },
+      },
+    },
+  } = useTheme();
+  const [selectedBadgeIndex, setSelectedBadgeIndex] = React.useState();
+  const [isEditing, setIsEditing] = React.useState();
+  React.useEffect(() => {
+    if (isEditing) {
+      inputFieldRef?.current?.focus();
+    }
+  }, [isEditing]);
+  const removeItem = async (removeIndex) => {
+    const newItems = items.filter((value, index) => index !== removeIndex);
+    await onChange(newItems);
+    setSelectedBadgeIndex(undefined);
+  };
+  const addItem = async () => {
+    const { hasError } = runValidationTasks();
+    if (
+      currentFieldValue !== undefined &&
+      currentFieldValue !== null &&
+      currentFieldValue !== "" &&
+      !hasError
+    ) {
+      const newItems = [...items];
+      if (selectedBadgeIndex !== undefined) {
+        newItems[selectedBadgeIndex] = currentFieldValue;
+        setSelectedBadgeIndex(undefined);
+      } else {
+        newItems.push(currentFieldValue);
+      }
+      await onChange(newItems);
+      setIsEditing(false);
+    }
+  };
+  const arraySection = (
+    <React.Fragment>
+      {!!items?.length && (
+        <ScrollView height="inherit" width="inherit" maxHeight={"7rem"}>
+          {items.map((value, index) => {
+            return (
+              <Badge
+                key={index}
+                style={{
+                  cursor: "pointer",
+                  alignItems: "center",
+                  marginRight: 3,
+                  marginTop: 3,
+                  backgroundColor:
+                    index === selectedBadgeIndex ? "#B8CEF9" : "",
+                }}
+                onClick={() => {
+                  setSelectedBadgeIndex(index);
+                  setFieldValue(items[index]);
+                  setIsEditing(true);
+                }}
+              >
+                {getBadgeText ? getBadgeText(value) : value.toString()}
+                <Icon
+                  style={{
+                    cursor: "pointer",
+                    paddingLeft: 3,
+                    width: 20,
+                    height: 20,
+                  }}
+                  viewBox={{ width: 20, height: 20 }}
+                  paths={[
+                    {
+                      d: "M10 10l5.09-5.09L10 10l5.09 5.09L10 10zm0 0L4.91 4.91 10 10l-5.09 5.09L10 10z",
+                      stroke: "black",
+                    },
+                  ]}
+                  ariaLabel="button"
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    removeItem(index);
+                  }}
+                />
+              </Badge>
+            );
+          })}
+        </ScrollView>
+      )}
+      <Divider orientation="horizontal" marginTop={5} />
+    </React.Fragment>
+  );
+  if (lengthLimit !== undefined && items.length >= lengthLimit && !isEditing) {
+    return (
+      <React.Fragment>
+        {labelElement}
+        {arraySection}
+      </React.Fragment>
+    );
+  }
+  return (
+    <React.Fragment>
+      {labelElement}
+      {isEditing && children}
+      {!isEditing ? (
+        <>
+          <Button
+            onClick={() => {
+              setIsEditing(true);
+            }}
+          >
+            Add item
+          </Button>
+          {errorMessage && hasError && (
+            <Text color={errorStyles.color} fontSize={errorStyles.fontSize}>
+              {errorMessage}
+            </Text>
+          )}
+        </>
+      ) : (
+        <Flex justifyContent="flex-end">
+          {(currentFieldValue || isEditing) && (
+            <Button
+              children="Cancel"
+              type="button"
+              size="small"
+              onClick={() => {
+                setFieldValue(defaultFieldValue);
+                setIsEditing(false);
+                setSelectedBadgeIndex(undefined);
+              }}
+            ></Button>
+          )}
+          <Button size="small" variation="link" onClick={addItem}>
+            {selectedBadgeIndex !== undefined ? "Save" : "Add"}
+          </Button>
+        </Flex>
+      )}
+      {arraySection}
+    </React.Fragment>
+  );
+}
 export default function QueueModelCreateForm(props) {
   const {
     clearOnSuccess = true,
@@ -24,19 +195,40 @@ export default function QueueModelCreateForm(props) {
   } = props;
   const initialValues = {
     name: "",
-    group: "",
+    Group: undefined,
   };
   const [name, setName] = React.useState(initialValues.name);
-  const [group, setGroup] = React.useState(initialValues.group);
+  const [Group, setGroup] = React.useState(initialValues.Group);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setName(initialValues.name);
-    setGroup(initialValues.group);
+    setGroup(initialValues.Group);
+    setCurrentGroupValue(undefined);
+    setCurrentGroupDisplayValue("");
     setErrors({});
+  };
+  const [currentGroupDisplayValue, setCurrentGroupDisplayValue] =
+    React.useState("");
+  const [currentGroupValue, setCurrentGroupValue] = React.useState(undefined);
+  const GroupRef = React.createRef();
+  const getIDValue = {
+    Group: (r) => JSON.stringify({ id: r?.id }),
+  };
+  const GroupIdSet = new Set(
+    Array.isArray(Group)
+      ? Group.map((r) => getIDValue.Group?.(r))
+      : getIDValue.Group?.(Group)
+  );
+  const groupModelRecords = useDataStoreBinding({
+    type: "collection",
+    model: GroupModel,
+  }).items;
+  const getDisplayValue = {
+    Group: (r) => `${r?.fullname ? r?.fullname + " - " : ""}${r?.id}`,
   };
   const validations = {
     name: [],
-    group: [],
+    Group: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -65,20 +257,28 @@ export default function QueueModelCreateForm(props) {
         event.preventDefault();
         let modelFields = {
           name,
-          group,
+          Group,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
             if (Array.isArray(modelFields[fieldName])) {
               promises.push(
                 ...modelFields[fieldName].map((item) =>
-                  runValidationTasks(fieldName, item)
+                  runValidationTasks(
+                    fieldName,
+                    item,
+                    getDisplayValue[fieldName]
+                  )
                 )
               );
               return promises;
             }
             promises.push(
-              runValidationTasks(fieldName, modelFields[fieldName])
+              runValidationTasks(
+                fieldName,
+                modelFields[fieldName],
+                getDisplayValue[fieldName]
+              )
             );
             return promises;
           }, [])
@@ -95,14 +295,7 @@ export default function QueueModelCreateForm(props) {
               modelFields[key] = null;
             }
           });
-          await client.graphql({
-            query: createQueueModel.replaceAll("__typename", ""),
-            variables: {
-              input: {
-                ...modelFields,
-              },
-            },
-          });
+          await DataStore.save(new QueueModel(modelFields));
           if (onSuccess) {
             onSuccess(modelFields);
           }
@@ -111,8 +304,7 @@ export default function QueueModelCreateForm(props) {
           }
         } catch (err) {
           if (onError) {
-            const messages = err.errors.map((e) => e.message).join("\n");
-            onError(modelFields, messages);
+            onError(modelFields, err.message);
           }
         }
       }}
@@ -129,7 +321,7 @@ export default function QueueModelCreateForm(props) {
           if (onChange) {
             const modelFields = {
               name: value,
-              group,
+              Group,
             };
             const result = onChange(modelFields);
             value = result?.name ?? value;
@@ -144,31 +336,82 @@ export default function QueueModelCreateForm(props) {
         hasError={errors.name?.hasError}
         {...getOverrideProps(overrides, "name")}
       ></TextField>
-      <TextField
-        label="Group"
-        isRequired={false}
-        isReadOnly={false}
-        value={group}
-        onChange={(e) => {
-          let { value } = e.target;
+      <ArrayField
+        lengthLimit={1}
+        onChange={async (items) => {
+          let value = items[0];
           if (onChange) {
             const modelFields = {
               name,
-              group: value,
+              Group: value,
             };
             const result = onChange(modelFields);
-            value = result?.group ?? value;
-          }
-          if (errors.group?.hasError) {
-            runValidationTasks("group", value);
+            value = result?.Group ?? value;
           }
           setGroup(value);
+          setCurrentGroupValue(undefined);
+          setCurrentGroupDisplayValue("");
         }}
-        onBlur={() => runValidationTasks("group", group)}
-        errorMessage={errors.group?.errorMessage}
-        hasError={errors.group?.hasError}
-        {...getOverrideProps(overrides, "group")}
-      ></TextField>
+        currentFieldValue={currentGroupValue}
+        label={"Group"}
+        items={Group ? [Group] : []}
+        hasError={errors?.Group?.hasError}
+        runValidationTasks={async () =>
+          await runValidationTasks("Group", currentGroupValue)
+        }
+        errorMessage={errors?.Group?.errorMessage}
+        getBadgeText={getDisplayValue.Group}
+        setFieldValue={(model) => {
+          setCurrentGroupDisplayValue(
+            model ? getDisplayValue.Group(model) : ""
+          );
+          setCurrentGroupValue(model);
+        }}
+        inputFieldRef={GroupRef}
+        defaultFieldValue={""}
+      >
+        <Autocomplete
+          label="Group"
+          isRequired={false}
+          isReadOnly={false}
+          placeholder="Search GroupModel"
+          value={currentGroupDisplayValue}
+          options={groupModelRecords
+            .filter((r) => !GroupIdSet.has(getIDValue.Group?.(r)))
+            .map((r) => ({
+              id: getIDValue.Group?.(r),
+              label: getDisplayValue.Group?.(r),
+            }))}
+          onSelect={({ id, label }) => {
+            setCurrentGroupValue(
+              groupModelRecords.find((r) =>
+                Object.entries(JSON.parse(id)).every(
+                  ([key, value]) => r[key] === value
+                )
+              )
+            );
+            setCurrentGroupDisplayValue(label);
+            runValidationTasks("Group", label);
+          }}
+          onClear={() => {
+            setCurrentGroupDisplayValue("");
+          }}
+          onChange={(e) => {
+            let { value } = e.target;
+            if (errors.Group?.hasError) {
+              runValidationTasks("Group", value);
+            }
+            setCurrentGroupDisplayValue(value);
+            setCurrentGroupValue(undefined);
+          }}
+          onBlur={() => runValidationTasks("Group", currentGroupDisplayValue)}
+          errorMessage={errors.Group?.errorMessage}
+          hasError={errors.Group?.hasError}
+          ref={GroupRef}
+          labelHidden={true}
+          {...getOverrideProps(overrides, "Group")}
+        ></Autocomplete>
+      </ArrayField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

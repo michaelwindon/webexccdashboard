@@ -5,7 +5,8 @@
  **************************************************************************/
 
 import * as React from "react";
-import { GridProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { AutocompleteProps, GridProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { QueueModel, GroupModel } from "../models";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -23,23 +24,23 @@ export declare type ValidationResponse = {
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
 export declare type QueueModelUpdateFormInputValues = {
     name?: string;
-    group?: string;
+    Group?: GroupModel;
 };
 export declare type QueueModelUpdateFormValidationValues = {
     name?: ValidationFunction<string>;
-    group?: ValidationFunction<string>;
+    Group?: ValidationFunction<GroupModel>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type QueueModelUpdateFormOverridesProps = {
     QueueModelUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
     name?: PrimitiveOverrideProps<TextFieldProps>;
-    group?: PrimitiveOverrideProps<TextFieldProps>;
+    Group?: PrimitiveOverrideProps<AutocompleteProps>;
 } & EscapeHatchProps;
 export declare type QueueModelUpdateFormProps = React.PropsWithChildren<{
     overrides?: QueueModelUpdateFormOverridesProps | undefined | null;
 } & {
     id?: string;
-    queueModel?: any;
+    queueModel?: QueueModel;
     onSubmit?: (fields: QueueModelUpdateFormInputValues) => QueueModelUpdateFormInputValues;
     onSuccess?: (fields: QueueModelUpdateFormInputValues) => void;
     onError?: (fields: QueueModelUpdateFormInputValues, errorMessage: string) => void;

@@ -7,6 +7,7 @@
 /* eslint-disable */
 import * as React from "react";
 import {
+  Autocomplete,
   Badge,
   Button,
   Divider,
@@ -17,13 +18,23 @@ import {
   SelectField,
   SwitchField,
   Text,
+  TextAreaField,
   TextField,
   useTheme,
 } from "@aws-amplify/ui-react";
-import { fetchByPath, getOverrideProps, validateField } from "./utils";
-import { generateClient } from "aws-amplify/api";
-import { createContactCenterModel } from "../graphql/mutations";
-const client = generateClient();
+import {
+  ContactCenterModel,
+  ManagerModel,
+  GroupModel,
+  ContactCenterModelManagerModel,
+} from "../models";
+import {
+  fetchByPath,
+  getOverrideProps,
+  useDataStoreBinding,
+  validateField,
+} from "./utils";
+import { DataStore } from "aws-amplify/datastore";
 function ArrayField({
   items = [],
   onChange,
@@ -192,6 +203,16 @@ export default function ContactCenterModelCreateForm(props) {
   } = props;
   const initialValues = {
     mainnumber: "",
+    menu0: "",
+    menu1: "",
+    menu2: "",
+    menu3: "",
+    menu4: "",
+    menu5: "",
+    menu6: "",
+    menu7: "",
+    menu8: "",
+    menu9: "",
     holiday: [],
     secondarytodclose: [],
     secondarytodopen: [],
@@ -199,16 +220,40 @@ export default function ContactCenterModelCreateForm(props) {
     daystodopen: [],
     daystodclose: [],
     welcomeprompt: "",
+    afterhours: "",
     ccdescription: "",
     ccname: "",
     defaultroute: "",
+    holidayoption: "",
     isoverride: false,
+    submenu2: "",
     welcomeprompt_sp: "",
+    submenu2_sp: "",
     menu0_sp: "",
-    group: "",
+    menu1_sp: "",
+    menu2_sp: "",
+    menu3_sp: "",
+    menu4_sp: "",
+    menu5_sp: "",
+    menu6_sp: "",
+    menu7_sp: "",
+    menu8_sp: "",
+    menu9_sp: "",
     version: "",
+    Managers: [],
+    AssignedGroup: undefined,
   };
   const [mainnumber, setMainnumber] = React.useState(initialValues.mainnumber);
+  const [menu0, setMenu0] = React.useState(initialValues.menu0);
+  const [menu1, setMenu1] = React.useState(initialValues.menu1);
+  const [menu2, setMenu2] = React.useState(initialValues.menu2);
+  const [menu3, setMenu3] = React.useState(initialValues.menu3);
+  const [menu4, setMenu4] = React.useState(initialValues.menu4);
+  const [menu5, setMenu5] = React.useState(initialValues.menu5);
+  const [menu6, setMenu6] = React.useState(initialValues.menu6);
+  const [menu7, setMenu7] = React.useState(initialValues.menu7);
+  const [menu8, setMenu8] = React.useState(initialValues.menu8);
+  const [menu9, setMenu9] = React.useState(initialValues.menu9);
   const [holiday, setHoliday] = React.useState(initialValues.holiday);
   const [secondarytodclose, setSecondarytodclose] = React.useState(
     initialValues.secondarytodclose
@@ -226,6 +271,7 @@ export default function ContactCenterModelCreateForm(props) {
   const [welcomeprompt, setWelcomeprompt] = React.useState(
     initialValues.welcomeprompt
   );
+  const [afterhours, setAfterhours] = React.useState(initialValues.afterhours);
   const [ccdescription, setCcdescription] = React.useState(
     initialValues.ccdescription
   );
@@ -233,16 +279,45 @@ export default function ContactCenterModelCreateForm(props) {
   const [defaultroute, setDefaultroute] = React.useState(
     initialValues.defaultroute
   );
+  const [holidayoption, setHolidayoption] = React.useState(
+    initialValues.holidayoption
+  );
   const [isoverride, setIsoverride] = React.useState(initialValues.isoverride);
+  const [submenu2, setSubmenu2] = React.useState(initialValues.submenu2);
   const [welcomeprompt_sp, setWelcomeprompt_sp] = React.useState(
     initialValues.welcomeprompt_sp
   );
+  const [submenu2_sp, setSubmenu2_sp] = React.useState(
+    initialValues.submenu2_sp
+  );
   const [menu0_sp, setMenu0_sp] = React.useState(initialValues.menu0_sp);
-  const [group, setGroup] = React.useState(initialValues.group);
+  const [menu1_sp, setMenu1_sp] = React.useState(initialValues.menu1_sp);
+  const [menu2_sp, setMenu2_sp] = React.useState(initialValues.menu2_sp);
+  const [menu3_sp, setMenu3_sp] = React.useState(initialValues.menu3_sp);
+  const [menu4_sp, setMenu4_sp] = React.useState(initialValues.menu4_sp);
+  const [menu5_sp, setMenu5_sp] = React.useState(initialValues.menu5_sp);
+  const [menu6_sp, setMenu6_sp] = React.useState(initialValues.menu6_sp);
+  const [menu7_sp, setMenu7_sp] = React.useState(initialValues.menu7_sp);
+  const [menu8_sp, setMenu8_sp] = React.useState(initialValues.menu8_sp);
+  const [menu9_sp, setMenu9_sp] = React.useState(initialValues.menu9_sp);
   const [version, setVersion] = React.useState(initialValues.version);
+  const [Managers, setManagers] = React.useState(initialValues.Managers);
+  const [AssignedGroup, setAssignedGroup] = React.useState(
+    initialValues.AssignedGroup
+  );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setMainnumber(initialValues.mainnumber);
+    setMenu0(initialValues.menu0);
+    setMenu1(initialValues.menu1);
+    setMenu2(initialValues.menu2);
+    setMenu3(initialValues.menu3);
+    setMenu4(initialValues.menu4);
+    setMenu5(initialValues.menu5);
+    setMenu6(initialValues.menu6);
+    setMenu7(initialValues.menu7);
+    setMenu8(initialValues.menu8);
+    setMenu9(initialValues.menu9);
     setHoliday(initialValues.holiday);
     setCurrentHolidayValue("");
     setSecondarytodclose(initialValues.secondarytodclose);
@@ -256,14 +331,32 @@ export default function ContactCenterModelCreateForm(props) {
     setDaystodclose(initialValues.daystodclose);
     setCurrentDaystodcloseValue("");
     setWelcomeprompt(initialValues.welcomeprompt);
+    setAfterhours(initialValues.afterhours);
     setCcdescription(initialValues.ccdescription);
     setCcname(initialValues.ccname);
     setDefaultroute(initialValues.defaultroute);
+    setHolidayoption(initialValues.holidayoption);
     setIsoverride(initialValues.isoverride);
+    setSubmenu2(initialValues.submenu2);
     setWelcomeprompt_sp(initialValues.welcomeprompt_sp);
+    setSubmenu2_sp(initialValues.submenu2_sp);
     setMenu0_sp(initialValues.menu0_sp);
-    setGroup(initialValues.group);
+    setMenu1_sp(initialValues.menu1_sp);
+    setMenu2_sp(initialValues.menu2_sp);
+    setMenu3_sp(initialValues.menu3_sp);
+    setMenu4_sp(initialValues.menu4_sp);
+    setMenu5_sp(initialValues.menu5_sp);
+    setMenu6_sp(initialValues.menu6_sp);
+    setMenu7_sp(initialValues.menu7_sp);
+    setMenu8_sp(initialValues.menu8_sp);
+    setMenu9_sp(initialValues.menu9_sp);
     setVersion(initialValues.version);
+    setManagers(initialValues.Managers);
+    setCurrentManagersValue(undefined);
+    setCurrentManagersDisplayValue("");
+    setAssignedGroup(initialValues.AssignedGroup);
+    setCurrentAssignedGroupValue(undefined);
+    setCurrentAssignedGroupDisplayValue("");
     setErrors({});
   };
   const [currentHolidayValue, setCurrentHolidayValue] = React.useState("");
@@ -282,8 +375,56 @@ export default function ContactCenterModelCreateForm(props) {
   const [currentDaystodcloseValue, setCurrentDaystodcloseValue] =
     React.useState("");
   const daystodcloseRef = React.createRef();
+  const [currentManagersDisplayValue, setCurrentManagersDisplayValue] =
+    React.useState("");
+  const [currentManagersValue, setCurrentManagersValue] =
+    React.useState(undefined);
+  const ManagersRef = React.createRef();
+  const [
+    currentAssignedGroupDisplayValue,
+    setCurrentAssignedGroupDisplayValue,
+  ] = React.useState("");
+  const [currentAssignedGroupValue, setCurrentAssignedGroupValue] =
+    React.useState(undefined);
+  const AssignedGroupRef = React.createRef();
+  const getIDValue = {
+    Managers: (r) => JSON.stringify({ id: r?.id }),
+    AssignedGroup: (r) => JSON.stringify({ id: r?.id }),
+  };
+  const ManagersIdSet = new Set(
+    Array.isArray(Managers)
+      ? Managers.map((r) => getIDValue.Managers?.(r))
+      : getIDValue.Managers?.(Managers)
+  );
+  const AssignedGroupIdSet = new Set(
+    Array.isArray(AssignedGroup)
+      ? AssignedGroup.map((r) => getIDValue.AssignedGroup?.(r))
+      : getIDValue.AssignedGroup?.(AssignedGroup)
+  );
+  const managerModelRecords = useDataStoreBinding({
+    type: "collection",
+    model: ManagerModel,
+  }).items;
+  const groupModelRecords = useDataStoreBinding({
+    type: "collection",
+    model: GroupModel,
+  }).items;
+  const getDisplayValue = {
+    Managers: (r) => `${r?.name ? r?.name + " - " : ""}${r?.id}`,
+    AssignedGroup: (r) => `${r?.fullname ? r?.fullname + " - " : ""}${r?.id}`,
+  };
   const validations = {
     mainnumber: [{ type: "Required" }],
+    menu0: [{ type: "JSON" }],
+    menu1: [{ type: "JSON" }],
+    menu2: [{ type: "JSON" }],
+    menu3: [{ type: "JSON" }],
+    menu4: [{ type: "JSON" }],
+    menu5: [{ type: "JSON" }],
+    menu6: [{ type: "JSON" }],
+    menu7: [{ type: "JSON" }],
+    menu8: [{ type: "JSON" }],
+    menu9: [{ type: "JSON" }],
     holiday: [],
     secondarytodclose: [],
     secondarytodopen: [],
@@ -291,14 +432,28 @@ export default function ContactCenterModelCreateForm(props) {
     daystodopen: [],
     daystodclose: [],
     welcomeprompt: [],
+    afterhours: [{ type: "JSON" }],
     ccdescription: [],
     ccname: [],
     defaultroute: [],
+    holidayoption: [{ type: "JSON" }],
     isoverride: [],
+    submenu2: [{ type: "JSON" }],
     welcomeprompt_sp: [],
+    submenu2_sp: [{ type: "JSON" }],
     menu0_sp: [],
-    group: [],
+    menu1_sp: [{ type: "JSON" }],
+    menu2_sp: [{ type: "JSON" }],
+    menu3_sp: [{ type: "JSON" }],
+    menu4_sp: [{ type: "JSON" }],
+    menu5_sp: [{ type: "JSON" }],
+    menu6_sp: [{ type: "JSON" }],
+    menu7_sp: [{ type: "JSON" }],
+    menu8_sp: [{ type: "JSON" }],
+    menu9_sp: [{ type: "JSON" }],
     version: [],
+    Managers: [],
+    AssignedGroup: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -327,6 +482,16 @@ export default function ContactCenterModelCreateForm(props) {
         event.preventDefault();
         let modelFields = {
           mainnumber,
+          menu0,
+          menu1,
+          menu2,
+          menu3,
+          menu4,
+          menu5,
+          menu6,
+          menu7,
+          menu8,
+          menu9,
           holiday,
           secondarytodclose,
           secondarytodopen,
@@ -334,27 +499,49 @@ export default function ContactCenterModelCreateForm(props) {
           daystodopen,
           daystodclose,
           welcomeprompt,
+          afterhours,
           ccdescription,
           ccname,
           defaultroute,
+          holidayoption,
           isoverride,
+          submenu2,
           welcomeprompt_sp,
+          submenu2_sp,
           menu0_sp,
-          group,
+          menu1_sp,
+          menu2_sp,
+          menu3_sp,
+          menu4_sp,
+          menu5_sp,
+          menu6_sp,
+          menu7_sp,
+          menu8_sp,
+          menu9_sp,
           version,
+          Managers,
+          AssignedGroup,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
             if (Array.isArray(modelFields[fieldName])) {
               promises.push(
                 ...modelFields[fieldName].map((item) =>
-                  runValidationTasks(fieldName, item)
+                  runValidationTasks(
+                    fieldName,
+                    item,
+                    getDisplayValue[fieldName]
+                  )
                 )
               );
               return promises;
             }
             promises.push(
-              runValidationTasks(fieldName, modelFields[fieldName])
+              runValidationTasks(
+                fieldName,
+                modelFields[fieldName],
+                getDisplayValue[fieldName]
+              )
             );
             return promises;
           }, [])
@@ -371,14 +558,111 @@ export default function ContactCenterModelCreateForm(props) {
               modelFields[key] = null;
             }
           });
-          await client.graphql({
-            query: createContactCenterModel.replaceAll("__typename", ""),
-            variables: {
-              input: {
-                ...modelFields,
-              },
-            },
-          });
+          const modelFieldsToSave = {
+            mainnumber: modelFields.mainnumber,
+            holiday: modelFields.holiday,
+            secondarytodclose: modelFields.secondarytodclose,
+            secondarytodopen: modelFields.secondarytodopen,
+            daysopen: modelFields.daysopen,
+            daystodopen: modelFields.daystodopen,
+            daystodclose: modelFields.daystodclose,
+            welcomeprompt: modelFields.welcomeprompt,
+            ccdescription: modelFields.ccdescription,
+            ccname: modelFields.ccname,
+            defaultroute: modelFields.defaultroute,
+            isoverride: modelFields.isoverride,
+            welcomeprompt_sp: modelFields.welcomeprompt_sp,
+            menu0_sp: modelFields.menu0_sp,
+            version: modelFields.version,
+            AssignedGroup: modelFields.AssignedGroup,
+            menu0: modelFields.menu0
+              ? JSON.parse(modelFields.menu0)
+              : modelFields.menu0,
+            menu1: modelFields.menu1
+              ? JSON.parse(modelFields.menu1)
+              : modelFields.menu1,
+            menu2: modelFields.menu2
+              ? JSON.parse(modelFields.menu2)
+              : modelFields.menu2,
+            menu3: modelFields.menu3
+              ? JSON.parse(modelFields.menu3)
+              : modelFields.menu3,
+            menu4: modelFields.menu4
+              ? JSON.parse(modelFields.menu4)
+              : modelFields.menu4,
+            menu5: modelFields.menu5
+              ? JSON.parse(modelFields.menu5)
+              : modelFields.menu5,
+            menu6: modelFields.menu6
+              ? JSON.parse(modelFields.menu6)
+              : modelFields.menu6,
+            menu7: modelFields.menu7
+              ? JSON.parse(modelFields.menu7)
+              : modelFields.menu7,
+            menu8: modelFields.menu8
+              ? JSON.parse(modelFields.menu8)
+              : modelFields.menu8,
+            menu9: modelFields.menu9
+              ? JSON.parse(modelFields.menu9)
+              : modelFields.menu9,
+            afterhours: modelFields.afterhours
+              ? JSON.parse(modelFields.afterhours)
+              : modelFields.afterhours,
+            holidayoption: modelFields.holidayoption
+              ? JSON.parse(modelFields.holidayoption)
+              : modelFields.holidayoption,
+            submenu2: modelFields.submenu2
+              ? JSON.parse(modelFields.submenu2)
+              : modelFields.submenu2,
+            submenu2_sp: modelFields.submenu2_sp
+              ? JSON.parse(modelFields.submenu2_sp)
+              : modelFields.submenu2_sp,
+            menu1_sp: modelFields.menu1_sp
+              ? JSON.parse(modelFields.menu1_sp)
+              : modelFields.menu1_sp,
+            menu2_sp: modelFields.menu2_sp
+              ? JSON.parse(modelFields.menu2_sp)
+              : modelFields.menu2_sp,
+            menu3_sp: modelFields.menu3_sp
+              ? JSON.parse(modelFields.menu3_sp)
+              : modelFields.menu3_sp,
+            menu4_sp: modelFields.menu4_sp
+              ? JSON.parse(modelFields.menu4_sp)
+              : modelFields.menu4_sp,
+            menu5_sp: modelFields.menu5_sp
+              ? JSON.parse(modelFields.menu5_sp)
+              : modelFields.menu5_sp,
+            menu6_sp: modelFields.menu6_sp
+              ? JSON.parse(modelFields.menu6_sp)
+              : modelFields.menu6_sp,
+            menu7_sp: modelFields.menu7_sp
+              ? JSON.parse(modelFields.menu7_sp)
+              : modelFields.menu7_sp,
+            menu8_sp: modelFields.menu8_sp
+              ? JSON.parse(modelFields.menu8_sp)
+              : modelFields.menu8_sp,
+            menu9_sp: modelFields.menu9_sp
+              ? JSON.parse(modelFields.menu9_sp)
+              : modelFields.menu9_sp,
+          };
+          const contactCenterModel = await DataStore.save(
+            new ContactCenterModel(modelFieldsToSave)
+          );
+          const promises = [];
+          promises.push(
+            ...Managers.reduce((promises, managerModel) => {
+              promises.push(
+                DataStore.save(
+                  new ContactCenterModelManagerModel({
+                    contactCenterModel,
+                    managerModel,
+                  })
+                )
+              );
+              return promises;
+            }, [])
+          );
+          await Promise.all(promises);
           if (onSuccess) {
             onSuccess(modelFields);
           }
@@ -387,8 +671,7 @@ export default function ContactCenterModelCreateForm(props) {
           }
         } catch (err) {
           if (onError) {
-            const messages = err.errors.map((e) => e.message).join("\n");
-            onError(modelFields, messages);
+            onError(modelFields, err.message);
           }
         }
       }}
@@ -405,6 +688,16 @@ export default function ContactCenterModelCreateForm(props) {
           if (onChange) {
             const modelFields = {
               mainnumber: value,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
               holiday,
               secondarytodclose,
               secondarytodopen,
@@ -412,14 +705,28 @@ export default function ContactCenterModelCreateForm(props) {
               daystodopen,
               daystodclose,
               welcomeprompt,
+              afterhours,
               ccdescription,
               ccname,
               defaultroute,
+              holidayoption,
               isoverride,
+              submenu2,
               welcomeprompt_sp,
+              submenu2_sp,
               menu0_sp,
-              group,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
               version,
+              Managers,
+              AssignedGroup,
             };
             const result = onChange(modelFields);
             value = result?.mainnumber ?? value;
@@ -434,12 +741,642 @@ export default function ContactCenterModelCreateForm(props) {
         hasError={errors.mainnumber?.hasError}
         {...getOverrideProps(overrides, "mainnumber")}
       ></TextField>
+      <TextAreaField
+        label="Menu0"
+        isRequired={false}
+        isReadOnly={false}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              mainnumber,
+              menu0: value,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
+              holiday,
+              secondarytodclose,
+              secondarytodopen,
+              daysopen,
+              daystodopen,
+              daystodclose,
+              welcomeprompt,
+              afterhours,
+              ccdescription,
+              ccname,
+              defaultroute,
+              holidayoption,
+              isoverride,
+              submenu2,
+              welcomeprompt_sp,
+              submenu2_sp,
+              menu0_sp,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
+              version,
+              Managers,
+              AssignedGroup,
+            };
+            const result = onChange(modelFields);
+            value = result?.menu0 ?? value;
+          }
+          if (errors.menu0?.hasError) {
+            runValidationTasks("menu0", value);
+          }
+          setMenu0(value);
+        }}
+        onBlur={() => runValidationTasks("menu0", menu0)}
+        errorMessage={errors.menu0?.errorMessage}
+        hasError={errors.menu0?.hasError}
+        {...getOverrideProps(overrides, "menu0")}
+      ></TextAreaField>
+      <TextAreaField
+        label="Menu1"
+        isRequired={false}
+        isReadOnly={false}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              mainnumber,
+              menu0,
+              menu1: value,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
+              holiday,
+              secondarytodclose,
+              secondarytodopen,
+              daysopen,
+              daystodopen,
+              daystodclose,
+              welcomeprompt,
+              afterhours,
+              ccdescription,
+              ccname,
+              defaultroute,
+              holidayoption,
+              isoverride,
+              submenu2,
+              welcomeprompt_sp,
+              submenu2_sp,
+              menu0_sp,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
+              version,
+              Managers,
+              AssignedGroup,
+            };
+            const result = onChange(modelFields);
+            value = result?.menu1 ?? value;
+          }
+          if (errors.menu1?.hasError) {
+            runValidationTasks("menu1", value);
+          }
+          setMenu1(value);
+        }}
+        onBlur={() => runValidationTasks("menu1", menu1)}
+        errorMessage={errors.menu1?.errorMessage}
+        hasError={errors.menu1?.hasError}
+        {...getOverrideProps(overrides, "menu1")}
+      ></TextAreaField>
+      <TextAreaField
+        label="Menu2"
+        isRequired={false}
+        isReadOnly={false}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              mainnumber,
+              menu0,
+              menu1,
+              menu2: value,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
+              holiday,
+              secondarytodclose,
+              secondarytodopen,
+              daysopen,
+              daystodopen,
+              daystodclose,
+              welcomeprompt,
+              afterhours,
+              ccdescription,
+              ccname,
+              defaultroute,
+              holidayoption,
+              isoverride,
+              submenu2,
+              welcomeprompt_sp,
+              submenu2_sp,
+              menu0_sp,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
+              version,
+              Managers,
+              AssignedGroup,
+            };
+            const result = onChange(modelFields);
+            value = result?.menu2 ?? value;
+          }
+          if (errors.menu2?.hasError) {
+            runValidationTasks("menu2", value);
+          }
+          setMenu2(value);
+        }}
+        onBlur={() => runValidationTasks("menu2", menu2)}
+        errorMessage={errors.menu2?.errorMessage}
+        hasError={errors.menu2?.hasError}
+        {...getOverrideProps(overrides, "menu2")}
+      ></TextAreaField>
+      <TextAreaField
+        label="Menu3"
+        isRequired={false}
+        isReadOnly={false}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3: value,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
+              holiday,
+              secondarytodclose,
+              secondarytodopen,
+              daysopen,
+              daystodopen,
+              daystodclose,
+              welcomeprompt,
+              afterhours,
+              ccdescription,
+              ccname,
+              defaultroute,
+              holidayoption,
+              isoverride,
+              submenu2,
+              welcomeprompt_sp,
+              submenu2_sp,
+              menu0_sp,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
+              version,
+              Managers,
+              AssignedGroup,
+            };
+            const result = onChange(modelFields);
+            value = result?.menu3 ?? value;
+          }
+          if (errors.menu3?.hasError) {
+            runValidationTasks("menu3", value);
+          }
+          setMenu3(value);
+        }}
+        onBlur={() => runValidationTasks("menu3", menu3)}
+        errorMessage={errors.menu3?.errorMessage}
+        hasError={errors.menu3?.hasError}
+        {...getOverrideProps(overrides, "menu3")}
+      ></TextAreaField>
+      <TextAreaField
+        label="Menu4"
+        isRequired={false}
+        isReadOnly={false}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4: value,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
+              holiday,
+              secondarytodclose,
+              secondarytodopen,
+              daysopen,
+              daystodopen,
+              daystodclose,
+              welcomeprompt,
+              afterhours,
+              ccdescription,
+              ccname,
+              defaultroute,
+              holidayoption,
+              isoverride,
+              submenu2,
+              welcomeprompt_sp,
+              submenu2_sp,
+              menu0_sp,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
+              version,
+              Managers,
+              AssignedGroup,
+            };
+            const result = onChange(modelFields);
+            value = result?.menu4 ?? value;
+          }
+          if (errors.menu4?.hasError) {
+            runValidationTasks("menu4", value);
+          }
+          setMenu4(value);
+        }}
+        onBlur={() => runValidationTasks("menu4", menu4)}
+        errorMessage={errors.menu4?.errorMessage}
+        hasError={errors.menu4?.hasError}
+        {...getOverrideProps(overrides, "menu4")}
+      ></TextAreaField>
+      <TextAreaField
+        label="Menu5"
+        isRequired={false}
+        isReadOnly={false}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5: value,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
+              holiday,
+              secondarytodclose,
+              secondarytodopen,
+              daysopen,
+              daystodopen,
+              daystodclose,
+              welcomeprompt,
+              afterhours,
+              ccdescription,
+              ccname,
+              defaultroute,
+              holidayoption,
+              isoverride,
+              submenu2,
+              welcomeprompt_sp,
+              submenu2_sp,
+              menu0_sp,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
+              version,
+              Managers,
+              AssignedGroup,
+            };
+            const result = onChange(modelFields);
+            value = result?.menu5 ?? value;
+          }
+          if (errors.menu5?.hasError) {
+            runValidationTasks("menu5", value);
+          }
+          setMenu5(value);
+        }}
+        onBlur={() => runValidationTasks("menu5", menu5)}
+        errorMessage={errors.menu5?.errorMessage}
+        hasError={errors.menu5?.hasError}
+        {...getOverrideProps(overrides, "menu5")}
+      ></TextAreaField>
+      <TextAreaField
+        label="Menu6"
+        isRequired={false}
+        isReadOnly={false}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6: value,
+              menu7,
+              menu8,
+              menu9,
+              holiday,
+              secondarytodclose,
+              secondarytodopen,
+              daysopen,
+              daystodopen,
+              daystodclose,
+              welcomeprompt,
+              afterhours,
+              ccdescription,
+              ccname,
+              defaultroute,
+              holidayoption,
+              isoverride,
+              submenu2,
+              welcomeprompt_sp,
+              submenu2_sp,
+              menu0_sp,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
+              version,
+              Managers,
+              AssignedGroup,
+            };
+            const result = onChange(modelFields);
+            value = result?.menu6 ?? value;
+          }
+          if (errors.menu6?.hasError) {
+            runValidationTasks("menu6", value);
+          }
+          setMenu6(value);
+        }}
+        onBlur={() => runValidationTasks("menu6", menu6)}
+        errorMessage={errors.menu6?.errorMessage}
+        hasError={errors.menu6?.hasError}
+        {...getOverrideProps(overrides, "menu6")}
+      ></TextAreaField>
+      <TextAreaField
+        label="Menu7"
+        isRequired={false}
+        isReadOnly={false}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7: value,
+              menu8,
+              menu9,
+              holiday,
+              secondarytodclose,
+              secondarytodopen,
+              daysopen,
+              daystodopen,
+              daystodclose,
+              welcomeprompt,
+              afterhours,
+              ccdescription,
+              ccname,
+              defaultroute,
+              holidayoption,
+              isoverride,
+              submenu2,
+              welcomeprompt_sp,
+              submenu2_sp,
+              menu0_sp,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
+              version,
+              Managers,
+              AssignedGroup,
+            };
+            const result = onChange(modelFields);
+            value = result?.menu7 ?? value;
+          }
+          if (errors.menu7?.hasError) {
+            runValidationTasks("menu7", value);
+          }
+          setMenu7(value);
+        }}
+        onBlur={() => runValidationTasks("menu7", menu7)}
+        errorMessage={errors.menu7?.errorMessage}
+        hasError={errors.menu7?.hasError}
+        {...getOverrideProps(overrides, "menu7")}
+      ></TextAreaField>
+      <TextAreaField
+        label="Menu8"
+        isRequired={false}
+        isReadOnly={false}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8: value,
+              menu9,
+              holiday,
+              secondarytodclose,
+              secondarytodopen,
+              daysopen,
+              daystodopen,
+              daystodclose,
+              welcomeprompt,
+              afterhours,
+              ccdescription,
+              ccname,
+              defaultroute,
+              holidayoption,
+              isoverride,
+              submenu2,
+              welcomeprompt_sp,
+              submenu2_sp,
+              menu0_sp,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
+              version,
+              Managers,
+              AssignedGroup,
+            };
+            const result = onChange(modelFields);
+            value = result?.menu8 ?? value;
+          }
+          if (errors.menu8?.hasError) {
+            runValidationTasks("menu8", value);
+          }
+          setMenu8(value);
+        }}
+        onBlur={() => runValidationTasks("menu8", menu8)}
+        errorMessage={errors.menu8?.errorMessage}
+        hasError={errors.menu8?.hasError}
+        {...getOverrideProps(overrides, "menu8")}
+      ></TextAreaField>
+      <TextAreaField
+        label="Menu9"
+        isRequired={false}
+        isReadOnly={false}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9: value,
+              holiday,
+              secondarytodclose,
+              secondarytodopen,
+              daysopen,
+              daystodopen,
+              daystodclose,
+              welcomeprompt,
+              afterhours,
+              ccdescription,
+              ccname,
+              defaultroute,
+              holidayoption,
+              isoverride,
+              submenu2,
+              welcomeprompt_sp,
+              submenu2_sp,
+              menu0_sp,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
+              version,
+              Managers,
+              AssignedGroup,
+            };
+            const result = onChange(modelFields);
+            value = result?.menu9 ?? value;
+          }
+          if (errors.menu9?.hasError) {
+            runValidationTasks("menu9", value);
+          }
+          setMenu9(value);
+        }}
+        onBlur={() => runValidationTasks("menu9", menu9)}
+        errorMessage={errors.menu9?.errorMessage}
+        hasError={errors.menu9?.hasError}
+        {...getOverrideProps(overrides, "menu9")}
+      ></TextAreaField>
       <ArrayField
         onChange={async (items) => {
           let values = items;
           if (onChange) {
             const modelFields = {
               mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
               holiday: values,
               secondarytodclose,
               secondarytodopen,
@@ -447,14 +1384,28 @@ export default function ContactCenterModelCreateForm(props) {
               daystodopen,
               daystodclose,
               welcomeprompt,
+              afterhours,
               ccdescription,
               ccname,
               defaultroute,
+              holidayoption,
               isoverride,
+              submenu2,
               welcomeprompt_sp,
+              submenu2_sp,
               menu0_sp,
-              group,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
               version,
+              Managers,
+              AssignedGroup,
             };
             const result = onChange(modelFields);
             values = result?.holiday ?? values;
@@ -500,6 +1451,16 @@ export default function ContactCenterModelCreateForm(props) {
           if (onChange) {
             const modelFields = {
               mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
               holiday,
               secondarytodclose: values,
               secondarytodopen,
@@ -507,14 +1468,28 @@ export default function ContactCenterModelCreateForm(props) {
               daystodopen,
               daystodclose,
               welcomeprompt,
+              afterhours,
               ccdescription,
               ccname,
               defaultroute,
+              holidayoption,
               isoverride,
+              submenu2,
               welcomeprompt_sp,
+              submenu2_sp,
               menu0_sp,
-              group,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
               version,
+              Managers,
+              AssignedGroup,
             };
             const result = onChange(modelFields);
             values = result?.secondarytodclose ?? values;
@@ -568,6 +1543,16 @@ export default function ContactCenterModelCreateForm(props) {
           if (onChange) {
             const modelFields = {
               mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
               holiday,
               secondarytodclose,
               secondarytodopen: values,
@@ -575,14 +1560,28 @@ export default function ContactCenterModelCreateForm(props) {
               daystodopen,
               daystodclose,
               welcomeprompt,
+              afterhours,
               ccdescription,
               ccname,
               defaultroute,
+              holidayoption,
               isoverride,
+              submenu2,
               welcomeprompt_sp,
+              submenu2_sp,
               menu0_sp,
-              group,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
               version,
+              Managers,
+              AssignedGroup,
             };
             const result = onChange(modelFields);
             values = result?.secondarytodopen ?? values;
@@ -633,6 +1632,16 @@ export default function ContactCenterModelCreateForm(props) {
           if (onChange) {
             const modelFields = {
               mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
               holiday,
               secondarytodclose,
               secondarytodopen,
@@ -640,14 +1649,28 @@ export default function ContactCenterModelCreateForm(props) {
               daystodopen,
               daystodclose,
               welcomeprompt,
+              afterhours,
               ccdescription,
               ccname,
               defaultroute,
+              holidayoption,
               isoverride,
+              submenu2,
               welcomeprompt_sp,
+              submenu2_sp,
               menu0_sp,
-              group,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
               version,
+              Managers,
+              AssignedGroup,
             };
             const result = onChange(modelFields);
             values = result?.daysopen ?? values;
@@ -693,6 +1716,16 @@ export default function ContactCenterModelCreateForm(props) {
           if (onChange) {
             const modelFields = {
               mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
               holiday,
               secondarytodclose,
               secondarytodopen,
@@ -700,14 +1733,28 @@ export default function ContactCenterModelCreateForm(props) {
               daystodopen: values,
               daystodclose,
               welcomeprompt,
+              afterhours,
               ccdescription,
               ccname,
               defaultroute,
+              holidayoption,
               isoverride,
+              submenu2,
               welcomeprompt_sp,
+              submenu2_sp,
               menu0_sp,
-              group,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
               version,
+              Managers,
+              AssignedGroup,
             };
             const result = onChange(modelFields);
             values = result?.daystodopen ?? values;
@@ -755,6 +1802,16 @@ export default function ContactCenterModelCreateForm(props) {
           if (onChange) {
             const modelFields = {
               mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
               holiday,
               secondarytodclose,
               secondarytodopen,
@@ -762,14 +1819,28 @@ export default function ContactCenterModelCreateForm(props) {
               daystodopen,
               daystodclose: values,
               welcomeprompt,
+              afterhours,
               ccdescription,
               ccname,
               defaultroute,
+              holidayoption,
               isoverride,
+              submenu2,
               welcomeprompt_sp,
+              submenu2_sp,
               menu0_sp,
-              group,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
               version,
+              Managers,
+              AssignedGroup,
             };
             const result = onChange(modelFields);
             values = result?.daystodclose ?? values;
@@ -821,6 +1892,16 @@ export default function ContactCenterModelCreateForm(props) {
           if (onChange) {
             const modelFields = {
               mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
               holiday,
               secondarytodclose,
               secondarytodopen,
@@ -828,14 +1909,28 @@ export default function ContactCenterModelCreateForm(props) {
               daystodopen,
               daystodclose,
               welcomeprompt: value,
+              afterhours,
               ccdescription,
               ccname,
               defaultroute,
+              holidayoption,
               isoverride,
+              submenu2,
               welcomeprompt_sp,
+              submenu2_sp,
               menu0_sp,
-              group,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
               version,
+              Managers,
+              AssignedGroup,
             };
             const result = onChange(modelFields);
             value = result?.welcomeprompt ?? value;
@@ -850,6 +1945,68 @@ export default function ContactCenterModelCreateForm(props) {
         hasError={errors.welcomeprompt?.hasError}
         {...getOverrideProps(overrides, "welcomeprompt")}
       ></TextField>
+      <TextAreaField
+        label="Afterhours"
+        isRequired={false}
+        isReadOnly={false}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
+              holiday,
+              secondarytodclose,
+              secondarytodopen,
+              daysopen,
+              daystodopen,
+              daystodclose,
+              welcomeprompt,
+              afterhours: value,
+              ccdescription,
+              ccname,
+              defaultroute,
+              holidayoption,
+              isoverride,
+              submenu2,
+              welcomeprompt_sp,
+              submenu2_sp,
+              menu0_sp,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
+              version,
+              Managers,
+              AssignedGroup,
+            };
+            const result = onChange(modelFields);
+            value = result?.afterhours ?? value;
+          }
+          if (errors.afterhours?.hasError) {
+            runValidationTasks("afterhours", value);
+          }
+          setAfterhours(value);
+        }}
+        onBlur={() => runValidationTasks("afterhours", afterhours)}
+        errorMessage={errors.afterhours?.errorMessage}
+        hasError={errors.afterhours?.hasError}
+        {...getOverrideProps(overrides, "afterhours")}
+      ></TextAreaField>
       <TextField
         label="Ccdescription"
         isRequired={false}
@@ -860,6 +2017,16 @@ export default function ContactCenterModelCreateForm(props) {
           if (onChange) {
             const modelFields = {
               mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
               holiday,
               secondarytodclose,
               secondarytodopen,
@@ -867,14 +2034,28 @@ export default function ContactCenterModelCreateForm(props) {
               daystodopen,
               daystodclose,
               welcomeprompt,
+              afterhours,
               ccdescription: value,
               ccname,
               defaultroute,
+              holidayoption,
               isoverride,
+              submenu2,
               welcomeprompt_sp,
+              submenu2_sp,
               menu0_sp,
-              group,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
               version,
+              Managers,
+              AssignedGroup,
             };
             const result = onChange(modelFields);
             value = result?.ccdescription ?? value;
@@ -899,6 +2080,16 @@ export default function ContactCenterModelCreateForm(props) {
           if (onChange) {
             const modelFields = {
               mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
               holiday,
               secondarytodclose,
               secondarytodopen,
@@ -906,14 +2097,28 @@ export default function ContactCenterModelCreateForm(props) {
               daystodopen,
               daystodclose,
               welcomeprompt,
+              afterhours,
               ccdescription,
               ccname: value,
               defaultroute,
+              holidayoption,
               isoverride,
+              submenu2,
               welcomeprompt_sp,
+              submenu2_sp,
               menu0_sp,
-              group,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
               version,
+              Managers,
+              AssignedGroup,
             };
             const result = onChange(modelFields);
             value = result?.ccname ?? value;
@@ -938,6 +2143,16 @@ export default function ContactCenterModelCreateForm(props) {
           if (onChange) {
             const modelFields = {
               mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
               holiday,
               secondarytodclose,
               secondarytodopen,
@@ -945,14 +2160,28 @@ export default function ContactCenterModelCreateForm(props) {
               daystodopen,
               daystodclose,
               welcomeprompt,
+              afterhours,
               ccdescription,
               ccname,
               defaultroute: value,
+              holidayoption,
               isoverride,
+              submenu2,
               welcomeprompt_sp,
+              submenu2_sp,
               menu0_sp,
-              group,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
               version,
+              Managers,
+              AssignedGroup,
             };
             const result = onChange(modelFields);
             value = result?.defaultroute ?? value;
@@ -967,6 +2196,68 @@ export default function ContactCenterModelCreateForm(props) {
         hasError={errors.defaultroute?.hasError}
         {...getOverrideProps(overrides, "defaultroute")}
       ></TextField>
+      <TextAreaField
+        label="Holidayoption"
+        isRequired={false}
+        isReadOnly={false}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
+              holiday,
+              secondarytodclose,
+              secondarytodopen,
+              daysopen,
+              daystodopen,
+              daystodclose,
+              welcomeprompt,
+              afterhours,
+              ccdescription,
+              ccname,
+              defaultroute,
+              holidayoption: value,
+              isoverride,
+              submenu2,
+              welcomeprompt_sp,
+              submenu2_sp,
+              menu0_sp,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
+              version,
+              Managers,
+              AssignedGroup,
+            };
+            const result = onChange(modelFields);
+            value = result?.holidayoption ?? value;
+          }
+          if (errors.holidayoption?.hasError) {
+            runValidationTasks("holidayoption", value);
+          }
+          setHolidayoption(value);
+        }}
+        onBlur={() => runValidationTasks("holidayoption", holidayoption)}
+        errorMessage={errors.holidayoption?.errorMessage}
+        hasError={errors.holidayoption?.hasError}
+        {...getOverrideProps(overrides, "holidayoption")}
+      ></TextAreaField>
       <SwitchField
         label="Isoverride"
         defaultChecked={false}
@@ -977,6 +2268,16 @@ export default function ContactCenterModelCreateForm(props) {
           if (onChange) {
             const modelFields = {
               mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
               holiday,
               secondarytodclose,
               secondarytodopen,
@@ -984,14 +2285,28 @@ export default function ContactCenterModelCreateForm(props) {
               daystodopen,
               daystodclose,
               welcomeprompt,
+              afterhours,
               ccdescription,
               ccname,
               defaultroute,
+              holidayoption,
               isoverride: value,
+              submenu2,
               welcomeprompt_sp,
+              submenu2_sp,
               menu0_sp,
-              group,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
               version,
+              Managers,
+              AssignedGroup,
             };
             const result = onChange(modelFields);
             value = result?.isoverride ?? value;
@@ -1006,6 +2321,68 @@ export default function ContactCenterModelCreateForm(props) {
         hasError={errors.isoverride?.hasError}
         {...getOverrideProps(overrides, "isoverride")}
       ></SwitchField>
+      <TextAreaField
+        label="Submenu2"
+        isRequired={false}
+        isReadOnly={false}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
+              holiday,
+              secondarytodclose,
+              secondarytodopen,
+              daysopen,
+              daystodopen,
+              daystodclose,
+              welcomeprompt,
+              afterhours,
+              ccdescription,
+              ccname,
+              defaultroute,
+              holidayoption,
+              isoverride,
+              submenu2: value,
+              welcomeprompt_sp,
+              submenu2_sp,
+              menu0_sp,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
+              version,
+              Managers,
+              AssignedGroup,
+            };
+            const result = onChange(modelFields);
+            value = result?.submenu2 ?? value;
+          }
+          if (errors.submenu2?.hasError) {
+            runValidationTasks("submenu2", value);
+          }
+          setSubmenu2(value);
+        }}
+        onBlur={() => runValidationTasks("submenu2", submenu2)}
+        errorMessage={errors.submenu2?.errorMessage}
+        hasError={errors.submenu2?.hasError}
+        {...getOverrideProps(overrides, "submenu2")}
+      ></TextAreaField>
       <TextField
         label="Welcomeprompt sp"
         isRequired={false}
@@ -1016,6 +2393,16 @@ export default function ContactCenterModelCreateForm(props) {
           if (onChange) {
             const modelFields = {
               mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
               holiday,
               secondarytodclose,
               secondarytodopen,
@@ -1023,14 +2410,28 @@ export default function ContactCenterModelCreateForm(props) {
               daystodopen,
               daystodclose,
               welcomeprompt,
+              afterhours,
               ccdescription,
               ccname,
               defaultroute,
+              holidayoption,
               isoverride,
+              submenu2,
               welcomeprompt_sp: value,
+              submenu2_sp,
               menu0_sp,
-              group,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
               version,
+              Managers,
+              AssignedGroup,
             };
             const result = onChange(modelFields);
             value = result?.welcomeprompt_sp ?? value;
@@ -1045,6 +2446,68 @@ export default function ContactCenterModelCreateForm(props) {
         hasError={errors.welcomeprompt_sp?.hasError}
         {...getOverrideProps(overrides, "welcomeprompt_sp")}
       ></TextField>
+      <TextAreaField
+        label="Submenu2 sp"
+        isRequired={false}
+        isReadOnly={false}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
+              holiday,
+              secondarytodclose,
+              secondarytodopen,
+              daysopen,
+              daystodopen,
+              daystodclose,
+              welcomeprompt,
+              afterhours,
+              ccdescription,
+              ccname,
+              defaultroute,
+              holidayoption,
+              isoverride,
+              submenu2,
+              welcomeprompt_sp,
+              submenu2_sp: value,
+              menu0_sp,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
+              version,
+              Managers,
+              AssignedGroup,
+            };
+            const result = onChange(modelFields);
+            value = result?.submenu2_sp ?? value;
+          }
+          if (errors.submenu2_sp?.hasError) {
+            runValidationTasks("submenu2_sp", value);
+          }
+          setSubmenu2_sp(value);
+        }}
+        onBlur={() => runValidationTasks("submenu2_sp", submenu2_sp)}
+        errorMessage={errors.submenu2_sp?.errorMessage}
+        hasError={errors.submenu2_sp?.hasError}
+        {...getOverrideProps(overrides, "submenu2_sp")}
+      ></TextAreaField>
       <SelectField
         label="Menu0 sp"
         placeholder="Please select an option"
@@ -1055,6 +2518,16 @@ export default function ContactCenterModelCreateForm(props) {
           if (onChange) {
             const modelFields = {
               mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
               holiday,
               secondarytodclose,
               secondarytodopen,
@@ -1062,14 +2535,28 @@ export default function ContactCenterModelCreateForm(props) {
               daystodopen,
               daystodclose,
               welcomeprompt,
+              afterhours,
               ccdescription,
               ccname,
               defaultroute,
+              holidayoption,
               isoverride,
+              submenu2,
               welcomeprompt_sp,
+              submenu2_sp,
               menu0_sp: value,
-              group,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
               version,
+              Managers,
+              AssignedGroup,
             };
             const result = onChange(modelFields);
             value = result?.menu0_sp ?? value;
@@ -1105,16 +2592,25 @@ export default function ContactCenterModelCreateForm(props) {
           {...getOverrideProps(overrides, "menu0_spoption3")}
         ></option>
       </SelectField>
-      <TextField
-        label="Group"
+      <TextAreaField
+        label="Menu1 sp"
         isRequired={false}
         isReadOnly={false}
-        value={group}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
               mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
               holiday,
               secondarytodclose,
               secondarytodopen,
@@ -1122,28 +2618,538 @@ export default function ContactCenterModelCreateForm(props) {
               daystodopen,
               daystodclose,
               welcomeprompt,
+              afterhours,
               ccdescription,
               ccname,
               defaultroute,
+              holidayoption,
               isoverride,
+              submenu2,
               welcomeprompt_sp,
+              submenu2_sp,
               menu0_sp,
-              group: value,
+              menu1_sp: value,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
               version,
+              Managers,
+              AssignedGroup,
             };
             const result = onChange(modelFields);
-            value = result?.group ?? value;
+            value = result?.menu1_sp ?? value;
           }
-          if (errors.group?.hasError) {
-            runValidationTasks("group", value);
+          if (errors.menu1_sp?.hasError) {
+            runValidationTasks("menu1_sp", value);
           }
-          setGroup(value);
+          setMenu1_sp(value);
         }}
-        onBlur={() => runValidationTasks("group", group)}
-        errorMessage={errors.group?.errorMessage}
-        hasError={errors.group?.hasError}
-        {...getOverrideProps(overrides, "group")}
-      ></TextField>
+        onBlur={() => runValidationTasks("menu1_sp", menu1_sp)}
+        errorMessage={errors.menu1_sp?.errorMessage}
+        hasError={errors.menu1_sp?.hasError}
+        {...getOverrideProps(overrides, "menu1_sp")}
+      ></TextAreaField>
+      <TextAreaField
+        label="Menu2 sp"
+        isRequired={false}
+        isReadOnly={false}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
+              holiday,
+              secondarytodclose,
+              secondarytodopen,
+              daysopen,
+              daystodopen,
+              daystodclose,
+              welcomeprompt,
+              afterhours,
+              ccdescription,
+              ccname,
+              defaultroute,
+              holidayoption,
+              isoverride,
+              submenu2,
+              welcomeprompt_sp,
+              submenu2_sp,
+              menu0_sp,
+              menu1_sp,
+              menu2_sp: value,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
+              version,
+              Managers,
+              AssignedGroup,
+            };
+            const result = onChange(modelFields);
+            value = result?.menu2_sp ?? value;
+          }
+          if (errors.menu2_sp?.hasError) {
+            runValidationTasks("menu2_sp", value);
+          }
+          setMenu2_sp(value);
+        }}
+        onBlur={() => runValidationTasks("menu2_sp", menu2_sp)}
+        errorMessage={errors.menu2_sp?.errorMessage}
+        hasError={errors.menu2_sp?.hasError}
+        {...getOverrideProps(overrides, "menu2_sp")}
+      ></TextAreaField>
+      <TextAreaField
+        label="Menu3 sp"
+        isRequired={false}
+        isReadOnly={false}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
+              holiday,
+              secondarytodclose,
+              secondarytodopen,
+              daysopen,
+              daystodopen,
+              daystodclose,
+              welcomeprompt,
+              afterhours,
+              ccdescription,
+              ccname,
+              defaultroute,
+              holidayoption,
+              isoverride,
+              submenu2,
+              welcomeprompt_sp,
+              submenu2_sp,
+              menu0_sp,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp: value,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
+              version,
+              Managers,
+              AssignedGroup,
+            };
+            const result = onChange(modelFields);
+            value = result?.menu3_sp ?? value;
+          }
+          if (errors.menu3_sp?.hasError) {
+            runValidationTasks("menu3_sp", value);
+          }
+          setMenu3_sp(value);
+        }}
+        onBlur={() => runValidationTasks("menu3_sp", menu3_sp)}
+        errorMessage={errors.menu3_sp?.errorMessage}
+        hasError={errors.menu3_sp?.hasError}
+        {...getOverrideProps(overrides, "menu3_sp")}
+      ></TextAreaField>
+      <TextAreaField
+        label="Menu4 sp"
+        isRequired={false}
+        isReadOnly={false}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
+              holiday,
+              secondarytodclose,
+              secondarytodopen,
+              daysopen,
+              daystodopen,
+              daystodclose,
+              welcomeprompt,
+              afterhours,
+              ccdescription,
+              ccname,
+              defaultroute,
+              holidayoption,
+              isoverride,
+              submenu2,
+              welcomeprompt_sp,
+              submenu2_sp,
+              menu0_sp,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp: value,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
+              version,
+              Managers,
+              AssignedGroup,
+            };
+            const result = onChange(modelFields);
+            value = result?.menu4_sp ?? value;
+          }
+          if (errors.menu4_sp?.hasError) {
+            runValidationTasks("menu4_sp", value);
+          }
+          setMenu4_sp(value);
+        }}
+        onBlur={() => runValidationTasks("menu4_sp", menu4_sp)}
+        errorMessage={errors.menu4_sp?.errorMessage}
+        hasError={errors.menu4_sp?.hasError}
+        {...getOverrideProps(overrides, "menu4_sp")}
+      ></TextAreaField>
+      <TextAreaField
+        label="Menu5 sp"
+        isRequired={false}
+        isReadOnly={false}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
+              holiday,
+              secondarytodclose,
+              secondarytodopen,
+              daysopen,
+              daystodopen,
+              daystodclose,
+              welcomeprompt,
+              afterhours,
+              ccdescription,
+              ccname,
+              defaultroute,
+              holidayoption,
+              isoverride,
+              submenu2,
+              welcomeprompt_sp,
+              submenu2_sp,
+              menu0_sp,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp: value,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
+              version,
+              Managers,
+              AssignedGroup,
+            };
+            const result = onChange(modelFields);
+            value = result?.menu5_sp ?? value;
+          }
+          if (errors.menu5_sp?.hasError) {
+            runValidationTasks("menu5_sp", value);
+          }
+          setMenu5_sp(value);
+        }}
+        onBlur={() => runValidationTasks("menu5_sp", menu5_sp)}
+        errorMessage={errors.menu5_sp?.errorMessage}
+        hasError={errors.menu5_sp?.hasError}
+        {...getOverrideProps(overrides, "menu5_sp")}
+      ></TextAreaField>
+      <TextAreaField
+        label="Menu6 sp"
+        isRequired={false}
+        isReadOnly={false}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
+              holiday,
+              secondarytodclose,
+              secondarytodopen,
+              daysopen,
+              daystodopen,
+              daystodclose,
+              welcomeprompt,
+              afterhours,
+              ccdescription,
+              ccname,
+              defaultroute,
+              holidayoption,
+              isoverride,
+              submenu2,
+              welcomeprompt_sp,
+              submenu2_sp,
+              menu0_sp,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp: value,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
+              version,
+              Managers,
+              AssignedGroup,
+            };
+            const result = onChange(modelFields);
+            value = result?.menu6_sp ?? value;
+          }
+          if (errors.menu6_sp?.hasError) {
+            runValidationTasks("menu6_sp", value);
+          }
+          setMenu6_sp(value);
+        }}
+        onBlur={() => runValidationTasks("menu6_sp", menu6_sp)}
+        errorMessage={errors.menu6_sp?.errorMessage}
+        hasError={errors.menu6_sp?.hasError}
+        {...getOverrideProps(overrides, "menu6_sp")}
+      ></TextAreaField>
+      <TextAreaField
+        label="Menu7 sp"
+        isRequired={false}
+        isReadOnly={false}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
+              holiday,
+              secondarytodclose,
+              secondarytodopen,
+              daysopen,
+              daystodopen,
+              daystodclose,
+              welcomeprompt,
+              afterhours,
+              ccdescription,
+              ccname,
+              defaultroute,
+              holidayoption,
+              isoverride,
+              submenu2,
+              welcomeprompt_sp,
+              submenu2_sp,
+              menu0_sp,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp: value,
+              menu8_sp,
+              menu9_sp,
+              version,
+              Managers,
+              AssignedGroup,
+            };
+            const result = onChange(modelFields);
+            value = result?.menu7_sp ?? value;
+          }
+          if (errors.menu7_sp?.hasError) {
+            runValidationTasks("menu7_sp", value);
+          }
+          setMenu7_sp(value);
+        }}
+        onBlur={() => runValidationTasks("menu7_sp", menu7_sp)}
+        errorMessage={errors.menu7_sp?.errorMessage}
+        hasError={errors.menu7_sp?.hasError}
+        {...getOverrideProps(overrides, "menu7_sp")}
+      ></TextAreaField>
+      <TextAreaField
+        label="Menu8 sp"
+        isRequired={false}
+        isReadOnly={false}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
+              holiday,
+              secondarytodclose,
+              secondarytodopen,
+              daysopen,
+              daystodopen,
+              daystodclose,
+              welcomeprompt,
+              afterhours,
+              ccdescription,
+              ccname,
+              defaultroute,
+              holidayoption,
+              isoverride,
+              submenu2,
+              welcomeprompt_sp,
+              submenu2_sp,
+              menu0_sp,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp: value,
+              menu9_sp,
+              version,
+              Managers,
+              AssignedGroup,
+            };
+            const result = onChange(modelFields);
+            value = result?.menu8_sp ?? value;
+          }
+          if (errors.menu8_sp?.hasError) {
+            runValidationTasks("menu8_sp", value);
+          }
+          setMenu8_sp(value);
+        }}
+        onBlur={() => runValidationTasks("menu8_sp", menu8_sp)}
+        errorMessage={errors.menu8_sp?.errorMessage}
+        hasError={errors.menu8_sp?.hasError}
+        {...getOverrideProps(overrides, "menu8_sp")}
+      ></TextAreaField>
+      <TextAreaField
+        label="Menu9 sp"
+        isRequired={false}
+        isReadOnly={false}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
+              holiday,
+              secondarytodclose,
+              secondarytodopen,
+              daysopen,
+              daystodopen,
+              daystodclose,
+              welcomeprompt,
+              afterhours,
+              ccdescription,
+              ccname,
+              defaultroute,
+              holidayoption,
+              isoverride,
+              submenu2,
+              welcomeprompt_sp,
+              submenu2_sp,
+              menu0_sp,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp: value,
+              version,
+              Managers,
+              AssignedGroup,
+            };
+            const result = onChange(modelFields);
+            value = result?.menu9_sp ?? value;
+          }
+          if (errors.menu9_sp?.hasError) {
+            runValidationTasks("menu9_sp", value);
+          }
+          setMenu9_sp(value);
+        }}
+        onBlur={() => runValidationTasks("menu9_sp", menu9_sp)}
+        errorMessage={errors.menu9_sp?.errorMessage}
+        hasError={errors.menu9_sp?.hasError}
+        {...getOverrideProps(overrides, "menu9_sp")}
+      ></TextAreaField>
       <TextField
         label="Version"
         isRequired={false}
@@ -1154,6 +3160,16 @@ export default function ContactCenterModelCreateForm(props) {
           if (onChange) {
             const modelFields = {
               mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
               holiday,
               secondarytodclose,
               secondarytodopen,
@@ -1161,14 +3177,28 @@ export default function ContactCenterModelCreateForm(props) {
               daystodopen,
               daystodclose,
               welcomeprompt,
+              afterhours,
               ccdescription,
               ccname,
               defaultroute,
+              holidayoption,
               isoverride,
+              submenu2,
               welcomeprompt_sp,
+              submenu2_sp,
               menu0_sp,
-              group,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
               version: value,
+              Managers,
+              AssignedGroup,
             };
             const result = onChange(modelFields);
             value = result?.version ?? value;
@@ -1183,6 +3213,242 @@ export default function ContactCenterModelCreateForm(props) {
         hasError={errors.version?.hasError}
         {...getOverrideProps(overrides, "version")}
       ></TextField>
+      <ArrayField
+        onChange={async (items) => {
+          let values = items;
+          if (onChange) {
+            const modelFields = {
+              mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
+              holiday,
+              secondarytodclose,
+              secondarytodopen,
+              daysopen,
+              daystodopen,
+              daystodclose,
+              welcomeprompt,
+              afterhours,
+              ccdescription,
+              ccname,
+              defaultroute,
+              holidayoption,
+              isoverride,
+              submenu2,
+              welcomeprompt_sp,
+              submenu2_sp,
+              menu0_sp,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
+              version,
+              Managers: values,
+              AssignedGroup,
+            };
+            const result = onChange(modelFields);
+            values = result?.Managers ?? values;
+          }
+          setManagers(values);
+          setCurrentManagersValue(undefined);
+          setCurrentManagersDisplayValue("");
+        }}
+        currentFieldValue={currentManagersValue}
+        label={"Managers"}
+        items={Managers}
+        hasError={errors?.Managers?.hasError}
+        runValidationTasks={async () =>
+          await runValidationTasks("Managers", currentManagersValue)
+        }
+        errorMessage={errors?.Managers?.errorMessage}
+        getBadgeText={getDisplayValue.Managers}
+        setFieldValue={(model) => {
+          setCurrentManagersDisplayValue(
+            model ? getDisplayValue.Managers(model) : ""
+          );
+          setCurrentManagersValue(model);
+        }}
+        inputFieldRef={ManagersRef}
+        defaultFieldValue={""}
+      >
+        <Autocomplete
+          label="Managers"
+          isRequired={false}
+          isReadOnly={false}
+          placeholder="Search ManagerModel"
+          value={currentManagersDisplayValue}
+          options={managerModelRecords
+            .filter((r) => !ManagersIdSet.has(getIDValue.Managers?.(r)))
+            .map((r) => ({
+              id: getIDValue.Managers?.(r),
+              label: getDisplayValue.Managers?.(r),
+            }))}
+          onSelect={({ id, label }) => {
+            setCurrentManagersValue(
+              managerModelRecords.find((r) =>
+                Object.entries(JSON.parse(id)).every(
+                  ([key, value]) => r[key] === value
+                )
+              )
+            );
+            setCurrentManagersDisplayValue(label);
+            runValidationTasks("Managers", label);
+          }}
+          onClear={() => {
+            setCurrentManagersDisplayValue("");
+          }}
+          onChange={(e) => {
+            let { value } = e.target;
+            if (errors.Managers?.hasError) {
+              runValidationTasks("Managers", value);
+            }
+            setCurrentManagersDisplayValue(value);
+            setCurrentManagersValue(undefined);
+          }}
+          onBlur={() =>
+            runValidationTasks("Managers", currentManagersDisplayValue)
+          }
+          errorMessage={errors.Managers?.errorMessage}
+          hasError={errors.Managers?.hasError}
+          ref={ManagersRef}
+          labelHidden={true}
+          {...getOverrideProps(overrides, "Managers")}
+        ></Autocomplete>
+      </ArrayField>
+      <ArrayField
+        lengthLimit={1}
+        onChange={async (items) => {
+          let value = items[0];
+          if (onChange) {
+            const modelFields = {
+              mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
+              holiday,
+              secondarytodclose,
+              secondarytodopen,
+              daysopen,
+              daystodopen,
+              daystodclose,
+              welcomeprompt,
+              afterhours,
+              ccdescription,
+              ccname,
+              defaultroute,
+              holidayoption,
+              isoverride,
+              submenu2,
+              welcomeprompt_sp,
+              submenu2_sp,
+              menu0_sp,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
+              version,
+              Managers,
+              AssignedGroup: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.AssignedGroup ?? value;
+          }
+          setAssignedGroup(value);
+          setCurrentAssignedGroupValue(undefined);
+          setCurrentAssignedGroupDisplayValue("");
+        }}
+        currentFieldValue={currentAssignedGroupValue}
+        label={"Assigned group"}
+        items={AssignedGroup ? [AssignedGroup] : []}
+        hasError={errors?.AssignedGroup?.hasError}
+        runValidationTasks={async () =>
+          await runValidationTasks("AssignedGroup", currentAssignedGroupValue)
+        }
+        errorMessage={errors?.AssignedGroup?.errorMessage}
+        getBadgeText={getDisplayValue.AssignedGroup}
+        setFieldValue={(model) => {
+          setCurrentAssignedGroupDisplayValue(
+            model ? getDisplayValue.AssignedGroup(model) : ""
+          );
+          setCurrentAssignedGroupValue(model);
+        }}
+        inputFieldRef={AssignedGroupRef}
+        defaultFieldValue={""}
+      >
+        <Autocomplete
+          label="Assigned group"
+          isRequired={false}
+          isReadOnly={false}
+          placeholder="Search GroupModel"
+          value={currentAssignedGroupDisplayValue}
+          options={groupModelRecords
+            .filter(
+              (r) => !AssignedGroupIdSet.has(getIDValue.AssignedGroup?.(r))
+            )
+            .map((r) => ({
+              id: getIDValue.AssignedGroup?.(r),
+              label: getDisplayValue.AssignedGroup?.(r),
+            }))}
+          onSelect={({ id, label }) => {
+            setCurrentAssignedGroupValue(
+              groupModelRecords.find((r) =>
+                Object.entries(JSON.parse(id)).every(
+                  ([key, value]) => r[key] === value
+                )
+              )
+            );
+            setCurrentAssignedGroupDisplayValue(label);
+            runValidationTasks("AssignedGroup", label);
+          }}
+          onClear={() => {
+            setCurrentAssignedGroupDisplayValue("");
+          }}
+          onChange={(e) => {
+            let { value } = e.target;
+            if (errors.AssignedGroup?.hasError) {
+              runValidationTasks("AssignedGroup", value);
+            }
+            setCurrentAssignedGroupDisplayValue(value);
+            setCurrentAssignedGroupValue(undefined);
+          }}
+          onBlur={() =>
+            runValidationTasks(
+              "AssignedGroup",
+              currentAssignedGroupDisplayValue
+            )
+          }
+          errorMessage={errors.AssignedGroup?.errorMessage}
+          hasError={errors.AssignedGroup?.hasError}
+          ref={AssignedGroupRef}
+          labelHidden={true}
+          {...getOverrideProps(overrides, "AssignedGroup")}
+        ></Autocomplete>
+      </ArrayField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

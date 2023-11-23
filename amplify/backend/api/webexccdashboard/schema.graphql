@@ -1,7 +1,14 @@
+type GroupModel @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  fullname: String
+  abbreviatedname: String
+  Managers: [ManagerModel] @manyToMany(relationName: "GroupModelManagerModel")
+}
+
 type QueueModel @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String
-  group: String
+  Group: GroupModel @hasOne
 }
 
 enum RoleEnum {
@@ -10,15 +17,15 @@ enum RoleEnum {
   VIEW
 }
 
-type UserModel @model @auth(rules: [{allow: public}]) {
+type ManagerModel @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String
   email: AWSEmail
   telephone: AWSPhone
   profilepic: AWSURL
   role: RoleEnum
-  group: [String]
-  contactcentermodels: [ContactCenterModel] @manyToMany(relationName: "ContactCenterModelUserModel")
+  ContactCenters: [ContactCenterModel] @manyToMany(relationName: "ContactCenterModelManagerModel")
+  Groups: [GroupModel] @manyToMany(relationName: "GroupModelManagerModel")
 }
 
 enum SubmenuTypeENUM {
@@ -92,7 +99,8 @@ type ContactCenterModel @model @auth(rules: [{allow: public}]) {
   menu7_sp: MenuType
   menu8_sp: MenuType
   menu9_sp: MenuType
-  group: String
   version: String
-  UserModels: [UserModel] @manyToMany(relationName: "ContactCenterModelUserModel")
+  Managers: [ManagerModel] @manyToMany(relationName: "ContactCenterModelManagerModel")
+  AssignedGroup: GroupModel @hasOne
 }
+ 

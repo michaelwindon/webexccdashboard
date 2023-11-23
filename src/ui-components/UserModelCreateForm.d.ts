@@ -27,7 +27,6 @@ export declare type UserModelCreateFormInputValues = {
     telephone?: string;
     profilepic?: string;
     role?: string;
-    group?: string[];
 };
 export declare type UserModelCreateFormValidationValues = {
     name?: ValidationFunction<string>;
@@ -35,7 +34,6 @@ export declare type UserModelCreateFormValidationValues = {
     telephone?: ValidationFunction<string>;
     profilepic?: ValidationFunction<string>;
     role?: ValidationFunction<string>;
-    group?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type UserModelCreateFormOverridesProps = {
@@ -45,7 +43,6 @@ export declare type UserModelCreateFormOverridesProps = {
     telephone?: PrimitiveOverrideProps<TextFieldProps>;
     profilepic?: PrimitiveOverrideProps<TextFieldProps>;
     role?: PrimitiveOverrideProps<SelectFieldProps>;
-    group?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type UserModelCreateFormProps = React.PropsWithChildren<{
     overrides?: UserModelCreateFormOverridesProps | undefined | null;

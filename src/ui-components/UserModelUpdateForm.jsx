@@ -7,178 +7,15 @@
 /* eslint-disable */
 import * as React from "react";
 import {
-  Badge,
   Button,
-  Divider,
   Flex,
   Grid,
-  Icon,
-  ScrollView,
   SelectField,
-  Text,
   TextField,
-  useTheme,
 } from "@aws-amplify/ui-react";
+import { UserModel } from "../models";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
-import { generateClient } from "aws-amplify/api";
-import { getUserModel } from "../graphql/queries";
-import { updateUserModel } from "../graphql/mutations";
-const client = generateClient();
-function ArrayField({
-  items = [],
-  onChange,
-  label,
-  inputFieldRef,
-  children,
-  hasError,
-  setFieldValue,
-  currentFieldValue,
-  defaultFieldValue,
-  lengthLimit,
-  getBadgeText,
-  runValidationTasks,
-  errorMessage,
-}) {
-  const labelElement = <Text>{label}</Text>;
-  const {
-    tokens: {
-      components: {
-        fieldmessages: { error: errorStyles },
-      },
-    },
-  } = useTheme();
-  const [selectedBadgeIndex, setSelectedBadgeIndex] = React.useState();
-  const [isEditing, setIsEditing] = React.useState();
-  React.useEffect(() => {
-    if (isEditing) {
-      inputFieldRef?.current?.focus();
-    }
-  }, [isEditing]);
-  const removeItem = async (removeIndex) => {
-    const newItems = items.filter((value, index) => index !== removeIndex);
-    await onChange(newItems);
-    setSelectedBadgeIndex(undefined);
-  };
-  const addItem = async () => {
-    const { hasError } = runValidationTasks();
-    if (
-      currentFieldValue !== undefined &&
-      currentFieldValue !== null &&
-      currentFieldValue !== "" &&
-      !hasError
-    ) {
-      const newItems = [...items];
-      if (selectedBadgeIndex !== undefined) {
-        newItems[selectedBadgeIndex] = currentFieldValue;
-        setSelectedBadgeIndex(undefined);
-      } else {
-        newItems.push(currentFieldValue);
-      }
-      await onChange(newItems);
-      setIsEditing(false);
-    }
-  };
-  const arraySection = (
-    <React.Fragment>
-      {!!items?.length && (
-        <ScrollView height="inherit" width="inherit" maxHeight={"7rem"}>
-          {items.map((value, index) => {
-            return (
-              <Badge
-                key={index}
-                style={{
-                  cursor: "pointer",
-                  alignItems: "center",
-                  marginRight: 3,
-                  marginTop: 3,
-                  backgroundColor:
-                    index === selectedBadgeIndex ? "#B8CEF9" : "",
-                }}
-                onClick={() => {
-                  setSelectedBadgeIndex(index);
-                  setFieldValue(items[index]);
-                  setIsEditing(true);
-                }}
-              >
-                {getBadgeText ? getBadgeText(value) : value.toString()}
-                <Icon
-                  style={{
-                    cursor: "pointer",
-                    paddingLeft: 3,
-                    width: 20,
-                    height: 20,
-                  }}
-                  viewBox={{ width: 20, height: 20 }}
-                  paths={[
-                    {
-                      d: "M10 10l5.09-5.09L10 10l5.09 5.09L10 10zm0 0L4.91 4.91 10 10l-5.09 5.09L10 10z",
-                      stroke: "black",
-                    },
-                  ]}
-                  ariaLabel="button"
-                  onClick={(event) => {
-                    event.stopPropagation();
-                    removeItem(index);
-                  }}
-                />
-              </Badge>
-            );
-          })}
-        </ScrollView>
-      )}
-      <Divider orientation="horizontal" marginTop={5} />
-    </React.Fragment>
-  );
-  if (lengthLimit !== undefined && items.length >= lengthLimit && !isEditing) {
-    return (
-      <React.Fragment>
-        {labelElement}
-        {arraySection}
-      </React.Fragment>
-    );
-  }
-  return (
-    <React.Fragment>
-      {labelElement}
-      {isEditing && children}
-      {!isEditing ? (
-        <>
-          <Button
-            onClick={() => {
-              setIsEditing(true);
-            }}
-          >
-            Add item
-          </Button>
-          {errorMessage && hasError && (
-            <Text color={errorStyles.color} fontSize={errorStyles.fontSize}>
-              {errorMessage}
-            </Text>
-          )}
-        </>
-      ) : (
-        <Flex justifyContent="flex-end">
-          {(currentFieldValue || isEditing) && (
-            <Button
-              children="Cancel"
-              type="button"
-              size="small"
-              onClick={() => {
-                setFieldValue(defaultFieldValue);
-                setIsEditing(false);
-                setSelectedBadgeIndex(undefined);
-              }}
-            ></Button>
-          )}
-          <Button size="small" variation="link" onClick={addItem}>
-            {selectedBadgeIndex !== undefined ? "Save" : "Add"}
-          </Button>
-        </Flex>
-      )}
-      {arraySection}
-    </React.Fragment>
-  );
-}
+import { DataStore } from "aws-amplify/datastore";
 export default function UserModelUpdateForm(props) {
   const {
     id: idProp,
@@ -197,14 +34,12 @@ export default function UserModelUpdateForm(props) {
     telephone: "",
     profilepic: "",
     role: "",
-    group: [],
   };
   const [name, setName] = React.useState(initialValues.name);
   const [email, setEmail] = React.useState(initialValues.email);
   const [telephone, setTelephone] = React.useState(initialValues.telephone);
   const [profilepic, setProfilepic] = React.useState(initialValues.profilepic);
   const [role, setRole] = React.useState(initialValues.role);
-  const [group, setGroup] = React.useState(initialValues.group);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = userModelRecord
@@ -215,8 +50,6 @@ export default function UserModelUpdateForm(props) {
     setTelephone(cleanValues.telephone);
     setProfilepic(cleanValues.profilepic);
     setRole(cleanValues.role);
-    setGroup(cleanValues.group ?? []);
-    setCurrentGroupValue("");
     setErrors({});
   };
   const [userModelRecord, setUserModelRecord] =
@@ -224,27 +57,19 @@ export default function UserModelUpdateForm(props) {
   React.useEffect(() => {
     const queryData = async () => {
       const record = idProp
-        ? (
-            await client.graphql({
-              query: getUserModel.replaceAll("__typename", ""),
-              variables: { id: idProp },
-            })
-          )?.data?.getUserModel
+        ? await DataStore.query(UserModel, idProp)
         : userModelModelProp;
       setUserModelRecord(record);
     };
     queryData();
   }, [idProp, userModelModelProp]);
   React.useEffect(resetStateValues, [userModelRecord]);
-  const [currentGroupValue, setCurrentGroupValue] = React.useState("");
-  const groupRef = React.createRef();
   const validations = {
     name: [],
     email: [{ type: "Email" }],
     telephone: [{ type: "Phone" }],
     profilepic: [{ type: "URL" }],
     role: [],
-    group: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -272,12 +97,11 @@ export default function UserModelUpdateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          name: name ?? null,
-          email: email ?? null,
-          telephone: telephone ?? null,
-          profilepic: profilepic ?? null,
-          role: role ?? null,
-          group: group ?? null,
+          name,
+          email,
+          telephone,
+          profilepic,
+          role,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -307,22 +131,17 @@ export default function UserModelUpdateForm(props) {
               modelFields[key] = null;
             }
           });
-          await client.graphql({
-            query: updateUserModel.replaceAll("__typename", ""),
-            variables: {
-              input: {
-                id: userModelRecord.id,
-                ...modelFields,
-              },
-            },
-          });
+          await DataStore.save(
+            UserModel.copyOf(userModelRecord, (updated) => {
+              Object.assign(updated, modelFields);
+            })
+          );
           if (onSuccess) {
             onSuccess(modelFields);
           }
         } catch (err) {
           if (onError) {
-            const messages = err.errors.map((e) => e.message).join("\n");
-            onError(modelFields, messages);
+            onError(modelFields, err.message);
           }
         }
       }}
@@ -343,7 +162,6 @@ export default function UserModelUpdateForm(props) {
               telephone,
               profilepic,
               role,
-              group,
             };
             const result = onChange(modelFields);
             value = result?.name ?? value;
@@ -372,7 +190,6 @@ export default function UserModelUpdateForm(props) {
               telephone,
               profilepic,
               role,
-              group,
             };
             const result = onChange(modelFields);
             value = result?.email ?? value;
@@ -402,7 +219,6 @@ export default function UserModelUpdateForm(props) {
               telephone: value,
               profilepic,
               role,
-              group,
             };
             const result = onChange(modelFields);
             value = result?.telephone ?? value;
@@ -431,7 +247,6 @@ export default function UserModelUpdateForm(props) {
               telephone,
               profilepic: value,
               role,
-              group,
             };
             const result = onChange(modelFields);
             value = result?.profilepic ?? value;
@@ -460,7 +275,6 @@ export default function UserModelUpdateForm(props) {
               telephone,
               profilepic,
               role: value,
-              group,
             };
             const result = onChange(modelFields);
             value = result?.role ?? value;
@@ -491,56 +305,6 @@ export default function UserModelUpdateForm(props) {
           {...getOverrideProps(overrides, "roleoption2")}
         ></option>
       </SelectField>
-      <ArrayField
-        onChange={async (items) => {
-          let values = items;
-          if (onChange) {
-            const modelFields = {
-              name,
-              email,
-              telephone,
-              profilepic,
-              role,
-              group: values,
-            };
-            const result = onChange(modelFields);
-            values = result?.group ?? values;
-          }
-          setGroup(values);
-          setCurrentGroupValue("");
-        }}
-        currentFieldValue={currentGroupValue}
-        label={"Group"}
-        items={group}
-        hasError={errors?.group?.hasError}
-        runValidationTasks={async () =>
-          await runValidationTasks("group", currentGroupValue)
-        }
-        errorMessage={errors?.group?.errorMessage}
-        setFieldValue={setCurrentGroupValue}
-        inputFieldRef={groupRef}
-        defaultFieldValue={""}
-      >
-        <TextField
-          label="Group"
-          isRequired={false}
-          isReadOnly={false}
-          value={currentGroupValue}
-          onChange={(e) => {
-            let { value } = e.target;
-            if (errors.group?.hasError) {
-              runValidationTasks("group", value);
-            }
-            setCurrentGroupValue(value);
-          }}
-          onBlur={() => runValidationTasks("group", currentGroupValue)}
-          errorMessage={errors.group?.errorMessage}
-          hasError={errors.group?.hasError}
-          ref={groupRef}
-          labelHidden={true}
-          {...getOverrideProps(overrides, "group")}
-        ></TextField>
-      </ArrayField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}
