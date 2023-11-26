@@ -22,11 +22,11 @@ export declare type ContactCenterUIOverridesProps = {
     ContactCenterUI?: PrimitiveOverrideProps<FlexProps>;
     headerbar?: PrimitiveOverrideProps<FlexProps>;
     titlesection?: PrimitiveOverrideProps<FlexProps>;
-    "Single Billing Office"?: PrimitiveOverrideProps<TextProps>;
-    "713-366-5600"?: PrimitiveOverrideProps<TextProps>;
+    ccname?: PrimitiveOverrideProps<TextProps>;
+    "ccmainnumber\\"?: PrimitiveOverrideProps<TextProps>;
     statesection?: PrimitiveOverrideProps<FlexProps>;
     "Current State"?: PrimitiveOverrideProps<TextProps>;
-    Open?: PrimitiveOverrideProps<TextProps>;
+    currentstatsvalue?: PrimitiveOverrideProps<TextProps>;
     border3869763?: PrimitiveOverrideProps<FlexProps>;
     Divider3869742?: PrimitiveOverrideProps<DividerProps>;
     welcomepromptsec?: PrimitiveOverrideProps<FlexProps>;

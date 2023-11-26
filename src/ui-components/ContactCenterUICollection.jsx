@@ -36,8 +36,8 @@ export default function ContactCenterUICollection(props) {
   return (
     <Collection
       type="grid"
+      isSearchable={true}
       searchPlaceholder="Search..."
-      templateColumns="1fr 1fr"
       autoFlow="row"
       alignItems="stretch"
       justifyContent="stretch"

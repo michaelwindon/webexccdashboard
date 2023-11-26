@@ -77,7 +77,7 @@ export default function ContactCenterUI(props) {
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
             children={contactcentermodel?.ccname}
-            {...getOverrideProps(overrides, "Single Billing Office")}
+            {...getOverrideProps(overrides, "ccname")}
           ></Text>
           <Text
             fontFamily="Inter"
@@ -98,7 +98,7 @@ export default function ContactCenterUI(props) {
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
             children={contactcentermodel?.mainnumber}
-            {...getOverrideProps(overrides, "713-366-5600")}
+            {...getOverrideProps(overrides, "ccmainnumber")}
           ></Text>
         </Flex>
         <Flex
@@ -154,7 +154,7 @@ export default function ContactCenterUI(props) {
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
             children="Open"
-            {...getOverrideProps(overrides, "Open")}
+            {...getOverrideProps(overrides, "currentstatsvalue")}
           ></Text>
         </Flex>
       </Flex>
