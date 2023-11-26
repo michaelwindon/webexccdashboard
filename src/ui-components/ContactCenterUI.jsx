@@ -7,10 +7,16 @@
 /* eslint-disable */
 import * as React from "react";
 import { getOverrideProps } from "./utils";
-import { Divider, Flex, SwitchField, Text, View } from "@aws-amplify/ui-react";
-import { MenuButton38716751 as MenuButtonCustom } from "./MenuButton38716751";
+import {
+  Button,
+  Divider,
+  Flex,
+  SwitchField,
+  Text,
+  View,
+} from "@aws-amplify/ui-react";
 export default function ContactCenterUI(props) {
-  const { contactcenter, overrides, ...rest } = props;
+  const { contactcentermodel, overrides, ...rest } = props;
   return (
     <Flex
       gap="11px"
@@ -70,7 +76,7 @@ export default function ContactCenterUI(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children={contactcenter?.ccname}
+            children={contactcentermodel?.ccname}
             {...getOverrideProps(overrides, "Single Billing Office")}
           ></Text>
           <Text
@@ -91,7 +97,7 @@ export default function ContactCenterUI(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children={contactcenter?.mainnumber}
+            children={contactcentermodel?.mainnumber}
             {...getOverrideProps(overrides, "713-366-5600")}
           ></Text>
         </Flex>
@@ -148,7 +154,7 @@ export default function ContactCenterUI(props) {
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
             children="Open"
-            {...getOverrideProps(overrides, "Open38746979")}
+            {...getOverrideProps(overrides, "Open")}
           ></Text>
         </Flex>
       </Flex>
@@ -208,7 +214,7 @@ export default function ContactCenterUI(props) {
           position="relative"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          children={contactcenter?.welcomeprompt}
+          children={contactcentermodel?.welcomeprompt}
           {...getOverrideProps(
             overrides,
             'Thank you for calling Houston Methodist, Customer Service. <break time="1s"/> If this is an emergency, please hangup, and dial 911. <break time="1s"/>This call may be recorded for quality and training purposes. <break time="1s"/>'
@@ -229,191 +235,190 @@ export default function ContactCenterUI(props) {
         {...getOverrideProps(overrides, "mainivrcontent")}
       >
         <Flex
-          gap="11px"
-          direction="row"
+          gap="15px"
+          direction="column"
           width="346px"
           height="249px"
-          justifyContent="flex-start"
-          alignItems="flex-start"
+          justifyContent="center"
+          alignItems="center"
           shrink="0"
           position="relative"
-          padding="6px 6px 6px 6px"
+          padding="0px 0px 0px 0px"
           backgroundColor="rgba(64,170,191,1)"
           {...getOverrideProps(overrides, "ivrbuttonsec")}
         >
-          <MenuButtonCustom
-            display="flex"
-            gap="10px"
-            direction="row"
-            width="104px"
-            height="50px"
-            justifyContent="center"
-            alignItems="center"
-            shrink="0"
-            position="relative"
-            borderRadius="7px"
-            padding="10px 0px 10px 0px"
-            backgroundColor="rgba(255,255,255,1)"
-            state="Default"
-            {...getOverrideProps(overrides, "MenuButton38716751")}
-          ></MenuButtonCustom>
-          <MenuButtonCustom
-            display="flex"
-            gap="10px"
-            direction="row"
-            width="104px"
-            height="50px"
-            justifyContent="center"
-            alignItems="center"
-            shrink="0"
-            position="relative"
-            borderRadius="7px"
-            padding="10px 0px 10px 0px"
-            backgroundColor="rgba(255,255,255,1)"
-            state="Default"
-            {...getOverrideProps(overrides, "MenuButton38716767")}
-          ></MenuButtonCustom>
-          <MenuButtonCustom
-            display="flex"
-            gap="10px"
-            direction="row"
-            width="104px"
-            height="50px"
-            justifyContent="center"
-            alignItems="center"
-            shrink="0"
-            position="relative"
-            borderRadius="7px"
-            padding="10px 0px 10px 0px"
-            backgroundColor="rgba(255,255,255,1)"
-            state="Default"
-            {...getOverrideProps(overrides, "MenuButton38716903")}
-          ></MenuButtonCustom>
-          <MenuButtonCustom
-            display="flex"
-            gap="10px"
-            direction="row"
-            width="104px"
-            height="50px"
-            justifyContent="center"
-            alignItems="center"
-            shrink="0"
-            position="relative"
-            borderRadius="7px"
-            padding="10px 0px 10px 0px"
-            backgroundColor="rgba(255,255,255,1)"
-            state="Default"
-            {...getOverrideProps(overrides, "MenuButton38716783")}
-          ></MenuButtonCustom>
-          <MenuButtonCustom
-            display="flex"
-            gap="10px"
-            direction="row"
-            width="104px"
-            height="50px"
-            justifyContent="center"
-            alignItems="center"
-            shrink="0"
-            position="relative"
-            borderRadius="7px"
-            padding="10px 0px 10px 0px"
-            backgroundColor="rgba(255,255,255,1)"
-            state="Default"
-            {...getOverrideProps(overrides, "MenuButton38716791")}
-          ></MenuButtonCustom>
-          <MenuButtonCustom
-            display="flex"
-            gap="10px"
-            direction="row"
-            width="104px"
-            height="50px"
-            justifyContent="center"
-            alignItems="center"
-            shrink="0"
-            position="relative"
-            borderRadius="7px"
-            padding="10px 0px 10px 0px"
-            backgroundColor="rgba(255,255,255,1)"
-            state="Default"
-            {...getOverrideProps(overrides, "MenuButton38716799")}
-          ></MenuButtonCustom>
-          <MenuButtonCustom
-            display="flex"
-            gap="10px"
-            direction="row"
-            width="104px"
-            height="50px"
-            justifyContent="center"
-            alignItems="center"
-            shrink="0"
-            position="relative"
-            borderRadius="7px"
-            padding="10px 0px 10px 0px"
-            backgroundColor="rgba(255,255,255,1)"
-            state="Default"
-            {...getOverrideProps(overrides, "MenuButton38716807")}
-          ></MenuButtonCustom>
-          <MenuButtonCustom
-            display="flex"
-            gap="10px"
-            direction="row"
-            width="104px"
-            height="50px"
-            justifyContent="center"
-            alignItems="center"
-            shrink="0"
-            position="relative"
-            borderRadius="7px"
-            padding="10px 0px 10px 0px"
-            backgroundColor="rgba(255,255,255,1)"
-            state="Default"
-            {...getOverrideProps(overrides, "MenuButton38716832")}
-          ></MenuButtonCustom>
-          <MenuButtonCustom
-            display="flex"
-            gap="10px"
-            direction="row"
-            width="104px"
-            height="50px"
-            justifyContent="center"
-            alignItems="center"
-            shrink="0"
-            position="relative"
-            borderRadius="7px"
-            padding="10px 0px 10px 0px"
-            backgroundColor="rgba(255,255,255,1)"
-            state="Default"
-            {...getOverrideProps(overrides, "MenuButton38716840")}
-          ></MenuButtonCustom>
           <View
-            width="104px"
-            height="50px"
+            width="285px"
+            height="40px"
             display="block"
             gap="unset"
             alignItems="unset"
             justifyContent="unset"
-            overflow="hidden"
             shrink="0"
             position="relative"
             padding="0px 0px 0px 0px"
-            {...getOverrideProps(overrides, "blanksec")}
-          ></View>
-          <MenuButtonCustom
-            display="flex"
-            gap="10px"
-            direction="row"
-            width="104px"
-            height="50px"
-            justifyContent="center"
-            alignItems="center"
+            {...getOverrideProps(overrides, "rowone")}
+          >
+            <Button
+              width="87px"
+              height="42px"
+              position="absolute"
+              top="-1px"
+              left="-1px"
+              size="default"
+              isDisabled={false}
+              variation="default"
+              children="1"
+              {...getOverrideProps(overrides, "ButtonOne")}
+            ></Button>
+            <Button
+              width="87px"
+              height="42px"
+              position="absolute"
+              top="-1px"
+              left="99px"
+              size="default"
+              isDisabled={false}
+              variation="default"
+              children="2"
+              {...getOverrideProps(overrides, "ButtonTwo")}
+            ></Button>
+            <Button
+              width="87px"
+              height="42px"
+              position="absolute"
+              top="-1px"
+              left="199px"
+              size="default"
+              isDisabled={false}
+              variation="default"
+              children="3"
+              {...getOverrideProps(overrides, "ButtonThree")}
+            ></Button>
+          </View>
+          <View
+            width="285px"
+            height="40px"
+            display="block"
+            gap="unset"
+            alignItems="unset"
+            justifyContent="unset"
             shrink="0"
             position="relative"
-            borderRadius="7px"
-            padding="10px 0px 10px 0px"
-            backgroundColor="rgba(255,255,255,1)"
-            state="Default"
-            {...getOverrideProps(overrides, "MenuButton38611821")}
-          ></MenuButtonCustom>
+            padding="0px 0px 0px 0px"
+            {...getOverrideProps(overrides, "rowtwo")}
+          >
+            <Button
+              width="87px"
+              height="42px"
+              position="absolute"
+              top="-1px"
+              left="-1px"
+              size="default"
+              isDisabled={false}
+              variation="default"
+              children="4"
+              {...getOverrideProps(overrides, "ButtonFour")}
+            ></Button>
+            <Button
+              width="87px"
+              height="42px"
+              position="absolute"
+              top="-1px"
+              left="99px"
+              size="default"
+              isDisabled={false}
+              variation="default"
+              children="5"
+              {...getOverrideProps(overrides, "ButtonFive")}
+            ></Button>
+            <Button
+              width="87px"
+              height="42px"
+              position="absolute"
+              top="-1px"
+              left="199px"
+              size="default"
+              isDisabled={false}
+              variation="default"
+              children="6"
+              {...getOverrideProps(overrides, "ButtonSix")}
+            ></Button>
+          </View>
+          <View
+            width="285px"
+            height="40px"
+            display="block"
+            gap="unset"
+            alignItems="unset"
+            justifyContent="unset"
+            shrink="0"
+            position="relative"
+            padding="0px 0px 0px 0px"
+            {...getOverrideProps(overrides, "rowthree")}
+          >
+            <Button
+              width="87px"
+              height="42px"
+              position="absolute"
+              top="-1px"
+              left="-1px"
+              size="default"
+              isDisabled={false}
+              variation="default"
+              children="7"
+              {...getOverrideProps(overrides, "ButtonSeven")}
+            ></Button>
+            <Button
+              width="87px"
+              height="42px"
+              position="absolute"
+              top="-1px"
+              left="99px"
+              size="default"
+              isDisabled={false}
+              variation="default"
+              children="8"
+              {...getOverrideProps(overrides, "ButtonEight")}
+            ></Button>
+            <Button
+              width="87px"
+              height="42px"
+              position="absolute"
+              top="-1px"
+              left="199px"
+              size="default"
+              isDisabled={false}
+              variation="default"
+              children="9"
+              {...getOverrideProps(overrides, "ButtonNine")}
+            ></Button>
+          </View>
+          <View
+            width="85px"
+            height="40px"
+            display="block"
+            gap="unset"
+            alignItems="unset"
+            justifyContent="unset"
+            shrink="0"
+            position="relative"
+            padding="0px 0px 0px 0px"
+            {...getOverrideProps(overrides, "row4")}
+          >
+            <Button
+              width="87px"
+              height="42px"
+              position="absolute"
+              top="-1px"
+              left="-1px"
+              size="default"
+              isDisabled={false}
+              variation="default"
+              children="0"
+              {...getOverrideProps(overrides, "ButtonZero")}
+            ></Button>
+          </View>
         </Flex>
         <Flex
           gap="1px"
@@ -482,7 +487,7 @@ export default function ContactCenterUI(props) {
               position="relative"
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
-              children={contactcenter?.daysopen}
+              children="MON"
               {...getOverrideProps(overrides, "MON")}
             ></Text>
             <Text
@@ -503,7 +508,7 @@ export default function ContactCenterUI(props) {
               position="relative"
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
-              children={contactcenter?.daysopen}
+              children="TUE"
               {...getOverrideProps(overrides, "TUE")}
             ></Text>
             <Text
@@ -645,7 +650,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="Open"
-              {...getOverrideProps(overrides, "Open38726942")}
+              {...getOverrideProps(overrides, "opentitle")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -666,7 +671,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="8:00 AM"
-              {...getOverrideProps(overrides, "8:00 AM38726943")}
+              {...getOverrideProps(overrides, "openlabel1")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -687,7 +692,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="8:00 AM"
-              {...getOverrideProps(overrides, "8:00 AM38726944")}
+              {...getOverrideProps(overrides, "openlabel2")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -708,7 +713,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="8:00 AM"
-              {...getOverrideProps(overrides, "8:00 AM38726945")}
+              {...getOverrideProps(overrides, "openlabel3")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -729,7 +734,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="8:00 AM"
-              {...getOverrideProps(overrides, "8:00 AM38726946")}
+              {...getOverrideProps(overrides, "openlabel4")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -750,7 +755,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="8:00 AM"
-              {...getOverrideProps(overrides, "8:00 AM38726947")}
+              {...getOverrideProps(overrides, "openlabel5")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -771,7 +776,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="Closed"
-              {...getOverrideProps(overrides, "Closed38726948")}
+              {...getOverrideProps(overrides, "openlabel6")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -792,7 +797,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="Closed"
-              {...getOverrideProps(overrides, "Closed38726949")}
+              {...getOverrideProps(overrides, "openlabel0")}
             ></Text>
           </Flex>
           <Flex
@@ -828,7 +833,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="2nd Close"
-              {...getOverrideProps(overrides, "2nd Close")}
+              {...getOverrideProps(overrides, "secclosetitle")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -849,7 +854,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="11:30 AM"
-              {...getOverrideProps(overrides, "11:30 AM38746962")}
+              {...getOverrideProps(overrides, "seccloselabel1")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -870,7 +875,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="11:30 AM"
-              {...getOverrideProps(overrides, "11:30 AM38746963")}
+              {...getOverrideProps(overrides, "seccloselabel2")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -891,7 +896,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="11:30 AM"
-              {...getOverrideProps(overrides, "11:30 AM38746964")}
+              {...getOverrideProps(overrides, "seccloselabel3")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -912,7 +917,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="11:30 AM"
-              {...getOverrideProps(overrides, "11:30 AM38746965")}
+              {...getOverrideProps(overrides, "seccloselabel4")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -933,7 +938,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="11:30 AM"
-              {...getOverrideProps(overrides, "11:30 AM38746966")}
+              {...getOverrideProps(overrides, "seccloselabel5")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -954,7 +959,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="NA"
-              {...getOverrideProps(overrides, "NA38746967")}
+              {...getOverrideProps(overrides, "seccloselabel6")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -975,7 +980,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="NA"
-              {...getOverrideProps(overrides, "NA38746968")}
+              {...getOverrideProps(overrides, "seccloselabel0")}
             ></Text>
           </Flex>
           <Flex
@@ -1011,7 +1016,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="2nd Open"
-              {...getOverrideProps(overrides, "2nd Open")}
+              {...getOverrideProps(overrides, "secopentitle")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -1032,7 +1037,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="1:30 PM"
-              {...getOverrideProps(overrides, "1:30 PM38746952")}
+              {...getOverrideProps(overrides, "secopenlabel1")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -1053,7 +1058,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="1:30 PM"
-              {...getOverrideProps(overrides, "1:30 PM38746953")}
+              {...getOverrideProps(overrides, "secopenlabel2")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -1074,7 +1079,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="1:30 PM"
-              {...getOverrideProps(overrides, "1:30 PM38746954")}
+              {...getOverrideProps(overrides, "secopenlabel3")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -1095,7 +1100,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="1:30 PM"
-              {...getOverrideProps(overrides, "1:30 PM38746955")}
+              {...getOverrideProps(overrides, "secopenlabel4")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -1116,7 +1121,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="1:30 PM"
-              {...getOverrideProps(overrides, "1:30 PM38746956")}
+              {...getOverrideProps(overrides, "secopenlabel5")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -1137,7 +1142,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="NA"
-              {...getOverrideProps(overrides, "NA38746957")}
+              {...getOverrideProps(overrides, "secopenlabel6")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -1158,7 +1163,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="NA"
-              {...getOverrideProps(overrides, "NA38746958")}
+              {...getOverrideProps(overrides, "secopenlabel7")}
             ></Text>
           </Flex>
           <Flex
@@ -1194,7 +1199,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="Close"
-              {...getOverrideProps(overrides, "Close")}
+              {...getOverrideProps(overrides, "Closetitle")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -1215,7 +1220,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="5:00 PM"
-              {...getOverrideProps(overrides, "5:00 PM38746971")}
+              {...getOverrideProps(overrides, "closelabel1")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -1236,7 +1241,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="5:00 PM"
-              {...getOverrideProps(overrides, "5:00 PM38746972")}
+              {...getOverrideProps(overrides, "closelabel2")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -1257,7 +1262,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="5:00 PM"
-              {...getOverrideProps(overrides, "5:00 PM38746973")}
+              {...getOverrideProps(overrides, "closelabel3")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -1278,7 +1283,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="5:00 PM"
-              {...getOverrideProps(overrides, "5:00 PM38746974")}
+              {...getOverrideProps(overrides, "closelabel4")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -1299,7 +1304,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="5:00 PM"
-              {...getOverrideProps(overrides, "5:00 PM38746975")}
+              {...getOverrideProps(overrides, "closelabel5")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -1320,7 +1325,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="Closed"
-              {...getOverrideProps(overrides, "Closed38746976")}
+              {...getOverrideProps(overrides, "closelabel6")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -1341,7 +1346,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="Closed"
-              {...getOverrideProps(overrides, "Closed38746977")}
+              {...getOverrideProps(overrides, "closelabel0")}
             ></Text>
           </Flex>
         </Flex>
@@ -1392,54 +1397,36 @@ export default function ContactCenterUI(props) {
           labelPosition="start"
           {...getOverrideProps(overrides, "SwitchField")}
         ></SwitchField>
-        <MenuButtonCustom
-          display="flex"
-          gap="5px"
-          direction="row"
-          width="110px"
-          height="50px"
-          justifyContent="center"
-          alignItems="center"
+        <Button
+          width="unset"
+          height="unset"
           shrink="0"
-          position="relative"
-          borderRadius="7px"
-          padding="10px 0px 10px 0px"
-          backgroundColor="rgba(125,214,232,1)"
-          state="Default"
-          {...getOverrideProps(overrides, "MenuButton3878751")}
-        ></MenuButtonCustom>
-        <MenuButtonCustom
-          display="flex"
-          gap="5px"
-          direction="row"
-          width="110px"
-          height="50px"
-          justifyContent="center"
-          alignItems="center"
+          size="default"
+          isDisabled={false}
+          variation="default"
+          children="Override"
+          {...getOverrideProps(overrides, "ButtonOverride")}
+        ></Button>
+        <Button
+          width="unset"
+          height="unset"
           shrink="0"
-          position="relative"
-          borderRadius="7px"
-          padding="10px 0px 10px 0px"
-          backgroundColor="rgba(125,214,232,1)"
-          state="Default"
-          {...getOverrideProps(overrides, "MenuButton3878759")}
-        ></MenuButtonCustom>
-        <MenuButtonCustom
-          display="flex"
-          gap="5px"
-          direction="row"
-          width="110px"
-          height="50px"
-          justifyContent="center"
-          alignItems="center"
+          size="default"
+          isDisabled={false}
+          variation="default"
+          children="Afterhours"
+          {...getOverrideProps(overrides, "ButtonAfterhours")}
+        ></Button>
+        <Button
+          width="unset"
+          height="unset"
           shrink="0"
-          position="relative"
-          borderRadius="7px"
-          padding="10px 0px 10px 0px"
-          backgroundColor="rgba(125,214,232,1)"
-          state="Default"
-          {...getOverrideProps(overrides, "MenuButton3878767")}
-        ></MenuButtonCustom>
+          size="default"
+          isDisabled={false}
+          variation="default"
+          children="Holiday"
+          {...getOverrideProps(overrides, "ButtonHoliday")}
+        ></Button>
       </Flex>
     </Flex>
   );

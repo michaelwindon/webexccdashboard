@@ -6,11 +6,33 @@
 
 /* eslint-disable */
 import * as React from "react";
+import { ContactCenterModel } from "../models";
+import { getOverrideProps, useDataStoreBinding } from "./utils";
 import ContactCenterUI from "./ContactCenterUI";
-import { getOverrideProps } from "./utils";
 import { Collection } from "@aws-amplify/ui-react";
 export default function ContactCenterUICollection(props) {
-  const { items, overrideItems, overrides, ...rest } = props;
+  const { items: itemsProp, overrideItems, overrides, ...rest } = props;
+  const [items, setItems] = React.useState(undefined);
+  const itemsDataStore = useDataStoreBinding({
+    type: "collection",
+    model: ContactCenterModel,
+  }).items;
+  React.useEffect(() => {
+    if (itemsProp !== undefined) {
+      setItems(itemsProp);
+      return;
+    }
+    async function setItemsFromDataStore() {
+      var loaded = await Promise.all(
+        itemsDataStore.map(async (item) => ({
+          ...item,
+          AssignedGroup: await item.AssignedGroup,
+        }))
+      );
+      setItems(loaded);
+    }
+    setItemsFromDataStore();
+  }, [itemsProp, itemsDataStore]);
   return (
     <Collection
       type="grid"
@@ -25,9 +47,7 @@ export default function ContactCenterUICollection(props) {
     >
       {(item, index) => (
         <ContactCenterUI
-          height="auto"
-          width="auto"
-          margin="0 0 0 10px"
+          contactcentermodel={item}
           key={item.id}
           {...(overrideItems && overrideItems({ item, index }))}
         ></ContactCenterUI>
