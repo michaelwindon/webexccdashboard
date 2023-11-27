@@ -41,6 +41,7 @@ export declare type UpdateOverrideFormProps = React.PropsWithChildren<{
     onSubmit?: (fields: UpdateOverrideFormInputValues) => UpdateOverrideFormInputValues;
     onSuccess?: (fields: UpdateOverrideFormInputValues) => void;
     onError?: (fields: UpdateOverrideFormInputValues, errorMessage: string) => void;
+    onCancel?: () => void;
     onChange?: (fields: UpdateOverrideFormInputValues) => UpdateOverrideFormInputValues;
     onValidate?: UpdateOverrideFormValidationValues;
 } & React.CSSProperties>;

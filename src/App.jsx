@@ -15,13 +15,14 @@ import {
 
  
 function App() {
-  const [contactcentermodel, setContactCenterModel] = useState()
   const [openoverridemodal, setOpenOverrideModal] = useState(false)
   const [id, setId] = useState();
+  const [override, setOverride] = useState()
 
-  const handleClickOverrideModalOpen = (id) =>{
+  const handleClickOverrideModalOpen = (id, isoverride) =>{
     setOpenOverrideModal(true)
     setId(id)
+    setOverride(isoverride)
 }
 const handleClickOverrideModalClose =() =>{
     setOpenOverrideModal(false)
@@ -30,11 +31,10 @@ const handleClickOverrideModalClose =() =>{
  
   return (
     <> 
-       <UpdateisOverrideModal open={openoverridemodal} id={id} onClose={handleClickOverrideModalClose}/>
+       <UpdateisOverrideModal open={openoverridemodal} id={id} override={override} onClose={handleClickOverrideModalClose}/>
        <ContactCenterUICollection 
           overrideItems={({ item, index }) => ({
               overrides: {
-          
                 ccmainnumber: {
                   children:
                   <>
@@ -144,7 +144,7 @@ const handleClickOverrideModalClose =() =>{
                 },
                 SwitchField:{
                   onClick: () => { 
-                      handleClickOverrideModalOpen(item.id) 
+                      handleClickOverrideModalOpen(item.id, item.isoverride) 
                   }
                 },
                 ButtonOverride:{
