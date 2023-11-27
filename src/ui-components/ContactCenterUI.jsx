@@ -19,7 +19,7 @@ export default function ContactCenterUI(props) {
   const { contactcentermodel, overrides, ...rest } = props;
   return (
     <Flex
-      gap="11px"
+      gap="10px"
       direction="column"
       width="751px"
       height="606px"
@@ -98,7 +98,7 @@ export default function ContactCenterUI(props) {
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
             children={contactcentermodel?.mainnumber}
-            {...getOverrideProps(overrides, "ccmainnumber\\")}
+            {...getOverrideProps(overrides, "ccmainnumber")}
           ></Text>
         </Flex>
         <Flex
@@ -1383,7 +1383,7 @@ export default function ContactCenterUI(props) {
         alignItems="center"
         shrink="0"
         position="relative"
-        padding="0px 0px 0px 0px"
+        padding="7px 5px 7px 5px"
         {...getOverrideProps(overrides, "altmenus")}
       >
         <SwitchField

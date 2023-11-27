@@ -23,7 +23,7 @@ export declare type ContactCenterUIOverridesProps = {
     headerbar?: PrimitiveOverrideProps<FlexProps>;
     titlesection?: PrimitiveOverrideProps<FlexProps>;
     ccname?: PrimitiveOverrideProps<TextProps>;
-    "ccmainnumber\\"?: PrimitiveOverrideProps<TextProps>;
+    ccmainnumber?: PrimitiveOverrideProps<TextProps>;
     statesection?: PrimitiveOverrideProps<FlexProps>;
     "Current State"?: PrimitiveOverrideProps<TextProps>;
     currentstatsvalue?: PrimitiveOverrideProps<TextProps>;

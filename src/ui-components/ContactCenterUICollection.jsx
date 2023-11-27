@@ -36,8 +36,8 @@ export default function ContactCenterUICollection(props) {
   return (
     <Collection
       type="grid"
-      isSearchable={true}
       searchPlaceholder="Search..."
+      templateColumns="1fr 1fr"
       autoFlow="row"
       alignItems="stretch"
       justifyContent="stretch"
@@ -48,6 +48,7 @@ export default function ContactCenterUICollection(props) {
       {(item, index) => (
         <ContactCenterUI
           contactcentermodel={item}
+          margin="0 0 0 10px"
           key={item.id}
           {...(overrideItems && overrideItems({ item, index }))}
         ></ContactCenterUI>
