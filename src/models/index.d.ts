@@ -8,7 +8,7 @@ export enum RoleEnum {
   VIEW = "VIEW"
 }
 
-export enum SubmenuTypeEnum {
+export enum OptionTypeEnum {
   MSG = "MSG",
   FORWARD = "FORWARD",
   QUEUE = "QUEUE"
@@ -21,35 +21,21 @@ export enum MenuTypeEnum {
   SUBMENU = "SUBMENU"
 }
 
-type EagerSubmenuType = {
-  readonly option0?: SubmenuTypeEnum | keyof typeof SubmenuTypeEnum | null;
-  readonly option1?: SubmenuTypeEnum | keyof typeof SubmenuTypeEnum | null;
-  readonly option2?: SubmenuTypeEnum | keyof typeof SubmenuTypeEnum | null;
-  readonly option3?: SubmenuTypeEnum | keyof typeof SubmenuTypeEnum | null;
-  readonly opiton4?: SubmenuTypeEnum | keyof typeof SubmenuTypeEnum | null;
-  readonly option5?: SubmenuTypeEnum | keyof typeof SubmenuTypeEnum | null;
-  readonly option6?: SubmenuTypeEnum | keyof typeof SubmenuTypeEnum | null;
-  readonly option7?: SubmenuTypeEnum | keyof typeof SubmenuTypeEnum | null;
-  readonly option8?: SubmenuTypeEnum | keyof typeof SubmenuTypeEnum | null;
-  readonly option9?: SubmenuTypeEnum | keyof typeof SubmenuTypeEnum | null;
+type EagerOptionMenuType = {
+  readonly msg?: string | null;
+  readonly type?: OptionTypeEnum | keyof typeof OptionTypeEnum | null;
+  readonly value?: string | null;
 }
 
-type LazySubmenuType = {
-  readonly option0?: SubmenuTypeEnum | keyof typeof SubmenuTypeEnum | null;
-  readonly option1?: SubmenuTypeEnum | keyof typeof SubmenuTypeEnum | null;
-  readonly option2?: SubmenuTypeEnum | keyof typeof SubmenuTypeEnum | null;
-  readonly option3?: SubmenuTypeEnum | keyof typeof SubmenuTypeEnum | null;
-  readonly opiton4?: SubmenuTypeEnum | keyof typeof SubmenuTypeEnum | null;
-  readonly option5?: SubmenuTypeEnum | keyof typeof SubmenuTypeEnum | null;
-  readonly option6?: SubmenuTypeEnum | keyof typeof SubmenuTypeEnum | null;
-  readonly option7?: SubmenuTypeEnum | keyof typeof SubmenuTypeEnum | null;
-  readonly option8?: SubmenuTypeEnum | keyof typeof SubmenuTypeEnum | null;
-  readonly option9?: SubmenuTypeEnum | keyof typeof SubmenuTypeEnum | null;
+type LazyOptionMenuType = {
+  readonly msg?: string | null;
+  readonly type?: OptionTypeEnum | keyof typeof OptionTypeEnum | null;
+  readonly value?: string | null;
 }
 
-export declare type SubmenuType = LazyLoading extends LazyLoadingDisabled ? EagerSubmenuType : LazySubmenuType
+export declare type OptionMenuType = LazyLoading extends LazyLoadingDisabled ? EagerOptionMenuType : LazyOptionMenuType
 
-export declare const SubmenuType: (new (init: ModelInit<SubmenuType>) => SubmenuType)
+export declare const OptionMenuType: (new (init: ModelInit<OptionMenuType>) => OptionMenuType)
 
 type EagerMenuType = {
   readonly msg?: string | null;
@@ -66,6 +52,36 @@ type LazyMenuType = {
 export declare type MenuType = LazyLoading extends LazyLoadingDisabled ? EagerMenuType : LazyMenuType
 
 export declare const MenuType: (new (init: ModelInit<MenuType>) => MenuType)
+
+type EagerSubmenuType = {
+  readonly option0?: OptionMenuType | null;
+  readonly option1?: OptionMenuType | null;
+  readonly option2?: OptionMenuType | null;
+  readonly option3?: OptionMenuType | null;
+  readonly opiton4?: OptionMenuType | null;
+  readonly option5?: OptionMenuType | null;
+  readonly option6?: OptionMenuType | null;
+  readonly option7?: OptionMenuType | null;
+  readonly option8?: OptionMenuType | null;
+  readonly option9?: OptionMenuType | null;
+}
+
+type LazySubmenuType = {
+  readonly option0?: OptionMenuType | null;
+  readonly option1?: OptionMenuType | null;
+  readonly option2?: OptionMenuType | null;
+  readonly option3?: OptionMenuType | null;
+  readonly opiton4?: OptionMenuType | null;
+  readonly option5?: OptionMenuType | null;
+  readonly option6?: OptionMenuType | null;
+  readonly option7?: OptionMenuType | null;
+  readonly option8?: OptionMenuType | null;
+  readonly option9?: OptionMenuType | null;
+}
+
+export declare type SubmenuType = LazyLoading extends LazyLoadingDisabled ? EagerSubmenuType : LazySubmenuType
+
+export declare const SubmenuType: (new (init: ModelInit<SubmenuType>) => SubmenuType)
 
 type EagerGroupModel = {
   readonly [__modelMeta__]: {
@@ -204,7 +220,7 @@ type EagerContactCenterModel = {
   readonly submenu2?: SubmenuType | null;
   readonly welcomeprompt_sp?: string | null;
   readonly submenu2_sp?: SubmenuType | null;
-  readonly menu0_sp?: MenuTypeEnum | keyof typeof MenuTypeEnum | null;
+  readonly menu0_sp?: MenuType | null;
   readonly menu1_sp?: MenuType | null;
   readonly menu2_sp?: MenuType | null;
   readonly menu3_sp?: MenuType | null;
@@ -217,6 +233,7 @@ type EagerContactCenterModel = {
   readonly version?: string | null;
   readonly Managers?: (ContactCenterModelManagerModel | null)[] | null;
   readonly AssignedGroup?: GroupModel | null;
+  readonly override?: MenuType | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   readonly contactCenterModelAssignedGroupId?: string | null;
@@ -255,7 +272,7 @@ type LazyContactCenterModel = {
   readonly submenu2?: SubmenuType | null;
   readonly welcomeprompt_sp?: string | null;
   readonly submenu2_sp?: SubmenuType | null;
-  readonly menu0_sp?: MenuTypeEnum | keyof typeof MenuTypeEnum | null;
+  readonly menu0_sp?: MenuType | null;
   readonly menu1_sp?: MenuType | null;
   readonly menu2_sp?: MenuType | null;
   readonly menu3_sp?: MenuType | null;
@@ -268,6 +285,7 @@ type LazyContactCenterModel = {
   readonly version?: string | null;
   readonly Managers: AsyncCollection<ContactCenterModelManagerModel>;
   readonly AssignedGroup: AsyncItem<GroupModel | undefined>;
+  readonly override?: MenuType | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   readonly contactCenterModelAssignedGroupId?: string | null;

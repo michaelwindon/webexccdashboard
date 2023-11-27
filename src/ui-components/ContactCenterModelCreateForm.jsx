@@ -15,7 +15,6 @@ import {
   Grid,
   Icon,
   ScrollView,
-  SelectField,
   SwitchField,
   Text,
   TextAreaField,
@@ -242,6 +241,7 @@ export default function ContactCenterModelCreateForm(props) {
     version: "",
     Managers: [],
     AssignedGroup: undefined,
+    override: "",
   };
   const [mainnumber, setMainnumber] = React.useState(initialValues.mainnumber);
   const [menu0, setMenu0] = React.useState(initialValues.menu0);
@@ -305,6 +305,7 @@ export default function ContactCenterModelCreateForm(props) {
   const [AssignedGroup, setAssignedGroup] = React.useState(
     initialValues.AssignedGroup
   );
+  const [override, setOverride] = React.useState(initialValues.override);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setMainnumber(initialValues.mainnumber);
@@ -357,6 +358,7 @@ export default function ContactCenterModelCreateForm(props) {
     setAssignedGroup(initialValues.AssignedGroup);
     setCurrentAssignedGroupValue(undefined);
     setCurrentAssignedGroupDisplayValue("");
+    setOverride(initialValues.override);
     setErrors({});
   };
   const [currentHolidayValue, setCurrentHolidayValue] = React.useState("");
@@ -441,7 +443,7 @@ export default function ContactCenterModelCreateForm(props) {
     submenu2: [{ type: "JSON" }],
     welcomeprompt_sp: [],
     submenu2_sp: [{ type: "JSON" }],
-    menu0_sp: [],
+    menu0_sp: [{ type: "JSON" }],
     menu1_sp: [{ type: "JSON" }],
     menu2_sp: [{ type: "JSON" }],
     menu3_sp: [{ type: "JSON" }],
@@ -454,6 +456,7 @@ export default function ContactCenterModelCreateForm(props) {
     version: [],
     Managers: [],
     AssignedGroup: [],
+    override: [{ type: "JSON" }],
   };
   const runValidationTasks = async (
     fieldName,
@@ -521,6 +524,7 @@ export default function ContactCenterModelCreateForm(props) {
           version,
           Managers,
           AssignedGroup,
+          override,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -572,7 +576,6 @@ export default function ContactCenterModelCreateForm(props) {
             defaultroute: modelFields.defaultroute,
             isoverride: modelFields.isoverride,
             welcomeprompt_sp: modelFields.welcomeprompt_sp,
-            menu0_sp: modelFields.menu0_sp,
             version: modelFields.version,
             AssignedGroup: modelFields.AssignedGroup,
             menu0: modelFields.menu0
@@ -617,6 +620,9 @@ export default function ContactCenterModelCreateForm(props) {
             submenu2_sp: modelFields.submenu2_sp
               ? JSON.parse(modelFields.submenu2_sp)
               : modelFields.submenu2_sp,
+            menu0_sp: modelFields.menu0_sp
+              ? JSON.parse(modelFields.menu0_sp)
+              : modelFields.menu0_sp,
             menu1_sp: modelFields.menu1_sp
               ? JSON.parse(modelFields.menu1_sp)
               : modelFields.menu1_sp,
@@ -644,6 +650,9 @@ export default function ContactCenterModelCreateForm(props) {
             menu9_sp: modelFields.menu9_sp
               ? JSON.parse(modelFields.menu9_sp)
               : modelFields.menu9_sp,
+            override: modelFields.override
+              ? JSON.parse(modelFields.override)
+              : modelFields.override,
           };
           const contactCenterModel = await DataStore.save(
             new ContactCenterModel(modelFieldsToSave)
@@ -727,6 +736,7 @@ export default function ContactCenterModelCreateForm(props) {
               version,
               Managers,
               AssignedGroup,
+              override,
             };
             const result = onChange(modelFields);
             value = result?.mainnumber ?? value;
@@ -789,6 +799,7 @@ export default function ContactCenterModelCreateForm(props) {
               version,
               Managers,
               AssignedGroup,
+              override,
             };
             const result = onChange(modelFields);
             value = result?.menu0 ?? value;
@@ -851,6 +862,7 @@ export default function ContactCenterModelCreateForm(props) {
               version,
               Managers,
               AssignedGroup,
+              override,
             };
             const result = onChange(modelFields);
             value = result?.menu1 ?? value;
@@ -913,6 +925,7 @@ export default function ContactCenterModelCreateForm(props) {
               version,
               Managers,
               AssignedGroup,
+              override,
             };
             const result = onChange(modelFields);
             value = result?.menu2 ?? value;
@@ -975,6 +988,7 @@ export default function ContactCenterModelCreateForm(props) {
               version,
               Managers,
               AssignedGroup,
+              override,
             };
             const result = onChange(modelFields);
             value = result?.menu3 ?? value;
@@ -1037,6 +1051,7 @@ export default function ContactCenterModelCreateForm(props) {
               version,
               Managers,
               AssignedGroup,
+              override,
             };
             const result = onChange(modelFields);
             value = result?.menu4 ?? value;
@@ -1099,6 +1114,7 @@ export default function ContactCenterModelCreateForm(props) {
               version,
               Managers,
               AssignedGroup,
+              override,
             };
             const result = onChange(modelFields);
             value = result?.menu5 ?? value;
@@ -1161,6 +1177,7 @@ export default function ContactCenterModelCreateForm(props) {
               version,
               Managers,
               AssignedGroup,
+              override,
             };
             const result = onChange(modelFields);
             value = result?.menu6 ?? value;
@@ -1223,6 +1240,7 @@ export default function ContactCenterModelCreateForm(props) {
               version,
               Managers,
               AssignedGroup,
+              override,
             };
             const result = onChange(modelFields);
             value = result?.menu7 ?? value;
@@ -1285,6 +1303,7 @@ export default function ContactCenterModelCreateForm(props) {
               version,
               Managers,
               AssignedGroup,
+              override,
             };
             const result = onChange(modelFields);
             value = result?.menu8 ?? value;
@@ -1347,6 +1366,7 @@ export default function ContactCenterModelCreateForm(props) {
               version,
               Managers,
               AssignedGroup,
+              override,
             };
             const result = onChange(modelFields);
             value = result?.menu9 ?? value;
@@ -1406,6 +1426,7 @@ export default function ContactCenterModelCreateForm(props) {
               version,
               Managers,
               AssignedGroup,
+              override,
             };
             const result = onChange(modelFields);
             values = result?.holiday ?? values;
@@ -1490,6 +1511,7 @@ export default function ContactCenterModelCreateForm(props) {
               version,
               Managers,
               AssignedGroup,
+              override,
             };
             const result = onChange(modelFields);
             values = result?.secondarytodclose ?? values;
@@ -1582,6 +1604,7 @@ export default function ContactCenterModelCreateForm(props) {
               version,
               Managers,
               AssignedGroup,
+              override,
             };
             const result = onChange(modelFields);
             values = result?.secondarytodopen ?? values;
@@ -1671,6 +1694,7 @@ export default function ContactCenterModelCreateForm(props) {
               version,
               Managers,
               AssignedGroup,
+              override,
             };
             const result = onChange(modelFields);
             values = result?.daysopen ?? values;
@@ -1755,6 +1779,7 @@ export default function ContactCenterModelCreateForm(props) {
               version,
               Managers,
               AssignedGroup,
+              override,
             };
             const result = onChange(modelFields);
             values = result?.daystodopen ?? values;
@@ -1841,6 +1866,7 @@ export default function ContactCenterModelCreateForm(props) {
               version,
               Managers,
               AssignedGroup,
+              override,
             };
             const result = onChange(modelFields);
             values = result?.daystodclose ?? values;
@@ -1931,6 +1957,7 @@ export default function ContactCenterModelCreateForm(props) {
               version,
               Managers,
               AssignedGroup,
+              override,
             };
             const result = onChange(modelFields);
             value = result?.welcomeprompt ?? value;
@@ -1993,6 +2020,7 @@ export default function ContactCenterModelCreateForm(props) {
               version,
               Managers,
               AssignedGroup,
+              override,
             };
             const result = onChange(modelFields);
             value = result?.afterhours ?? value;
@@ -2056,6 +2084,7 @@ export default function ContactCenterModelCreateForm(props) {
               version,
               Managers,
               AssignedGroup,
+              override,
             };
             const result = onChange(modelFields);
             value = result?.ccdescription ?? value;
@@ -2119,6 +2148,7 @@ export default function ContactCenterModelCreateForm(props) {
               version,
               Managers,
               AssignedGroup,
+              override,
             };
             const result = onChange(modelFields);
             value = result?.ccname ?? value;
@@ -2182,6 +2212,7 @@ export default function ContactCenterModelCreateForm(props) {
               version,
               Managers,
               AssignedGroup,
+              override,
             };
             const result = onChange(modelFields);
             value = result?.defaultroute ?? value;
@@ -2244,6 +2275,7 @@ export default function ContactCenterModelCreateForm(props) {
               version,
               Managers,
               AssignedGroup,
+              override,
             };
             const result = onChange(modelFields);
             value = result?.holidayoption ?? value;
@@ -2307,6 +2339,7 @@ export default function ContactCenterModelCreateForm(props) {
               version,
               Managers,
               AssignedGroup,
+              override,
             };
             const result = onChange(modelFields);
             value = result?.isoverride ?? value;
@@ -2369,6 +2402,7 @@ export default function ContactCenterModelCreateForm(props) {
               version,
               Managers,
               AssignedGroup,
+              override,
             };
             const result = onChange(modelFields);
             value = result?.submenu2 ?? value;
@@ -2432,6 +2466,7 @@ export default function ContactCenterModelCreateForm(props) {
               version,
               Managers,
               AssignedGroup,
+              override,
             };
             const result = onChange(modelFields);
             value = result?.welcomeprompt_sp ?? value;
@@ -2494,6 +2529,7 @@ export default function ContactCenterModelCreateForm(props) {
               version,
               Managers,
               AssignedGroup,
+              override,
             };
             const result = onChange(modelFields);
             value = result?.submenu2_sp ?? value;
@@ -2508,11 +2544,10 @@ export default function ContactCenterModelCreateForm(props) {
         hasError={errors.submenu2_sp?.hasError}
         {...getOverrideProps(overrides, "submenu2_sp")}
       ></TextAreaField>
-      <SelectField
+      <TextAreaField
         label="Menu0 sp"
-        placeholder="Please select an option"
-        isDisabled={false}
-        value={menu0_sp}
+        isRequired={false}
+        isReadOnly={false}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -2557,6 +2592,7 @@ export default function ContactCenterModelCreateForm(props) {
               version,
               Managers,
               AssignedGroup,
+              override,
             };
             const result = onChange(modelFields);
             value = result?.menu0_sp ?? value;
@@ -2570,28 +2606,7 @@ export default function ContactCenterModelCreateForm(props) {
         errorMessage={errors.menu0_sp?.errorMessage}
         hasError={errors.menu0_sp?.hasError}
         {...getOverrideProps(overrides, "menu0_sp")}
-      >
-        <option
-          children="Msg"
-          value="MSG"
-          {...getOverrideProps(overrides, "menu0_spoption0")}
-        ></option>
-        <option
-          children="Forward"
-          value="FORWARD"
-          {...getOverrideProps(overrides, "menu0_spoption1")}
-        ></option>
-        <option
-          children="Queue"
-          value="QUEUE"
-          {...getOverrideProps(overrides, "menu0_spoption2")}
-        ></option>
-        <option
-          children="Submenu"
-          value="SUBMENU"
-          {...getOverrideProps(overrides, "menu0_spoption3")}
-        ></option>
-      </SelectField>
+      ></TextAreaField>
       <TextAreaField
         label="Menu1 sp"
         isRequired={false}
@@ -2640,6 +2655,7 @@ export default function ContactCenterModelCreateForm(props) {
               version,
               Managers,
               AssignedGroup,
+              override,
             };
             const result = onChange(modelFields);
             value = result?.menu1_sp ?? value;
@@ -2702,6 +2718,7 @@ export default function ContactCenterModelCreateForm(props) {
               version,
               Managers,
               AssignedGroup,
+              override,
             };
             const result = onChange(modelFields);
             value = result?.menu2_sp ?? value;
@@ -2764,6 +2781,7 @@ export default function ContactCenterModelCreateForm(props) {
               version,
               Managers,
               AssignedGroup,
+              override,
             };
             const result = onChange(modelFields);
             value = result?.menu3_sp ?? value;
@@ -2826,6 +2844,7 @@ export default function ContactCenterModelCreateForm(props) {
               version,
               Managers,
               AssignedGroup,
+              override,
             };
             const result = onChange(modelFields);
             value = result?.menu4_sp ?? value;
@@ -2888,6 +2907,7 @@ export default function ContactCenterModelCreateForm(props) {
               version,
               Managers,
               AssignedGroup,
+              override,
             };
             const result = onChange(modelFields);
             value = result?.menu5_sp ?? value;
@@ -2950,6 +2970,7 @@ export default function ContactCenterModelCreateForm(props) {
               version,
               Managers,
               AssignedGroup,
+              override,
             };
             const result = onChange(modelFields);
             value = result?.menu6_sp ?? value;
@@ -3012,6 +3033,7 @@ export default function ContactCenterModelCreateForm(props) {
               version,
               Managers,
               AssignedGroup,
+              override,
             };
             const result = onChange(modelFields);
             value = result?.menu7_sp ?? value;
@@ -3074,6 +3096,7 @@ export default function ContactCenterModelCreateForm(props) {
               version,
               Managers,
               AssignedGroup,
+              override,
             };
             const result = onChange(modelFields);
             value = result?.menu8_sp ?? value;
@@ -3136,6 +3159,7 @@ export default function ContactCenterModelCreateForm(props) {
               version,
               Managers,
               AssignedGroup,
+              override,
             };
             const result = onChange(modelFields);
             value = result?.menu9_sp ?? value;
@@ -3199,6 +3223,7 @@ export default function ContactCenterModelCreateForm(props) {
               version: value,
               Managers,
               AssignedGroup,
+              override,
             };
             const result = onChange(modelFields);
             value = result?.version ?? value;
@@ -3258,6 +3283,7 @@ export default function ContactCenterModelCreateForm(props) {
               version,
               Managers: values,
               AssignedGroup,
+              override,
             };
             const result = onChange(modelFields);
             values = result?.Managers ?? values;
@@ -3374,6 +3400,7 @@ export default function ContactCenterModelCreateForm(props) {
               version,
               Managers,
               AssignedGroup: value,
+              override,
             };
             const result = onChange(modelFields);
             value = result?.AssignedGroup ?? value;
@@ -3449,6 +3476,69 @@ export default function ContactCenterModelCreateForm(props) {
           {...getOverrideProps(overrides, "AssignedGroup")}
         ></Autocomplete>
       </ArrayField>
+      <TextAreaField
+        label="Override"
+        isRequired={false}
+        isReadOnly={false}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
+              holiday,
+              secondarytodclose,
+              secondarytodopen,
+              daysopen,
+              daystodopen,
+              daystodclose,
+              welcomeprompt,
+              afterhours,
+              ccdescription,
+              ccname,
+              defaultroute,
+              holidayoption,
+              isoverride,
+              submenu2,
+              welcomeprompt_sp,
+              submenu2_sp,
+              menu0_sp,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
+              version,
+              Managers,
+              AssignedGroup,
+              override: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.override ?? value;
+          }
+          if (errors.override?.hasError) {
+            runValidationTasks("override", value);
+          }
+          setOverride(value);
+        }}
+        onBlur={() => runValidationTasks("override", override)}
+        errorMessage={errors.override?.errorMessage}
+        hasError={errors.override?.hasError}
+        {...getOverrideProps(overrides, "override")}
+      ></TextAreaField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

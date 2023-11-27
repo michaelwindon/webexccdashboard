@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { AutocompleteProps, GridProps, SelectFieldProps, SwitchFieldProps, TextAreaFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { AutocompleteProps, GridProps, SwitchFieldProps, TextAreaFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
 import { ManagerModel, GroupModel } from "../models";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
@@ -63,6 +63,7 @@ export declare type ContactCenterModelCreateFormInputValues = {
     version?: string;
     Managers?: ManagerModel[];
     AssignedGroup?: GroupModel;
+    override?: string;
 };
 export declare type ContactCenterModelCreateFormValidationValues = {
     mainnumber?: ValidationFunction<string>;
@@ -105,6 +106,7 @@ export declare type ContactCenterModelCreateFormValidationValues = {
     version?: ValidationFunction<string>;
     Managers?: ValidationFunction<ManagerModel>;
     AssignedGroup?: ValidationFunction<GroupModel>;
+    override?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type ContactCenterModelCreateFormOverridesProps = {
@@ -136,7 +138,7 @@ export declare type ContactCenterModelCreateFormOverridesProps = {
     submenu2?: PrimitiveOverrideProps<TextAreaFieldProps>;
     welcomeprompt_sp?: PrimitiveOverrideProps<TextFieldProps>;
     submenu2_sp?: PrimitiveOverrideProps<TextAreaFieldProps>;
-    menu0_sp?: PrimitiveOverrideProps<SelectFieldProps>;
+    menu0_sp?: PrimitiveOverrideProps<TextAreaFieldProps>;
     menu1_sp?: PrimitiveOverrideProps<TextAreaFieldProps>;
     menu2_sp?: PrimitiveOverrideProps<TextAreaFieldProps>;
     menu3_sp?: PrimitiveOverrideProps<TextAreaFieldProps>;
@@ -149,6 +151,7 @@ export declare type ContactCenterModelCreateFormOverridesProps = {
     version?: PrimitiveOverrideProps<TextFieldProps>;
     Managers?: PrimitiveOverrideProps<AutocompleteProps>;
     AssignedGroup?: PrimitiveOverrideProps<AutocompleteProps>;
+    override?: PrimitiveOverrideProps<TextAreaFieldProps>;
 } & EscapeHatchProps;
 export declare type ContactCenterModelCreateFormProps = React.PropsWithChildren<{
     overrides?: ContactCenterModelCreateFormOverridesProps | undefined | null;

@@ -524,7 +524,7 @@ export const schema = {
                     "name": "menu0_sp",
                     "isArray": false,
                     "type": {
-                        "enum": "MenuTypeEnum"
+                        "nonModel": "MenuType"
                     },
                     "isRequired": false,
                     "attributes": []
@@ -650,6 +650,15 @@ export const schema = {
                             "contactCenterModelAssignedGroupId"
                         ]
                     }
+                },
+                "override": {
+                    "name": "override",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "MenuType"
+                    },
+                    "isRequired": false,
+                    "attributes": []
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -906,8 +915,8 @@ export const schema = {
                 "VIEW"
             ]
         },
-        "SubmenuTypeEnum": {
-            "name": "SubmenuTypeEnum",
+        "OptionTypeEnum": {
+            "name": "OptionTypeEnum",
             "values": [
                 "MSG",
                 "FORWARD",
@@ -925,96 +934,29 @@ export const schema = {
         }
     },
     "nonModels": {
-        "SubmenuType": {
-            "name": "SubmenuType",
+        "OptionMenuType": {
+            "name": "OptionMenuType",
             "fields": {
-                "option0": {
-                    "name": "option0",
+                "msg": {
+                    "name": "msg",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "type": {
+                    "name": "type",
                     "isArray": false,
                     "type": {
-                        "enum": "SubmenuTypeEnum"
+                        "enum": "OptionTypeEnum"
                     },
                     "isRequired": false,
                     "attributes": []
                 },
-                "option1": {
-                    "name": "option1",
+                "value": {
+                    "name": "value",
                     "isArray": false,
-                    "type": {
-                        "enum": "SubmenuTypeEnum"
-                    },
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "option2": {
-                    "name": "option2",
-                    "isArray": false,
-                    "type": {
-                        "enum": "SubmenuTypeEnum"
-                    },
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "option3": {
-                    "name": "option3",
-                    "isArray": false,
-                    "type": {
-                        "enum": "SubmenuTypeEnum"
-                    },
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "opiton4": {
-                    "name": "opiton4",
-                    "isArray": false,
-                    "type": {
-                        "enum": "SubmenuTypeEnum"
-                    },
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "option5": {
-                    "name": "option5",
-                    "isArray": false,
-                    "type": {
-                        "enum": "SubmenuTypeEnum"
-                    },
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "option6": {
-                    "name": "option6",
-                    "isArray": false,
-                    "type": {
-                        "enum": "SubmenuTypeEnum"
-                    },
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "option7": {
-                    "name": "option7",
-                    "isArray": false,
-                    "type": {
-                        "enum": "SubmenuTypeEnum"
-                    },
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "option8": {
-                    "name": "option8",
-                    "isArray": false,
-                    "type": {
-                        "enum": "SubmenuTypeEnum"
-                    },
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "option9": {
-                    "name": "option9",
-                    "isArray": false,
-                    "type": {
-                        "enum": "SubmenuTypeEnum"
-                    },
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 }
@@ -1047,8 +989,103 @@ export const schema = {
                     "attributes": []
                 }
             }
+        },
+        "SubmenuType": {
+            "name": "SubmenuType",
+            "fields": {
+                "option0": {
+                    "name": "option0",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "OptionMenuType"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "option1": {
+                    "name": "option1",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "OptionMenuType"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "option2": {
+                    "name": "option2",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "OptionMenuType"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "option3": {
+                    "name": "option3",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "OptionMenuType"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "opiton4": {
+                    "name": "opiton4",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "OptionMenuType"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "option5": {
+                    "name": "option5",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "OptionMenuType"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "option6": {
+                    "name": "option6",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "OptionMenuType"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "option7": {
+                    "name": "option7",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "OptionMenuType"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "option8": {
+                    "name": "option8",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "OptionMenuType"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "option9": {
+                    "name": "option9",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "OptionMenuType"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                }
+            }
         }
     },
     "codegenVersion": "3.4.4",
-    "version": "138c8d08b3d377226131743ece62709c"
+    "version": "9639c90720a24f82e23b0ee9f59c1c67"
 };

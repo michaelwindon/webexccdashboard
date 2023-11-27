@@ -1389,12 +1389,13 @@ export default function ContactCenterUI(props) {
         <SwitchField
           width="unset"
           height="unset"
-          label="Off"
+          label="isOverride"
           shrink="0"
           size="default"
           defaultChecked={false}
           isDisabled={false}
-          labelPosition="start"
+          labelPosition="bottom"
+          isChecked={contactcentermodel?.isoverride}
           {...getOverrideProps(overrides, "SwitchField")}
         ></SwitchField>
         <Button

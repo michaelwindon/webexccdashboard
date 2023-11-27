@@ -8,7 +8,7 @@ const RoleEnum = {
   "VIEW": "VIEW"
 };
 
-const SubmenuTypeEnum = {
+const OptionTypeEnum = {
   "MSG": "MSG",
   "FORWARD": "FORWARD",
   "QUEUE": "QUEUE"
@@ -21,7 +21,7 @@ const MenuTypeEnum = {
   "SUBMENU": "SUBMENU"
 };
 
-const { GroupModel, QueueModel, ManagerModel, ContactCenterModel, GroupModelManagerModel, ContactCenterModelManagerModel, SubmenuType, MenuType } = initSchema(schema);
+const { GroupModel, QueueModel, ManagerModel, ContactCenterModel, GroupModelManagerModel, ContactCenterModelManagerModel, OptionMenuType, MenuType, SubmenuType } = initSchema(schema);
 
 export {
   GroupModel,
@@ -31,8 +31,9 @@ export {
   GroupModelManagerModel,
   ContactCenterModelManagerModel,
   RoleEnum,
-  SubmenuTypeEnum,
+  OptionTypeEnum,
   MenuTypeEnum,
-  SubmenuType,
-  MenuType
+  OptionMenuType,
+  MenuType,
+  SubmenuType
 };
