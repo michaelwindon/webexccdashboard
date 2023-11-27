@@ -98,7 +98,7 @@ export default function ContactCenterUI(props) {
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
             children={contactcentermodel?.mainnumber}
-            {...getOverrideProps(overrides, "ccmainnumber")}
+            {...getOverrideProps(overrides, "ccmainnumber\\")}
           ></Text>
         </Flex>
         <Flex

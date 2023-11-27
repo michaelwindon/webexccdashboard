@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import '@fontsource/inter/'
-import { withAuthenticator } from '@aws-amplify/ui-react';
+import './App.css'
+
 
 import { Button } from '@aws-amplify/ui-react';
 
@@ -125,4 +126,4 @@ function App() {
   )
 }
 
-export default withAuthenticator(App)
+export default App

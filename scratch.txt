@@ -1,0 +1,462 @@
+{
+  "id": {
+    "S": "65008e71-9c6c-4227-bfb0-02159fd2ae83"
+  },
+  "afterhours": {
+    "NULL": true
+  },
+  "ccdescription": {
+    "NULL": true
+  },
+  "ccname": {
+    "S": "Single Billing Office"
+  },
+  "contactCenterModelAssignedGroupId": {
+    "NULL": true
+  },
+  "createdAt": {
+    "S": "2023-11-26T18:08:45.184Z"
+  },
+  "daysopen": {
+    "L": []
+  },
+  "daystodclose": {
+    "L": []
+  },
+  "daystodopen": {
+    "L": []
+  },
+  "defaultroute": {
+    "S": "0"
+  },
+  "holiday": {
+    "L": []
+  },
+  "holidayoption": {
+    "NULL": true
+  },
+  "isoverride": {
+    "BOOL": false
+  },
+  "mainnumber": {
+    "S": "8326671000"
+  },
+  "menu0": {
+    "M": {
+      "msg": {
+        "S": "To be forwarded press 0"
+      },
+      "type": {
+        "S": "FORWARD"
+      },
+      "value": {
+        "S": "8323305706"
+      }
+    }
+  },
+  "menu0_sp": {
+    "S": "MSG"
+  },
+  "menu1": {
+    "M": {
+      "msg": {
+        "S": "To be forwarded press 1"
+      },
+      "type": {
+        "S": "QUEUE"
+      },
+      "value": {
+        "S": "SBO_Questions"
+      }
+    }
+  },
+  "menu1_sp": {
+    "NULL": true
+  },
+  "menu2": {
+    "M": {
+      "msg": {
+        "S": "To be forwarded press 0"
+      },
+      "type": {
+        "S": "SUBMENU"
+      },
+      "value": {
+        "S": "For doctor 1 press 1, for doctor 2 press 2"
+      }
+    }
+  },
+  "menu2_sp": {
+    "NULL": true
+  },
+  "menu3": {
+    "NULL": true
+  },
+  "menu3_sp": {
+    "NULL": true
+  },
+  "menu4": {
+    "NULL": true
+  },
+  "menu4_sp": {
+    "NULL": true
+  },
+  "menu5": {
+    "NULL": true
+  },
+  "menu5_sp": {
+    "NULL": true
+  },
+  "menu6": {
+    "NULL": true
+  },
+  "menu6_sp": {
+    "NULL": true
+  },
+  "menu7": {
+    "NULL": true
+  },
+  "menu7_sp": {
+    "NULL": true
+  },
+  "menu8": {
+    "NULL": true
+  },
+  "menu8_sp": {
+    "NULL": true
+  },
+  "menu9": {
+    "NULL": true
+  },
+  "menu9_sp": {
+    "NULL": true
+  },
+  "secondarytodclose": {
+    "L": []
+  },
+  "secondarytodopen": {
+    "L": []
+  },
+  "submenu2": {
+    "NULL": true
+  },
+  "submenu2_sp": {
+    "NULL": true
+  },
+  "updatedAt": {
+    "S": "2023-11-26T18:09:52.852Z"
+  },
+  "version": {
+    "NULL": true
+  },
+  "welcomeprompt": {
+    "S": "Thank you for calling Houston Methodist, Customer Service.  <break time=\"1s\"/> If this is an emergency, please hangup, and dial 911.  <break time=\"1s\"/>This call may be recorded for quality and training purposes. <break time=\"1s\"/>"
+  },
+  "welcomeprompt_sp": {
+    "NULL": true
+  },
+  "_deleted": {
+    "BOOL": false
+  },
+  "_lastChangedAt": {
+    "N": "1701022528865"
+  },
+  "_ttl": {
+    "N": "1703614528"
+  },
+  "_version": {
+    "N": "3"
+  },
+  "__typename": {
+    "S": "ContactCenterModel"
+  }
+},
+
+{
+  "id": {
+    "S": "59edb8ff-5b70-4d64-b54d-ef4a967ade4c"
+  },
+  "afterhours": {
+    "NULL": true
+  },
+  "ccdescription": {
+    "NULL": true
+  },
+  "ccname": {
+    "S": "IT Service Desk"
+  },
+  "contactCenterModelAssignedGroupId": {
+    "NULL": true
+  },
+  "createdAt": {
+    "S": "2023-11-18T14:11:03.109Z"
+  },
+  "daysopen": {
+    "L": []
+  },
+  "daystodclose": {
+    "L": []
+  },
+  "daystodopen": {
+    "L": []
+  },
+  "defaultroute": {
+    "NULL": true
+  },
+  "holiday": {
+    "L": [
+      {
+        "S": "11/18/2023"
+      },
+      {
+        "S": "12/25/2023"
+      }
+    ]
+  },
+  "holidayoption": {
+    "NULL": true
+  },
+  "isoverride": {
+    "BOOL": false
+  },
+  "mainnumber": {
+    "S": "7133635600"
+  },
+  "menu0": {
+    "M": {
+      "msg": {
+        "S": "To be forwarded press 0"
+      },
+      "type": {
+        "S": "MSG"
+      },
+      "value": {
+        "S": "8323305706"
+      }
+    }
+  },
+  "menu0_sp": {
+    "NULL": true
+  },
+  "menu1": {
+    "M": {
+      "msg": {
+        "S": "To be forwarded press 1"
+      },
+      "type": {
+        "S": "FORWARD"
+      },
+      "value": {
+        "S": "8323305706"
+      }
+    }
+  },
+  "menu1_sp": {
+    "NULL": true
+  },
+  "menu2": {
+    "M": {
+      "msg": {
+        "S": "To be forwarded press 2"
+      },
+      "type": {
+        "S": "SUBMENU"
+      },
+      "value": {
+        "S": "8323305706"
+      }
+    }
+  },
+  "menu2_sp": {
+    "NULL": true
+  },
+  "menu3": {
+    "M": {
+      "msg": {
+        "S": "To be forwarded press 3"
+      },
+      "type": {
+        "S": "MSG"
+      },
+      "value": {
+        "S": "8323305706"
+      }
+    }
+  },
+  "menu3_sp": {
+    "NULL": true
+  },
+  "menu4": {
+    "M": {
+      "msg": {
+        "S": "To be forwarded press 4"
+      },
+      "type": {
+        "S": "MSG"
+      },
+      "value": {
+        "S": "8323305706"
+      }
+    }
+  },
+  "menu4_sp": {
+    "NULL": true
+  },
+  "menu5": {
+    "M": {
+      "msg": {
+        "S": "To be forwarded press 5"
+      },
+      "type": {
+        "S": "QUEUE"
+      },
+      "value": {
+        "S": "8323305706"
+      }
+    }
+  },
+  "menu5_sp": {
+    "NULL": true
+  },
+  "menu6": {
+    "M": {
+      "msg": {
+        "S": "To be forwarded press 6"
+      },
+      "type": {
+        "S": "QUEUE"
+      },
+      "value": {
+        "S": "8323305706"
+      }
+    }
+  },
+  "menu6_sp": {
+    "NULL": true
+  },
+  "menu7": {
+    "M": {
+      "msg": {
+        "S": "To be forwarded press 7"
+      },
+      "type": {
+        "S": "MSG"
+      },
+      "value": {
+        "S": "8323305706"
+      }
+    }
+  },
+  "menu7_sp": {
+    "NULL": true
+  },
+  "menu8": {
+    "M": {
+      "msg": {
+        "S": "To be forwarded press 8"
+      },
+      "type": {
+        "S": "MSG"
+      },
+      "value": {
+        "S": "8323305706"
+      }
+    }
+  },
+  "menu8_sp": {
+    "NULL": true
+  },
+  "menu9": {
+    "M": {
+      "msg": {
+        "S": "To be forwarded press 9"
+      },
+      "type": {
+        "S": "FORWARD"
+      },
+      "value": {
+        "S": "8323305706"
+      }
+    }
+  },
+  "menu9_sp": {
+    "NULL": true
+  },
+  "secondarytodclose": {
+    "L": [
+      {
+        "S": "\"\""
+      },
+      {
+        "S": "\"11:30 AM\""
+      },
+      {
+        "S": "\"11:30 AM\""
+      },
+      {
+        "S": "\"11:30 AM\""
+      },
+      {
+        "S": "\"11:30 AM\""
+      },
+      {
+        "S": "\"11:30 AM\""
+      },
+      {
+        "S": "\"11:30 AM\""
+      }
+    ]
+  },
+  "secondarytodopen": {
+    "L": [
+      {
+        "S": "\"\""
+      },
+      {
+        "S": "\"1:30 PM\""
+      },
+      {
+        "S": "\"1:30 PM\""
+      },
+      {
+        "S": "\"1:30 PM\""
+      },
+      {
+        "S": "\"1:30 PM\""
+      },
+      {
+        "S": "\"1:30 PM\""
+      },
+      {
+        "S": "\"1:30 PM\""
+      }
+    ]
+  },
+  "submenu2": {
+    "NULL": true
+  },
+  "submenu2_sp": {
+    "NULL": true
+  },
+  "updatedAt": {
+    "S": "2023-11-26T06:32:12.122Z"
+  },
+  "version": {
+    "S": "1/*"
+  },
+  "welcomeprompt": {
+    "S": "Thank you for calling Houston Methodist, Customer Service.  <break time=\"1s\"/> If this is an emergency, please hangup, and dial 911.  <break time=\"1s\"/>This call may be recorded for quality and training purposes. <break time=\"1s\"/>"
+  },
+  "welcomeprompt_sp": {
+    "NULL": true
+  },
+  "_lastChangedAt": {
+    "N": "1700980332143"
+  },
+  "_version": {
+    "N": "6"
+  },
+  "__typename": {
+    "S": "ContactCenterModel"
+  }
+}
