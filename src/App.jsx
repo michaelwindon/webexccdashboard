@@ -13,14 +13,18 @@ function App() {
     const [openoverridemodal, setOpenOverrideModal] = useState(false)
     const [openupdatemenu, setOpenupdatemenu] = useState(false)
     const [modelItem, setModelItem] = useState()
+    const [menunumber, setMenuNumber] = useState()
+    const [contactcentermodel, setContactcentermodel] = useState();
 
     const [id, setId] = useState()
     const [groupid, setGroupid] = useState()
 
-    const handleUpdateMenuModalOpen = (groupid, itemMenu) => {
+    const handleUpdateMenuModalOpen = (groupid, itemMenu, menu, item) => {
         setGroupid(groupid)
         setModelItem(itemMenu)
+        setMenuNumber(menu)
         setOpenupdatemenu(true)
+        setContactcentermodel(item)
     }
     const handleUpdateMenuModaclose = (groupid) => {
         setGroupid(null)
@@ -43,6 +47,8 @@ function App() {
                 onClose={handleUpdateMenuModaclose}
                 open={openupdatemenu}
                 item={modelItem}
+                menunumber={menunumber}
+                contactcenter={contactcentermodel}
             />
             <UpdateisOverrideModal
                 open={openoverridemodal}
@@ -66,7 +72,9 @@ function App() {
                             onClick: () => {
                                 handleUpdateMenuModalOpen(
                                     item?.contactCenterModelAssignedGroupId,
-                                    item?.menu1
+                                    item?.menu1,
+                                    '1',
+                                    item
                                 )
                             },
                             children: (
@@ -93,7 +101,9 @@ function App() {
                             onClick: () => {
                                 handleUpdateMenuModalOpen(
                                     item?.contactCenterModelAssignedGroupId,
-                                    item?.menu2
+                                    item?.menu2,
+                                    '2',
+                                    item
                                 )
                             },
                             children: (
@@ -120,7 +130,9 @@ function App() {
                             onClick: () => {
                                 handleUpdateMenuModalOpen(
                                     item?.contactCenterModelAssignedGroupId,
-                                    item?.menu3
+                                    item?.menu3,
+                                    '3',
+                                    item
                                 )
                             },
                             children: (
@@ -147,7 +159,9 @@ function App() {
                             onClick: () => {
                                 handleUpdateMenuModalOpen(
                                     item?.contactCenterModelAssignedGroupId,
-                                    item?.menu4
+                                    item?.menu4,
+                                    '4',
+                                    item
                                 )
                             },
                             children: (
@@ -174,7 +188,9 @@ function App() {
                             onClick: () => {
                                 handleUpdateMenuModalOpen(
                                     item?.contactCenterModelAssignedGroupId,
-                                    item?.menu5
+                                    item?.menu5,
+                                    '5',
+                                    item
                                 )
                             },
                             children: (
@@ -201,7 +217,9 @@ function App() {
                             onClick: () => {
                                 handleUpdateMenuModalOpen(
                                     item?.contactCenterModelAssignedGroupId,
-                                    item?.menu6
+                                    item?.menu6,
+                                    '6',
+                                    item
                                 )
                             },
                             children: (
@@ -228,7 +246,9 @@ function App() {
                             onClick: () => {
                                 handleUpdateMenuModalOpen(
                                     item?.contactCenterModelAssignedGroupId,
-                                    item?.menu7
+                                    item?.menu7,
+                                    '7',
+                                    item
                                 )
                             },
                             children: (
@@ -255,7 +275,9 @@ function App() {
                             onClick: () => {
                                 handleUpdateMenuModalOpen(
                                     item?.contactCenterModelAssignedGroupId,
-                                    item?.menu8
+                                    item?.menu8,
+                                    '8',
+                                    item
                                 )
                             },
                             children: (
@@ -282,7 +304,9 @@ function App() {
                             onClick: () => {
                                 handleUpdateMenuModalOpen(
                                     item?.contactCenterModelAssignedGroupId,
-                                    item?.menu9
+                                    item?.menu9,
+                                    '9',
+                                    item
                                 )
                             },
                             children: (
@@ -309,7 +333,9 @@ function App() {
                             onClick: () => {
                                 handleUpdateMenuModalOpen(
                                     item?.contactCenterModelAssignedGroupId,
-                                    item?.menu0
+                                    item?.menu0,
+                                    '0',
+                                    item
                                 )
                             },
                             children: (
@@ -338,6 +364,12 @@ function App() {
                             },
                         },
                         ButtonOverride: {
+                            onClick: () => {
+                                handleUpdateMenuModalOpen(
+                                    item?.contactCenterModelAssignedGroupId,
+                                    item?.override
+                                )
+                            },
                             children: (
                                 <>
                                     {' '}
@@ -358,6 +390,12 @@ function App() {
                             ),
                         },
                         ButtonAfterhours: {
+                            onClick: () => {
+                                handleUpdateMenuModalOpen(
+                                    item?.contactCenterModelAssignedGroupId,
+                                    item?.afterhours
+                                )
+                            },
                             children: (
                                 <>
                                     {' '}
@@ -377,6 +415,12 @@ function App() {
                             ),
                         },
                         ButtonHoliday: {
+                            onClick: () => {
+                                handleUpdateMenuModalOpen(
+                                    item?.contactCenterModelAssignedGroupId,
+                                    item?.holidayoption
+                                )
+                            },
                             children: (
                                 <>
                                     {' '}

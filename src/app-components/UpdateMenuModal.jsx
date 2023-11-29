@@ -14,28 +14,46 @@ import {
 import Dialog from '@mui/material/Dialog'
 import { useEffect, useState } from 'react'
 import { MyIcon } from '../ui-components'
-import { QueueModel } from '../models'
+import {
+    QueueModel,
+    ContactCenterModel,
+    MenuType,
+    MenuTypeEnum,
+} from '../models'
 import { DataStore } from 'aws-amplify/datastore'
 
 const UpdateMenuModal = (props) => {
     const { tokens } = useTheme()
 
-    const { groupid, onClose, open, item } = props
+    const { groupid, onClose, open, item, menunumber, contactcenter } = props
 
     const [showQueue, setshowQueue] = useState(false)
     const [showForward, setshowForward] = useState(false)
     const [showSubmenu, setshowSubmenu] = useState(false)
     const [showMessage, setshowMessage] = useState(false)
+    const [menuType, setmenuType] = useState('')
     const [queues, setQueues] = useState([])
+    const [fieldValue, setfieldValue] = useState('')
+    const [fieldMsg, setFieldMsg] = useState('')
 
     const toggleQueue = () => {
         setshowQueue(!showQueue)
+        if (!showQueue && item?.type == 'QUEUE') {
+            setfieldValue(item.value)
+        } else {
+            setfieldValue('')
+        }
         setshowForward(false)
         setshowSubmenu(false)
         setshowMessage(false)
     }
     const toggleForward = () => {
         setshowForward(!showForward)
+        if (!showForward && item?.type == 'FORWARD') {
+            setfieldValue(item.value)
+        } else {
+            setfieldValue('')
+        }
         setshowSubmenu(false)
         setshowMessage(false)
         setshowQueue(false)
@@ -43,12 +61,23 @@ const UpdateMenuModal = (props) => {
 
     const toggleSubmenu = () => {
         setshowSubmenu(!showSubmenu)
+        if (!showSubmenu && item?.type == 'SUBMENU') {
+            setfieldValue(item.value)
+        } else {
+            setfieldValue('')
+        }
         setshowMessage(false)
         setshowQueue(false)
         setshowForward(false)
     }
     const toggleMessge = () => {
         setshowMessage(!showMessage)
+
+        if (!showMessage && item?.type == 'MSG') {
+            setfieldValue(item.value)
+        } else {
+            setfieldValue('')
+        }
         setshowQueue(false)
         setshowForward(false)
         setshowSubmenu(false)
@@ -57,25 +86,25 @@ const UpdateMenuModal = (props) => {
     useEffect(() => {
         async function fetchData() {
             try {
-                const data = await DataStore.query(QueueModel, (q) =>
-                    q.queueModelGroupId.eq(groupid)
-                )
-                setQueues(data)
+                if (open) {
+                    const data = await DataStore.query(QueueModel, (q) =>
+                        q.queueModelGroupId.eq(groupid)
+                    )
+                    setQueues(data)
+                    console.log(`fetching data...`)
+                }
             } catch (error) {
                 console.error(`Error retrieving Queues 💩! ${error}`)
             }
         }
+
         async function fetchDatawithoutrestrictions() {
             try {
-                const data = await DataStore.query(QueueModel)
-                setQueues(data)
-                console.log(
-                    `Retrived Queues Without Restrictions Sucessfully 👍🏾! ${JSON.stringify(
-                        data,
-                        null,
-                        2
-                    )}`
-                )
+                if (open) {
+                    const data = await DataStore.query(QueueModel)
+                    setQueues(data)
+                    console.log(`fetching data...`)
+                }
             } catch (error) {
                 console.error(`Error retrieving Queues 💩! ${error}`)
             }
@@ -84,7 +113,81 @@ const UpdateMenuModal = (props) => {
         {
             groupid == '' ? fetchDatawithoutrestrictions() : fetchData()
         }
-    }, [groupid])
+        setFieldMsg(item?.msg)
+    }, [open, groupid])
+
+    const handleFieldChange = (e) => {
+        setfieldValue(e.target.value)
+    }
+    const handleFieldMsgChange = (e) => {
+        setFieldMsg(e.target.value)
+    }
+
+    const handleSubmit = async () => {
+        const updatedMenu = { msg: fieldMsg, type: menuType, value: fieldValue }
+
+        const orignal = await DataStore.query(
+            ContactCenterModel,
+            contactcenter.id
+        )
+
+        if (orignal) {
+            try {
+                const updateContactCenter = await DataStore.save(
+                    ContactCenterModel.copyOf(orignal, (update) => {
+                        switch (menunumber) {
+                            case '1':
+                                update.menu1 = updatedMenu
+                                break
+                            case '2':
+                                update.menu2 = updatedMenu
+                                break
+                            case '3':
+                                update.menu3 = updatedMenu
+                                break
+                            case '4':
+                                update.menu4 = updatedMenu
+                                break
+                            case '5':
+                                update.menu5 = updatedMenu
+                                break
+                            case '6':
+                                update.menu6 = updatedMenu
+                                break
+                            case '7':
+                                update.menu7 = updatedMenu
+                                break
+                            case '8':
+                                update.menu8 = updatedMenu
+                                break
+                            case '9':
+                                update.menu9 = updatedMenu
+                                break
+                            case '0':
+                                update.menu0 = updatedMenu
+                                break
+
+                            default:
+                                console.error(
+                                    `No Updates made as no menu number was given!`
+                                )
+                                break
+                        }
+                    })
+                )
+                /*  console.log(
+                    `Sucessful submition to the DB! 🚀: {"msg":"${fieldMsg}", "type":"${menuType}", "value" : "${fieldValue}" for menu: ${menunumber} }`
+                ) */
+            } catch (error) {
+                console.error(`Error in the handleSubmit: ${error}`)
+                /* console.log(
+                    `{"msg":"${fieldMsg}", "type":"${menuType}", "value" : "${fieldValue}" for menu: ${menunumber} }`
+                ) */
+            }
+        }
+
+        onClose()
+    }
 
     return (
         <>
@@ -95,28 +198,77 @@ const UpdateMenuModal = (props) => {
                 >
                     <Card>
                         <Flex direction="row" alignItems="flex-start">
-                            <Placeholder height="300px" width="25%" />
+                            <MyIcon
+                                {...(item?.type == 'FORWARD' && {
+                                    type: 'phone',
+                                })}
+                                {...(item?.type == 'MSG' && {
+                                    type: 'chat',
+                                })}
+                                {...(item?.type == 'QUEUE' && {
+                                    type: 'group',
+                                })}
+                                {...(item?.type == 'SUBMENU' && {
+                                    type: 'share',
+                                })}
+                                height="300px"
+                                width="25%"
+                            />
                             <Flex
                                 direction="column"
                                 alignItems="flex-start"
                                 gap={tokens.space.large}
-                                flex={1}
                             >
-                                <Flex flex={1}>
-                                    <Heading level={3}>Menu Options</Heading>
+                                <Flex>
+                                    <Heading level={3}>
+                                        Main Menu Prompt {menunumber}
+                                    </Heading>
+                                </Flex>
+                                <View width="50em">
+                                    <TextAreaField
+                                        rows={3}
+                                        name="menu_msg"
+                                        label="Prompt"
+                                        onChange={handleFieldMsgChange}
+                                        defaultValue={item?.msg}
+                                    />
+                                </View>
+
+                                <Flex>
+                                    <Heading level={3}>Menu Type</Heading>
                                 </Flex>
                                 <Flex direction="row" alignItems="flex-start">
                                     <ButtonGroup>
-                                        <Button onClick={toggleMessge}>
+                                        <Button
+                                            onClick={() => {
+                                                toggleMessge()
+                                                setmenuType('MSG')
+                                            }}
+                                        >
                                             <MyIcon type="chat" /> Message
                                         </Button>
-                                        <Button onClick={toggleForward}>
+                                        <Button
+                                            onClick={() => {
+                                                toggleForward()
+                                                setmenuType('FORWARD')
+                                            }}
+                                        >
                                             <MyIcon type="phone" /> Forward
                                         </Button>
-                                        <Button onClick={toggleQueue}>
+                                        <Button
+                                            onClick={() => {
+                                                toggleQueue()
+                                                setmenuType('QUEUE')
+                                            }}
+                                        >
                                             <MyIcon type="group" /> Queue
                                         </Button>
-                                        <Button onClick={toggleSubmenu}>
+                                        <Button
+                                            onClick={() => {
+                                                toggleSubmenu()
+                                                setmenuType('SUBMENU')
+                                            }}
+                                        >
                                             <MyIcon type="share" /> Submenu
                                         </Button>
                                     </ButtonGroup>
@@ -126,8 +278,9 @@ const UpdateMenuModal = (props) => {
                                         <View width="50em">
                                             <TextAreaField
                                                 rows={3}
+                                                onChange={handleFieldChange}
                                                 name="menu_msg"
-                                                label="Menu Message"
+                                                label="Play Message"
                                                 defaultValue={
                                                     item?.type === 'MSG'
                                                         ? item?.value
@@ -142,6 +295,7 @@ const UpdateMenuModal = (props) => {
                                         <TextField
                                             name="menu_forward"
                                             label="Forward Number"
+                                            onChange={handleFieldChange}
                                             defaultValue={
                                                 item?.type === 'FORWARD'
                                                     ? item?.value
@@ -155,6 +309,7 @@ const UpdateMenuModal = (props) => {
                                         <SelectField
                                             name="menu_queue"
                                             label="Choose Queue"
+                                            onChange={handleFieldChange}
                                             defaultValue={
                                                 item?.type === 'QUEUE'
                                                     ? item?.value
@@ -179,6 +334,7 @@ const UpdateMenuModal = (props) => {
                                             <TextAreaField
                                                 rows={3}
                                                 name="menu_submenumsg"
+                                                onChange={handleFieldChange}
                                                 label="Submenu Message"
                                                 defaultValue={
                                                     item?.type === 'SUBMENU'
@@ -190,9 +346,23 @@ const UpdateMenuModal = (props) => {
                                     </Flex>
                                 )}
                                 <Flex>
-                                    <Button onClick={onClose}>Cancel</Button>
+                                    <Button
+                                        onClick={() => {
+                                            setmenuType('')
+                                            setshowForward(false)
+                                            setshowMessage(false)
+                                            setshowQueue(false)
+                                            setshowSubmenu(false)
+                                            setfieldValue('')
+                                            setFieldMsg('')
+                                            onClose()
+                                        }}
+                                    >
+                                        Cancel
+                                    </Button>
                                     <Button
                                         variation="primary"
+                                        onClick={handleSubmit}
                                         isDisabled={
                                             showMessage ||
                                             showForward ||
