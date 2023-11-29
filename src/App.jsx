@@ -287,7 +287,7 @@ function App() {
                             },
                             children: (
                                 <>
-                                    2
+                                    9
                                     <MyIcon
                                         {...(item.menu9?.type == 'FORWARD' && {
                                             type: 'phone',
