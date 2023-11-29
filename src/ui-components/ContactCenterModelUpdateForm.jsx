@@ -15,6 +15,7 @@ import {
   Grid,
   Icon,
   ScrollView,
+  SelectField,
   SwitchField,
   Text,
   TextAreaField,
@@ -204,6 +205,7 @@ export default function ContactCenterModelUpdateForm(props) {
   const initialValues = {
     mainnumber: "",
     menu0: "",
+    Field0: "",
     menu1: "",
     menu2: "",
     menu3: "",
@@ -246,6 +248,7 @@ export default function ContactCenterModelUpdateForm(props) {
   };
   const [mainnumber, setMainnumber] = React.useState(initialValues.mainnumber);
   const [menu0, setMenu0] = React.useState(initialValues.menu0);
+  const [Field0, setField0] = React.useState(initialValues.Field0);
   const [menu1, setMenu1] = React.useState(initialValues.menu1);
   const [menu2, setMenu2] = React.useState(initialValues.menu2);
   const [menu3, setMenu3] = React.useState(initialValues.menu3);
@@ -323,6 +326,7 @@ export default function ContactCenterModelUpdateForm(props) {
         ? cleanValues.menu0
         : JSON.stringify(cleanValues.menu0)
     );
+    setField0(cleanValues.Field0);
     setMenu1(
       typeof cleanValues.menu1 === "string" || cleanValues.menu1 === null
         ? cleanValues.menu1
@@ -562,6 +566,7 @@ export default function ContactCenterModelUpdateForm(props) {
   const validations = {
     mainnumber: [{ type: "Required" }],
     menu0: [{ type: "JSON" }],
+    Field0: [],
     menu1: [{ type: "JSON" }],
     menu2: [{ type: "JSON" }],
     menu3: [{ type: "JSON" }],
@@ -630,6 +635,7 @@ export default function ContactCenterModelUpdateForm(props) {
         let modelFields = {
           mainnumber,
           menu0,
+          Field0,
           menu1,
           menu2,
           menu3,
@@ -904,6 +910,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber: value,
               menu0,
+              Field0,
               menu1,
               menu2,
               menu3,
@@ -968,6 +975,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0: value,
+              Field0,
               menu1,
               menu2,
               menu3,
@@ -1021,6 +1029,91 @@ export default function ContactCenterModelUpdateForm(props) {
         hasError={errors.menu0?.hasError}
         {...getOverrideProps(overrides, "menu0")}
       ></TextAreaField>
+      <SelectField
+        label="Menu0 Type"
+        placeholder="Please select an option"
+        value={Field0}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              mainnumber,
+              menu0,
+              Field0: value,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
+              holiday,
+              secondarytodclose,
+              secondarytodopen,
+              daysopen,
+              daystodopen,
+              daystodclose,
+              welcomeprompt,
+              afterhours,
+              ccdescription,
+              ccname,
+              defaultroute,
+              holidayoption,
+              isoverride,
+              submenu2,
+              welcomeprompt_sp,
+              submenu2_sp,
+              menu0_sp,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
+              version,
+              Managers,
+              AssignedGroup,
+              override,
+            };
+            const result = onChange(modelFields);
+            value = result?.Field0 ?? value;
+          }
+          if (errors.Field0?.hasError) {
+            runValidationTasks("Field0", value);
+          }
+          setField0(value);
+        }}
+        onBlur={() => runValidationTasks("Field0", Field0)}
+        errorMessage={errors.Field0?.errorMessage}
+        hasError={errors.Field0?.hasError}
+        {...getOverrideProps(overrides, "Field0")}
+      >
+        <option
+          children="MSG"
+          value="MSG"
+          {...getOverrideProps(overrides, "Field0option0")}
+        ></option>
+        <option
+          children="FORWARD"
+          value="FORWARD"
+          {...getOverrideProps(overrides, "Field0option1")}
+        ></option>
+        <option
+          children="QUEUE"
+          value="QUEUE"
+          {...getOverrideProps(overrides, "Field0option2")}
+        ></option>
+        <option
+          children="SUBMENU"
+          value="SUBMENU"
+          {...getOverrideProps(overrides, "Field0option3")}
+        ></option>
+      </SelectField>
       <TextAreaField
         label="Menu1"
         isRequired={false}
@@ -1032,6 +1125,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0,
+              Field0,
               menu1: value,
               menu2,
               menu3,
@@ -1096,6 +1190,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0,
+              Field0,
               menu1,
               menu2: value,
               menu3,
@@ -1160,6 +1255,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0,
+              Field0,
               menu1,
               menu2,
               menu3: value,
@@ -1224,6 +1320,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0,
+              Field0,
               menu1,
               menu2,
               menu3,
@@ -1288,6 +1385,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0,
+              Field0,
               menu1,
               menu2,
               menu3,
@@ -1352,6 +1450,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0,
+              Field0,
               menu1,
               menu2,
               menu3,
@@ -1416,6 +1515,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0,
+              Field0,
               menu1,
               menu2,
               menu3,
@@ -1480,6 +1580,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0,
+              Field0,
               menu1,
               menu2,
               menu3,
@@ -1544,6 +1645,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0,
+              Field0,
               menu1,
               menu2,
               menu3,
@@ -1604,6 +1706,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0,
+              Field0,
               menu1,
               menu2,
               menu3,
@@ -1689,6 +1792,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0,
+              Field0,
               menu1,
               menu2,
               menu3,
@@ -1782,6 +1886,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0,
+              Field0,
               menu1,
               menu2,
               menu3,
@@ -1872,6 +1977,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0,
+              Field0,
               menu1,
               menu2,
               menu3,
@@ -1957,6 +2063,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0,
+              Field0,
               menu1,
               menu2,
               menu3,
@@ -2044,6 +2151,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0,
+              Field0,
               menu1,
               menu2,
               menu3,
@@ -2135,6 +2243,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0,
+              Field0,
               menu1,
               menu2,
               menu3,
@@ -2199,6 +2308,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0,
+              Field0,
               menu1,
               menu2,
               menu3,
@@ -2263,6 +2373,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0,
+              Field0,
               menu1,
               menu2,
               menu3,
@@ -2327,6 +2438,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0,
+              Field0,
               menu1,
               menu2,
               menu3,
@@ -2391,6 +2503,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0,
+              Field0,
               menu1,
               menu2,
               menu3,
@@ -2455,6 +2568,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0,
+              Field0,
               menu1,
               menu2,
               menu3,
@@ -2519,6 +2633,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0,
+              Field0,
               menu1,
               menu2,
               menu3,
@@ -2583,6 +2698,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0,
+              Field0,
               menu1,
               menu2,
               menu3,
@@ -2647,6 +2763,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0,
+              Field0,
               menu1,
               menu2,
               menu3,
@@ -2711,6 +2828,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0,
+              Field0,
               menu1,
               menu2,
               menu3,
@@ -2775,6 +2893,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0,
+              Field0,
               menu1,
               menu2,
               menu3,
@@ -2839,6 +2958,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0,
+              Field0,
               menu1,
               menu2,
               menu3,
@@ -2903,6 +3023,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0,
+              Field0,
               menu1,
               menu2,
               menu3,
@@ -2967,6 +3088,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0,
+              Field0,
               menu1,
               menu2,
               menu3,
@@ -3031,6 +3153,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0,
+              Field0,
               menu1,
               menu2,
               menu3,
@@ -3095,6 +3218,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0,
+              Field0,
               menu1,
               menu2,
               menu3,
@@ -3159,6 +3283,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0,
+              Field0,
               menu1,
               menu2,
               menu3,
@@ -3223,6 +3348,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0,
+              Field0,
               menu1,
               menu2,
               menu3,
@@ -3287,6 +3413,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0,
+              Field0,
               menu1,
               menu2,
               menu3,
@@ -3351,6 +3478,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0,
+              Field0,
               menu1,
               menu2,
               menu3,
@@ -3415,6 +3543,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0,
+              Field0,
               menu1,
               menu2,
               menu3,
@@ -3475,6 +3604,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0,
+              Field0,
               menu1,
               menu2,
               menu3,
@@ -3592,6 +3722,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0,
+              Field0,
               menu1,
               menu2,
               menu3,
@@ -3718,6 +3849,7 @@ export default function ContactCenterModelUpdateForm(props) {
             const modelFields = {
               mainnumber,
               menu0,
+              Field0,
               menu1,
               menu2,
               menu3,

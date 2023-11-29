@@ -1,14 +1,13 @@
 import { UpdateOverrideForm } from "../ui-components"
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import Button from '@mui/material/Button';
+
 
 
 const UpdateisOverrideModal = (props) => {
 
-      const {id, onClose, open, override} = props
+      const {id, onClose, open} = props
 
   return (
     <Dialog open={open}>

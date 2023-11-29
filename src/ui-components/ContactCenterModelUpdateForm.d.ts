@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { AutocompleteProps, GridProps, SwitchFieldProps, TextAreaFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { AutocompleteProps, GridProps, SelectFieldProps, SwitchFieldProps, TextAreaFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
 import { ContactCenterModel, ManagerModel, GroupModel } from "../models";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
@@ -25,6 +25,7 @@ export declare type ValidationFunction<T> = (value: T, validationResponse: Valid
 export declare type ContactCenterModelUpdateFormInputValues = {
     mainnumber?: string;
     menu0?: string;
+    Field0?: string;
     menu1?: string;
     menu2?: string;
     menu3?: string;
@@ -68,6 +69,7 @@ export declare type ContactCenterModelUpdateFormInputValues = {
 export declare type ContactCenterModelUpdateFormValidationValues = {
     mainnumber?: ValidationFunction<string>;
     menu0?: ValidationFunction<string>;
+    Field0?: ValidationFunction<string>;
     menu1?: ValidationFunction<string>;
     menu2?: ValidationFunction<string>;
     menu3?: ValidationFunction<string>;
@@ -113,6 +115,7 @@ export declare type ContactCenterModelUpdateFormOverridesProps = {
     ContactCenterModelUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
     mainnumber?: PrimitiveOverrideProps<TextFieldProps>;
     menu0?: PrimitiveOverrideProps<TextAreaFieldProps>;
+    Field0?: PrimitiveOverrideProps<SelectFieldProps>;
     menu1?: PrimitiveOverrideProps<TextAreaFieldProps>;
     menu2?: PrimitiveOverrideProps<TextAreaFieldProps>;
     menu3?: PrimitiveOverrideProps<TextAreaFieldProps>;
