@@ -7,20 +7,15 @@
 /* eslint-disable */
 import * as React from "react";
 import { ContactCenterModel } from "../models";
-import { SortDirection } from "@aws-amplify/datastore";
 import { getOverrideProps, useDataStoreBinding } from "./utils";
 import ContactCenterUI from "./ContactCenterUI";
 import { Collection } from "@aws-amplify/ui-react";
 export default function ContactCenterUICollection(props) {
   const { items: itemsProp, overrideItems, overrides, ...rest } = props;
-  const itemsPagination = {
-    sort: (s) => s.updatedAt(SortDirection.DESCENDING),
-  };
   const [items, setItems] = React.useState(undefined);
   const itemsDataStore = useDataStoreBinding({
     type: "collection",
     model: ContactCenterModel,
-    pagination: itemsPagination,
   }).items;
   React.useEffect(() => {
     if (itemsProp !== undefined) {
