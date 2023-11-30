@@ -17,8 +17,6 @@ import { MyIcon } from '../ui-components'
 import {
     QueueModel,
     ContactCenterModel,
-    MenuType,
-    MenuTypeEnum,
 } from '../models'
 import { DataStore } from 'aws-amplify/datastore'
 
