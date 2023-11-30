@@ -14,7 +14,7 @@ function App() {
     const [openupdatemenu, setOpenupdatemenu] = useState(false)
     const [modelItem, setModelItem] = useState()
     const [menunumber, setMenuNumber] = useState()
-    const [contactcentermodel, setContactcentermodel] = useState();
+    const [contactcentermodel, setContactcentermodel] = useState()
 
     const [id, setId] = useState()
     const [groupid, setGroupid] = useState()
@@ -367,7 +367,9 @@ function App() {
                             onClick: () => {
                                 handleUpdateMenuModalOpen(
                                     item?.contactCenterModelAssignedGroupId,
-                                    item?.override
+                                    item?.override,
+                                    'override',
+                                    item
                                 )
                             },
                             children: (
@@ -393,7 +395,9 @@ function App() {
                             onClick: () => {
                                 handleUpdateMenuModalOpen(
                                     item?.contactCenterModelAssignedGroupId,
-                                    item?.afterhours
+                                    item?.afterhours,
+                                    'afterhours',
+                                    item
                                 )
                             },
                             children: (
@@ -407,7 +411,9 @@ function App() {
                                             type: 'chat',
                                         })}
                                         {...(item.afterhours?.type ==
-                                            'QUEUE' && { type: 'group' })}
+                                            'QUEUE' && {
+                                            type: 'group',
+                                        })}
                                         {...(item.afterhours?.type ==
                                             'SUBMENU' && { type: 'share' })}
                                     />
@@ -418,7 +424,9 @@ function App() {
                             onClick: () => {
                                 handleUpdateMenuModalOpen(
                                     item?.contactCenterModelAssignedGroupId,
-                                    item?.holidayoption
+                                    item?.holidayoption,
+                                    'holidayoption',
+                                    item
                                 )
                             },
                             children: (

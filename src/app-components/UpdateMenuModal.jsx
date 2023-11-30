@@ -91,7 +91,7 @@ const UpdateMenuModal = (props) => {
                         q.queueModelGroupId.eq(groupid)
                     )
                     setQueues(data)
-                    console.log(`fetching data...`)
+                    /*    console.log(`fetching data...`) */
                 }
             } catch (error) {
                 console.error(`Error retrieving Queues 💩! ${error}`)
@@ -103,7 +103,7 @@ const UpdateMenuModal = (props) => {
                 if (open) {
                     const data = await DataStore.query(QueueModel)
                     setQueues(data)
-                    console.log(`fetching data...`)
+                    /* console.log(`fetching data...`) */
                 }
             } catch (error) {
                 console.error(`Error retrieving Queues 💩! ${error}`)
@@ -154,32 +154,48 @@ const UpdateMenuModal = (props) => {
                             case '6':
                                 update.menu6 = updatedMenu
                                 break
+
                             case '7':
                                 update.menu7 = updatedMenu
                                 break
+
                             case '8':
                                 update.menu8 = updatedMenu
                                 break
+
                             case '9':
                                 update.menu9 = updatedMenu
                                 break
+
                             case '0':
                                 update.menu0 = updatedMenu
                                 break
 
+                            case 'override':
+                                update.override = updatedMenu
+                                break
+
+                            case 'afterhours':
+                                update.afterhours = updatedMenu
+                                break
+
+                            case 'holidayoption':
+                                update.holidayoption = updatedMenu
+                                break
+
                             default:
                                 console.error(
-                                    `No Updates made as no menu number was given!`
+                                    `Error in handleSubmit: No Updates made as no menu number was given!`
                                 )
                                 break
                         }
                     })
                 )
-                /*  console.log(
+                console.log(
                     `Sucessful submition to the DB! 🚀: {"msg":"${fieldMsg}", "type":"${menuType}", "value" : "${fieldValue}" for menu: ${menunumber} }`
-                ) */
+                )
             } catch (error) {
-                console.error(`Error in the handleSubmit: ${error}`)
+                console.error(`Error in handleSubmit: ${error}`)
                 /* console.log(
                     `{"msg":"${fieldMsg}", "type":"${menuType}", "value" : "${fieldValue}" for menu: ${menunumber} }`
                 ) */
@@ -188,7 +204,9 @@ const UpdateMenuModal = (props) => {
 
         onClose()
     }
-
+    /* console.log(
+        `{"msg":"${fieldMsg}", "type":"${menuType}", "value" : "${fieldValue}" for menu: ${menunumber} }`
+    ) */
     return (
         <>
             <Dialog fullWidth={true} maxWidth="lg" open={open}>
