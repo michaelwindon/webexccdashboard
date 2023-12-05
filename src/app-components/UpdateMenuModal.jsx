@@ -12,12 +12,10 @@ import {
     SelectField,
 } from '@aws-amplify/ui-react'
 import Dialog from '@mui/material/Dialog'
+import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
 import { MyIcon } from '../ui-components'
-import {
-    QueueModel,
-    ContactCenterModel,
-} from '../models'
+import { QueueModel, ContactCenterModel } from '../models'
 import { DataStore } from 'aws-amplify/datastore'
 
 const UpdateMenuModal = (props) => {
@@ -399,4 +397,13 @@ const UpdateMenuModal = (props) => {
         </>
     )
 }
+UpdateMenuModal.propTypes = {
+    groupid: PropTypes.string, // 'groupid' is the used to only display the items that are assigned to the same group
+    onClose: PropTypes.func, // 'onClose'  function sent from the called Componet used to control the opening and closing of the Modal
+    open: PropTypes.bool, // 'open'  Booleing value used control modal open and close
+    item: PropTypes.object, // 'item'  object contains the menu being shown
+    menunumber: PropTypes.string, // 'menunumber'  string represeting the menu title
+    contactcenter: PropTypes.object, // 'contactcenter' the specific contact center obj beening displayed
+}
+
 export default UpdateMenuModal

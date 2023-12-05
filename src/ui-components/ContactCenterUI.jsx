@@ -488,7 +488,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="MON"
-              {...getOverrideProps(overrides, "MON")}
+              {...getOverrideProps(overrides, "dayyArray1")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -509,7 +509,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="TUE"
-              {...getOverrideProps(overrides, "TUE")}
+              {...getOverrideProps(overrides, "dayyArray2")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -530,7 +530,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="WED"
-              {...getOverrideProps(overrides, "WED")}
+              {...getOverrideProps(overrides, "dayyArray3")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -551,7 +551,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="THU"
-              {...getOverrideProps(overrides, "THU")}
+              {...getOverrideProps(overrides, "dayyArray4")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -572,7 +572,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="FRI"
-              {...getOverrideProps(overrides, "FRI")}
+              {...getOverrideProps(overrides, "dayyArray5")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -593,7 +593,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="SAT"
-              {...getOverrideProps(overrides, "SAT")}
+              {...getOverrideProps(overrides, "dayyArray6")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -614,7 +614,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="SUN"
-              {...getOverrideProps(overrides, "SUN")}
+              {...getOverrideProps(overrides, "dayyArray0")}
             ></Text>
           </Flex>
           <Flex
@@ -671,7 +671,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="8:00 AM"
-              {...getOverrideProps(overrides, "openlabel1")}
+              {...getOverrideProps(overrides, "openArray1")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -692,7 +692,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="8:00 AM"
-              {...getOverrideProps(overrides, "openlabel2")}
+              {...getOverrideProps(overrides, "openArray2")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -713,7 +713,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="8:00 AM"
-              {...getOverrideProps(overrides, "openlabel3")}
+              {...getOverrideProps(overrides, "openArray3")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -734,7 +734,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="8:00 AM"
-              {...getOverrideProps(overrides, "openlabel4")}
+              {...getOverrideProps(overrides, "openArray4")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -755,7 +755,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="8:00 AM"
-              {...getOverrideProps(overrides, "openlabel5")}
+              {...getOverrideProps(overrides, "openArray5")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -776,7 +776,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="Closed"
-              {...getOverrideProps(overrides, "openlabel6")}
+              {...getOverrideProps(overrides, "openArray6")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -797,7 +797,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="Closed"
-              {...getOverrideProps(overrides, "openlabel0")}
+              {...getOverrideProps(overrides, "openArray0")}
             ></Text>
           </Flex>
           <Flex
@@ -854,7 +854,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="11:30 AM"
-              {...getOverrideProps(overrides, "seccloselabel1")}
+              {...getOverrideProps(overrides, "seccloseArray1")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -875,7 +875,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="11:30 AM"
-              {...getOverrideProps(overrides, "seccloselabel2")}
+              {...getOverrideProps(overrides, "seccloseArray2")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -896,7 +896,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="11:30 AM"
-              {...getOverrideProps(overrides, "seccloselabel3")}
+              {...getOverrideProps(overrides, "seccloseArray3")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -917,7 +917,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="11:30 AM"
-              {...getOverrideProps(overrides, "seccloselabel4")}
+              {...getOverrideProps(overrides, "seccloseArray4")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -938,7 +938,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="11:30 AM"
-              {...getOverrideProps(overrides, "seccloselabel5")}
+              {...getOverrideProps(overrides, "seccloseArray5")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -959,7 +959,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="NA"
-              {...getOverrideProps(overrides, "seccloselabel6")}
+              {...getOverrideProps(overrides, "seccloseArray6")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -980,7 +980,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="NA"
-              {...getOverrideProps(overrides, "seccloselabel0")}
+              {...getOverrideProps(overrides, "seccloseArray0")}
             ></Text>
           </Flex>
           <Flex
@@ -1037,7 +1037,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="1:30 PM"
-              {...getOverrideProps(overrides, "secopenlabel1")}
+              {...getOverrideProps(overrides, "secopenArray1")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -1058,7 +1058,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="1:30 PM"
-              {...getOverrideProps(overrides, "secopenlabel2")}
+              {...getOverrideProps(overrides, "secopenArray2")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -1079,7 +1079,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="1:30 PM"
-              {...getOverrideProps(overrides, "secopenlabel3")}
+              {...getOverrideProps(overrides, "secopenArray3")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -1100,7 +1100,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="1:30 PM"
-              {...getOverrideProps(overrides, "secopenlabel4")}
+              {...getOverrideProps(overrides, "secopenArray4")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -1121,7 +1121,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="1:30 PM"
-              {...getOverrideProps(overrides, "secopenlabel5")}
+              {...getOverrideProps(overrides, "secopenArray5")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -1142,7 +1142,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="NA"
-              {...getOverrideProps(overrides, "secopenlabel6")}
+              {...getOverrideProps(overrides, "secopenArray6")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -1163,7 +1163,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="NA"
-              {...getOverrideProps(overrides, "secopenlabel7")}
+              {...getOverrideProps(overrides, "secopenArray0")}
             ></Text>
           </Flex>
           <Flex
@@ -1220,7 +1220,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="5:00 PM"
-              {...getOverrideProps(overrides, "closelabel1")}
+              {...getOverrideProps(overrides, "closeArray1")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -1241,7 +1241,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="5:00 PM"
-              {...getOverrideProps(overrides, "closelabel2")}
+              {...getOverrideProps(overrides, "closeArray2")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -1262,7 +1262,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="5:00 PM"
-              {...getOverrideProps(overrides, "closelabel3")}
+              {...getOverrideProps(overrides, "closeArray3")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -1283,7 +1283,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="5:00 PM"
-              {...getOverrideProps(overrides, "closelabel4")}
+              {...getOverrideProps(overrides, "closeArray4")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -1304,7 +1304,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="5:00 PM"
-              {...getOverrideProps(overrides, "closelabel5")}
+              {...getOverrideProps(overrides, "closeArray5")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -1325,7 +1325,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="Closed"
-              {...getOverrideProps(overrides, "closelabel6")}
+              {...getOverrideProps(overrides, "closeArray6")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -1346,7 +1346,7 @@ export default function ContactCenterUI(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="Closed"
-              {...getOverrideProps(overrides, "closelabel0")}
+              {...getOverrideProps(overrides, "closeArray0")}
             ></Text>
           </Flex>
         </Flex>

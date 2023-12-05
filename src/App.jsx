@@ -2,14 +2,16 @@ import { useEffect, useState } from 'react'
 import '@fontsource/inter/'
 import { Hub } from 'aws-amplify/utils'
 
-import { Button } from '@aws-amplify/ui-react'
+import { Button, Text, useTheme } from '@aws-amplify/ui-react'
 
 import { ContactCenterUICollection, MyIcon } from './ui-components'
 
 import UpdateisOverrideModal from './app-components/UpdateisOverrideModal'
 import UpdateMenuModal from './app-components/UpdateMenuModal'
+import DisplayCenterStatus from './app-components/DisplayCenterStatus'
 
 function App() {
+    const theme = useTheme()
     const [openoverridemodal, setOpenOverrideModal] = useState(false)
     const [openupdatemenu, setOpenupdatemenu] = useState(false)
     const [modelItem, setModelItem] = useState()
@@ -58,7 +60,354 @@ function App() {
             <ContactCenterUICollection
                 overrideItems={({ item, index }) => ({
                     overrides: {
-                        
+                        openArray1: {
+                            children: (
+                                <>
+                                    {item.daystodopen[1] == '' ||
+                                    item.daystodopen[1] === undefined
+                                        ? 'NA'
+                                        : item.daystodopen[1]}
+                                </>
+                            ),
+                        },
+                        openArray2: {
+                            children: (
+                                <>
+                                    {item.daystodopen[2] == '' ||
+                                    item.daystodopen[2] === undefined
+                                        ? 'NA'
+                                        : item.daystodopen[2]}
+                                </>
+                            ),
+                        },
+                        openArray3: {
+                            children: (
+                                <>
+                                    {item.daystodopen[3] == '' ||
+                                    item.daystodopen[3] === undefined
+                                        ? 'NA'
+                                        : item.daystodopen[3]}
+                                </>
+                            ),
+                        },
+                        openArray4: {
+                            children: (
+                                <>
+                                    {item.daystodopen[4] == '' ||
+                                    item.daystodopen[4] === undefined
+                                        ? 'NA'
+                                        : item.daystodopen[4]}
+                                </>
+                            ),
+                        },
+                        openArray5: {
+                            children: (
+                                <>
+                                    {item.daystodopen[5] == '' ||
+                                    item.daystodopen[5] === undefined
+                                        ? 'NA'
+                                        : item.daystodopen[5]}
+                                </>
+                            ),
+                        },
+                        openArray6: {
+                            children: (
+                                <>
+                                    {item.daystodopen[6] == '' ||
+                                    item.daystodopen[6] === undefined
+                                        ? 'NA'
+                                        : item.daystodopen[6]}
+                                </>
+                            ),
+                        },
+                        openArray0: {
+                            children: (
+                                <>
+                                    {item.daystodopen[0] == '' ||
+                                    item.daystodopen[0] === undefined
+                                        ? 'NA'
+                                        : item.daystodopen[0]}
+                                </>
+                            ),
+                        },
+                        closeArray1: {
+                            children: (
+                                <>
+                                    {item.daystodclose[1] == '' ||
+                                    item.daystodclose[1] === undefined
+                                        ? 'NA'
+                                        : item.daystodclose[1]}
+                                </>
+                            ),
+                        },
+                        closeArray2: {
+                            children: (
+                                <>
+                                    {item.daystodclose[2] == '' ||
+                                    item.daystodclose[2] === undefined
+                                        ? 'NA'
+                                        : item.daystodclose[2]}
+                                </>
+                            ),
+                        },
+                        closeArray3: {
+                            children: (
+                                <>
+                                    {item.daystodclose[3] == '' ||
+                                    item.daystodclose[3] === undefined
+                                        ? 'NA'
+                                        : item.daystodclose[3]}
+                                </>
+                            ),
+                        },
+                        closeArray4: {
+                            children: (
+                                <>
+                                    {item.daystodclose[4] == '' ||
+                                    item.daystodclose[4] === undefined
+                                        ? 'NA'
+                                        : item.daystodclose[4]}
+                                </>
+                            ),
+                        },
+                        closeArray5: {
+                            children: (
+                                <>
+                                    {item.daystodclose[5] == '' ||
+                                    item.daystodclose[5] === undefined
+                                        ? 'NA'
+                                        : item.daystodclose[5]}
+                                </>
+                            ),
+                        },
+                        closeArray6: {
+                            children: (
+                                <>
+                                    {item.daystodclose[6] == '' ||
+                                    item.daystodclose[6] === undefined
+                                        ? 'NA'
+                                        : item.daystodclose[6]}
+                                </>
+                            ),
+                        },
+                        closeArray0: {
+                            children: (
+                                <>
+                                    {item.daystodclose[0] == '' ||
+                                    item.daystodclose[0] === undefined
+                                        ? 'NA'
+                                        : item.daystodclose[0]}
+                                </>
+                            ),
+                        },
+                        secopenArray1: {
+                            children: (
+                                <>
+                                    {item.secondarytodopen[1] === '' ||
+                                    item.secondarytodopen[1] === undefined
+                                        ? 'NA'
+                                        : item.secondarytodopen[1]}
+                                </>
+                            ),
+                        },
+                        secopenArray2: {
+                            children: (
+                                <>
+                                    {item.secondarytodopen[2] == '' ||
+                                    item.secondarytodopen[2] === undefined
+                                        ? 'NA'
+                                        : item.secondarytodopen[2]}
+                                </>
+                            ),
+                        },
+                        secopenArray3: {
+                            children: (
+                                <>
+                                    {item.secondarytodopen[3] == '' ||
+                                    item.secondarytodopen[3] === undefined
+                                        ? 'NA'
+                                        : item.secondarytodopen[3]}
+                                </>
+                            ),
+                        },
+                        secopenArray4: {
+                            children: (
+                                <>
+                                    {item.secondarytodopen[4] == '' ||
+                                    item.secondarytodopen[4] === undefined
+                                        ? 'NA'
+                                        : item.secondarytodopen[4]}
+                                </>
+                            ),
+                        },
+                        secopenArray5: {
+                            children: (
+                                <>
+                                    {item.secondarytodopen[5] == '' ||
+                                    item.secondarytodopen[5] === undefined
+                                        ? 'NA'
+                                        : item.secondarytodopen[5]}
+                                </>
+                            ),
+                        },
+                        secopenArray6: {
+                            children: (
+                                <>
+                                    {item.secondarytodopen[6] == '' ||
+                                    item.secondarytodopen[6] === undefined
+                                        ? 'NA'
+                                        : item.secondarytodopen[6]}
+                                </>
+                            ),
+                        },
+                        secopenArray0: {
+                            children: (
+                                <>
+                                    {item.secondarytodopen[0] == '' ||
+                                    item.secondarytodopen[0] === undefined
+                                        ? 'NA'
+                                        : item.secondarytodopen[0]}
+                                </>
+                            ),
+                        },
+                        seccloseArray1: {
+                            children: (
+                                <>
+                                    {item.secondarytodclose[1] == '' ||
+                                    item.secondarytodclose[1] === undefined
+                                        ? 'NA'
+                                        : item.secondarytodclose[1]}
+                                </>
+                            ),
+                        },
+                        seccloseArray2: {
+                            children: (
+                                <>
+                                    {item.secondarytodclose[2] == '' ||
+                                    item.secondarytodclose[2] === undefined
+                                        ? 'NA'
+                                        : item.secondarytodclose[2]}
+                                </>
+                            ),
+                        },
+                        seccloseArray3: {
+                            children: (
+                                <>
+                                    {item.secondarytodclose[3] == '' ||
+                                    item.secondarytodclose[3] === undefined
+                                        ? 'NA'
+                                        : item.secondarytodclose[3]}
+                                </>
+                            ),
+                        },
+                        seccloseArray4: {
+                            children: (
+                                <>
+                                    {item.secondarytodclose[4] == '' ||
+                                    item.secondarytodclose[4] === undefined
+                                        ? 'NA'
+                                        : item.secondarytodclose[4]}
+                                </>
+                            ),
+                        },
+                        seccloseArray5: {
+                            children: (
+                                <>
+                                    {item.secondarytodclose[5] == '' ||
+                                    item.secondarytodclose[5] === undefined
+                                        ? 'NA'
+                                        : item.secondarytodclose[5]}
+                                </>
+                            ),
+                        },
+                        seccloseArray6: {
+                            children: (
+                                <>
+                                    {item.secondarytodclose[6] == '' ||
+                                    item.secondarytodclose[6] === undefined
+                                        ? 'NA'
+                                        : item.secondarytodclose[6]}
+                                </>
+                            ),
+                        },
+                        seccloseArray0: {
+                            children: (
+                                <>
+                                    {item.secondarytodclose[0] == '' ||
+                                    item.secondarytodclose[0] === undefined
+                                        ? 'NA'
+                                        : item.secondarytodclose[0]}
+                                </>
+                            ),
+                        },
+                        dayyArray1: {
+                            children: (
+                                <>
+                                    {item.daysopen.indexOf('MON') >= 0
+                                        ? 'MON'
+                                        : 'CLOSE'}
+                                </>
+                            ),
+                        },
+                        dayyArray2: {
+                            children: (
+                                <>
+                                    {item.daysopen.indexOf('TUE') >= 0
+                                        ? 'TUE'
+                                        : 'CLOSE'}
+                                </>
+                            ),
+                        },
+                        dayyArray3: {
+                            children: (
+                                <>
+                                    {item.daysopen.indexOf('WED') >= 0
+                                        ? 'WED'
+                                        : 'CLOSE'}
+                                </>
+                            ),
+                        },
+                        dayyArray4: {
+                            children: (
+                                <>
+                                    {item.daysopen.indexOf('THU') >= 0
+                                        ? 'THU'
+                                        : 'CLOSE'}
+                                </>
+                            ),
+                        },
+                        dayyArray5: {
+                            children: (
+                                <>
+                                    {item.daysopen.indexOf('FRI') >= 0
+                                        ? 'FRI'
+                                        : 'CLOSE'}
+                                </>
+                            ),
+                        },
+                        dayyArray6: {
+                            children: (
+                                <>
+                                    {item.daysopen.indexOf('SAT') >= 0
+                                        ? 'SAT'
+                                        : 'CLOSE'}
+                                </>
+                            ),
+                        },
+                        dayyArray0: {
+                            children: (
+                                <>
+                                    {item.daysopen.indexOf('SUN') >= 0
+                                        ? 'SUN'
+                                        : 'CLOSE'}
+                                </>
+                            ),
+                        },
+                        currentstatsvalue: {
+                            children: (
+                                <DisplayCenterStatus contactcenter={item} />
+                            ),
+                        },
                         ccmainnumber: {
                             children: (
                                 <>
