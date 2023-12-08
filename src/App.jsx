@@ -1,25 +1,42 @@
 import { useEffect, useState } from 'react'
 import '@fontsource/inter/'
 import { Hub } from 'aws-amplify/utils'
+import dayjs from 'dayjs'
+import PropTypes from 'prop-types'
 
-import { Button, Text, useTheme } from '@aws-amplify/ui-react'
+import {
+    Button,
+    Text,
+    useTheme,
+    withAuthenticator,
+} from '@aws-amplify/ui-react'
 
 import { ContactCenterUICollection, MyIcon } from './ui-components'
 
 import UpdateisOverrideModal from './app-components/UpdateisOverrideModal'
 import UpdateMenuModal from './app-components/UpdateMenuModal'
 import DisplayCenterStatus from './app-components/DisplayCenterStatus'
+import UpdateTimeofDayModal from './app-components/UpdateTimeofDayModal'
 
-function App() {
+function App({ signOut, user }) {
     const theme = useTheme()
     const [openoverridemodal, setOpenOverrideModal] = useState(false)
     const [openupdatemenu, setOpenupdatemenu] = useState(false)
+    const [openuOfDateTimeofDay, setOpenuOfDateTimeofDay] = useState(false)
     const [modelItem, setModelItem] = useState()
     const [menunumber, setMenuNumber] = useState()
     const [contactcentermodel, setContactcentermodel] = useState()
+    const [statusTrigger, setStatusTrigger] = useState({
+        status: 'init',
+        center: 'init',
+    })
 
     const [id, setId] = useState()
     const [groupid, setGroupid] = useState()
+
+    useEffect(() => {
+        //cause page to refresh on status change
+    }, [statusTrigger, openuOfDateTimeofDay])
 
     const handleUpdateMenuModalOpen = (groupid, itemMenu, menu, item) => {
         setGroupid(groupid)
@@ -41,9 +58,24 @@ function App() {
         setOpenOverrideModal(false)
         setId(null)
     }
+    const handleUpdateTimeofDayModalclose = () => {
+        setOpenuOfDateTimeofDay(false)
+        setContactcentermodel(null)
+    }
+    const handleUpdateTimeofDayModalOpen = (item) => {
+        setContactcentermodel(item)
+        setOpenuOfDateTimeofDay(true)
+    }
 
     return (
         <>
+            <UpdateTimeofDayModal
+                open={openuOfDateTimeofDay}
+                user={user}
+                onClose={handleUpdateTimeofDayModalclose}
+                contactcenter={contactcentermodel}
+            />
+
             <UpdateMenuModal
                 groupid={groupid}
                 onClose={handleUpdateMenuModaclose}
@@ -51,15 +83,22 @@ function App() {
                 item={modelItem}
                 menunumber={menunumber}
                 contactcenter={contactcentermodel}
+                user={user}
             />
             <UpdateisOverrideModal
                 open={openoverridemodal}
                 id={id}
                 onClose={handleClickOverrideModalClose}
+                user={user}
             />
             <ContactCenterUICollection
                 overrideItems={({ item, index }) => ({
                     overrides: {
+                        todsec: {
+                            onClick: () => {
+                                handleUpdateTimeofDayModalOpen(item)
+                            },
+                        },
                         openArray1: {
                             children: (
                                 <>
@@ -405,7 +444,10 @@ function App() {
                         },
                         currentstatsvalue: {
                             children: (
-                                <DisplayCenterStatus contactcenter={item} />
+                                <DisplayCenterStatus
+                                    contactcenter={item}
+                                    onStatusChange={setStatusTrigger}
+                                />
                             ),
                         },
                         ccmainnumber: {
@@ -724,7 +766,6 @@ function App() {
                             },
                             children: (
                                 <>
-                                    {' '}
                                     Override
                                     <MyIcon
                                         {...(item.override?.type ==
@@ -752,7 +793,6 @@ function App() {
                             },
                             children: (
                                 <>
-                                    {' '}
                                     Afterhours
                                     <MyIcon
                                         {...(item.afterhours?.type ==
@@ -770,6 +810,35 @@ function App() {
                                 </>
                             ),
                         },
+                        ButtonSecondary: {
+                            onClick: () => {
+                                handleUpdateMenuModalOpen(
+                                    item?.contactCenterModelAssignedGroupId,
+                                    item?.secondaryclose,
+                                    'secondary',
+                                    item
+                                )
+                            },
+                            children: (
+                                <>
+                                    Secondary
+                                    <MyIcon
+                                        {...(item.secondaryclose?.type ==
+                                            'FORWARD' && { type: 'phone' })}
+                                        {...(item.secondaryclose?.type ==
+                                            'MSG' && {
+                                            type: 'chat',
+                                        })}
+                                        {...(item.secondaryclose?.type ==
+                                            'QUEUE' && {
+                                            type: 'group',
+                                        })}
+                                        {...(item.secondaryclose?.type ==
+                                            'SUBMENU' && { type: 'share' })}
+                                    />
+                                </>
+                            ),
+                        },
                         ButtonHoliday: {
                             onClick: () => {
                                 handleUpdateMenuModalOpen(
@@ -781,7 +850,6 @@ function App() {
                             },
                             children: (
                                 <>
-                                    {' '}
                                     Holiday
                                     <MyIcon
                                         {...(item.holidayoption?.type ==
@@ -796,11 +864,18 @@ function App() {
                                 </>
                             ),
                         },
+                        lastupdate: {
+                            children: dayjs(item.updatedAt).format('LLLL'),
+                        },
                     },
                 })}
             />
         </>
     )
 }
+App.propTypes = {
+    signOut: PropTypes.func,
+    user: PropTypes.object,
+}
 
-export default App
+export default withAuthenticator(App)

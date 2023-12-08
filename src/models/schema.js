@@ -660,6 +660,22 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "secondaryclose": {
+                    "name": "secondaryclose",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "MenuType"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "updateduser": {
+                    "name": "updateduser",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -1087,5 +1103,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.4.4",
-    "version": "9639c90720a24f82e23b0ee9f59c1c67"
+    "version": "0d1031c06be61d78ff8724a5f2662c10"
 };

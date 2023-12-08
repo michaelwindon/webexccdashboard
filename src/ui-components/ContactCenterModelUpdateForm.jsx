@@ -245,6 +245,8 @@ export default function ContactCenterModelUpdateForm(props) {
     Managers: [],
     AssignedGroup: undefined,
     override: "",
+    secondaryclose: "",
+    updateduser: "",
   };
   const [mainnumber, setMainnumber] = React.useState(initialValues.mainnumber);
   const [menu0, setMenu0] = React.useState(initialValues.menu0);
@@ -310,6 +312,12 @@ export default function ContactCenterModelUpdateForm(props) {
     initialValues.AssignedGroup
   );
   const [override, setOverride] = React.useState(initialValues.override);
+  const [secondaryclose, setSecondaryclose] = React.useState(
+    initialValues.secondaryclose
+  );
+  const [updateduser, setUpdateduser] = React.useState(
+    initialValues.updateduser
+  );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = contactCenterModelRecord
@@ -475,6 +483,13 @@ export default function ContactCenterModelUpdateForm(props) {
         ? cleanValues.override
         : JSON.stringify(cleanValues.override)
     );
+    setSecondaryclose(
+      typeof cleanValues.secondaryclose === "string" ||
+        cleanValues.secondaryclose === null
+        ? cleanValues.secondaryclose
+        : JSON.stringify(cleanValues.secondaryclose)
+    );
+    setUpdateduser(cleanValues.updateduser);
     setErrors({});
   };
   const [contactCenterModelRecord, setContactCenterModelRecord] =
@@ -606,6 +621,8 @@ export default function ContactCenterModelUpdateForm(props) {
     Managers: [],
     AssignedGroup: [],
     override: [{ type: "JSON" }],
+    secondaryclose: [{ type: "JSON" }],
+    updateduser: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -675,6 +692,8 @@ export default function ContactCenterModelUpdateForm(props) {
           Managers,
           AssignedGroup,
           override,
+          secondaryclose,
+          updateduser,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -800,6 +819,7 @@ export default function ContactCenterModelUpdateForm(props) {
             welcomeprompt_sp: modelFields.welcomeprompt_sp,
             version: modelFields.version,
             AssignedGroup: modelFields.AssignedGroup,
+            updateduser: modelFields.updateduser,
             menu0: modelFields.menu0
               ? JSON.parse(modelFields.menu0)
               : modelFields.menu0,
@@ -875,6 +895,9 @@ export default function ContactCenterModelUpdateForm(props) {
             override: modelFields.override
               ? JSON.parse(modelFields.override)
               : modelFields.override,
+            secondaryclose: modelFields.secondaryclose
+              ? JSON.parse(modelFields.secondaryclose)
+              : modelFields.secondaryclose,
           };
           promises.push(
             DataStore.save(
@@ -950,6 +973,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             value = result?.mainnumber ?? value;
@@ -1015,6 +1040,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             value = result?.menu0 ?? value;
@@ -1079,6 +1106,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             value = result?.Field0 ?? value;
@@ -1165,6 +1194,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             value = result?.menu1 ?? value;
@@ -1230,6 +1261,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             value = result?.menu2 ?? value;
@@ -1295,6 +1328,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             value = result?.menu3 ?? value;
@@ -1360,6 +1395,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             value = result?.menu4 ?? value;
@@ -1425,6 +1462,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             value = result?.menu5 ?? value;
@@ -1490,6 +1529,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             value = result?.menu6 ?? value;
@@ -1555,6 +1596,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             value = result?.menu7 ?? value;
@@ -1620,6 +1663,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             value = result?.menu8 ?? value;
@@ -1685,6 +1730,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             value = result?.menu9 ?? value;
@@ -1746,6 +1793,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             values = result?.holiday ?? values;
@@ -1832,6 +1881,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             values = result?.secondarytodclose ?? values;
@@ -1926,6 +1977,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             values = result?.secondarytodopen ?? values;
@@ -2017,6 +2070,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             values = result?.daysopen ?? values;
@@ -2103,6 +2158,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             values = result?.daystodopen ?? values;
@@ -2191,6 +2248,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             values = result?.daystodclose ?? values;
@@ -2283,6 +2342,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             value = result?.welcomeprompt ?? value;
@@ -2348,6 +2409,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             value = result?.afterhours ?? value;
@@ -2413,6 +2476,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             value = result?.ccdescription ?? value;
@@ -2478,6 +2543,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             value = result?.ccname ?? value;
@@ -2543,6 +2610,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             value = result?.defaultroute ?? value;
@@ -2608,6 +2677,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             value = result?.holidayoption ?? value;
@@ -2673,6 +2744,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             value = result?.isoverride ?? value;
@@ -2738,6 +2811,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             value = result?.submenu2 ?? value;
@@ -2803,6 +2878,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             value = result?.welcomeprompt_sp ?? value;
@@ -2868,6 +2945,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             value = result?.submenu2_sp ?? value;
@@ -2933,6 +3012,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             value = result?.menu0_sp ?? value;
@@ -2998,6 +3079,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             value = result?.menu1_sp ?? value;
@@ -3063,6 +3146,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             value = result?.menu2_sp ?? value;
@@ -3128,6 +3213,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             value = result?.menu3_sp ?? value;
@@ -3193,6 +3280,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             value = result?.menu4_sp ?? value;
@@ -3258,6 +3347,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             value = result?.menu5_sp ?? value;
@@ -3323,6 +3414,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             value = result?.menu6_sp ?? value;
@@ -3388,6 +3481,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             value = result?.menu7_sp ?? value;
@@ -3453,6 +3548,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             value = result?.menu8_sp ?? value;
@@ -3518,6 +3615,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             value = result?.menu9_sp ?? value;
@@ -3583,6 +3682,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             value = result?.version ?? value;
@@ -3644,6 +3745,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers: values,
               AssignedGroup,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             values = result?.Managers ?? values;
@@ -3762,6 +3865,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup: value,
               override,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             value = result?.AssignedGroup ?? value;
@@ -3889,6 +3994,8 @@ export default function ContactCenterModelUpdateForm(props) {
               Managers,
               AssignedGroup,
               override: value,
+              secondaryclose,
+              updateduser,
             };
             const result = onChange(modelFields);
             value = result?.override ?? value;
@@ -3903,6 +4010,140 @@ export default function ContactCenterModelUpdateForm(props) {
         hasError={errors.override?.hasError}
         {...getOverrideProps(overrides, "override")}
       ></TextAreaField>
+      <TextAreaField
+        label="Secondaryclose"
+        isRequired={false}
+        isReadOnly={false}
+        value={secondaryclose}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              mainnumber,
+              menu0,
+              Field0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
+              holiday,
+              secondarytodclose,
+              secondarytodopen,
+              daysopen,
+              daystodopen,
+              daystodclose,
+              welcomeprompt,
+              afterhours,
+              ccdescription,
+              ccname,
+              defaultroute,
+              holidayoption,
+              isoverride,
+              submenu2,
+              welcomeprompt_sp,
+              submenu2_sp,
+              menu0_sp,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
+              version,
+              Managers,
+              AssignedGroup,
+              override,
+              secondaryclose: value,
+              updateduser,
+            };
+            const result = onChange(modelFields);
+            value = result?.secondaryclose ?? value;
+          }
+          if (errors.secondaryclose?.hasError) {
+            runValidationTasks("secondaryclose", value);
+          }
+          setSecondaryclose(value);
+        }}
+        onBlur={() => runValidationTasks("secondaryclose", secondaryclose)}
+        errorMessage={errors.secondaryclose?.errorMessage}
+        hasError={errors.secondaryclose?.hasError}
+        {...getOverrideProps(overrides, "secondaryclose")}
+      ></TextAreaField>
+      <TextField
+        label="Updateduser"
+        isRequired={false}
+        isReadOnly={false}
+        value={updateduser}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              mainnumber,
+              menu0,
+              Field0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
+              holiday,
+              secondarytodclose,
+              secondarytodopen,
+              daysopen,
+              daystodopen,
+              daystodclose,
+              welcomeprompt,
+              afterhours,
+              ccdescription,
+              ccname,
+              defaultroute,
+              holidayoption,
+              isoverride,
+              submenu2,
+              welcomeprompt_sp,
+              submenu2_sp,
+              menu0_sp,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
+              version,
+              Managers,
+              AssignedGroup,
+              override,
+              secondaryclose,
+              updateduser: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.updateduser ?? value;
+          }
+          if (errors.updateduser?.hasError) {
+            runValidationTasks("updateduser", value);
+          }
+          setUpdateduser(value);
+        }}
+        onBlur={() => runValidationTasks("updateduser", updateduser)}
+        errorMessage={errors.updateduser?.errorMessage}
+        hasError={errors.updateduser?.hasError}
+        {...getOverrideProps(overrides, "updateduser")}
+      ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

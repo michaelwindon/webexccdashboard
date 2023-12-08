@@ -234,6 +234,8 @@ type EagerContactCenterModel = {
   readonly Managers?: (ContactCenterModelManagerModel | null)[] | null;
   readonly AssignedGroup?: GroupModel | null;
   readonly override?: MenuType | null;
+  readonly secondaryclose?: MenuType | null;
+  readonly updateduser?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   readonly contactCenterModelAssignedGroupId?: string | null;
@@ -286,6 +288,8 @@ type LazyContactCenterModel = {
   readonly Managers: AsyncCollection<ContactCenterModelManagerModel>;
   readonly AssignedGroup: AsyncItem<GroupModel | undefined>;
   readonly override?: MenuType | null;
+  readonly secondaryclose?: MenuType | null;
+  readonly updateduser?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   readonly contactCenterModelAssignedGroupId?: string | null;

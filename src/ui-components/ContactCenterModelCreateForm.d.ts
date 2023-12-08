@@ -64,6 +64,8 @@ export declare type ContactCenterModelCreateFormInputValues = {
     Managers?: ManagerModel[];
     AssignedGroup?: GroupModel;
     override?: string;
+    secondaryclose?: string;
+    updateduser?: string;
 };
 export declare type ContactCenterModelCreateFormValidationValues = {
     mainnumber?: ValidationFunction<string>;
@@ -107,6 +109,8 @@ export declare type ContactCenterModelCreateFormValidationValues = {
     Managers?: ValidationFunction<ManagerModel>;
     AssignedGroup?: ValidationFunction<GroupModel>;
     override?: ValidationFunction<string>;
+    secondaryclose?: ValidationFunction<string>;
+    updateduser?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type ContactCenterModelCreateFormOverridesProps = {
@@ -152,6 +156,8 @@ export declare type ContactCenterModelCreateFormOverridesProps = {
     Managers?: PrimitiveOverrideProps<AutocompleteProps>;
     AssignedGroup?: PrimitiveOverrideProps<AutocompleteProps>;
     override?: PrimitiveOverrideProps<TextAreaFieldProps>;
+    secondaryclose?: PrimitiveOverrideProps<TextAreaFieldProps>;
+    updateduser?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type ContactCenterModelCreateFormProps = React.PropsWithChildren<{
     overrides?: ContactCenterModelCreateFormOverridesProps | undefined | null;

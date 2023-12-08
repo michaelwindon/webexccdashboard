@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import { useState, useEffect } from 'react'
 
 const DisplayCenterStatus = (props) => {
-    const { contactcenter } = props
+    const { contactcenter, onStatusChange } = props
     const [contactCenterStatus, setcontactCenterStatus] = useState('N/A')
 
     const isContactCenterOpen = (
@@ -10,7 +10,8 @@ const DisplayCenterStatus = (props) => {
         closedTimes = contactcenter.daystodclose,
         secClosedTimes = contactcenter.secondarytodclose,
         secOpenTimes = contactcenter.secondarytodopen,
-        daysOpen = contactcenter.daysopen
+        daysOpen = contactcenter.daysopen,
+        holidayArray = contactcenter.holiday
     ) => {
         const today = new Date()
         const currentDay = today
@@ -21,12 +22,41 @@ const DisplayCenterStatus = (props) => {
             minute: '2-digit',
         })
 
-        const daysOfWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
+        const isHoliday = holidayArray.some((holidayDate) => {
+            const [month, day, year] = holidayDate.split('/')
+            const holiday = new Date(year, month - 1, day) // Month in JavaScript Date starts from 0 (0 - January, 1 - February, ...)
+
+            // Extract date components without time
+            const todayWithoutTime = new Date(
+                today.getFullYear(),
+                today.getMonth(),
+                today.getDate()
+            )
+            const holidayWithoutTime = new Date(
+                holiday.getFullYear(),
+                holiday.getMonth(),
+                holiday.getDate()
+            )
+
+            return todayWithoutTime.getTime() === holidayWithoutTime.getTime()
+        })
+
+        const daysOfWeek = daysOpen
         const dayIndex = daysOfWeek.indexOf(currentDay)
+
+        if (contactcenter.isoverride) {
+            console.log(`${contactcenter.ccname} is closed due to Override`)
+            return 'OVERRIDE' // Contact center is closed on the current day
+        }
 
         if (dayIndex === -1) {
             console.log(`${contactcenter.ccname} is closed due to business day`)
             return 'CLOSED' // Contact center is closed on the current day
+        }
+
+        if (isHoliday) {
+            console.log(`${contactcenter.ccname} is closed due to a holiday`)
+            return 'HOLIDAY' // Contact center is closed on holidays
         }
 
         const curreTimeobj = new Date(`01/01/1970 ${currentTime}`)
@@ -70,9 +100,6 @@ const DisplayCenterStatus = (props) => {
             minute: '2-digit',
         })
 
-        console.log(
-            `Current Time: ${currentTime} | Weekday: ${currentDay} | Business Hours: ${fromatedopenTime} - ${formatecloseTime} | Lunch Time ${formatesecCloseTime} - ${formatesecOpenTime} for ${contactcenter.ccname} `
-        )
         if (
             isNaN(openTime) ||
             openTime === new Date('Invalid Date').getTime() ||
@@ -91,13 +118,25 @@ const DisplayCenterStatus = (props) => {
             currentTimeMillis >= secCloseTime &&
             currentTimeMillis < secOpenTime
         ) {
-            return 'CLOSED' // During the lunch break
+            return '2nd CLOSED' // During the lunch break
         }
+
         return 'OPEN' // Contact center is open
     }
 
     useEffect(() => {
         setcontactCenterStatus(isContactCenterOpen)
+
+        const interval = setInterval(() => {
+            setcontactCenterStatus(isContactCenterOpen)
+            onStatusChange({
+                status: isContactCenterOpen(),
+                center: contactcenter.ccname,
+            })
+        }, 60000) // 60,000 milliseconds = 1 minute
+
+        // Clear interval on component unmount
+        return () => clearInterval(interval)
     }, [contactcenter])
 
     return <>{contactCenterStatus}</>

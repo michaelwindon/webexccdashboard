@@ -109,5 +109,7 @@ type ContactCenterModel @model @auth(rules: [{allow: public}]) {
   Managers: [ManagerModel] @manyToMany(relationName: "ContactCenterModelManagerModel")
   AssignedGroup: GroupModel @hasOne
   override: MenuType
+  secondaryclose: MenuType
+  updateduser: String
 }
  

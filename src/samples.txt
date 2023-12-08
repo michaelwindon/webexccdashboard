@@ -1,0 +1,102 @@
+import { DataStore } from 'aws-amplify/datastore';
+import { ContactCenterModel } from './models';
+
+await DataStore.save(
+    new ContactCenterModel({
+		"mainnumber": "Lorem ipsum dolor sit amet",
+		"menu0": /* Provide a MenuType instance here */,
+		"menu1": /* Provide a MenuType instance here */,
+		"menu2": /* Provide a MenuType instance here */,
+		"menu3": /* Provide a MenuType instance here */,
+		"menu4": /* Provide a MenuType instance here */,
+		"menu5": /* Provide a MenuType instance here */,
+		"menu6": /* Provide a MenuType instance here */,
+		"menu7": /* Provide a MenuType instance here */,
+		"menu8": /* Provide a MenuType instance here */,
+		"menu9": /* Provide a MenuType instance here */,
+		"holiday": [],
+		"secondarytodclose": [],
+		"secondarytodopen": [],
+		"daysopen": [],
+		"daystodopen": [],
+		"daystodclose": [],
+		"welcomeprompt": "Lorem ipsum dolor sit amet",
+		"afterhours": /* Provide a MenuType instance here */,
+		"ccdescription": "Lorem ipsum dolor sit amet",
+		"ccname": "Lorem ipsum dolor sit amet",
+		"defaultroute": "Lorem ipsum dolor sit amet",
+		"holidayoption": /* Provide a MenuType instance here */,
+		"isoverride": true,
+		"submenu2": /* Provide a SubmenuType instance here */,
+		"welcomeprompt_sp": "Lorem ipsum dolor sit amet",
+		"submenu2_sp": /* Provide a SubmenuType instance here */,
+		"menu0_sp": /* Provide a MenuType instance here */,
+		"menu1_sp": /* Provide a MenuType instance here */,
+		"menu2_sp": /* Provide a MenuType instance here */,
+		"menu3_sp": /* Provide a MenuType instance here */,
+		"menu4_sp": /* Provide a MenuType instance here */,
+		"menu5_sp": /* Provide a MenuType instance here */,
+		"menu6_sp": /* Provide a MenuType instance here */,
+		"menu7_sp": /* Provide a MenuType instance here */,
+		"menu8_sp": /* Provide a MenuType instance here */,
+		"menu9_sp": /* Provide a MenuType instance here */,
+		"version": "Lorem ipsum dolor sit amet",
+		"Managers": [],
+		"AssignedGroup": /* Provide a GroupModel instance here */,
+		"override": /* Provide a MenuType instance here */,
+		"secondaryclose": /* Provide a MenuType instance here */,
+		"updateduser": "Lorem ipsum dolor sit amet"
+	})
+);
+
+
+/* Models in DataStore are immutable. To update a record you must use the copyOf function
+ to apply updates to the item’s fields rather than mutating the instance directly */
+await DataStore.save(ContactCenterModel.copyOf(CURRENT_ITEM, item => {
+    // Update the values on {item} variable to update DataStore entry
+}));
+
+const modelToDelete = await DataStore.query(ContactCenterModel, 123456789);
+DataStore.delete(modelToDelete);
+
+
+const models = await DataStore.query(ContactCenterModel);
+console.log(models);
+
+
+
+
+
+import { DataStore } from 'aws-amplify/datastore';
+import { GroupModel } from './models';
+
+await DataStore.save(
+    new GroupModel({
+		"fullname": "Lorem ipsum dolor sit amet",
+		"abbreviatedname": "Lorem ipsum dolor sit amet",
+		"Managers": []
+	})
+);
+
+import { DataStore } from 'aws-amplify/datastore';
+import { QueueModel } from './models';
+
+await DataStore.save(
+    new QueueModel({
+		"name": "Lorem ipsum dolor sit amet",
+		"Group": /* Provide a GroupModel instance here */
+	})
+);
+
+
+await DataStore.save(
+    new ManagerModel({
+		"name": "Lorem ipsum dolor sit amet",
+		"email": "test12346789@testemailtestemail.com",
+		"telephone": "(555) 123-6789",
+		"profilepic":  /* Provide init commands */,
+		"role": RoleEnum.ADMIN,
+		"ContactCenters": [],
+		"Groups": []
+	})
+);

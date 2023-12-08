@@ -19,7 +19,7 @@ export default function ContactCenterUI(props) {
   const { contactcentermodel, overrides, ...rest } = props;
   return (
     <Flex
-      gap="10px"
+      gap="5px"
       direction="column"
       width="751px"
       height="606px"
@@ -1425,9 +1425,117 @@ export default function ContactCenterUI(props) {
           size="default"
           isDisabled={false}
           variation="default"
+          children="Secondary"
+          {...getOverrideProps(overrides, "ButtonSecondary")}
+        ></Button>
+        <Button
+          width="unset"
+          height="unset"
+          shrink="0"
+          size="default"
+          isDisabled={false}
+          variation="default"
           children="Holiday"
           {...getOverrideProps(overrides, "ButtonHoliday")}
         ></Button>
+      </Flex>
+      <Flex
+        gap="2px"
+        direction="row"
+        width="705px"
+        height="17px"
+        justifyContent="flex-end"
+        alignItems="center"
+        overflow="hidden"
+        shrink="0"
+        position="relative"
+        padding="0px 4px 0px 4px"
+        {...getOverrideProps(overrides, "footer")}
+      >
+        <Text
+          fontFamily="Inter"
+          fontSize="8px"
+          fontWeight="400"
+          color="rgba(0,0,0,1)"
+          lineHeight="9.681818008422852px"
+          textAlign="left"
+          display="block"
+          direction="column"
+          justifyContent="unset"
+          width="unset"
+          height="unset"
+          gap="unset"
+          alignItems="unset"
+          shrink="0"
+          position="relative"
+          padding="0px 0px 0px 0px"
+          whiteSpace="pre-wrap"
+          children="Last updated:"
+          {...getOverrideProps(overrides, "Last updated:")}
+        ></Text>
+        <Text
+          fontFamily="Inter"
+          fontSize="8px"
+          fontWeight="400"
+          color="rgba(0,0,0,1)"
+          lineHeight="9.681818008422852px"
+          textAlign="left"
+          display="block"
+          direction="column"
+          justifyContent="unset"
+          width="unset"
+          height="unset"
+          gap="unset"
+          alignItems="unset"
+          shrink="0"
+          position="relative"
+          padding="0px 0px 0px 0px"
+          whiteSpace="pre-wrap"
+          children={contactcentermodel?.updatedAt}
+          {...getOverrideProps(overrides, "lastupdate")}
+        ></Text>
+        <Text
+          fontFamily="Inter"
+          fontSize="8px"
+          fontWeight="400"
+          color="rgba(0,0,0,1)"
+          lineHeight="9.681818008422852px"
+          textAlign="left"
+          display="block"
+          direction="column"
+          justifyContent="unset"
+          width="unset"
+          height="unset"
+          gap="unset"
+          alignItems="unset"
+          shrink="0"
+          position="relative"
+          padding="0px 0px 0px 0px"
+          whiteSpace="pre-wrap"
+          children="by"
+          {...getOverrideProps(overrides, "by")}
+        ></Text>
+        <Text
+          fontFamily="Inter"
+          fontSize="8px"
+          fontWeight="400"
+          color="rgba(0,0,0,1)"
+          lineHeight="9.681818008422852px"
+          textAlign="left"
+          display="block"
+          direction="column"
+          justifyContent="unset"
+          width="unset"
+          height="unset"
+          gap="unset"
+          alignItems="unset"
+          shrink="0"
+          position="relative"
+          padding="0px 0px 0px 0px"
+          whiteSpace="pre-wrap"
+          children={contactcentermodel?.updateduser}
+          {...getOverrideProps(overrides, "lastuser")}
+        ></Text>
       </Flex>
     </Flex>
   );

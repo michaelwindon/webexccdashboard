@@ -21,7 +21,8 @@ import { DataStore } from 'aws-amplify/datastore'
 const UpdateMenuModal = (props) => {
     const { tokens } = useTheme()
 
-    const { groupid, onClose, open, item, menunumber, contactcenter } = props
+    const { groupid, onClose, open, item, menunumber, contactcenter, user } =
+        props
 
     const [showQueue, setshowQueue] = useState(false)
     const [showForward, setshowForward] = useState(false)
@@ -134,49 +135,67 @@ const UpdateMenuModal = (props) => {
                         switch (menunumber) {
                             case '1':
                                 update.menu1 = updatedMenu
+                                update.updateduser = user.username
                                 break
                             case '2':
                                 update.menu2 = updatedMenu
+                                update.updateduser = user.username
                                 break
                             case '3':
                                 update.menu3 = updatedMenu
+                                update.updateduser = user.username
                                 break
                             case '4':
                                 update.menu4 = updatedMenu
+                                update.updateduser = user.username
                                 break
                             case '5':
                                 update.menu5 = updatedMenu
+                                update.updateduser = user.username
                                 break
                             case '6':
                                 update.menu6 = updatedMenu
+                                update.updateduser = user.username
                                 break
 
                             case '7':
                                 update.menu7 = updatedMenu
+                                update.updateduser = user.username
                                 break
 
                             case '8':
                                 update.menu8 = updatedMenu
+                                update.updateduser = user.username
                                 break
 
                             case '9':
                                 update.menu9 = updatedMenu
+                                update.updateduser = user.username
                                 break
 
                             case '0':
                                 update.menu0 = updatedMenu
+                                update.updateduser = user.username
                                 break
 
                             case 'override':
                                 update.override = updatedMenu
+                                update.updateduser = user.username
                                 break
 
                             case 'afterhours':
                                 update.afterhours = updatedMenu
+                                update.updateduser = user.username
                                 break
 
                             case 'holidayoption':
                                 update.holidayoption = updatedMenu
+                                update.updateduser = user.username
+                                break
+
+                            case 'secondary':
+                                update.secondaryclose = updatedMenu
+                                update.updateduser = user.username
                                 break
 
                             default:

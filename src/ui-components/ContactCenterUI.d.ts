@@ -99,7 +99,13 @@ export declare type ContactCenterUIOverridesProps = {
     SwitchField?: PrimitiveOverrideProps<SwitchFieldProps>;
     ButtonOverride?: PrimitiveOverrideProps<ButtonProps>;
     ButtonAfterhours?: PrimitiveOverrideProps<ButtonProps>;
+    ButtonSecondary?: PrimitiveOverrideProps<ButtonProps>;
     ButtonHoliday?: PrimitiveOverrideProps<ButtonProps>;
+    footer?: PrimitiveOverrideProps<FlexProps>;
+    "Last updated:"?: PrimitiveOverrideProps<TextProps>;
+    lastupdate?: PrimitiveOverrideProps<TextProps>;
+    by?: PrimitiveOverrideProps<TextProps>;
+    lastuser?: PrimitiveOverrideProps<TextProps>;
 } & EscapeHatchProps;
 export declare type ContactCenterUIProps = React.PropsWithChildren<Partial<FlexProps> & {
     contactcentermodel?: ContactCenterModel;
