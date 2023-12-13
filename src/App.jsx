@@ -75,7 +75,6 @@ function App({ signOut, user }) {
                 onClose={handleUpdateTimeofDayModalclose}
                 contactcenter={contactcentermodel}
             />
-
             <UpdateMenuModal
                 groupid={groupid}
                 onClose={handleUpdateMenuModaclose}
@@ -103,6 +102,7 @@ function App({ signOut, user }) {
                             children: (
                                 <>
                                     {item.daystodopen[1] == '' ||
+                                    item.daystodopen[1] == 'Invalid Date' ||
                                     item.daystodopen[1] === undefined
                                         ? 'NA'
                                         : item.daystodopen[1]}
@@ -113,6 +113,7 @@ function App({ signOut, user }) {
                             children: (
                                 <>
                                     {item.daystodopen[2] == '' ||
+                                    item.daystodopen[2] == 'Invalid Date' ||
                                     item.daystodopen[2] === undefined
                                         ? 'NA'
                                         : item.daystodopen[2]}
@@ -123,6 +124,7 @@ function App({ signOut, user }) {
                             children: (
                                 <>
                                     {item.daystodopen[3] == '' ||
+                                    item.daystodopen[3] == 'Invalid Date' ||
                                     item.daystodopen[3] === undefined
                                         ? 'NA'
                                         : item.daystodopen[3]}
@@ -133,6 +135,7 @@ function App({ signOut, user }) {
                             children: (
                                 <>
                                     {item.daystodopen[4] == '' ||
+                                    item.daystodopen[4] == 'Invalid Date' ||
                                     item.daystodopen[4] === undefined
                                         ? 'NA'
                                         : item.daystodopen[4]}
@@ -143,6 +146,7 @@ function App({ signOut, user }) {
                             children: (
                                 <>
                                     {item.daystodopen[5] == '' ||
+                                    item.daystodopen[5] == 'Invalid Date' ||
                                     item.daystodopen[5] === undefined
                                         ? 'NA'
                                         : item.daystodopen[5]}
@@ -153,6 +157,7 @@ function App({ signOut, user }) {
                             children: (
                                 <>
                                     {item.daystodopen[6] == '' ||
+                                    item.daystodopen[6] == 'Invalid Date' ||
                                     item.daystodopen[6] === undefined
                                         ? 'NA'
                                         : item.daystodopen[6]}
@@ -163,6 +168,7 @@ function App({ signOut, user }) {
                             children: (
                                 <>
                                     {item.daystodopen[0] == '' ||
+                                    item.daystodopen[0] == 'Invalid Date' ||
                                     item.daystodopen[0] === undefined
                                         ? 'NA'
                                         : item.daystodopen[0]}
@@ -173,6 +179,7 @@ function App({ signOut, user }) {
                             children: (
                                 <>
                                     {item.daystodclose[1] == '' ||
+                                    item.daystodclose[1] == 'Invalid Date' ||
                                     item.daystodclose[1] === undefined
                                         ? 'NA'
                                         : item.daystodclose[1]}
@@ -183,6 +190,7 @@ function App({ signOut, user }) {
                             children: (
                                 <>
                                     {item.daystodclose[2] == '' ||
+                                    item.daystodclose[2] == 'Invalid Date' ||
                                     item.daystodclose[2] === undefined
                                         ? 'NA'
                                         : item.daystodclose[2]}
@@ -193,6 +201,7 @@ function App({ signOut, user }) {
                             children: (
                                 <>
                                     {item.daystodclose[3] == '' ||
+                                    item.daystodclose[3] == 'Invalid Date' ||
                                     item.daystodclose[3] === undefined
                                         ? 'NA'
                                         : item.daystodclose[3]}
@@ -203,6 +212,7 @@ function App({ signOut, user }) {
                             children: (
                                 <>
                                     {item.daystodclose[4] == '' ||
+                                    item.daystodclose[4] == 'Invalid Date' ||
                                     item.daystodclose[4] === undefined
                                         ? 'NA'
                                         : item.daystodclose[4]}
@@ -213,6 +223,7 @@ function App({ signOut, user }) {
                             children: (
                                 <>
                                     {item.daystodclose[5] == '' ||
+                                    item.daystodclose[5] == 'Invalid Date' ||
                                     item.daystodclose[5] === undefined
                                         ? 'NA'
                                         : item.daystodclose[5]}
@@ -223,6 +234,7 @@ function App({ signOut, user }) {
                             children: (
                                 <>
                                     {item.daystodclose[6] == '' ||
+                                    item.daystodclose[6] == 'Invalid Date' ||
                                     item.daystodclose[6] === undefined
                                         ? 'NA'
                                         : item.daystodclose[6]}
@@ -233,6 +245,7 @@ function App({ signOut, user }) {
                             children: (
                                 <>
                                     {item.daystodclose[0] == '' ||
+                                    item.daystodclose[0] == 'Invalid Date' ||
                                     item.daystodclose[0] === undefined
                                         ? 'NA'
                                         : item.daystodclose[0]}
@@ -243,6 +256,8 @@ function App({ signOut, user }) {
                             children: (
                                 <>
                                     {item.secondarytodopen[1] === '' ||
+                                    item.secondarytodopen[1] ===
+                                        'Invalid Date' ||
                                     item.secondarytodopen[1] === undefined
                                         ? 'NA'
                                         : item.secondarytodopen[1]}
@@ -253,6 +268,8 @@ function App({ signOut, user }) {
                             children: (
                                 <>
                                     {item.secondarytodopen[2] == '' ||
+                                    item.secondarytodopen[2] ==
+                                        'Invalid Date' ||
                                     item.secondarytodopen[2] === undefined
                                         ? 'NA'
                                         : item.secondarytodopen[2]}
@@ -263,6 +280,8 @@ function App({ signOut, user }) {
                             children: (
                                 <>
                                     {item.secondarytodopen[3] == '' ||
+                                    item.secondarytodopen[3] ==
+                                        'Invalid Date' ||
                                     item.secondarytodopen[3] === undefined
                                         ? 'NA'
                                         : item.secondarytodopen[3]}
@@ -273,6 +292,8 @@ function App({ signOut, user }) {
                             children: (
                                 <>
                                     {item.secondarytodopen[4] == '' ||
+                                    item.secondarytodopen[4] ==
+                                        'Invalid Date' ||
                                     item.secondarytodopen[4] === undefined
                                         ? 'NA'
                                         : item.secondarytodopen[4]}
@@ -283,6 +304,8 @@ function App({ signOut, user }) {
                             children: (
                                 <>
                                     {item.secondarytodopen[5] == '' ||
+                                    item.secondarytodopen[5] ==
+                                        'Invalid Date' ||
                                     item.secondarytodopen[5] === undefined
                                         ? 'NA'
                                         : item.secondarytodopen[5]}
@@ -293,6 +316,8 @@ function App({ signOut, user }) {
                             children: (
                                 <>
                                     {item.secondarytodopen[6] == '' ||
+                                    item.secondarytodopen[6] ==
+                                        'Invalid Date' ||
                                     item.secondarytodopen[6] === undefined
                                         ? 'NA'
                                         : item.secondarytodopen[6]}
@@ -303,6 +328,8 @@ function App({ signOut, user }) {
                             children: (
                                 <>
                                     {item.secondarytodopen[0] == '' ||
+                                    item.secondarytodopen[0] ==
+                                        'Invalid Date' ||
                                     item.secondarytodopen[0] === undefined
                                         ? 'NA'
                                         : item.secondarytodopen[0]}
@@ -313,6 +340,8 @@ function App({ signOut, user }) {
                             children: (
                                 <>
                                     {item.secondarytodclose[1] == '' ||
+                                    item.secondarytodclose[1] ==
+                                        'Invalid Date' ||
                                     item.secondarytodclose[1] === undefined
                                         ? 'NA'
                                         : item.secondarytodclose[1]}
@@ -323,6 +352,8 @@ function App({ signOut, user }) {
                             children: (
                                 <>
                                     {item.secondarytodclose[2] == '' ||
+                                    item.secondarytodclose[2] ==
+                                        'Invalid Date' ||
                                     item.secondarytodclose[2] === undefined
                                         ? 'NA'
                                         : item.secondarytodclose[2]}
@@ -333,6 +364,8 @@ function App({ signOut, user }) {
                             children: (
                                 <>
                                     {item.secondarytodclose[3] == '' ||
+                                    item.secondarytodclose[3] ==
+                                        'Invalid Date' ||
                                     item.secondarytodclose[3] === undefined
                                         ? 'NA'
                                         : item.secondarytodclose[3]}
@@ -343,6 +376,8 @@ function App({ signOut, user }) {
                             children: (
                                 <>
                                     {item.secondarytodclose[4] == '' ||
+                                    item.secondarytodclose[1] ==
+                                        'Invalid Date' ||
                                     item.secondarytodclose[4] === undefined
                                         ? 'NA'
                                         : item.secondarytodclose[4]}
@@ -353,6 +388,8 @@ function App({ signOut, user }) {
                             children: (
                                 <>
                                     {item.secondarytodclose[5] == '' ||
+                                    item.secondarytodclose[5] ==
+                                        'Invalid Date' ||
                                     item.secondarytodclose[5] === undefined
                                         ? 'NA'
                                         : item.secondarytodclose[5]}
@@ -363,6 +400,8 @@ function App({ signOut, user }) {
                             children: (
                                 <>
                                     {item.secondarytodclose[6] == '' ||
+                                    item.secondarytodclose[6] ==
+                                        'Invalid Date' ||
                                     item.secondarytodclose[6] === undefined
                                         ? 'NA'
                                         : item.secondarytodclose[6]}
@@ -373,6 +412,8 @@ function App({ signOut, user }) {
                             children: (
                                 <>
                                     {item.secondarytodclose[0] == '' ||
+                                    item.secondarytodclose[7] ==
+                                        'Invalid Date' ||
                                     item.secondarytodclose[0] === undefined
                                         ? 'NA'
                                         : item.secondarytodclose[0]}

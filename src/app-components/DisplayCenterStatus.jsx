@@ -41,21 +41,18 @@ const DisplayCenterStatus = (props) => {
             return todayWithoutTime.getTime() === holidayWithoutTime.getTime()
         })
 
-        const daysOfWeek = daysOpen
+        const daysOfWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
         const dayIndex = daysOfWeek.indexOf(currentDay)
 
         if (contactcenter.isoverride) {
-            console.log(`${contactcenter.ccname} is closed due to Override`)
             return 'OVERRIDE' // Contact center is closed on the current day
         }
 
-        if (dayIndex === -1) {
-            console.log(`${contactcenter.ccname} is closed due to business day`)
+        if (daysOpen.indexOf(currentDay) === -1) {
             return 'CLOSED' // Contact center is closed on the current day
         }
 
         if (isHoliday) {
-            console.log(`${contactcenter.ccname} is closed due to a holiday`)
             return 'HOLIDAY' // Contact center is closed on holidays
         }
 
@@ -83,7 +80,7 @@ const DisplayCenterStatus = (props) => {
         })
 
         const strcloseTime = new Date(closeTime)
-        const formatecloseTime = strcloseTime.toLocaleTimeString([], {
+        const formatedcloseTime = strcloseTime.toLocaleTimeString([], {
             hour: '2-digit',
             minute: '2-digit',
         })

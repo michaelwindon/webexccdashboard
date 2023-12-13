@@ -86,44 +86,102 @@ const UpdateTimeofDayModal = (props) => {
             try {
                 const updateContactCenter = await DataStore.save(
                     ContactCenterModel.copyOf(orignal, (update) => {
+                        //clear time for days if not included in days not enabled
                         update.daysopen = days
                         update.daystodopen = [
-                            varSun?.open.format('h:mm A'),
-                            varMon?.open.format('h:mm A'),
-                            varTue?.open.format('h:mm A'),
-                            varWed?.open.format('h:mm A'),
-                            varThu?.open.format('h:mm A'),
-                            varFri?.open.format('h:mm A'),
-                            varSat?.open.format('h:mm A'),
+                            ...(days.includes('SUN')
+                                ? [varSun?.open.format('h:mm A')]
+                                : ['NA']),
+                            ...(days.includes('MON')
+                                ? [varMon?.open.format('h:mm A')]
+                                : ['NA']),
+                            ...(days.includes('TUE')
+                                ? [varTue?.open.format('h:mm A')]
+                                : ['NA']),
+                            ...(days.includes('WED')
+                                ? [varWed?.open.format('h:mm A')]
+                                : ['NA']),
+                            ...(days.includes('THU')
+                                ? [varThu?.open.format('h:mm A')]
+                                : ['NA']),
+                            ...(days.includes('FRI')
+                                ? [varFri?.open.format('h:mm A')]
+                                : ['NA']),
+                            ...(days.includes('SAT')
+                                ? [varSat?.open.format('h:mm A')]
+                                : ['NA']),
                         ]
                         update.daystodclose = [
-                            varSun?.closed.format('h:mm A'),
-                            varMon?.closed.format('h:mm A'),
-                            varTue?.closed.format('h:mm A'),
-                            varWed?.closed.format('h:mm A'),
-                            varThu?.closed.format('h:mm A'),
-                            varFri?.closed.format('h:mm A'),
-                            varSat?.closed.format('h:mm A'),
+                            ...(days.includes('SUN')
+                                ? [varSun?.closed.format('h:mm A')]
+                                : ['NA']),
+                            ...(days.includes('MON')
+                                ? [varMon?.closed.format('h:mm A')]
+                                : ['NA']),
+                            ...(days.includes('TUE')
+                                ? [varTue?.closed.format('h:mm A')]
+                                : ['NA']),
+                            ...(days.includes('WED')
+                                ? [varWed?.closed.format('h:mm A')]
+                                : ['NA']),
+                            ...(days.includes('THU')
+                                ? [varThu?.closed.format('h:mm A')]
+                                : ['NA']),
+                            ...(days.includes('FRI')
+                                ? [varFri?.closed.format('h:mm A')]
+                                : ['NA']),
+                            ...(days.includes('SAT')
+                                ? [varSat?.closed.format('h:mm A')]
+                                : ['NA']),
                         ]
                         update.secondarytodclose = [
-                            varSun?.secondaryclose.format('h:mm A'),
-                            varMon?.secondaryclose.format('h:mm A'),
-                            varTue?.secondaryclose.format('h:mm A'),
-                            varWed?.secondaryclose.format('h:mm A'),
-                            varThu?.secondaryclose.format('h:mm A'),
-                            varFri?.secondaryclose.format('h:mm A'),
-                            varSat?.secondaryclose.format('h:mm A'),
+                            ...(days.includes('SUN')
+                                ? [varSun?.secondaryclose.format('h:mm A')]
+                                : ['NA']),
+                            ...(days.includes('MON')
+                                ? [varMon?.secondaryclose.format('h:mm A')]
+                                : ['NA']),
+                            ...(days.includes('TUE')
+                                ? [varTue?.secondaryclose.format('h:mm A')]
+                                : ['NA']),
+                            ...(days.includes('WED')
+                                ? [varWed?.secondaryclose.format('h:mm A')]
+                                : ['NA']),
+                            ...(days.includes('THU')
+                                ? [varThu?.secondaryclose.format('h:mm A')]
+                                : ['NA']),
+                            ...(days.includes('FRI')
+                                ? [varFri?.secondaryclose.format('h:mm A')]
+                                : ['NA']),
+                            ...(days.includes('SAT')
+                                ? [varSat?.secondaryclose.format('h:mm A')]
+                                : ['NA']),
                         ]
 
                         update.secondarytodopen = [
-                            varSun?.secondaryopen.format('h:mm A'),
-                            varMon?.secondaryopen.format('h:mm A'),
-                            varTue?.secondaryopen.format('h:mm A'),
-                            varWed?.secondaryopen.format('h:mm A'),
-                            varThu?.secondaryopen.format('h:mm A'),
-                            varFri?.secondaryopen.format('h:mm A'),
-                            varSat?.secondaryopen.format('h:mm A'),
+                            ...(days.includes('SUN')
+                                ? [varSun?.secondaryopen.format('h:mm A')]
+                                : ['NA']),
+                            ...(days.includes('MON')
+                                ? [varMon?.secondaryopen.format('h:mm A')]
+                                : ['NA']),
+                            ...(days.includes('TUE')
+                                ? [varTue?.secondaryopen.format('h:mm A')]
+                                : ['NA']),
+                            ...(days.includes('WED')
+                                ? [varWed?.secondaryopen.format('h:mm A')]
+                                : ['NA']),
+                            ...(days.includes('THU')
+                                ? [varThu?.secondaryopen.format('h:mm A')]
+                                : ['NA']),
+                            ...(days.includes('FRI')
+                                ? [varFri?.secondaryopen.format('h:mm A')]
+                                : ['NA']),
+                            ...(days.includes('SAT')
+                                ? [varSat?.secondaryopen.format('h:mm A')]
+                                : ['NA']),
                         ]
+
                         update.updateduser = user.username
                     })
                 )
