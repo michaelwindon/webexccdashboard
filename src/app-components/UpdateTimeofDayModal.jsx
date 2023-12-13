@@ -181,7 +181,6 @@ const UpdateTimeofDayModal = (props) => {
                                 ? [varSat?.secondaryopen.format('h:mm A')]
                                 : ['NA']),
                         ]
-
                         update.updateduser = user.username
                     })
                 )
@@ -220,7 +219,6 @@ const UpdateTimeofDayModal = (props) => {
                 switch (tod) {
                     case 'open':
                         setVarTue({ ...varTue, open: adjustedTime })
-                        console.log('handleTimeChange:TUE')
                         break
 
                     case 'closed':

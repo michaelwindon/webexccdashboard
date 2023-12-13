@@ -94,6 +94,7 @@ function App({ signOut, user }) {
                 overrideItems={({ item, index }) => ({
                     overrides: {
                         todsec: {
+                            className: 'clickAble',
                             onClick: () => {
                                 handleUpdateTimeofDayModalOpen(item)
                             },
@@ -421,6 +422,19 @@ function App({ signOut, user }) {
                             ),
                         },
                         dayyArray1: {
+                            //Mon
+                            backgroundColor:
+                                new Date().toLocaleString('en-US', {
+                                    weekday: 'short',
+                                }) == 'Mon'
+                                    ? 'var(--amplify-colors-primary-40)'
+                                    : '',
+                            fontWeight:
+                                new Date().toLocaleString('en-US', {
+                                    weekday: 'short',
+                                }) == 'Mon'
+                                    ? 'var(--amplify-font-weights-bold)'
+                                    : '',
                             children: (
                                 <>
                                     {item.daysopen.indexOf('MON') >= 0
@@ -430,6 +444,19 @@ function App({ signOut, user }) {
                             ),
                         },
                         dayyArray2: {
+                            //Tue
+                            backgroundColor:
+                                new Date().toLocaleString('en-US', {
+                                    weekday: 'short',
+                                }) == 'Tue'
+                                    ? 'var(--amplify-colors-primary-40)'
+                                    : '',
+                            fontWeight:
+                                new Date().toLocaleString('en-US', {
+                                    weekday: 'short',
+                                }) == 'Tue'
+                                    ? 'var(--amplify-font-weights-bold)'
+                                    : '',
                             children: (
                                 <>
                                     {item.daysopen.indexOf('TUE') >= 0
@@ -439,6 +466,20 @@ function App({ signOut, user }) {
                             ),
                         },
                         dayyArray3: {
+                            //Wed
+                            backgroundColor:
+                                new Date().toLocaleString('en-US', {
+                                    weekday: 'short',
+                                }) == 'Wed'
+                                    ? 'var(--amplify-colors-primary-40)'
+                                    : '',
+                            fontWeight:
+                                new Date().toLocaleString('en-US', {
+                                    weekday: 'short',
+                                }) == 'Wed'
+                                    ? 'var(--amplify-font-weights-bold)'
+                                    : '',
+
                             children: (
                                 <>
                                     {item.daysopen.indexOf('WED') >= 0
@@ -448,6 +489,18 @@ function App({ signOut, user }) {
                             ),
                         },
                         dayyArray4: {
+                            backgroundColor:
+                                new Date().toLocaleString('en-US', {
+                                    weekday: 'short',
+                                }) == 'Thu'
+                                    ? 'var(--amplify-colors-primary-40)'
+                                    : '',
+                            fontWeight:
+                                new Date().toLocaleString('en-US', {
+                                    weekday: 'short',
+                                }) == 'Thu'
+                                    ? 'var(--amplify-font-weights-bold)'
+                                    : '',
                             children: (
                                 <>
                                     {item.daysopen.indexOf('THU') >= 0
@@ -457,6 +510,18 @@ function App({ signOut, user }) {
                             ),
                         },
                         dayyArray5: {
+                            backgroundColor:
+                                new Date().toLocaleString('en-US', {
+                                    weekday: 'short',
+                                }) == 'Fri'
+                                    ? 'var(--amplify-colors-primary-40)'
+                                    : '',
+                            fontWeight:
+                                new Date().toLocaleString('en-US', {
+                                    weekday: 'short',
+                                }) == 'Fri'
+                                    ? 'var(--amplify-font-weights-bold)'
+                                    : '',
                             children: (
                                 <>
                                     {item.daysopen.indexOf('FRI') >= 0
@@ -466,6 +531,18 @@ function App({ signOut, user }) {
                             ),
                         },
                         dayyArray6: {
+                            backgroundColor:
+                                new Date().toLocaleString('en-US', {
+                                    weekday: 'short',
+                                }) == 'Sat'
+                                    ? 'var(--amplify-colors-primary-40)'
+                                    : '',
+                            fontWeight:
+                                new Date().toLocaleString('en-US', {
+                                    weekday: 'short',
+                                }) == 'Sat'
+                                    ? 'var(--amplify-font-weights-bold)'
+                                    : '',
                             children: (
                                 <>
                                     {item.daysopen.indexOf('SAT') >= 0
@@ -475,6 +552,18 @@ function App({ signOut, user }) {
                             ),
                         },
                         dayyArray0: {
+                            backgroundColor:
+                                new Date().toLocaleString('en-US', {
+                                    weekday: 'short',
+                                }) == 'Sun'
+                                    ? 'var(--amplify-colors-primary-40)'
+                                    : '',
+                            fontWeight:
+                                new Date().toLocaleString('en-US', {
+                                    weekday: 'short',
+                                }) == 'Sun'
+                                    ? 'var(--amplify-font-weights-bold)'
+                                    : '',
                             children: (
                                 <>
                                     {item.daysopen.indexOf('SUN') >= 0
