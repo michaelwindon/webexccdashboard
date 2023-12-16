@@ -402,13 +402,14 @@ export const schema = {
                     "attributes": [],
                     "isArrayNullable": true
                 },
-                "secondarytodclose": {
-                    "name": "secondarytodclose",
-                    "isArray": true,
-                    "type": "String",
+                "holidayoption": {
+                    "name": "holidayoption",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "MenuType"
+                    },
                     "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true
+                    "attributes": []
                 },
                 "secondarytodopen": {
                     "name": "secondarytodopen",
@@ -418,13 +419,22 @@ export const schema = {
                     "attributes": [],
                     "isArrayNullable": true
                 },
-                "daysopen": {
-                    "name": "daysopen",
+                "secondarytodclose": {
+                    "name": "secondarytodclose",
                     "isArray": true,
                     "type": "String",
                     "isRequired": false,
                     "attributes": [],
                     "isArrayNullable": true
+                },
+                "secondaryclose": {
+                    "name": "secondaryclose",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "MenuType"
+                    },
+                    "isRequired": false,
+                    "attributes": []
                 },
                 "daystodopen": {
                     "name": "daystodopen",
@@ -442,12 +452,13 @@ export const schema = {
                     "attributes": [],
                     "isArrayNullable": true
                 },
-                "welcomeprompt": {
-                    "name": "welcomeprompt",
-                    "isArray": false,
+                "daysopen": {
+                    "name": "daysopen",
+                    "isArray": true,
                     "type": "String",
                     "isRequired": false,
-                    "attributes": []
+                    "attributes": [],
+                    "isArrayNullable": true
                 },
                 "afterhours": {
                     "name": "afterhours",
@@ -465,13 +476,6 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "ccname": {
-                    "name": "ccname",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
                 "defaultroute": {
                     "name": "defaultroute",
                     "isArray": false,
@@ -479,19 +483,24 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "holidayoption": {
-                    "name": "holidayoption",
+                "ccname": {
+                    "name": "ccname",
                     "isArray": false,
-                    "type": {
-                        "nonModel": "MenuType"
-                    },
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
-                "isoverride": {
-                    "name": "isoverride",
+                "welcomeprompt": {
+                    "name": "welcomeprompt",
                     "isArray": false,
-                    "type": "Boolean",
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "welcomeprompt_sp": {
+                    "name": "welcomeprompt_sp",
+                    "isArray": false,
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -501,13 +510,6 @@ export const schema = {
                     "type": {
                         "nonModel": "SubmenuType"
                     },
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "welcomeprompt_sp": {
-                    "name": "welcomeprompt_sp",
-                    "isArray": false,
-                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -610,10 +612,12 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "version": {
-                    "name": "version",
+                "override": {
+                    "name": "override",
                     "isArray": false,
-                    "type": "String",
+                    "type": {
+                        "nonModel": "MenuType"
+                    },
                     "isRequired": false,
                     "attributes": []
                 },
@@ -651,28 +655,45 @@ export const schema = {
                         ]
                     }
                 },
-                "override": {
-                    "name": "override",
-                    "isArray": false,
-                    "type": {
-                        "nonModel": "MenuType"
-                    },
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "secondaryclose": {
-                    "name": "secondaryclose",
-                    "isArray": false,
-                    "type": {
-                        "nonModel": "MenuType"
-                    },
-                    "isRequired": false,
-                    "attributes": []
-                },
                 "updateduser": {
                     "name": "updateduser",
                     "isArray": false,
                     "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "version": {
+                    "name": "version",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "isoverride": {
+                    "name": "isoverride",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "isholiday": {
+                    "name": "isholiday",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "isafterhours": {
+                    "name": "isafterhours",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "issecondaryclosed": {
+                    "name": "issecondaryclosed",
+                    "isArray": false,
+                    "type": "Boolean",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -1103,5 +1124,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.4.4",
-    "version": "8430c597649e09048cd6682b2edac71f"
+    "version": "9b93b36233ab91c023e00d466bb8ae49"
 };

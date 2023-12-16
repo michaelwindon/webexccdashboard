@@ -80,20 +80,20 @@ type ContactCenterModel @model @auth(rules: [{allow: public}]) {
   menu8: MenuType
   menu9: MenuType
   holiday: [String]
-  secondarytodclose: [String]
+  holidayoption: MenuType
   secondarytodopen: [String]
-  daysopen: [String]
+  secondarytodclose: [String]
+  secondaryclose: MenuType
   daystodopen: [String]
   daystodclose: [String]
-  welcomeprompt: String
+  daysopen: [String]
   afterhours: MenuType
   ccdescription: String
-  ccname: String
   defaultroute: String
-  holidayoption: MenuType
-  isoverride: Boolean
-  submenu2: SubmenuType
+  ccname: String
+  welcomeprompt: String
   welcomeprompt_sp: String
+  submenu2: SubmenuType
   submenu2_sp: SubmenuType
   menu0_sp: MenuType
   menu1_sp: MenuType
@@ -105,11 +105,14 @@ type ContactCenterModel @model @auth(rules: [{allow: public}]) {
   menu7_sp: MenuType
   menu8_sp: MenuType
   menu9_sp: MenuType
-  version: String
+  override: MenuType
   Managers: [ManagerModel] @manyToMany(relationName: "ContactCenterModelManagerModel")
   AssignedGroup: GroupModel @hasOne
-  override: MenuType
-  secondaryclose: MenuType
   updateduser: String
+  version: String
+  isoverride: Boolean
+  isholiday: Boolean
+  isafterhours: Boolean
+  issecondaryclosed: Boolean
 }
  

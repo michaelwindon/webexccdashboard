@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { GridProps, SelectFieldProps, TextAreaFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { GridProps, SelectFieldProps, SwitchFieldProps, TextAreaFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
 import { ContactCenterModel } from "../models";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
@@ -26,11 +26,17 @@ export declare type UpdateMenuFormInputValues = {
     menu0?: string;
     Field0?: string;
     Field1?: string;
+    isholiday?: boolean;
+    isafterhours?: boolean;
+    issecondaryclosed?: boolean;
 };
 export declare type UpdateMenuFormValidationValues = {
     menu0?: ValidationFunction<string>;
     Field0?: ValidationFunction<string>;
     Field1?: ValidationFunction<string>;
+    isholiday?: ValidationFunction<boolean>;
+    isafterhours?: ValidationFunction<boolean>;
+    issecondaryclosed?: ValidationFunction<boolean>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type UpdateMenuFormOverridesProps = {
@@ -38,6 +44,9 @@ export declare type UpdateMenuFormOverridesProps = {
     menu0?: PrimitiveOverrideProps<TextAreaFieldProps>;
     Field0?: PrimitiveOverrideProps<SelectFieldProps>;
     Field1?: PrimitiveOverrideProps<TextFieldProps>;
+    isholiday?: PrimitiveOverrideProps<SwitchFieldProps>;
+    isafterhours?: PrimitiveOverrideProps<SwitchFieldProps>;
+    issecondaryclosed?: PrimitiveOverrideProps<SwitchFieldProps>;
 } & EscapeHatchProps;
 export declare type UpdateMenuFormProps = React.PropsWithChildren<{
     overrides?: UpdateMenuFormOverridesProps | undefined | null;

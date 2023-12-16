@@ -11,6 +11,7 @@ import {
   Flex,
   Grid,
   SelectField,
+  SwitchField,
   TextAreaField,
   TextField,
 } from "@aws-amplify/ui-react";
@@ -33,10 +34,20 @@ export default function UpdateMenuForm(props) {
     menu0: "",
     Field0: "",
     Field1: "",
+    isholiday: false,
+    isafterhours: false,
+    issecondaryclosed: false,
   };
   const [menu0, setMenu0] = React.useState(initialValues.menu0);
   const [Field0, setField0] = React.useState(initialValues.Field0);
   const [Field1, setField1] = React.useState(initialValues.Field1);
+  const [isholiday, setIsholiday] = React.useState(initialValues.isholiday);
+  const [isafterhours, setIsafterhours] = React.useState(
+    initialValues.isafterhours
+  );
+  const [issecondaryclosed, setIssecondaryclosed] = React.useState(
+    initialValues.issecondaryclosed
+  );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = contactCenterModelRecord
@@ -49,6 +60,9 @@ export default function UpdateMenuForm(props) {
     );
     setField0(cleanValues.Field0);
     setField1(cleanValues.Field1);
+    setIsholiday(cleanValues.isholiday);
+    setIsafterhours(cleanValues.isafterhours);
+    setIssecondaryclosed(cleanValues.issecondaryclosed);
     setErrors({});
   };
   const [contactCenterModelRecord, setContactCenterModelRecord] =
@@ -67,6 +81,9 @@ export default function UpdateMenuForm(props) {
     menu0: [{ type: "JSON" }],
     Field0: [],
     Field1: [],
+    isholiday: [],
+    isafterhours: [],
+    issecondaryclosed: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -97,6 +114,9 @@ export default function UpdateMenuForm(props) {
           menu0,
           Field0,
           Field1,
+          isholiday,
+          isafterhours,
+          issecondaryclosed,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -127,6 +147,9 @@ export default function UpdateMenuForm(props) {
             }
           });
           const modelFieldsToSave = {
+            isholiday: modelFields.isholiday,
+            isafterhours: modelFields.isafterhours,
+            issecondaryclosed: modelFields.issecondaryclosed,
             menu0: modelFields.menu0
               ? JSON.parse(modelFields.menu0)
               : modelFields.menu0,
@@ -161,6 +184,9 @@ export default function UpdateMenuForm(props) {
               menu0: value,
               Field0,
               Field1,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
             value = result?.menu0 ?? value;
@@ -186,6 +212,9 @@ export default function UpdateMenuForm(props) {
               menu0,
               Field0: value,
               Field1,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
             value = result?.Field0 ?? value;
@@ -231,6 +260,9 @@ export default function UpdateMenuForm(props) {
               menu0,
               Field0,
               Field1: value,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
             value = result?.Field1 ?? value;
@@ -245,6 +277,95 @@ export default function UpdateMenuForm(props) {
         hasError={errors.Field1?.hasError}
         {...getOverrideProps(overrides, "Field1")}
       ></TextField>
+      <SwitchField
+        label="Isholiday"
+        defaultChecked={false}
+        isDisabled={false}
+        isChecked={isholiday}
+        onChange={(e) => {
+          let value = e.target.checked;
+          if (onChange) {
+            const modelFields = {
+              menu0,
+              Field0,
+              Field1,
+              isholiday: value,
+              isafterhours,
+              issecondaryclosed,
+            };
+            const result = onChange(modelFields);
+            value = result?.isholiday ?? value;
+          }
+          if (errors.isholiday?.hasError) {
+            runValidationTasks("isholiday", value);
+          }
+          setIsholiday(value);
+        }}
+        onBlur={() => runValidationTasks("isholiday", isholiday)}
+        errorMessage={errors.isholiday?.errorMessage}
+        hasError={errors.isholiday?.hasError}
+        {...getOverrideProps(overrides, "isholiday")}
+      ></SwitchField>
+      <SwitchField
+        label="Isafterhours"
+        defaultChecked={false}
+        isDisabled={false}
+        isChecked={isafterhours}
+        onChange={(e) => {
+          let value = e.target.checked;
+          if (onChange) {
+            const modelFields = {
+              menu0,
+              Field0,
+              Field1,
+              isholiday,
+              isafterhours: value,
+              issecondaryclosed,
+            };
+            const result = onChange(modelFields);
+            value = result?.isafterhours ?? value;
+          }
+          if (errors.isafterhours?.hasError) {
+            runValidationTasks("isafterhours", value);
+          }
+          setIsafterhours(value);
+        }}
+        onBlur={() => runValidationTasks("isafterhours", isafterhours)}
+        errorMessage={errors.isafterhours?.errorMessage}
+        hasError={errors.isafterhours?.hasError}
+        {...getOverrideProps(overrides, "isafterhours")}
+      ></SwitchField>
+      <SwitchField
+        label="Issecondaryclosed"
+        defaultChecked={false}
+        isDisabled={false}
+        isChecked={issecondaryclosed}
+        onChange={(e) => {
+          let value = e.target.checked;
+          if (onChange) {
+            const modelFields = {
+              menu0,
+              Field0,
+              Field1,
+              isholiday,
+              isafterhours,
+              issecondaryclosed: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.issecondaryclosed ?? value;
+          }
+          if (errors.issecondaryclosed?.hasError) {
+            runValidationTasks("issecondaryclosed", value);
+          }
+          setIssecondaryclosed(value);
+        }}
+        onBlur={() =>
+          runValidationTasks("issecondaryclosed", issecondaryclosed)
+        }
+        errorMessage={errors.issecondaryclosed?.errorMessage}
+        hasError={errors.issecondaryclosed?.hasError}
+        {...getOverrideProps(overrides, "issecondaryclosed")}
+      ></SwitchField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

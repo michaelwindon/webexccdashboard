@@ -67,6 +67,9 @@ export declare type ContactCenterModelUpdateFormInputValues = {
     override?: string;
     secondaryclose?: string;
     updateduser?: string;
+    isholiday?: boolean;
+    isafterhours?: boolean;
+    issecondaryclosed?: boolean;
 };
 export declare type ContactCenterModelUpdateFormValidationValues = {
     mainnumber?: ValidationFunction<string>;
@@ -113,6 +116,9 @@ export declare type ContactCenterModelUpdateFormValidationValues = {
     override?: ValidationFunction<string>;
     secondaryclose?: ValidationFunction<string>;
     updateduser?: ValidationFunction<string>;
+    isholiday?: ValidationFunction<boolean>;
+    isafterhours?: ValidationFunction<boolean>;
+    issecondaryclosed?: ValidationFunction<boolean>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type ContactCenterModelUpdateFormOverridesProps = {
@@ -161,6 +167,9 @@ export declare type ContactCenterModelUpdateFormOverridesProps = {
     override?: PrimitiveOverrideProps<TextAreaFieldProps>;
     secondaryclose?: PrimitiveOverrideProps<TextAreaFieldProps>;
     updateduser?: PrimitiveOverrideProps<TextFieldProps>;
+    isholiday?: PrimitiveOverrideProps<SwitchFieldProps>;
+    isafterhours?: PrimitiveOverrideProps<SwitchFieldProps>;
+    issecondaryclosed?: PrimitiveOverrideProps<SwitchFieldProps>;
 } & EscapeHatchProps;
 export declare type ContactCenterModelUpdateFormProps = React.PropsWithChildren<{
     overrides?: ContactCenterModelUpdateFormOverridesProps | undefined | null;

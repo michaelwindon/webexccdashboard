@@ -213,20 +213,20 @@ export default function ContactCenterModelCreateForm(props) {
     menu8: "",
     menu9: "",
     holiday: [],
-    secondarytodclose: [],
+    holidayoption: "",
     secondarytodopen: [],
-    daysopen: [],
+    secondarytodclose: [],
+    secondaryclose: "",
     daystodopen: [],
     daystodclose: [],
-    welcomeprompt: "",
+    daysopen: [],
     afterhours: "",
     ccdescription: "",
-    ccname: "",
     defaultroute: "",
-    holidayoption: "",
-    isoverride: false,
-    submenu2: "",
+    ccname: "",
+    welcomeprompt: "",
     welcomeprompt_sp: "",
+    submenu2: "",
     submenu2_sp: "",
     menu0_sp: "",
     menu1_sp: "",
@@ -238,12 +238,15 @@ export default function ContactCenterModelCreateForm(props) {
     menu7_sp: "",
     menu8_sp: "",
     menu9_sp: "",
-    version: "",
+    override: "",
     Managers: [],
     AssignedGroup: undefined,
-    override: "",
-    secondaryclose: "",
     updateduser: "",
+    version: "",
+    isoverride: false,
+    isholiday: false,
+    isafterhours: false,
+    issecondaryclosed: false,
   };
   const [mainnumber, setMainnumber] = React.useState(initialValues.mainnumber);
   const [menu0, setMenu0] = React.useState(initialValues.menu0);
@@ -257,38 +260,40 @@ export default function ContactCenterModelCreateForm(props) {
   const [menu8, setMenu8] = React.useState(initialValues.menu8);
   const [menu9, setMenu9] = React.useState(initialValues.menu9);
   const [holiday, setHoliday] = React.useState(initialValues.holiday);
-  const [secondarytodclose, setSecondarytodclose] = React.useState(
-    initialValues.secondarytodclose
+  const [holidayoption, setHolidayoption] = React.useState(
+    initialValues.holidayoption
   );
   const [secondarytodopen, setSecondarytodopen] = React.useState(
     initialValues.secondarytodopen
   );
-  const [daysopen, setDaysopen] = React.useState(initialValues.daysopen);
+  const [secondarytodclose, setSecondarytodclose] = React.useState(
+    initialValues.secondarytodclose
+  );
+  const [secondaryclose, setSecondaryclose] = React.useState(
+    initialValues.secondaryclose
+  );
   const [daystodopen, setDaystodopen] = React.useState(
     initialValues.daystodopen
   );
   const [daystodclose, setDaystodclose] = React.useState(
     initialValues.daystodclose
   );
-  const [welcomeprompt, setWelcomeprompt] = React.useState(
-    initialValues.welcomeprompt
-  );
+  const [daysopen, setDaysopen] = React.useState(initialValues.daysopen);
   const [afterhours, setAfterhours] = React.useState(initialValues.afterhours);
   const [ccdescription, setCcdescription] = React.useState(
     initialValues.ccdescription
   );
-  const [ccname, setCcname] = React.useState(initialValues.ccname);
   const [defaultroute, setDefaultroute] = React.useState(
     initialValues.defaultroute
   );
-  const [holidayoption, setHolidayoption] = React.useState(
-    initialValues.holidayoption
+  const [ccname, setCcname] = React.useState(initialValues.ccname);
+  const [welcomeprompt, setWelcomeprompt] = React.useState(
+    initialValues.welcomeprompt
   );
-  const [isoverride, setIsoverride] = React.useState(initialValues.isoverride);
-  const [submenu2, setSubmenu2] = React.useState(initialValues.submenu2);
   const [welcomeprompt_sp, setWelcomeprompt_sp] = React.useState(
     initialValues.welcomeprompt_sp
   );
+  const [submenu2, setSubmenu2] = React.useState(initialValues.submenu2);
   const [submenu2_sp, setSubmenu2_sp] = React.useState(
     initialValues.submenu2_sp
   );
@@ -302,17 +307,22 @@ export default function ContactCenterModelCreateForm(props) {
   const [menu7_sp, setMenu7_sp] = React.useState(initialValues.menu7_sp);
   const [menu8_sp, setMenu8_sp] = React.useState(initialValues.menu8_sp);
   const [menu9_sp, setMenu9_sp] = React.useState(initialValues.menu9_sp);
-  const [version, setVersion] = React.useState(initialValues.version);
+  const [override, setOverride] = React.useState(initialValues.override);
   const [Managers, setManagers] = React.useState(initialValues.Managers);
   const [AssignedGroup, setAssignedGroup] = React.useState(
     initialValues.AssignedGroup
   );
-  const [override, setOverride] = React.useState(initialValues.override);
-  const [secondaryclose, setSecondaryclose] = React.useState(
-    initialValues.secondaryclose
-  );
   const [updateduser, setUpdateduser] = React.useState(
     initialValues.updateduser
+  );
+  const [version, setVersion] = React.useState(initialValues.version);
+  const [isoverride, setIsoverride] = React.useState(initialValues.isoverride);
+  const [isholiday, setIsholiday] = React.useState(initialValues.isholiday);
+  const [isafterhours, setIsafterhours] = React.useState(
+    initialValues.isafterhours
+  );
+  const [issecondaryclosed, setIssecondaryclosed] = React.useState(
+    initialValues.issecondaryclosed
   );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
@@ -329,25 +339,25 @@ export default function ContactCenterModelCreateForm(props) {
     setMenu9(initialValues.menu9);
     setHoliday(initialValues.holiday);
     setCurrentHolidayValue("");
-    setSecondarytodclose(initialValues.secondarytodclose);
-    setCurrentSecondarytodcloseValue("");
+    setHolidayoption(initialValues.holidayoption);
     setSecondarytodopen(initialValues.secondarytodopen);
     setCurrentSecondarytodopenValue("");
-    setDaysopen(initialValues.daysopen);
-    setCurrentDaysopenValue("");
+    setSecondarytodclose(initialValues.secondarytodclose);
+    setCurrentSecondarytodcloseValue("");
+    setSecondaryclose(initialValues.secondaryclose);
     setDaystodopen(initialValues.daystodopen);
     setCurrentDaystodopenValue("");
     setDaystodclose(initialValues.daystodclose);
     setCurrentDaystodcloseValue("");
-    setWelcomeprompt(initialValues.welcomeprompt);
+    setDaysopen(initialValues.daysopen);
+    setCurrentDaysopenValue("");
     setAfterhours(initialValues.afterhours);
     setCcdescription(initialValues.ccdescription);
-    setCcname(initialValues.ccname);
     setDefaultroute(initialValues.defaultroute);
-    setHolidayoption(initialValues.holidayoption);
-    setIsoverride(initialValues.isoverride);
-    setSubmenu2(initialValues.submenu2);
+    setCcname(initialValues.ccname);
+    setWelcomeprompt(initialValues.welcomeprompt);
     setWelcomeprompt_sp(initialValues.welcomeprompt_sp);
+    setSubmenu2(initialValues.submenu2);
     setSubmenu2_sp(initialValues.submenu2_sp);
     setMenu0_sp(initialValues.menu0_sp);
     setMenu1_sp(initialValues.menu1_sp);
@@ -359,34 +369,37 @@ export default function ContactCenterModelCreateForm(props) {
     setMenu7_sp(initialValues.menu7_sp);
     setMenu8_sp(initialValues.menu8_sp);
     setMenu9_sp(initialValues.menu9_sp);
-    setVersion(initialValues.version);
+    setOverride(initialValues.override);
     setManagers(initialValues.Managers);
     setCurrentManagersValue(undefined);
     setCurrentManagersDisplayValue("");
     setAssignedGroup(initialValues.AssignedGroup);
     setCurrentAssignedGroupValue(undefined);
     setCurrentAssignedGroupDisplayValue("");
-    setOverride(initialValues.override);
-    setSecondaryclose(initialValues.secondaryclose);
     setUpdateduser(initialValues.updateduser);
+    setVersion(initialValues.version);
+    setIsoverride(initialValues.isoverride);
+    setIsholiday(initialValues.isholiday);
+    setIsafterhours(initialValues.isafterhours);
+    setIssecondaryclosed(initialValues.issecondaryclosed);
     setErrors({});
   };
   const [currentHolidayValue, setCurrentHolidayValue] = React.useState("");
   const holidayRef = React.createRef();
-  const [currentSecondarytodcloseValue, setCurrentSecondarytodcloseValue] =
-    React.useState("");
-  const secondarytodcloseRef = React.createRef();
   const [currentSecondarytodopenValue, setCurrentSecondarytodopenValue] =
     React.useState("");
   const secondarytodopenRef = React.createRef();
-  const [currentDaysopenValue, setCurrentDaysopenValue] = React.useState("");
-  const daysopenRef = React.createRef();
+  const [currentSecondarytodcloseValue, setCurrentSecondarytodcloseValue] =
+    React.useState("");
+  const secondarytodcloseRef = React.createRef();
   const [currentDaystodopenValue, setCurrentDaystodopenValue] =
     React.useState("");
   const daystodopenRef = React.createRef();
   const [currentDaystodcloseValue, setCurrentDaystodcloseValue] =
     React.useState("");
   const daystodcloseRef = React.createRef();
+  const [currentDaysopenValue, setCurrentDaysopenValue] = React.useState("");
+  const daysopenRef = React.createRef();
   const [currentManagersDisplayValue, setCurrentManagersDisplayValue] =
     React.useState("");
   const [currentManagersValue, setCurrentManagersValue] =
@@ -438,20 +451,20 @@ export default function ContactCenterModelCreateForm(props) {
     menu8: [{ type: "JSON" }],
     menu9: [{ type: "JSON" }],
     holiday: [],
-    secondarytodclose: [],
+    holidayoption: [{ type: "JSON" }],
     secondarytodopen: [],
-    daysopen: [],
+    secondarytodclose: [],
+    secondaryclose: [{ type: "JSON" }],
     daystodopen: [],
     daystodclose: [],
-    welcomeprompt: [],
+    daysopen: [],
     afterhours: [{ type: "JSON" }],
     ccdescription: [],
-    ccname: [],
     defaultroute: [],
-    holidayoption: [{ type: "JSON" }],
-    isoverride: [],
-    submenu2: [{ type: "JSON" }],
+    ccname: [],
+    welcomeprompt: [],
     welcomeprompt_sp: [],
+    submenu2: [{ type: "JSON" }],
     submenu2_sp: [{ type: "JSON" }],
     menu0_sp: [{ type: "JSON" }],
     menu1_sp: [{ type: "JSON" }],
@@ -463,12 +476,15 @@ export default function ContactCenterModelCreateForm(props) {
     menu7_sp: [{ type: "JSON" }],
     menu8_sp: [{ type: "JSON" }],
     menu9_sp: [{ type: "JSON" }],
-    version: [],
+    override: [{ type: "JSON" }],
     Managers: [],
     AssignedGroup: [],
-    override: [{ type: "JSON" }],
-    secondaryclose: [{ type: "JSON" }],
     updateduser: [],
+    version: [],
+    isoverride: [],
+    isholiday: [],
+    isafterhours: [],
+    issecondaryclosed: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -508,20 +524,20 @@ export default function ContactCenterModelCreateForm(props) {
           menu8,
           menu9,
           holiday,
-          secondarytodclose,
+          holidayoption,
           secondarytodopen,
-          daysopen,
+          secondarytodclose,
+          secondaryclose,
           daystodopen,
           daystodclose,
-          welcomeprompt,
+          daysopen,
           afterhours,
           ccdescription,
-          ccname,
           defaultroute,
-          holidayoption,
-          isoverride,
-          submenu2,
+          ccname,
+          welcomeprompt,
           welcomeprompt_sp,
+          submenu2,
           submenu2_sp,
           menu0_sp,
           menu1_sp,
@@ -533,12 +549,15 @@ export default function ContactCenterModelCreateForm(props) {
           menu7_sp,
           menu8_sp,
           menu9_sp,
-          version,
+          override,
           Managers,
           AssignedGroup,
-          override,
-          secondaryclose,
           updateduser,
+          version,
+          isoverride,
+          isholiday,
+          isafterhours,
+          issecondaryclosed,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -579,20 +598,23 @@ export default function ContactCenterModelCreateForm(props) {
           const modelFieldsToSave = {
             mainnumber: modelFields.mainnumber,
             holiday: modelFields.holiday,
-            secondarytodclose: modelFields.secondarytodclose,
             secondarytodopen: modelFields.secondarytodopen,
-            daysopen: modelFields.daysopen,
+            secondarytodclose: modelFields.secondarytodclose,
             daystodopen: modelFields.daystodopen,
             daystodclose: modelFields.daystodclose,
-            welcomeprompt: modelFields.welcomeprompt,
+            daysopen: modelFields.daysopen,
             ccdescription: modelFields.ccdescription,
-            ccname: modelFields.ccname,
             defaultroute: modelFields.defaultroute,
-            isoverride: modelFields.isoverride,
+            ccname: modelFields.ccname,
+            welcomeprompt: modelFields.welcomeprompt,
             welcomeprompt_sp: modelFields.welcomeprompt_sp,
-            version: modelFields.version,
             AssignedGroup: modelFields.AssignedGroup,
             updateduser: modelFields.updateduser,
+            version: modelFields.version,
+            isoverride: modelFields.isoverride,
+            isholiday: modelFields.isholiday,
+            isafterhours: modelFields.isafterhours,
+            issecondaryclosed: modelFields.issecondaryclosed,
             menu0: modelFields.menu0
               ? JSON.parse(modelFields.menu0)
               : modelFields.menu0,
@@ -623,12 +645,15 @@ export default function ContactCenterModelCreateForm(props) {
             menu9: modelFields.menu9
               ? JSON.parse(modelFields.menu9)
               : modelFields.menu9,
-            afterhours: modelFields.afterhours
-              ? JSON.parse(modelFields.afterhours)
-              : modelFields.afterhours,
             holidayoption: modelFields.holidayoption
               ? JSON.parse(modelFields.holidayoption)
               : modelFields.holidayoption,
+            secondaryclose: modelFields.secondaryclose
+              ? JSON.parse(modelFields.secondaryclose)
+              : modelFields.secondaryclose,
+            afterhours: modelFields.afterhours
+              ? JSON.parse(modelFields.afterhours)
+              : modelFields.afterhours,
             submenu2: modelFields.submenu2
               ? JSON.parse(modelFields.submenu2)
               : modelFields.submenu2,
@@ -668,9 +693,6 @@ export default function ContactCenterModelCreateForm(props) {
             override: modelFields.override
               ? JSON.parse(modelFields.override)
               : modelFields.override,
-            secondaryclose: modelFields.secondaryclose
-              ? JSON.parse(modelFields.secondaryclose)
-              : modelFields.secondaryclose,
           };
           const contactCenterModel = await DataStore.save(
             new ContactCenterModel(modelFieldsToSave)
@@ -726,20 +748,20 @@ export default function ContactCenterModelCreateForm(props) {
               menu8,
               menu9,
               holiday,
-              secondarytodclose,
+              holidayoption,
               secondarytodopen,
-              daysopen,
+              secondarytodclose,
+              secondaryclose,
               daystodopen,
               daystodclose,
-              welcomeprompt,
+              daysopen,
               afterhours,
               ccdescription,
-              ccname,
               defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2,
+              ccname,
+              welcomeprompt,
               welcomeprompt_sp,
+              submenu2,
               submenu2_sp,
               menu0_sp,
               menu1_sp,
@@ -751,12 +773,15 @@ export default function ContactCenterModelCreateForm(props) {
               menu7_sp,
               menu8_sp,
               menu9_sp,
-              version,
+              override,
               Managers,
               AssignedGroup,
-              override,
-              secondaryclose,
               updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
             value = result?.mainnumber ?? value;
@@ -791,20 +816,20 @@ export default function ContactCenterModelCreateForm(props) {
               menu8,
               menu9,
               holiday,
-              secondarytodclose,
+              holidayoption,
               secondarytodopen,
-              daysopen,
+              secondarytodclose,
+              secondaryclose,
               daystodopen,
               daystodclose,
-              welcomeprompt,
+              daysopen,
               afterhours,
               ccdescription,
-              ccname,
               defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2,
+              ccname,
+              welcomeprompt,
               welcomeprompt_sp,
+              submenu2,
               submenu2_sp,
               menu0_sp,
               menu1_sp,
@@ -816,12 +841,15 @@ export default function ContactCenterModelCreateForm(props) {
               menu7_sp,
               menu8_sp,
               menu9_sp,
-              version,
+              override,
               Managers,
               AssignedGroup,
-              override,
-              secondaryclose,
               updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
             value = result?.menu0 ?? value;
@@ -856,20 +884,20 @@ export default function ContactCenterModelCreateForm(props) {
               menu8,
               menu9,
               holiday,
-              secondarytodclose,
+              holidayoption,
               secondarytodopen,
-              daysopen,
+              secondarytodclose,
+              secondaryclose,
               daystodopen,
               daystodclose,
-              welcomeprompt,
+              daysopen,
               afterhours,
               ccdescription,
-              ccname,
               defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2,
+              ccname,
+              welcomeprompt,
               welcomeprompt_sp,
+              submenu2,
               submenu2_sp,
               menu0_sp,
               menu1_sp,
@@ -881,12 +909,15 @@ export default function ContactCenterModelCreateForm(props) {
               menu7_sp,
               menu8_sp,
               menu9_sp,
-              version,
+              override,
               Managers,
               AssignedGroup,
-              override,
-              secondaryclose,
               updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
             value = result?.menu1 ?? value;
@@ -921,20 +952,20 @@ export default function ContactCenterModelCreateForm(props) {
               menu8,
               menu9,
               holiday,
-              secondarytodclose,
+              holidayoption,
               secondarytodopen,
-              daysopen,
+              secondarytodclose,
+              secondaryclose,
               daystodopen,
               daystodclose,
-              welcomeprompt,
+              daysopen,
               afterhours,
               ccdescription,
-              ccname,
               defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2,
+              ccname,
+              welcomeprompt,
               welcomeprompt_sp,
+              submenu2,
               submenu2_sp,
               menu0_sp,
               menu1_sp,
@@ -946,12 +977,15 @@ export default function ContactCenterModelCreateForm(props) {
               menu7_sp,
               menu8_sp,
               menu9_sp,
-              version,
+              override,
               Managers,
               AssignedGroup,
-              override,
-              secondaryclose,
               updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
             value = result?.menu2 ?? value;
@@ -986,20 +1020,20 @@ export default function ContactCenterModelCreateForm(props) {
               menu8,
               menu9,
               holiday,
-              secondarytodclose,
+              holidayoption,
               secondarytodopen,
-              daysopen,
+              secondarytodclose,
+              secondaryclose,
               daystodopen,
               daystodclose,
-              welcomeprompt,
+              daysopen,
               afterhours,
               ccdescription,
-              ccname,
               defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2,
+              ccname,
+              welcomeprompt,
               welcomeprompt_sp,
+              submenu2,
               submenu2_sp,
               menu0_sp,
               menu1_sp,
@@ -1011,12 +1045,15 @@ export default function ContactCenterModelCreateForm(props) {
               menu7_sp,
               menu8_sp,
               menu9_sp,
-              version,
+              override,
               Managers,
               AssignedGroup,
-              override,
-              secondaryclose,
               updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
             value = result?.menu3 ?? value;
@@ -1051,20 +1088,20 @@ export default function ContactCenterModelCreateForm(props) {
               menu8,
               menu9,
               holiday,
-              secondarytodclose,
+              holidayoption,
               secondarytodopen,
-              daysopen,
+              secondarytodclose,
+              secondaryclose,
               daystodopen,
               daystodclose,
-              welcomeprompt,
+              daysopen,
               afterhours,
               ccdescription,
-              ccname,
               defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2,
+              ccname,
+              welcomeprompt,
               welcomeprompt_sp,
+              submenu2,
               submenu2_sp,
               menu0_sp,
               menu1_sp,
@@ -1076,12 +1113,15 @@ export default function ContactCenterModelCreateForm(props) {
               menu7_sp,
               menu8_sp,
               menu9_sp,
-              version,
+              override,
               Managers,
               AssignedGroup,
-              override,
-              secondaryclose,
               updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
             value = result?.menu4 ?? value;
@@ -1116,20 +1156,20 @@ export default function ContactCenterModelCreateForm(props) {
               menu8,
               menu9,
               holiday,
-              secondarytodclose,
+              holidayoption,
               secondarytodopen,
-              daysopen,
+              secondarytodclose,
+              secondaryclose,
               daystodopen,
               daystodclose,
-              welcomeprompt,
+              daysopen,
               afterhours,
               ccdescription,
-              ccname,
               defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2,
+              ccname,
+              welcomeprompt,
               welcomeprompt_sp,
+              submenu2,
               submenu2_sp,
               menu0_sp,
               menu1_sp,
@@ -1141,12 +1181,15 @@ export default function ContactCenterModelCreateForm(props) {
               menu7_sp,
               menu8_sp,
               menu9_sp,
-              version,
+              override,
               Managers,
               AssignedGroup,
-              override,
-              secondaryclose,
               updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
             value = result?.menu5 ?? value;
@@ -1181,20 +1224,20 @@ export default function ContactCenterModelCreateForm(props) {
               menu8,
               menu9,
               holiday,
-              secondarytodclose,
+              holidayoption,
               secondarytodopen,
-              daysopen,
+              secondarytodclose,
+              secondaryclose,
               daystodopen,
               daystodclose,
-              welcomeprompt,
+              daysopen,
               afterhours,
               ccdescription,
-              ccname,
               defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2,
+              ccname,
+              welcomeprompt,
               welcomeprompt_sp,
+              submenu2,
               submenu2_sp,
               menu0_sp,
               menu1_sp,
@@ -1206,12 +1249,15 @@ export default function ContactCenterModelCreateForm(props) {
               menu7_sp,
               menu8_sp,
               menu9_sp,
-              version,
+              override,
               Managers,
               AssignedGroup,
-              override,
-              secondaryclose,
               updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
             value = result?.menu6 ?? value;
@@ -1246,20 +1292,20 @@ export default function ContactCenterModelCreateForm(props) {
               menu8,
               menu9,
               holiday,
-              secondarytodclose,
+              holidayoption,
               secondarytodopen,
-              daysopen,
+              secondarytodclose,
+              secondaryclose,
               daystodopen,
               daystodclose,
-              welcomeprompt,
+              daysopen,
               afterhours,
               ccdescription,
-              ccname,
               defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2,
+              ccname,
+              welcomeprompt,
               welcomeprompt_sp,
+              submenu2,
               submenu2_sp,
               menu0_sp,
               menu1_sp,
@@ -1271,12 +1317,15 @@ export default function ContactCenterModelCreateForm(props) {
               menu7_sp,
               menu8_sp,
               menu9_sp,
-              version,
+              override,
               Managers,
               AssignedGroup,
-              override,
-              secondaryclose,
               updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
             value = result?.menu7 ?? value;
@@ -1311,20 +1360,20 @@ export default function ContactCenterModelCreateForm(props) {
               menu8: value,
               menu9,
               holiday,
-              secondarytodclose,
+              holidayoption,
               secondarytodopen,
-              daysopen,
+              secondarytodclose,
+              secondaryclose,
               daystodopen,
               daystodclose,
-              welcomeprompt,
+              daysopen,
               afterhours,
               ccdescription,
-              ccname,
               defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2,
+              ccname,
+              welcomeprompt,
               welcomeprompt_sp,
+              submenu2,
               submenu2_sp,
               menu0_sp,
               menu1_sp,
@@ -1336,12 +1385,15 @@ export default function ContactCenterModelCreateForm(props) {
               menu7_sp,
               menu8_sp,
               menu9_sp,
-              version,
+              override,
               Managers,
               AssignedGroup,
-              override,
-              secondaryclose,
               updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
             value = result?.menu8 ?? value;
@@ -1376,20 +1428,20 @@ export default function ContactCenterModelCreateForm(props) {
               menu8,
               menu9: value,
               holiday,
-              secondarytodclose,
+              holidayoption,
               secondarytodopen,
-              daysopen,
+              secondarytodclose,
+              secondaryclose,
               daystodopen,
               daystodclose,
-              welcomeprompt,
+              daysopen,
               afterhours,
               ccdescription,
-              ccname,
               defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2,
+              ccname,
+              welcomeprompt,
               welcomeprompt_sp,
+              submenu2,
               submenu2_sp,
               menu0_sp,
               menu1_sp,
@@ -1401,12 +1453,15 @@ export default function ContactCenterModelCreateForm(props) {
               menu7_sp,
               menu8_sp,
               menu9_sp,
-              version,
+              override,
               Managers,
               AssignedGroup,
-              override,
-              secondaryclose,
               updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
             value = result?.menu9 ?? value;
@@ -1438,20 +1493,20 @@ export default function ContactCenterModelCreateForm(props) {
               menu8,
               menu9,
               holiday: values,
-              secondarytodclose,
+              holidayoption,
               secondarytodopen,
-              daysopen,
+              secondarytodclose,
+              secondaryclose,
               daystodopen,
               daystodclose,
-              welcomeprompt,
+              daysopen,
               afterhours,
               ccdescription,
-              ccname,
               defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2,
+              ccname,
+              welcomeprompt,
               welcomeprompt_sp,
+              submenu2,
               submenu2_sp,
               menu0_sp,
               menu1_sp,
@@ -1463,12 +1518,15 @@ export default function ContactCenterModelCreateForm(props) {
               menu7_sp,
               menu8_sp,
               menu9_sp,
-              version,
+              override,
               Managers,
               AssignedGroup,
-              override,
-              secondaryclose,
               updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
             values = result?.holiday ?? values;
@@ -1508,9 +1566,12 @@ export default function ContactCenterModelCreateForm(props) {
           {...getOverrideProps(overrides, "holiday")}
         ></TextField>
       </ArrayField>
-      <ArrayField
-        onChange={async (items) => {
-          let values = items;
+      <TextAreaField
+        label="Holidayoption"
+        isRequired={false}
+        isReadOnly={false}
+        onChange={(e) => {
+          let { value } = e.target;
           if (onChange) {
             const modelFields = {
               mainnumber,
@@ -1525,20 +1586,20 @@ export default function ContactCenterModelCreateForm(props) {
               menu8,
               menu9,
               holiday,
-              secondarytodclose: values,
+              holidayoption: value,
               secondarytodopen,
-              daysopen,
+              secondarytodclose,
+              secondaryclose,
               daystodopen,
               daystodclose,
-              welcomeprompt,
+              daysopen,
               afterhours,
               ccdescription,
-              ccname,
               defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2,
+              ccname,
+              welcomeprompt,
               welcomeprompt_sp,
+              submenu2,
               submenu2_sp,
               menu0_sp,
               menu1_sp,
@@ -1550,59 +1611,29 @@ export default function ContactCenterModelCreateForm(props) {
               menu7_sp,
               menu8_sp,
               menu9_sp,
-              version,
+              override,
               Managers,
               AssignedGroup,
-              override,
-              secondaryclose,
               updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
-            values = result?.secondarytodclose ?? values;
+            value = result?.holidayoption ?? value;
           }
-          setSecondarytodclose(values);
-          setCurrentSecondarytodcloseValue("");
+          if (errors.holidayoption?.hasError) {
+            runValidationTasks("holidayoption", value);
+          }
+          setHolidayoption(value);
         }}
-        currentFieldValue={currentSecondarytodcloseValue}
-        label={"Secondarytodclose"}
-        items={secondarytodclose}
-        hasError={errors?.secondarytodclose?.hasError}
-        runValidationTasks={async () =>
-          await runValidationTasks(
-            "secondarytodclose",
-            currentSecondarytodcloseValue
-          )
-        }
-        errorMessage={errors?.secondarytodclose?.errorMessage}
-        setFieldValue={setCurrentSecondarytodcloseValue}
-        inputFieldRef={secondarytodcloseRef}
-        defaultFieldValue={""}
-      >
-        <TextField
-          label="Secondarytodclose"
-          isRequired={false}
-          isReadOnly={false}
-          value={currentSecondarytodcloseValue}
-          onChange={(e) => {
-            let { value } = e.target;
-            if (errors.secondarytodclose?.hasError) {
-              runValidationTasks("secondarytodclose", value);
-            }
-            setCurrentSecondarytodcloseValue(value);
-          }}
-          onBlur={() =>
-            runValidationTasks(
-              "secondarytodclose",
-              currentSecondarytodcloseValue
-            )
-          }
-          errorMessage={errors.secondarytodclose?.errorMessage}
-          hasError={errors.secondarytodclose?.hasError}
-          ref={secondarytodcloseRef}
-          labelHidden={true}
-          {...getOverrideProps(overrides, "secondarytodclose")}
-        ></TextField>
-      </ArrayField>
+        onBlur={() => runValidationTasks("holidayoption", holidayoption)}
+        errorMessage={errors.holidayoption?.errorMessage}
+        hasError={errors.holidayoption?.hasError}
+        {...getOverrideProps(overrides, "holidayoption")}
+      ></TextAreaField>
       <ArrayField
         onChange={async (items) => {
           let values = items;
@@ -1620,20 +1651,20 @@ export default function ContactCenterModelCreateForm(props) {
               menu8,
               menu9,
               holiday,
-              secondarytodclose,
+              holidayoption,
               secondarytodopen: values,
-              daysopen,
+              secondarytodclose,
+              secondaryclose,
               daystodopen,
               daystodclose,
-              welcomeprompt,
+              daysopen,
               afterhours,
               ccdescription,
-              ccname,
               defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2,
+              ccname,
+              welcomeprompt,
               welcomeprompt_sp,
+              submenu2,
               submenu2_sp,
               menu0_sp,
               menu1_sp,
@@ -1645,12 +1676,15 @@ export default function ContactCenterModelCreateForm(props) {
               menu7_sp,
               menu8_sp,
               menu9_sp,
-              version,
+              override,
               Managers,
               AssignedGroup,
-              override,
-              secondaryclose,
               updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
             values = result?.secondarytodopen ?? values;
@@ -1712,20 +1746,20 @@ export default function ContactCenterModelCreateForm(props) {
               menu8,
               menu9,
               holiday,
-              secondarytodclose,
+              holidayoption,
               secondarytodopen,
-              daysopen: values,
+              secondarytodclose: values,
+              secondaryclose,
               daystodopen,
               daystodclose,
-              welcomeprompt,
+              daysopen,
               afterhours,
               ccdescription,
-              ccname,
               defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2,
+              ccname,
+              welcomeprompt,
               welcomeprompt_sp,
+              submenu2,
               submenu2_sp,
               menu0_sp,
               menu1_sp,
@@ -1737,51 +1771,130 @@ export default function ContactCenterModelCreateForm(props) {
               menu7_sp,
               menu8_sp,
               menu9_sp,
-              version,
+              override,
               Managers,
               AssignedGroup,
-              override,
-              secondaryclose,
               updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
-            values = result?.daysopen ?? values;
+            values = result?.secondarytodclose ?? values;
           }
-          setDaysopen(values);
-          setCurrentDaysopenValue("");
+          setSecondarytodclose(values);
+          setCurrentSecondarytodcloseValue("");
         }}
-        currentFieldValue={currentDaysopenValue}
-        label={"Daysopen"}
-        items={daysopen}
-        hasError={errors?.daysopen?.hasError}
+        currentFieldValue={currentSecondarytodcloseValue}
+        label={"Secondarytodclose"}
+        items={secondarytodclose}
+        hasError={errors?.secondarytodclose?.hasError}
         runValidationTasks={async () =>
-          await runValidationTasks("daysopen", currentDaysopenValue)
+          await runValidationTasks(
+            "secondarytodclose",
+            currentSecondarytodcloseValue
+          )
         }
-        errorMessage={errors?.daysopen?.errorMessage}
-        setFieldValue={setCurrentDaysopenValue}
-        inputFieldRef={daysopenRef}
+        errorMessage={errors?.secondarytodclose?.errorMessage}
+        setFieldValue={setCurrentSecondarytodcloseValue}
+        inputFieldRef={secondarytodcloseRef}
         defaultFieldValue={""}
       >
         <TextField
-          label="Daysopen"
+          label="Secondarytodclose"
           isRequired={false}
           isReadOnly={false}
-          value={currentDaysopenValue}
+          value={currentSecondarytodcloseValue}
           onChange={(e) => {
             let { value } = e.target;
-            if (errors.daysopen?.hasError) {
-              runValidationTasks("daysopen", value);
+            if (errors.secondarytodclose?.hasError) {
+              runValidationTasks("secondarytodclose", value);
             }
-            setCurrentDaysopenValue(value);
+            setCurrentSecondarytodcloseValue(value);
           }}
-          onBlur={() => runValidationTasks("daysopen", currentDaysopenValue)}
-          errorMessage={errors.daysopen?.errorMessage}
-          hasError={errors.daysopen?.hasError}
-          ref={daysopenRef}
+          onBlur={() =>
+            runValidationTasks(
+              "secondarytodclose",
+              currentSecondarytodcloseValue
+            )
+          }
+          errorMessage={errors.secondarytodclose?.errorMessage}
+          hasError={errors.secondarytodclose?.hasError}
+          ref={secondarytodcloseRef}
           labelHidden={true}
-          {...getOverrideProps(overrides, "daysopen")}
+          {...getOverrideProps(overrides, "secondarytodclose")}
         ></TextField>
       </ArrayField>
+      <TextAreaField
+        label="Secondaryclose"
+        isRequired={false}
+        isReadOnly={false}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
+              holiday,
+              holidayoption,
+              secondarytodopen,
+              secondarytodclose,
+              secondaryclose: value,
+              daystodopen,
+              daystodclose,
+              daysopen,
+              afterhours,
+              ccdescription,
+              defaultroute,
+              ccname,
+              welcomeprompt,
+              welcomeprompt_sp,
+              submenu2,
+              submenu2_sp,
+              menu0_sp,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
+              override,
+              Managers,
+              AssignedGroup,
+              updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
+            };
+            const result = onChange(modelFields);
+            value = result?.secondaryclose ?? value;
+          }
+          if (errors.secondaryclose?.hasError) {
+            runValidationTasks("secondaryclose", value);
+          }
+          setSecondaryclose(value);
+        }}
+        onBlur={() => runValidationTasks("secondaryclose", secondaryclose)}
+        errorMessage={errors.secondaryclose?.errorMessage}
+        hasError={errors.secondaryclose?.hasError}
+        {...getOverrideProps(overrides, "secondaryclose")}
+      ></TextAreaField>
       <ArrayField
         onChange={async (items) => {
           let values = items;
@@ -1799,20 +1912,20 @@ export default function ContactCenterModelCreateForm(props) {
               menu8,
               menu9,
               holiday,
-              secondarytodclose,
+              holidayoption,
               secondarytodopen,
-              daysopen,
+              secondarytodclose,
+              secondaryclose,
               daystodopen: values,
               daystodclose,
-              welcomeprompt,
+              daysopen,
               afterhours,
               ccdescription,
-              ccname,
               defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2,
+              ccname,
+              welcomeprompt,
               welcomeprompt_sp,
+              submenu2,
               submenu2_sp,
               menu0_sp,
               menu1_sp,
@@ -1824,12 +1937,15 @@ export default function ContactCenterModelCreateForm(props) {
               menu7_sp,
               menu8_sp,
               menu9_sp,
-              version,
+              override,
               Managers,
               AssignedGroup,
-              override,
-              secondaryclose,
               updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
             values = result?.daystodopen ?? values;
@@ -1888,20 +2004,20 @@ export default function ContactCenterModelCreateForm(props) {
               menu8,
               menu9,
               holiday,
-              secondarytodclose,
+              holidayoption,
               secondarytodopen,
-              daysopen,
+              secondarytodclose,
+              secondaryclose,
               daystodopen,
               daystodclose: values,
-              welcomeprompt,
+              daysopen,
               afterhours,
               ccdescription,
-              ccname,
               defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2,
+              ccname,
+              welcomeprompt,
               welcomeprompt_sp,
+              submenu2,
               submenu2_sp,
               menu0_sp,
               menu1_sp,
@@ -1913,12 +2029,15 @@ export default function ContactCenterModelCreateForm(props) {
               menu7_sp,
               menu8_sp,
               menu9_sp,
-              version,
+              override,
               Managers,
               AssignedGroup,
-              override,
-              secondaryclose,
               updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
             values = result?.daystodclose ?? values;
@@ -1960,13 +2079,9 @@ export default function ContactCenterModelCreateForm(props) {
           {...getOverrideProps(overrides, "daystodclose")}
         ></TextField>
       </ArrayField>
-      <TextField
-        label="Welcomeprompt"
-        isRequired={false}
-        isReadOnly={false}
-        value={welcomeprompt}
-        onChange={(e) => {
-          let { value } = e.target;
+      <ArrayField
+        onChange={async (items) => {
+          let values = items;
           if (onChange) {
             const modelFields = {
               mainnumber,
@@ -1981,20 +2096,20 @@ export default function ContactCenterModelCreateForm(props) {
               menu8,
               menu9,
               holiday,
-              secondarytodclose,
+              holidayoption,
               secondarytodopen,
-              daysopen,
+              secondarytodclose,
+              secondaryclose,
               daystodopen,
               daystodclose,
-              welcomeprompt: value,
+              daysopen: values,
               afterhours,
               ccdescription,
-              ccname,
               defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2,
+              ccname,
+              welcomeprompt,
               welcomeprompt_sp,
+              submenu2,
               submenu2_sp,
               menu0_sp,
               menu1_sp,
@@ -2006,26 +2121,54 @@ export default function ContactCenterModelCreateForm(props) {
               menu7_sp,
               menu8_sp,
               menu9_sp,
-              version,
+              override,
               Managers,
               AssignedGroup,
-              override,
-              secondaryclose,
               updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
-            value = result?.welcomeprompt ?? value;
+            values = result?.daysopen ?? values;
           }
-          if (errors.welcomeprompt?.hasError) {
-            runValidationTasks("welcomeprompt", value);
-          }
-          setWelcomeprompt(value);
+          setDaysopen(values);
+          setCurrentDaysopenValue("");
         }}
-        onBlur={() => runValidationTasks("welcomeprompt", welcomeprompt)}
-        errorMessage={errors.welcomeprompt?.errorMessage}
-        hasError={errors.welcomeprompt?.hasError}
-        {...getOverrideProps(overrides, "welcomeprompt")}
-      ></TextField>
+        currentFieldValue={currentDaysopenValue}
+        label={"Daysopen"}
+        items={daysopen}
+        hasError={errors?.daysopen?.hasError}
+        runValidationTasks={async () =>
+          await runValidationTasks("daysopen", currentDaysopenValue)
+        }
+        errorMessage={errors?.daysopen?.errorMessage}
+        setFieldValue={setCurrentDaysopenValue}
+        inputFieldRef={daysopenRef}
+        defaultFieldValue={""}
+      >
+        <TextField
+          label="Daysopen"
+          isRequired={false}
+          isReadOnly={false}
+          value={currentDaysopenValue}
+          onChange={(e) => {
+            let { value } = e.target;
+            if (errors.daysopen?.hasError) {
+              runValidationTasks("daysopen", value);
+            }
+            setCurrentDaysopenValue(value);
+          }}
+          onBlur={() => runValidationTasks("daysopen", currentDaysopenValue)}
+          errorMessage={errors.daysopen?.errorMessage}
+          hasError={errors.daysopen?.hasError}
+          ref={daysopenRef}
+          labelHidden={true}
+          {...getOverrideProps(overrides, "daysopen")}
+        ></TextField>
+      </ArrayField>
       <TextAreaField
         label="Afterhours"
         isRequired={false}
@@ -2046,20 +2189,20 @@ export default function ContactCenterModelCreateForm(props) {
               menu8,
               menu9,
               holiday,
-              secondarytodclose,
+              holidayoption,
               secondarytodopen,
-              daysopen,
+              secondarytodclose,
+              secondaryclose,
               daystodopen,
               daystodclose,
-              welcomeprompt,
+              daysopen,
               afterhours: value,
               ccdescription,
-              ccname,
               defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2,
+              ccname,
+              welcomeprompt,
               welcomeprompt_sp,
+              submenu2,
               submenu2_sp,
               menu0_sp,
               menu1_sp,
@@ -2071,12 +2214,15 @@ export default function ContactCenterModelCreateForm(props) {
               menu7_sp,
               menu8_sp,
               menu9_sp,
-              version,
+              override,
               Managers,
               AssignedGroup,
-              override,
-              secondaryclose,
               updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
             value = result?.afterhours ?? value;
@@ -2112,20 +2258,20 @@ export default function ContactCenterModelCreateForm(props) {
               menu8,
               menu9,
               holiday,
-              secondarytodclose,
+              holidayoption,
               secondarytodopen,
-              daysopen,
+              secondarytodclose,
+              secondaryclose,
               daystodopen,
               daystodclose,
-              welcomeprompt,
+              daysopen,
               afterhours,
               ccdescription: value,
-              ccname,
               defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2,
+              ccname,
+              welcomeprompt,
               welcomeprompt_sp,
+              submenu2,
               submenu2_sp,
               menu0_sp,
               menu1_sp,
@@ -2137,12 +2283,15 @@ export default function ContactCenterModelCreateForm(props) {
               menu7_sp,
               menu8_sp,
               menu9_sp,
-              version,
+              override,
               Managers,
               AssignedGroup,
-              override,
-              secondaryclose,
               updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
             value = result?.ccdescription ?? value;
@@ -2156,72 +2305,6 @@ export default function ContactCenterModelCreateForm(props) {
         errorMessage={errors.ccdescription?.errorMessage}
         hasError={errors.ccdescription?.hasError}
         {...getOverrideProps(overrides, "ccdescription")}
-      ></TextField>
-      <TextField
-        label="Ccname"
-        isRequired={false}
-        isReadOnly={false}
-        value={ccname}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              mainnumber,
-              menu0,
-              menu1,
-              menu2,
-              menu3,
-              menu4,
-              menu5,
-              menu6,
-              menu7,
-              menu8,
-              menu9,
-              holiday,
-              secondarytodclose,
-              secondarytodopen,
-              daysopen,
-              daystodopen,
-              daystodclose,
-              welcomeprompt,
-              afterhours,
-              ccdescription,
-              ccname: value,
-              defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2,
-              welcomeprompt_sp,
-              submenu2_sp,
-              menu0_sp,
-              menu1_sp,
-              menu2_sp,
-              menu3_sp,
-              menu4_sp,
-              menu5_sp,
-              menu6_sp,
-              menu7_sp,
-              menu8_sp,
-              menu9_sp,
-              version,
-              Managers,
-              AssignedGroup,
-              override,
-              secondaryclose,
-              updateduser,
-            };
-            const result = onChange(modelFields);
-            value = result?.ccname ?? value;
-          }
-          if (errors.ccname?.hasError) {
-            runValidationTasks("ccname", value);
-          }
-          setCcname(value);
-        }}
-        onBlur={() => runValidationTasks("ccname", ccname)}
-        errorMessage={errors.ccname?.errorMessage}
-        hasError={errors.ccname?.hasError}
-        {...getOverrideProps(overrides, "ccname")}
       ></TextField>
       <TextField
         label="Defaultroute"
@@ -2244,20 +2327,20 @@ export default function ContactCenterModelCreateForm(props) {
               menu8,
               menu9,
               holiday,
-              secondarytodclose,
+              holidayoption,
               secondarytodopen,
-              daysopen,
+              secondarytodclose,
+              secondaryclose,
               daystodopen,
               daystodclose,
-              welcomeprompt,
+              daysopen,
               afterhours,
               ccdescription,
-              ccname,
               defaultroute: value,
-              holidayoption,
-              isoverride,
-              submenu2,
+              ccname,
+              welcomeprompt,
               welcomeprompt_sp,
+              submenu2,
               submenu2_sp,
               menu0_sp,
               menu1_sp,
@@ -2269,12 +2352,15 @@ export default function ContactCenterModelCreateForm(props) {
               menu7_sp,
               menu8_sp,
               menu9_sp,
-              version,
+              override,
               Managers,
               AssignedGroup,
-              override,
-              secondaryclose,
               updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
             value = result?.defaultroute ?? value;
@@ -2289,10 +2375,11 @@ export default function ContactCenterModelCreateForm(props) {
         hasError={errors.defaultroute?.hasError}
         {...getOverrideProps(overrides, "defaultroute")}
       ></TextField>
-      <TextAreaField
-        label="Holidayoption"
+      <TextField
+        label="Ccname"
         isRequired={false}
         isReadOnly={false}
+        value={ccname}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -2309,86 +2396,20 @@ export default function ContactCenterModelCreateForm(props) {
               menu8,
               menu9,
               holiday,
-              secondarytodclose,
-              secondarytodopen,
-              daysopen,
-              daystodopen,
-              daystodclose,
-              welcomeprompt,
-              afterhours,
-              ccdescription,
-              ccname,
-              defaultroute,
-              holidayoption: value,
-              isoverride,
-              submenu2,
-              welcomeprompt_sp,
-              submenu2_sp,
-              menu0_sp,
-              menu1_sp,
-              menu2_sp,
-              menu3_sp,
-              menu4_sp,
-              menu5_sp,
-              menu6_sp,
-              menu7_sp,
-              menu8_sp,
-              menu9_sp,
-              version,
-              Managers,
-              AssignedGroup,
-              override,
-              secondaryclose,
-              updateduser,
-            };
-            const result = onChange(modelFields);
-            value = result?.holidayoption ?? value;
-          }
-          if (errors.holidayoption?.hasError) {
-            runValidationTasks("holidayoption", value);
-          }
-          setHolidayoption(value);
-        }}
-        onBlur={() => runValidationTasks("holidayoption", holidayoption)}
-        errorMessage={errors.holidayoption?.errorMessage}
-        hasError={errors.holidayoption?.hasError}
-        {...getOverrideProps(overrides, "holidayoption")}
-      ></TextAreaField>
-      <SwitchField
-        label="Isoverride"
-        defaultChecked={false}
-        isDisabled={false}
-        isChecked={isoverride}
-        onChange={(e) => {
-          let value = e.target.checked;
-          if (onChange) {
-            const modelFields = {
-              mainnumber,
-              menu0,
-              menu1,
-              menu2,
-              menu3,
-              menu4,
-              menu5,
-              menu6,
-              menu7,
-              menu8,
-              menu9,
-              holiday,
-              secondarytodclose,
-              secondarytodopen,
-              daysopen,
-              daystodopen,
-              daystodclose,
-              welcomeprompt,
-              afterhours,
-              ccdescription,
-              ccname,
-              defaultroute,
               holidayoption,
-              isoverride: value,
-              submenu2,
+              secondarytodopen,
+              secondarytodclose,
+              secondaryclose,
+              daystodopen,
+              daystodclose,
+              daysopen,
+              afterhours,
+              ccdescription,
+              defaultroute,
+              ccname: value,
+              welcomeprompt,
               welcomeprompt_sp,
+              submenu2,
               submenu2_sp,
               menu0_sp,
               menu1_sp,
@@ -2400,30 +2421,34 @@ export default function ContactCenterModelCreateForm(props) {
               menu7_sp,
               menu8_sp,
               menu9_sp,
-              version,
+              override,
               Managers,
               AssignedGroup,
-              override,
-              secondaryclose,
               updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
-            value = result?.isoverride ?? value;
+            value = result?.ccname ?? value;
           }
-          if (errors.isoverride?.hasError) {
-            runValidationTasks("isoverride", value);
+          if (errors.ccname?.hasError) {
+            runValidationTasks("ccname", value);
           }
-          setIsoverride(value);
+          setCcname(value);
         }}
-        onBlur={() => runValidationTasks("isoverride", isoverride)}
-        errorMessage={errors.isoverride?.errorMessage}
-        hasError={errors.isoverride?.hasError}
-        {...getOverrideProps(overrides, "isoverride")}
-      ></SwitchField>
-      <TextAreaField
-        label="Submenu2"
+        onBlur={() => runValidationTasks("ccname", ccname)}
+        errorMessage={errors.ccname?.errorMessage}
+        hasError={errors.ccname?.hasError}
+        {...getOverrideProps(overrides, "ccname")}
+      ></TextField>
+      <TextField
+        label="Welcomeprompt"
         isRequired={false}
         isReadOnly={false}
+        value={welcomeprompt}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -2440,20 +2465,20 @@ export default function ContactCenterModelCreateForm(props) {
               menu8,
               menu9,
               holiday,
-              secondarytodclose,
+              holidayoption,
               secondarytodopen,
-              daysopen,
+              secondarytodclose,
+              secondaryclose,
               daystodopen,
               daystodclose,
-              welcomeprompt,
+              daysopen,
               afterhours,
               ccdescription,
-              ccname,
               defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2: value,
+              ccname,
+              welcomeprompt: value,
               welcomeprompt_sp,
+              submenu2,
               submenu2_sp,
               menu0_sp,
               menu1_sp,
@@ -2465,26 +2490,29 @@ export default function ContactCenterModelCreateForm(props) {
               menu7_sp,
               menu8_sp,
               menu9_sp,
-              version,
+              override,
               Managers,
               AssignedGroup,
-              override,
-              secondaryclose,
               updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
-            value = result?.submenu2 ?? value;
+            value = result?.welcomeprompt ?? value;
           }
-          if (errors.submenu2?.hasError) {
-            runValidationTasks("submenu2", value);
+          if (errors.welcomeprompt?.hasError) {
+            runValidationTasks("welcomeprompt", value);
           }
-          setSubmenu2(value);
+          setWelcomeprompt(value);
         }}
-        onBlur={() => runValidationTasks("submenu2", submenu2)}
-        errorMessage={errors.submenu2?.errorMessage}
-        hasError={errors.submenu2?.hasError}
-        {...getOverrideProps(overrides, "submenu2")}
-      ></TextAreaField>
+        onBlur={() => runValidationTasks("welcomeprompt", welcomeprompt)}
+        errorMessage={errors.welcomeprompt?.errorMessage}
+        hasError={errors.welcomeprompt?.hasError}
+        {...getOverrideProps(overrides, "welcomeprompt")}
+      ></TextField>
       <TextField
         label="Welcomeprompt sp"
         isRequired={false}
@@ -2506,20 +2534,20 @@ export default function ContactCenterModelCreateForm(props) {
               menu8,
               menu9,
               holiday,
-              secondarytodclose,
+              holidayoption,
               secondarytodopen,
-              daysopen,
+              secondarytodclose,
+              secondaryclose,
               daystodopen,
               daystodclose,
-              welcomeprompt,
+              daysopen,
               afterhours,
               ccdescription,
-              ccname,
               defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2,
+              ccname,
+              welcomeprompt,
               welcomeprompt_sp: value,
+              submenu2,
               submenu2_sp,
               menu0_sp,
               menu1_sp,
@@ -2531,12 +2559,15 @@ export default function ContactCenterModelCreateForm(props) {
               menu7_sp,
               menu8_sp,
               menu9_sp,
-              version,
+              override,
               Managers,
               AssignedGroup,
-              override,
-              secondaryclose,
               updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
             value = result?.welcomeprompt_sp ?? value;
@@ -2551,6 +2582,74 @@ export default function ContactCenterModelCreateForm(props) {
         hasError={errors.welcomeprompt_sp?.hasError}
         {...getOverrideProps(overrides, "welcomeprompt_sp")}
       ></TextField>
+      <TextAreaField
+        label="Submenu2"
+        isRequired={false}
+        isReadOnly={false}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
+              holiday,
+              holidayoption,
+              secondarytodopen,
+              secondarytodclose,
+              secondaryclose,
+              daystodopen,
+              daystodclose,
+              daysopen,
+              afterhours,
+              ccdescription,
+              defaultroute,
+              ccname,
+              welcomeprompt,
+              welcomeprompt_sp,
+              submenu2: value,
+              submenu2_sp,
+              menu0_sp,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
+              override,
+              Managers,
+              AssignedGroup,
+              updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
+            };
+            const result = onChange(modelFields);
+            value = result?.submenu2 ?? value;
+          }
+          if (errors.submenu2?.hasError) {
+            runValidationTasks("submenu2", value);
+          }
+          setSubmenu2(value);
+        }}
+        onBlur={() => runValidationTasks("submenu2", submenu2)}
+        errorMessage={errors.submenu2?.errorMessage}
+        hasError={errors.submenu2?.hasError}
+        {...getOverrideProps(overrides, "submenu2")}
+      ></TextAreaField>
       <TextAreaField
         label="Submenu2 sp"
         isRequired={false}
@@ -2571,20 +2670,20 @@ export default function ContactCenterModelCreateForm(props) {
               menu8,
               menu9,
               holiday,
-              secondarytodclose,
+              holidayoption,
               secondarytodopen,
-              daysopen,
+              secondarytodclose,
+              secondaryclose,
               daystodopen,
               daystodclose,
-              welcomeprompt,
+              daysopen,
               afterhours,
               ccdescription,
-              ccname,
               defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2,
+              ccname,
+              welcomeprompt,
               welcomeprompt_sp,
+              submenu2,
               submenu2_sp: value,
               menu0_sp,
               menu1_sp,
@@ -2596,12 +2695,15 @@ export default function ContactCenterModelCreateForm(props) {
               menu7_sp,
               menu8_sp,
               menu9_sp,
-              version,
+              override,
               Managers,
               AssignedGroup,
-              override,
-              secondaryclose,
               updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
             value = result?.submenu2_sp ?? value;
@@ -2636,20 +2738,20 @@ export default function ContactCenterModelCreateForm(props) {
               menu8,
               menu9,
               holiday,
-              secondarytodclose,
+              holidayoption,
               secondarytodopen,
-              daysopen,
+              secondarytodclose,
+              secondaryclose,
               daystodopen,
               daystodclose,
-              welcomeprompt,
+              daysopen,
               afterhours,
               ccdescription,
-              ccname,
               defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2,
+              ccname,
+              welcomeprompt,
               welcomeprompt_sp,
+              submenu2,
               submenu2_sp,
               menu0_sp: value,
               menu1_sp,
@@ -2661,12 +2763,15 @@ export default function ContactCenterModelCreateForm(props) {
               menu7_sp,
               menu8_sp,
               menu9_sp,
-              version,
+              override,
               Managers,
               AssignedGroup,
-              override,
-              secondaryclose,
               updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
             value = result?.menu0_sp ?? value;
@@ -2701,20 +2806,20 @@ export default function ContactCenterModelCreateForm(props) {
               menu8,
               menu9,
               holiday,
-              secondarytodclose,
+              holidayoption,
               secondarytodopen,
-              daysopen,
+              secondarytodclose,
+              secondaryclose,
               daystodopen,
               daystodclose,
-              welcomeprompt,
+              daysopen,
               afterhours,
               ccdescription,
-              ccname,
               defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2,
+              ccname,
+              welcomeprompt,
               welcomeprompt_sp,
+              submenu2,
               submenu2_sp,
               menu0_sp,
               menu1_sp: value,
@@ -2726,12 +2831,15 @@ export default function ContactCenterModelCreateForm(props) {
               menu7_sp,
               menu8_sp,
               menu9_sp,
-              version,
+              override,
               Managers,
               AssignedGroup,
-              override,
-              secondaryclose,
               updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
             value = result?.menu1_sp ?? value;
@@ -2766,20 +2874,20 @@ export default function ContactCenterModelCreateForm(props) {
               menu8,
               menu9,
               holiday,
-              secondarytodclose,
+              holidayoption,
               secondarytodopen,
-              daysopen,
+              secondarytodclose,
+              secondaryclose,
               daystodopen,
               daystodclose,
-              welcomeprompt,
+              daysopen,
               afterhours,
               ccdescription,
-              ccname,
               defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2,
+              ccname,
+              welcomeprompt,
               welcomeprompt_sp,
+              submenu2,
               submenu2_sp,
               menu0_sp,
               menu1_sp,
@@ -2791,12 +2899,15 @@ export default function ContactCenterModelCreateForm(props) {
               menu7_sp,
               menu8_sp,
               menu9_sp,
-              version,
+              override,
               Managers,
               AssignedGroup,
-              override,
-              secondaryclose,
               updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
             value = result?.menu2_sp ?? value;
@@ -2831,20 +2942,20 @@ export default function ContactCenterModelCreateForm(props) {
               menu8,
               menu9,
               holiday,
-              secondarytodclose,
+              holidayoption,
               secondarytodopen,
-              daysopen,
+              secondarytodclose,
+              secondaryclose,
               daystodopen,
               daystodclose,
-              welcomeprompt,
+              daysopen,
               afterhours,
               ccdescription,
-              ccname,
               defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2,
+              ccname,
+              welcomeprompt,
               welcomeprompt_sp,
+              submenu2,
               submenu2_sp,
               menu0_sp,
               menu1_sp,
@@ -2856,12 +2967,15 @@ export default function ContactCenterModelCreateForm(props) {
               menu7_sp,
               menu8_sp,
               menu9_sp,
-              version,
+              override,
               Managers,
               AssignedGroup,
-              override,
-              secondaryclose,
               updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
             value = result?.menu3_sp ?? value;
@@ -2896,20 +3010,20 @@ export default function ContactCenterModelCreateForm(props) {
               menu8,
               menu9,
               holiday,
-              secondarytodclose,
+              holidayoption,
               secondarytodopen,
-              daysopen,
+              secondarytodclose,
+              secondaryclose,
               daystodopen,
               daystodclose,
-              welcomeprompt,
+              daysopen,
               afterhours,
               ccdescription,
-              ccname,
               defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2,
+              ccname,
+              welcomeprompt,
               welcomeprompt_sp,
+              submenu2,
               submenu2_sp,
               menu0_sp,
               menu1_sp,
@@ -2921,12 +3035,15 @@ export default function ContactCenterModelCreateForm(props) {
               menu7_sp,
               menu8_sp,
               menu9_sp,
-              version,
+              override,
               Managers,
               AssignedGroup,
-              override,
-              secondaryclose,
               updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
             value = result?.menu4_sp ?? value;
@@ -2961,20 +3078,20 @@ export default function ContactCenterModelCreateForm(props) {
               menu8,
               menu9,
               holiday,
-              secondarytodclose,
+              holidayoption,
               secondarytodopen,
-              daysopen,
+              secondarytodclose,
+              secondaryclose,
               daystodopen,
               daystodclose,
-              welcomeprompt,
+              daysopen,
               afterhours,
               ccdescription,
-              ccname,
               defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2,
+              ccname,
+              welcomeprompt,
               welcomeprompt_sp,
+              submenu2,
               submenu2_sp,
               menu0_sp,
               menu1_sp,
@@ -2986,12 +3103,15 @@ export default function ContactCenterModelCreateForm(props) {
               menu7_sp,
               menu8_sp,
               menu9_sp,
-              version,
+              override,
               Managers,
               AssignedGroup,
-              override,
-              secondaryclose,
               updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
             value = result?.menu5_sp ?? value;
@@ -3026,20 +3146,20 @@ export default function ContactCenterModelCreateForm(props) {
               menu8,
               menu9,
               holiday,
-              secondarytodclose,
+              holidayoption,
               secondarytodopen,
-              daysopen,
+              secondarytodclose,
+              secondaryclose,
               daystodopen,
               daystodclose,
-              welcomeprompt,
+              daysopen,
               afterhours,
               ccdescription,
-              ccname,
               defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2,
+              ccname,
+              welcomeprompt,
               welcomeprompt_sp,
+              submenu2,
               submenu2_sp,
               menu0_sp,
               menu1_sp,
@@ -3051,12 +3171,15 @@ export default function ContactCenterModelCreateForm(props) {
               menu7_sp,
               menu8_sp,
               menu9_sp,
-              version,
+              override,
               Managers,
               AssignedGroup,
-              override,
-              secondaryclose,
               updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
             value = result?.menu6_sp ?? value;
@@ -3091,20 +3214,20 @@ export default function ContactCenterModelCreateForm(props) {
               menu8,
               menu9,
               holiday,
-              secondarytodclose,
+              holidayoption,
               secondarytodopen,
-              daysopen,
+              secondarytodclose,
+              secondaryclose,
               daystodopen,
               daystodclose,
-              welcomeprompt,
+              daysopen,
               afterhours,
               ccdescription,
-              ccname,
               defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2,
+              ccname,
+              welcomeprompt,
               welcomeprompt_sp,
+              submenu2,
               submenu2_sp,
               menu0_sp,
               menu1_sp,
@@ -3116,12 +3239,15 @@ export default function ContactCenterModelCreateForm(props) {
               menu7_sp: value,
               menu8_sp,
               menu9_sp,
-              version,
+              override,
               Managers,
               AssignedGroup,
-              override,
-              secondaryclose,
               updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
             value = result?.menu7_sp ?? value;
@@ -3156,20 +3282,20 @@ export default function ContactCenterModelCreateForm(props) {
               menu8,
               menu9,
               holiday,
-              secondarytodclose,
+              holidayoption,
               secondarytodopen,
-              daysopen,
+              secondarytodclose,
+              secondaryclose,
               daystodopen,
               daystodclose,
-              welcomeprompt,
+              daysopen,
               afterhours,
               ccdescription,
-              ccname,
               defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2,
+              ccname,
+              welcomeprompt,
               welcomeprompt_sp,
+              submenu2,
               submenu2_sp,
               menu0_sp,
               menu1_sp,
@@ -3181,12 +3307,15 @@ export default function ContactCenterModelCreateForm(props) {
               menu7_sp,
               menu8_sp: value,
               menu9_sp,
-              version,
+              override,
               Managers,
               AssignedGroup,
-              override,
-              secondaryclose,
               updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
             value = result?.menu8_sp ?? value;
@@ -3221,20 +3350,20 @@ export default function ContactCenterModelCreateForm(props) {
               menu8,
               menu9,
               holiday,
-              secondarytodclose,
+              holidayoption,
               secondarytodopen,
-              daysopen,
+              secondarytodclose,
+              secondaryclose,
               daystodopen,
               daystodclose,
-              welcomeprompt,
+              daysopen,
               afterhours,
               ccdescription,
-              ccname,
               defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2,
+              ccname,
+              welcomeprompt,
               welcomeprompt_sp,
+              submenu2,
               submenu2_sp,
               menu0_sp,
               menu1_sp,
@@ -3246,12 +3375,15 @@ export default function ContactCenterModelCreateForm(props) {
               menu7_sp,
               menu8_sp,
               menu9_sp: value,
-              version,
+              override,
               Managers,
               AssignedGroup,
-              override,
-              secondaryclose,
               updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
             value = result?.menu9_sp ?? value;
@@ -3266,11 +3398,10 @@ export default function ContactCenterModelCreateForm(props) {
         hasError={errors.menu9_sp?.hasError}
         {...getOverrideProps(overrides, "menu9_sp")}
       ></TextAreaField>
-      <TextField
-        label="Version"
+      <TextAreaField
+        label="Override"
         isRequired={false}
         isReadOnly={false}
-        value={version}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -3287,20 +3418,20 @@ export default function ContactCenterModelCreateForm(props) {
               menu8,
               menu9,
               holiday,
-              secondarytodclose,
+              holidayoption,
               secondarytodopen,
-              daysopen,
+              secondarytodclose,
+              secondaryclose,
               daystodopen,
               daystodclose,
-              welcomeprompt,
+              daysopen,
               afterhours,
               ccdescription,
-              ccname,
               defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2,
+              ccname,
+              welcomeprompt,
               welcomeprompt_sp,
+              submenu2,
               submenu2_sp,
               menu0_sp,
               menu1_sp,
@@ -3312,26 +3443,29 @@ export default function ContactCenterModelCreateForm(props) {
               menu7_sp,
               menu8_sp,
               menu9_sp,
-              version: value,
+              override: value,
               Managers,
               AssignedGroup,
-              override,
-              secondaryclose,
               updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
-            value = result?.version ?? value;
+            value = result?.override ?? value;
           }
-          if (errors.version?.hasError) {
-            runValidationTasks("version", value);
+          if (errors.override?.hasError) {
+            runValidationTasks("override", value);
           }
-          setVersion(value);
+          setOverride(value);
         }}
-        onBlur={() => runValidationTasks("version", version)}
-        errorMessage={errors.version?.errorMessage}
-        hasError={errors.version?.hasError}
-        {...getOverrideProps(overrides, "version")}
-      ></TextField>
+        onBlur={() => runValidationTasks("override", override)}
+        errorMessage={errors.override?.errorMessage}
+        hasError={errors.override?.hasError}
+        {...getOverrideProps(overrides, "override")}
+      ></TextAreaField>
       <ArrayField
         onChange={async (items) => {
           let values = items;
@@ -3349,20 +3483,20 @@ export default function ContactCenterModelCreateForm(props) {
               menu8,
               menu9,
               holiday,
-              secondarytodclose,
+              holidayoption,
               secondarytodopen,
-              daysopen,
+              secondarytodclose,
+              secondaryclose,
               daystodopen,
               daystodclose,
-              welcomeprompt,
+              daysopen,
               afterhours,
               ccdescription,
-              ccname,
               defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2,
+              ccname,
+              welcomeprompt,
               welcomeprompt_sp,
+              submenu2,
               submenu2_sp,
               menu0_sp,
               menu1_sp,
@@ -3374,12 +3508,15 @@ export default function ContactCenterModelCreateForm(props) {
               menu7_sp,
               menu8_sp,
               menu9_sp,
-              version,
+              override,
               Managers: values,
               AssignedGroup,
-              override,
-              secondaryclose,
               updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
             values = result?.Managers ?? values;
@@ -3468,20 +3605,20 @@ export default function ContactCenterModelCreateForm(props) {
               menu8,
               menu9,
               holiday,
-              secondarytodclose,
+              holidayoption,
               secondarytodopen,
-              daysopen,
+              secondarytodclose,
+              secondaryclose,
               daystodopen,
               daystodclose,
-              welcomeprompt,
+              daysopen,
               afterhours,
               ccdescription,
-              ccname,
               defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2,
+              ccname,
+              welcomeprompt,
               welcomeprompt_sp,
+              submenu2,
               submenu2_sp,
               menu0_sp,
               menu1_sp,
@@ -3493,12 +3630,15 @@ export default function ContactCenterModelCreateForm(props) {
               menu7_sp,
               menu8_sp,
               menu9_sp,
-              version,
+              override,
               Managers,
               AssignedGroup: value,
-              override,
-              secondaryclose,
               updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
             value = result?.AssignedGroup ?? value;
@@ -3574,136 +3714,6 @@ export default function ContactCenterModelCreateForm(props) {
           {...getOverrideProps(overrides, "AssignedGroup")}
         ></Autocomplete>
       </ArrayField>
-      <TextAreaField
-        label="Override"
-        isRequired={false}
-        isReadOnly={false}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              mainnumber,
-              menu0,
-              menu1,
-              menu2,
-              menu3,
-              menu4,
-              menu5,
-              menu6,
-              menu7,
-              menu8,
-              menu9,
-              holiday,
-              secondarytodclose,
-              secondarytodopen,
-              daysopen,
-              daystodopen,
-              daystodclose,
-              welcomeprompt,
-              afterhours,
-              ccdescription,
-              ccname,
-              defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2,
-              welcomeprompt_sp,
-              submenu2_sp,
-              menu0_sp,
-              menu1_sp,
-              menu2_sp,
-              menu3_sp,
-              menu4_sp,
-              menu5_sp,
-              menu6_sp,
-              menu7_sp,
-              menu8_sp,
-              menu9_sp,
-              version,
-              Managers,
-              AssignedGroup,
-              override: value,
-              secondaryclose,
-              updateduser,
-            };
-            const result = onChange(modelFields);
-            value = result?.override ?? value;
-          }
-          if (errors.override?.hasError) {
-            runValidationTasks("override", value);
-          }
-          setOverride(value);
-        }}
-        onBlur={() => runValidationTasks("override", override)}
-        errorMessage={errors.override?.errorMessage}
-        hasError={errors.override?.hasError}
-        {...getOverrideProps(overrides, "override")}
-      ></TextAreaField>
-      <TextAreaField
-        label="Secondaryclose"
-        isRequired={false}
-        isReadOnly={false}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              mainnumber,
-              menu0,
-              menu1,
-              menu2,
-              menu3,
-              menu4,
-              menu5,
-              menu6,
-              menu7,
-              menu8,
-              menu9,
-              holiday,
-              secondarytodclose,
-              secondarytodopen,
-              daysopen,
-              daystodopen,
-              daystodclose,
-              welcomeprompt,
-              afterhours,
-              ccdescription,
-              ccname,
-              defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2,
-              welcomeprompt_sp,
-              submenu2_sp,
-              menu0_sp,
-              menu1_sp,
-              menu2_sp,
-              menu3_sp,
-              menu4_sp,
-              menu5_sp,
-              menu6_sp,
-              menu7_sp,
-              menu8_sp,
-              menu9_sp,
-              version,
-              Managers,
-              AssignedGroup,
-              override,
-              secondaryclose: value,
-              updateduser,
-            };
-            const result = onChange(modelFields);
-            value = result?.secondaryclose ?? value;
-          }
-          if (errors.secondaryclose?.hasError) {
-            runValidationTasks("secondaryclose", value);
-          }
-          setSecondaryclose(value);
-        }}
-        onBlur={() => runValidationTasks("secondaryclose", secondaryclose)}
-        errorMessage={errors.secondaryclose?.errorMessage}
-        hasError={errors.secondaryclose?.hasError}
-        {...getOverrideProps(overrides, "secondaryclose")}
-      ></TextAreaField>
       <TextField
         label="Updateduser"
         isRequired={false}
@@ -3725,20 +3735,20 @@ export default function ContactCenterModelCreateForm(props) {
               menu8,
               menu9,
               holiday,
-              secondarytodclose,
+              holidayoption,
               secondarytodopen,
-              daysopen,
+              secondarytodclose,
+              secondaryclose,
               daystodopen,
               daystodclose,
-              welcomeprompt,
+              daysopen,
               afterhours,
               ccdescription,
-              ccname,
               defaultroute,
-              holidayoption,
-              isoverride,
-              submenu2,
+              ccname,
+              welcomeprompt,
               welcomeprompt_sp,
+              submenu2,
               submenu2_sp,
               menu0_sp,
               menu1_sp,
@@ -3750,12 +3760,15 @@ export default function ContactCenterModelCreateForm(props) {
               menu7_sp,
               menu8_sp,
               menu9_sp,
-              version,
+              override,
               Managers,
               AssignedGroup,
-              override,
-              secondaryclose,
               updateduser: value,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
             };
             const result = onChange(modelFields);
             value = result?.updateduser ?? value;
@@ -3770,6 +3783,353 @@ export default function ContactCenterModelCreateForm(props) {
         hasError={errors.updateduser?.hasError}
         {...getOverrideProps(overrides, "updateduser")}
       ></TextField>
+      <TextField
+        label="Version"
+        isRequired={false}
+        isReadOnly={false}
+        value={version}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
+              holiday,
+              holidayoption,
+              secondarytodopen,
+              secondarytodclose,
+              secondaryclose,
+              daystodopen,
+              daystodclose,
+              daysopen,
+              afterhours,
+              ccdescription,
+              defaultroute,
+              ccname,
+              welcomeprompt,
+              welcomeprompt_sp,
+              submenu2,
+              submenu2_sp,
+              menu0_sp,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
+              override,
+              Managers,
+              AssignedGroup,
+              updateduser,
+              version: value,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
+            };
+            const result = onChange(modelFields);
+            value = result?.version ?? value;
+          }
+          if (errors.version?.hasError) {
+            runValidationTasks("version", value);
+          }
+          setVersion(value);
+        }}
+        onBlur={() => runValidationTasks("version", version)}
+        errorMessage={errors.version?.errorMessage}
+        hasError={errors.version?.hasError}
+        {...getOverrideProps(overrides, "version")}
+      ></TextField>
+      <SwitchField
+        label="Isoverride"
+        defaultChecked={false}
+        isDisabled={false}
+        isChecked={isoverride}
+        onChange={(e) => {
+          let value = e.target.checked;
+          if (onChange) {
+            const modelFields = {
+              mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
+              holiday,
+              holidayoption,
+              secondarytodopen,
+              secondarytodclose,
+              secondaryclose,
+              daystodopen,
+              daystodclose,
+              daysopen,
+              afterhours,
+              ccdescription,
+              defaultroute,
+              ccname,
+              welcomeprompt,
+              welcomeprompt_sp,
+              submenu2,
+              submenu2_sp,
+              menu0_sp,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
+              override,
+              Managers,
+              AssignedGroup,
+              updateduser,
+              version,
+              isoverride: value,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
+            };
+            const result = onChange(modelFields);
+            value = result?.isoverride ?? value;
+          }
+          if (errors.isoverride?.hasError) {
+            runValidationTasks("isoverride", value);
+          }
+          setIsoverride(value);
+        }}
+        onBlur={() => runValidationTasks("isoverride", isoverride)}
+        errorMessage={errors.isoverride?.errorMessage}
+        hasError={errors.isoverride?.hasError}
+        {...getOverrideProps(overrides, "isoverride")}
+      ></SwitchField>
+      <SwitchField
+        label="Isholiday"
+        defaultChecked={false}
+        isDisabled={false}
+        isChecked={isholiday}
+        onChange={(e) => {
+          let value = e.target.checked;
+          if (onChange) {
+            const modelFields = {
+              mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
+              holiday,
+              holidayoption,
+              secondarytodopen,
+              secondarytodclose,
+              secondaryclose,
+              daystodopen,
+              daystodclose,
+              daysopen,
+              afterhours,
+              ccdescription,
+              defaultroute,
+              ccname,
+              welcomeprompt,
+              welcomeprompt_sp,
+              submenu2,
+              submenu2_sp,
+              menu0_sp,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
+              override,
+              Managers,
+              AssignedGroup,
+              updateduser,
+              version,
+              isoverride,
+              isholiday: value,
+              isafterhours,
+              issecondaryclosed,
+            };
+            const result = onChange(modelFields);
+            value = result?.isholiday ?? value;
+          }
+          if (errors.isholiday?.hasError) {
+            runValidationTasks("isholiday", value);
+          }
+          setIsholiday(value);
+        }}
+        onBlur={() => runValidationTasks("isholiday", isholiday)}
+        errorMessage={errors.isholiday?.errorMessage}
+        hasError={errors.isholiday?.hasError}
+        {...getOverrideProps(overrides, "isholiday")}
+      ></SwitchField>
+      <SwitchField
+        label="Isafterhours"
+        defaultChecked={false}
+        isDisabled={false}
+        isChecked={isafterhours}
+        onChange={(e) => {
+          let value = e.target.checked;
+          if (onChange) {
+            const modelFields = {
+              mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
+              holiday,
+              holidayoption,
+              secondarytodopen,
+              secondarytodclose,
+              secondaryclose,
+              daystodopen,
+              daystodclose,
+              daysopen,
+              afterhours,
+              ccdescription,
+              defaultroute,
+              ccname,
+              welcomeprompt,
+              welcomeprompt_sp,
+              submenu2,
+              submenu2_sp,
+              menu0_sp,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
+              override,
+              Managers,
+              AssignedGroup,
+              updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours: value,
+              issecondaryclosed,
+            };
+            const result = onChange(modelFields);
+            value = result?.isafterhours ?? value;
+          }
+          if (errors.isafterhours?.hasError) {
+            runValidationTasks("isafterhours", value);
+          }
+          setIsafterhours(value);
+        }}
+        onBlur={() => runValidationTasks("isafterhours", isafterhours)}
+        errorMessage={errors.isafterhours?.errorMessage}
+        hasError={errors.isafterhours?.hasError}
+        {...getOverrideProps(overrides, "isafterhours")}
+      ></SwitchField>
+      <SwitchField
+        label="Issecondaryclosed"
+        defaultChecked={false}
+        isDisabled={false}
+        isChecked={issecondaryclosed}
+        onChange={(e) => {
+          let value = e.target.checked;
+          if (onChange) {
+            const modelFields = {
+              mainnumber,
+              menu0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
+              holiday,
+              holidayoption,
+              secondarytodopen,
+              secondarytodclose,
+              secondaryclose,
+              daystodopen,
+              daystodclose,
+              daysopen,
+              afterhours,
+              ccdescription,
+              defaultroute,
+              ccname,
+              welcomeprompt,
+              welcomeprompt_sp,
+              submenu2,
+              submenu2_sp,
+              menu0_sp,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
+              override,
+              Managers,
+              AssignedGroup,
+              updateduser,
+              version,
+              isoverride,
+              isholiday,
+              isafterhours,
+              issecondaryclosed: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.issecondaryclosed ?? value;
+          }
+          if (errors.issecondaryclosed?.hasError) {
+            runValidationTasks("issecondaryclosed", value);
+          }
+          setIssecondaryclosed(value);
+        }}
+        onBlur={() =>
+          runValidationTasks("issecondaryclosed", issecondaryclosed)
+        }
+        errorMessage={errors.issecondaryclosed?.errorMessage}
+        hasError={errors.issecondaryclosed?.hasError}
+        {...getOverrideProps(overrides, "issecondaryclosed")}
+      ></SwitchField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}
