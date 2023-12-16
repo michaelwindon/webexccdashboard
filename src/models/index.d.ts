@@ -58,7 +58,7 @@ type EagerSubmenuType = {
   readonly option1?: OptionMenuType | null;
   readonly option2?: OptionMenuType | null;
   readonly option3?: OptionMenuType | null;
-  readonly opiton4?: OptionMenuType | null;
+  readonly option4?: OptionMenuType | null;
   readonly option5?: OptionMenuType | null;
   readonly option6?: OptionMenuType | null;
   readonly option7?: OptionMenuType | null;
@@ -71,7 +71,7 @@ type LazySubmenuType = {
   readonly option1?: OptionMenuType | null;
   readonly option2?: OptionMenuType | null;
   readonly option3?: OptionMenuType | null;
-  readonly opiton4?: OptionMenuType | null;
+  readonly option4?: OptionMenuType | null;
   readonly option5?: OptionMenuType | null;
   readonly option6?: OptionMenuType | null;
   readonly option7?: OptionMenuType | null;

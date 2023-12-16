@@ -51,7 +51,7 @@ type SubmenuType {
   option1: OptionMenuType
   option2: OptionMenuType
   option3: OptionMenuType
-  opiton4: OptionMenuType
+  option4: OptionMenuType
   option5: OptionMenuType
   option6: OptionMenuType
   option7: OptionMenuType

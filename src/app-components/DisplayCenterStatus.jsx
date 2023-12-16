@@ -15,7 +15,10 @@ const DisplayCenterStatus = (props) => {
     ) => {
         const today = new Date()
         const currentDay = today
-            .toLocaleString('en-US', { weekday: 'short' })
+            .toLocaleString('en-US', {
+                timeZone: 'America/Chicago',
+                weekday: 'short',
+            })
             .toUpperCase()
         const currentTime = today.toLocaleTimeString([], {
             hour: '2-digit',

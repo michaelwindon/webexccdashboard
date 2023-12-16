@@ -1045,8 +1045,8 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "opiton4": {
-                    "name": "opiton4",
+                "option4": {
+                    "name": "option4",
                     "isArray": false,
                     "type": {
                         "nonModel": "OptionMenuType"
@@ -1103,5 +1103,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.4.4",
-    "version": "0d1031c06be61d78ff8724a5f2662c10"
+    "version": "8430c597649e09048cd6682b2edac71f"
 };

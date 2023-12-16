@@ -487,6 +487,7 @@ export default function ContactCenterUI(props) {
               position="relative"
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
+              backgroundColor=""
               children="MON"
               {...getOverrideProps(overrides, "dayyArray1")}
             ></Text>
