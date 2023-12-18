@@ -10,6 +10,7 @@ import {
     TextAreaField,
     TextField,
     SelectField,
+    CheckboxField,
 } from '@aws-amplify/ui-react'
 import Dialog from '@mui/material/Dialog'
 import PropTypes from 'prop-types'
@@ -32,14 +33,20 @@ const UpdateMenuModal = (props) => {
     const [queues, setQueues] = useState([])
     const [fieldValue, setfieldValue] = useState('')
     const [fieldMsg, setFieldMsg] = useState('')
+    const [isdefault, setIsdefault] = useState(false)
 
     const toggleQueue = () => {
         setshowQueue(!showQueue)
         if (!showQueue && item?.type == 'QUEUE') {
             setfieldValue(item.value)
+            if (menunumber === contactcenter?.defaultroute && open) {
+                //if menu number and default match set to default route on submit. else clear check box for next load.
+                setIsdefault(true)
+            }
         } else {
             setfieldValue('')
         }
+
         setshowForward(false)
         setshowSubmenu(false)
         setshowMessage(false)
@@ -48,6 +55,10 @@ const UpdateMenuModal = (props) => {
         setshowForward(!showForward)
         if (!showForward && item?.type == 'FORWARD') {
             setfieldValue(item.value)
+            if (menunumber === contactcenter?.defaultroute && open) {
+                //if menu number and default match set to default route on submit. else clear check box for next load.
+                setIsdefault(true)
+            }
         } else {
             setfieldValue('')
         }
@@ -60,6 +71,10 @@ const UpdateMenuModal = (props) => {
         setshowSubmenu(!showSubmenu)
         if (!showSubmenu && item?.type == 'SUBMENU') {
             setfieldValue(item.value)
+            if (menunumber === contactcenter?.defaultroute && open) {
+                //if menu number and default match set to default route on submit. else clear check box for next load.
+                setIsdefault(true)
+            }
         } else {
             setfieldValue('')
         }
@@ -72,12 +87,23 @@ const UpdateMenuModal = (props) => {
 
         if (!showMessage && item?.type == 'MSG') {
             setfieldValue(item.value)
+            if (menunumber === contactcenter?.defaultroute && open) {
+                //if menu number and default match set to default route on submit. else clear check box for next load.
+                setIsdefault(true)
+            }
         } else {
             setfieldValue('')
         }
         setshowQueue(false)
         setshowForward(false)
         setshowSubmenu(false)
+    }
+
+    const checkIfDefault = () => {
+        if (menunumber === contactcenter?.defaultroute && open) {
+            //if menu number and default match set to default route on submit. else clear check box for next load.
+            setIsdefault(true)
+        }
     }
 
     useEffect(() => {
@@ -111,6 +137,9 @@ const UpdateMenuModal = (props) => {
             groupid == '' ? fetchDatawithoutrestrictions() : fetchData()
         }
         setFieldMsg(item?.msg)
+
+        //checkif field is default inital setup or when open changes
+        checkIfDefault()
     }, [open, groupid])
 
     const handleFieldChange = (e) => {
@@ -136,46 +165,96 @@ const UpdateMenuModal = (props) => {
                             case '1':
                                 update.menu1 = updatedMenu
                                 update.updateduser = user.username
+                                if (isdefault) {
+                                    update.defaultroute = '1'
+                                } else {
+                                    update.defaultroute = null
+                                }
                                 break
                             case '2':
                                 update.menu2 = updatedMenu
                                 update.updateduser = user.username
+                                if (isdefault) {
+                                    update.defaultroute = '2'
+                                } else {
+                                    update.defaultroute = null
+                                }
                                 break
                             case '3':
                                 update.menu3 = updatedMenu
                                 update.updateduser = user.username
+                                if (isdefault) {
+                                    update.defaultroute = '3'
+                                } else {
+                                    update.defaultroute = null
+                                }
                                 break
                             case '4':
                                 update.menu4 = updatedMenu
                                 update.updateduser = user.username
+                                if (isdefault) {
+                                    update.defaultroute = '4'
+                                } else {
+                                    update.defaultroute = null
+                                }
                                 break
                             case '5':
                                 update.menu5 = updatedMenu
                                 update.updateduser = user.username
+                                if (isdefault) {
+                                    update.defaultroute = '5'
+                                } else {
+                                    update.defaultroute = null
+                                }
                                 break
                             case '6':
                                 update.menu6 = updatedMenu
                                 update.updateduser = user.username
+                                if (isdefault) {
+                                    update.defaultroute = '6'
+                                } else {
+                                    update.defaultroute = null
+                                }
                                 break
 
                             case '7':
                                 update.menu7 = updatedMenu
                                 update.updateduser = user.username
+                                if (isdefault) {
+                                    update.defaultroute = '7'
+                                } else {
+                                    update.defaultroute = null
+                                }
                                 break
 
                             case '8':
                                 update.menu8 = updatedMenu
                                 update.updateduser = user.username
+                                if (isdefault) {
+                                    update.defaultroute = '8'
+                                } else {
+                                    update.defaultroute = null
+                                }
                                 break
 
                             case '9':
                                 update.menu9 = updatedMenu
                                 update.updateduser = user.username
+                                if (isdefault) {
+                                    update.defaultroute = '9'
+                                } else {
+                                    update.defaultroute = null
+                                }
                                 break
 
                             case '0':
                                 update.menu0 = updatedMenu
                                 update.updateduser = user.username
+                                if (isdefault) {
+                                    update.defaultroute = '0'
+                                } else {
+                                    update.defaultroute = null
+                                }
                                 break
 
                             case 'override':
@@ -207,7 +286,7 @@ const UpdateMenuModal = (props) => {
                     })
                 )
                 console.log(
-                    `Sucessful submition to the DB! 🚀: {"msg":"${fieldMsg}", "type":"${menuType}", "value" : "${fieldValue}" for menu: ${menunumber} }`
+                    `Sucessful submition to the DB! 🚀: {"msg":"${fieldMsg}", "type":"${menuType}", "value" : "${fieldValue}" for menu: ${menunumber} default: ${isdefault}, ${updateContactCenter.defaultroute}}`
                 )
             } catch (error) {
                 console.error(`Error in handleSubmit: ${error}`)
@@ -216,7 +295,15 @@ const UpdateMenuModal = (props) => {
                 ) */
             }
         }
-
+        //clear form after submit
+        setmenuType('')
+        setshowForward(false)
+        setshowMessage(false)
+        setshowQueue(false)
+        setshowSubmenu(false)
+        setfieldValue('')
+        setFieldMsg('')
+        setIsdefault(false)
         onClose()
     }
     /* console.log(
@@ -379,6 +466,18 @@ const UpdateMenuModal = (props) => {
                                     </Flex>
                                 )}
                                 <Flex>
+                                    <View>
+                                        <CheckboxField
+                                            label="Default Route"
+                                            name="defaultroute"
+                                            checked={isdefault}
+                                            onChange={(e) => {
+                                                setIsdefault(e.target.checked)
+                                            }}
+                                        />
+                                    </View>
+                                </Flex>
+                                <Flex>
                                     <Button
                                         onClick={() => {
                                             setmenuType('')
@@ -388,6 +487,7 @@ const UpdateMenuModal = (props) => {
                                             setshowSubmenu(false)
                                             setfieldValue('')
                                             setFieldMsg('')
+                                            setIsdefault(false)
                                             onClose()
                                         }}
                                     >

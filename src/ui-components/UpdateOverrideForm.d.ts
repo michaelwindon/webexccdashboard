@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { GridProps, SwitchFieldProps } from "@aws-amplify/ui-react";
+import { DividerProps, GridProps, SwitchFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
 import { ContactCenterModel } from "../models";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
@@ -24,23 +24,18 @@ export declare type ValidationResponse = {
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
 export declare type UpdateOverrideFormInputValues = {
     isoverride?: boolean;
-    isholiday?: boolean;
-    isafterhours?: boolean;
-    issecondaryclosed?: boolean;
+    holiday?: string[];
 };
 export declare type UpdateOverrideFormValidationValues = {
     isoverride?: ValidationFunction<boolean>;
-    isholiday?: ValidationFunction<boolean>;
-    isafterhours?: ValidationFunction<boolean>;
-    issecondaryclosed?: ValidationFunction<boolean>;
+    holiday?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type UpdateOverrideFormOverridesProps = {
     UpdateOverrideFormGrid?: PrimitiveOverrideProps<GridProps>;
     isoverride?: PrimitiveOverrideProps<SwitchFieldProps>;
-    isholiday?: PrimitiveOverrideProps<SwitchFieldProps>;
-    isafterhours?: PrimitiveOverrideProps<SwitchFieldProps>;
-    issecondaryclosed?: PrimitiveOverrideProps<SwitchFieldProps>;
+    SectionalElement0?: PrimitiveOverrideProps<DividerProps>;
+    holiday?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type UpdateOverrideFormProps = React.PropsWithChildren<{
     overrides?: UpdateOverrideFormOverridesProps | undefined | null;

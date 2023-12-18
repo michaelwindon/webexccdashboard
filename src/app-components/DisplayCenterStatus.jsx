@@ -14,6 +14,10 @@ const DisplayCenterStatus = (props) => {
         holidayArray = contactcenter.holiday
     ) => {
         const today = new Date()
+        const todayChicago = new Date(
+            today.toLocaleString('en-US', { timeZone: 'America/Chicago' })
+        )
+
         const currentDay = today
             .toLocaleString('en-US', {
                 timeZone: 'America/Chicago',
@@ -21,6 +25,7 @@ const DisplayCenterStatus = (props) => {
             })
             .toUpperCase()
         const currentTime = today.toLocaleTimeString([], {
+            timeZone: 'America/Chicago',
             hour: '2-digit',
             minute: '2-digit',
         })
@@ -29,19 +34,13 @@ const DisplayCenterStatus = (props) => {
             const [month, day, year] = holidayDate.split('/')
             const holiday = new Date(year, month - 1, day) // Month in JavaScript Date starts from 0 (0 - January, 1 - February, ...)
 
-            // Extract date components without time
-            const todayWithoutTime = new Date(
-                today.getFullYear(),
-                today.getMonth(),
-                today.getDate()
-            )
-            const holidayWithoutTime = new Date(
-                holiday.getFullYear(),
-                holiday.getMonth(),
-                holiday.getDate()
-            )
+            // Compare dates without time
+            const isSameDay =
+                todayChicago.getDate() === holiday.getDate() &&
+                todayChicago.getMonth() === holiday.getMonth() &&
+                todayChicago.getFullYear() === holiday.getFullYear()
 
-            return todayWithoutTime.getTime() === holidayWithoutTime.getTime()
+            return isSameDay
         })
 
         const daysOfWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']

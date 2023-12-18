@@ -24,9 +24,10 @@ const UpdateisOverrideModal = (props) => {
                         // Example function to trim all string inputs
                         const updatedFields = {}
                         Object.keys(fields).forEach((key) => {
-                            console.log(`key:${key} fields:${fields[key]}`)
-                            if (typeof fields[key] === 'string') {
-                                updatedFields[key] = fields[key].trim()
+                            if (key === 'holidayField') {
+                                const inputString = fields[key]
+                                const outputArray = inputString.map(date => date.replace(/-/g, '/'));
+                                console.log(outputArray)
                             } else {
                                 updatedFields[key] = fields[key]
                             }

@@ -591,6 +591,9 @@ function App({ signOut, user }) {
                             ),
                         },
                         ButtonOne: {
+                            ...(item?.defaultroute === '1'
+                                ? { variation: 'primary', colorTheme: 'info' }
+                                : {}),
                             onClick: () => {
                                 handleUpdateMenuModalOpen(
                                     item?.contactCenterModelAssignedGroupId,
@@ -620,6 +623,9 @@ function App({ signOut, user }) {
                             ),
                         },
                         ButtonTwo: {
+                            ...(item?.defaultroute === '2'
+                                ? { variation: 'primary', colorTheme: 'info' }
+                                : {}),
                             onClick: () => {
                                 handleUpdateMenuModalOpen(
                                     item?.contactCenterModelAssignedGroupId,
@@ -649,6 +655,9 @@ function App({ signOut, user }) {
                             ),
                         },
                         ButtonThree: {
+                            ...(item?.defaultroute === '3'
+                                ? { variation: 'primary', colorTheme: 'info' }
+                                : {}),
                             onClick: () => {
                                 handleUpdateMenuModalOpen(
                                     item?.contactCenterModelAssignedGroupId,
@@ -678,6 +687,9 @@ function App({ signOut, user }) {
                             ),
                         },
                         ButtonFour: {
+                            ...(item?.defaultroute === '4'
+                                ? { variation: 'primary', colorTheme: 'info' }
+                                : {}),
                             onClick: () => {
                                 handleUpdateMenuModalOpen(
                                     item?.contactCenterModelAssignedGroupId,
@@ -707,6 +719,9 @@ function App({ signOut, user }) {
                             ),
                         },
                         ButtonFive: {
+                            ...(item?.defaultroute === '5'
+                                ? { variation: 'primary', colorTheme: 'info' }
+                                : {}),
                             onClick: () => {
                                 handleUpdateMenuModalOpen(
                                     item?.contactCenterModelAssignedGroupId,
@@ -736,6 +751,9 @@ function App({ signOut, user }) {
                             ),
                         },
                         ButtonSix: {
+                            ...(item?.defaultroute === '6'
+                                ? { variation: 'primary', colorTheme: 'info' }
+                                : {}),
                             onClick: () => {
                                 handleUpdateMenuModalOpen(
                                     item?.contactCenterModelAssignedGroupId,
@@ -765,6 +783,9 @@ function App({ signOut, user }) {
                             ),
                         },
                         ButtonSeven: {
+                            ...(item?.defaultroute === '7'
+                                ? { variation: 'primary', colorTheme: 'info' }
+                                : {}),
                             onClick: () => {
                                 handleUpdateMenuModalOpen(
                                     item?.contactCenterModelAssignedGroupId,
@@ -794,6 +815,9 @@ function App({ signOut, user }) {
                             ),
                         },
                         ButtonEight: {
+                            ...(item?.defaultroute === '8'
+                                ? { variation: 'primary', colorTheme: 'info' }
+                                : {}),
                             onClick: () => {
                                 handleUpdateMenuModalOpen(
                                     item?.contactCenterModelAssignedGroupId,
@@ -823,6 +847,9 @@ function App({ signOut, user }) {
                             ),
                         },
                         ButtonNine: {
+                            ...(item?.defaultroute === '9'
+                                ? { variation: 'primary', colorTheme: 'info' }
+                                : {}),
                             onClick: () => {
                                 handleUpdateMenuModalOpen(
                                     item?.contactCenterModelAssignedGroupId,
@@ -852,6 +879,9 @@ function App({ signOut, user }) {
                             ),
                         },
                         ButtonZero: {
+                            ...(item?.defaultroute === '0'
+                                ? { variation: 'primary', colorTheme: 'info' }
+                                : {}),
                             onClick: () => {
                                 handleUpdateMenuModalOpen(
                                     item?.contactCenterModelAssignedGroupId,

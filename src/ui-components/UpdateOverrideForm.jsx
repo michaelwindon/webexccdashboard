@@ -6,10 +6,177 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { Button, Flex, Grid, SwitchField } from "@aws-amplify/ui-react";
+import {
+  Badge,
+  Button,
+  Divider,
+  Flex,
+  Grid,
+  Icon,
+  ScrollView,
+  SwitchField,
+  Text,
+  TextField,
+  useTheme,
+} from "@aws-amplify/ui-react";
 import { ContactCenterModel } from "../models";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { DataStore } from "aws-amplify/datastore";
+function ArrayField({
+  items = [],
+  onChange,
+  label,
+  inputFieldRef,
+  children,
+  hasError,
+  setFieldValue,
+  currentFieldValue,
+  defaultFieldValue,
+  lengthLimit,
+  getBadgeText,
+  runValidationTasks,
+  errorMessage,
+}) {
+  const labelElement = <Text>{label}</Text>;
+  const {
+    tokens: {
+      components: {
+        fieldmessages: { error: errorStyles },
+      },
+    },
+  } = useTheme();
+  const [selectedBadgeIndex, setSelectedBadgeIndex] = React.useState();
+  const [isEditing, setIsEditing] = React.useState();
+  React.useEffect(() => {
+    if (isEditing) {
+      inputFieldRef?.current?.focus();
+    }
+  }, [isEditing]);
+  const removeItem = async (removeIndex) => {
+    const newItems = items.filter((value, index) => index !== removeIndex);
+    await onChange(newItems);
+    setSelectedBadgeIndex(undefined);
+  };
+  const addItem = async () => {
+    const { hasError } = runValidationTasks();
+    if (
+      currentFieldValue !== undefined &&
+      currentFieldValue !== null &&
+      currentFieldValue !== "" &&
+      !hasError
+    ) {
+      const newItems = [...items];
+      if (selectedBadgeIndex !== undefined) {
+        newItems[selectedBadgeIndex] = currentFieldValue;
+        setSelectedBadgeIndex(undefined);
+      } else {
+        newItems.push(currentFieldValue);
+      }
+      await onChange(newItems);
+      setIsEditing(false);
+    }
+  };
+  const arraySection = (
+    <React.Fragment>
+      {!!items?.length && (
+        <ScrollView height="inherit" width="inherit" maxHeight={"7rem"}>
+          {items.map((value, index) => {
+            return (
+              <Badge
+                key={index}
+                style={{
+                  cursor: "pointer",
+                  alignItems: "center",
+                  marginRight: 3,
+                  marginTop: 3,
+                  backgroundColor:
+                    index === selectedBadgeIndex ? "#B8CEF9" : "",
+                }}
+                onClick={() => {
+                  setSelectedBadgeIndex(index);
+                  setFieldValue(items[index]);
+                  setIsEditing(true);
+                }}
+              >
+                {getBadgeText ? getBadgeText(value) : value.toString()}
+                <Icon
+                  style={{
+                    cursor: "pointer",
+                    paddingLeft: 3,
+                    width: 20,
+                    height: 20,
+                  }}
+                  viewBox={{ width: 20, height: 20 }}
+                  paths={[
+                    {
+                      d: "M10 10l5.09-5.09L10 10l5.09 5.09L10 10zm0 0L4.91 4.91 10 10l-5.09 5.09L10 10z",
+                      stroke: "black",
+                    },
+                  ]}
+                  ariaLabel="button"
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    removeItem(index);
+                  }}
+                />
+              </Badge>
+            );
+          })}
+        </ScrollView>
+      )}
+      <Divider orientation="horizontal" marginTop={5} />
+    </React.Fragment>
+  );
+  if (lengthLimit !== undefined && items.length >= lengthLimit && !isEditing) {
+    return (
+      <React.Fragment>
+        {labelElement}
+        {arraySection}
+      </React.Fragment>
+    );
+  }
+  return (
+    <React.Fragment>
+      {labelElement}
+      {isEditing && children}
+      {!isEditing ? (
+        <>
+          <Button
+            onClick={() => {
+              setIsEditing(true);
+            }}
+          >
+            Add item
+          </Button>
+          {errorMessage && hasError && (
+            <Text color={errorStyles.color} fontSize={errorStyles.fontSize}>
+              {errorMessage}
+            </Text>
+          )}
+        </>
+      ) : (
+        <Flex justifyContent="flex-end">
+          {(currentFieldValue || isEditing) && (
+            <Button
+              children="Cancel"
+              type="button"
+              size="small"
+              onClick={() => {
+                setFieldValue(defaultFieldValue);
+                setIsEditing(false);
+                setSelectedBadgeIndex(undefined);
+              }}
+            ></Button>
+          )}
+          <Button size="small" variation="link" onClick={addItem}>
+            {selectedBadgeIndex !== undefined ? "Save" : "Add"}
+          </Button>
+        </Flex>
+      )}
+      {arraySection}
+    </React.Fragment>
+  );
+}
 export default function UpdateOverrideForm(props) {
   const {
     id: idProp,
@@ -25,27 +192,18 @@ export default function UpdateOverrideForm(props) {
   } = props;
   const initialValues = {
     isoverride: false,
-    isholiday: false,
-    isafterhours: false,
-    issecondaryclosed: false,
+    holiday: [],
   };
   const [isoverride, setIsoverride] = React.useState(initialValues.isoverride);
-  const [isholiday, setIsholiday] = React.useState(initialValues.isholiday);
-  const [isafterhours, setIsafterhours] = React.useState(
-    initialValues.isafterhours
-  );
-  const [issecondaryclosed, setIssecondaryclosed] = React.useState(
-    initialValues.issecondaryclosed
-  );
+  const [holiday, setHoliday] = React.useState(initialValues.holiday);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = contactCenterModelRecord
       ? { ...initialValues, ...contactCenterModelRecord }
       : initialValues;
     setIsoverride(cleanValues.isoverride);
-    setIsholiday(cleanValues.isholiday);
-    setIsafterhours(cleanValues.isafterhours);
-    setIssecondaryclosed(cleanValues.issecondaryclosed);
+    setHoliday(cleanValues.holiday ?? []);
+    setCurrentHolidayValue("");
     setErrors({});
   };
   const [contactCenterModelRecord, setContactCenterModelRecord] =
@@ -60,11 +218,11 @@ export default function UpdateOverrideForm(props) {
     queryData();
   }, [idProp, contactCenterModelModelProp]);
   React.useEffect(resetStateValues, [contactCenterModelRecord]);
+  const [currentHolidayValue, setCurrentHolidayValue] = React.useState("");
+  const holidayRef = React.createRef();
   const validations = {
     isoverride: [],
-    isholiday: [],
-    isafterhours: [],
-    issecondaryclosed: [],
+    holiday: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -93,9 +251,7 @@ export default function UpdateOverrideForm(props) {
         event.preventDefault();
         let modelFields = {
           isoverride,
-          isholiday,
-          isafterhours,
-          issecondaryclosed,
+          holiday,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -152,9 +308,7 @@ export default function UpdateOverrideForm(props) {
           if (onChange) {
             const modelFields = {
               isoverride: value,
-              isholiday,
-              isafterhours,
-              issecondaryclosed,
+              holiday,
             };
             const result = onChange(modelFields);
             value = result?.isoverride ?? value;
@@ -169,89 +323,58 @@ export default function UpdateOverrideForm(props) {
         hasError={errors.isoverride?.hasError}
         {...getOverrideProps(overrides, "isoverride")}
       ></SwitchField>
-      <SwitchField
-        label="Isholiday"
-        defaultChecked={false}
-        isDisabled={false}
-        isChecked={isholiday}
-        onChange={(e) => {
-          let value = e.target.checked;
+      <Divider
+        orientation="horizontal"
+        {...getOverrideProps(overrides, "SectionalElement0")}
+      ></Divider>
+      <ArrayField
+        onChange={async (items) => {
+          let values = items;
           if (onChange) {
             const modelFields = {
               isoverride,
-              isholiday: value,
-              isafterhours,
-              issecondaryclosed,
+              holiday: values,
             };
             const result = onChange(modelFields);
-            value = result?.isholiday ?? value;
+            values = result?.holiday ?? values;
           }
-          if (errors.isholiday?.hasError) {
-            runValidationTasks("isholiday", value);
-          }
-          setIsholiday(value);
+          setHoliday(values);
+          setCurrentHolidayValue("");
         }}
-        onBlur={() => runValidationTasks("isholiday", isholiday)}
-        errorMessage={errors.isholiday?.errorMessage}
-        hasError={errors.isholiday?.hasError}
-        {...getOverrideProps(overrides, "isholiday")}
-      ></SwitchField>
-      <SwitchField
-        label="Isafterhours"
-        defaultChecked={false}
-        isDisabled={false}
-        isChecked={isafterhours}
-        onChange={(e) => {
-          let value = e.target.checked;
-          if (onChange) {
-            const modelFields = {
-              isoverride,
-              isholiday,
-              isafterhours: value,
-              issecondaryclosed,
-            };
-            const result = onChange(modelFields);
-            value = result?.isafterhours ?? value;
-          }
-          if (errors.isafterhours?.hasError) {
-            runValidationTasks("isafterhours", value);
-          }
-          setIsafterhours(value);
-        }}
-        onBlur={() => runValidationTasks("isafterhours", isafterhours)}
-        errorMessage={errors.isafterhours?.errorMessage}
-        hasError={errors.isafterhours?.hasError}
-        {...getOverrideProps(overrides, "isafterhours")}
-      ></SwitchField>
-      <SwitchField
-        label="Issecondaryclosed"
-        defaultChecked={false}
-        isDisabled={false}
-        isChecked={issecondaryclosed}
-        onChange={(e) => {
-          let value = e.target.checked;
-          if (onChange) {
-            const modelFields = {
-              isoverride,
-              isholiday,
-              isafterhours,
-              issecondaryclosed: value,
-            };
-            const result = onChange(modelFields);
-            value = result?.issecondaryclosed ?? value;
-          }
-          if (errors.issecondaryclosed?.hasError) {
-            runValidationTasks("issecondaryclosed", value);
-          }
-          setIssecondaryclosed(value);
-        }}
-        onBlur={() =>
-          runValidationTasks("issecondaryclosed", issecondaryclosed)
+        currentFieldValue={currentHolidayValue}
+        label={"Holiday"}
+        items={holiday}
+        hasError={errors?.holiday?.hasError}
+        runValidationTasks={async () =>
+          await runValidationTasks("holiday", currentHolidayValue)
         }
-        errorMessage={errors.issecondaryclosed?.errorMessage}
-        hasError={errors.issecondaryclosed?.hasError}
-        {...getOverrideProps(overrides, "issecondaryclosed")}
-      ></SwitchField>
+        errorMessage={errors?.holiday?.errorMessage}
+        setFieldValue={setCurrentHolidayValue}
+        inputFieldRef={holidayRef}
+        defaultFieldValue={""}
+      >
+        <TextField
+          label="Holiday"
+          descriptiveText="Enter the date the contact center will be closed for holiday."
+          isRequired={false}
+          isReadOnly={false}
+          placeholder="MM/DD/YYYY"
+          value={currentHolidayValue}
+          onChange={(e) => {
+            let { value } = e.target;
+            if (errors.holiday?.hasError) {
+              runValidationTasks("holiday", value);
+            }
+            setCurrentHolidayValue(value);
+          }}
+          onBlur={() => runValidationTasks("holiday", currentHolidayValue)}
+          errorMessage={errors.holiday?.errorMessage}
+          hasError={errors.holiday?.hasError}
+          ref={holidayRef}
+          labelHidden={true}
+          {...getOverrideProps(overrides, "holiday")}
+        ></TextField>
+      </ArrayField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}
