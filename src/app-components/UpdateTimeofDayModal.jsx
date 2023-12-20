@@ -185,7 +185,6 @@ const UpdateTimeofDayModal = (props) => {
                     })
                 )
                 onClose()
-                console.info(`Sucessfully DB Update:🚀:`)
             } catch (error) {}
         }
     }

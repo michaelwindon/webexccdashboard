@@ -17,7 +17,6 @@ import UpdateMenuModal from './app-components/UpdateMenuModal'
 import DisplayCenterStatus from './app-components/DisplayCenterStatus'
 import UpdateTimeofDayModal from './app-components/UpdateTimeofDayModal'
 
-
 function App({ signOut, user }) {
     const theme = useTheme()
     const [openoverridemodal, setOpenOverrideModal] = useState(false)
@@ -36,8 +35,7 @@ function App({ signOut, user }) {
 
     useEffect(() => {
         //cause page to refresh on status change
-    }, [statusTrigger, openuOfDateTimeofDay,contactcentermodel])
-
+    }, [statusTrigger, openuOfDateTimeofDay, contactcentermodel])
 
     const handleUpdateMenuModalOpen = (groupid, itemMenu, menu, item) => {
         setGroupid(groupid)
@@ -70,7 +68,6 @@ function App({ signOut, user }) {
     const handleUpdateTimeofDayModalOpen = (item) => {
         setContactcentermodel(item)
         setOpenuOfDateTimeofDay(true)
-        console.log(`update Time of day item:${JSON.stringify(item)}`)
     }
 
     return (
