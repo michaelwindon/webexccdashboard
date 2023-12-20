@@ -504,24 +504,6 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "submenu2": {
-                    "name": "submenu2",
-                    "isArray": false,
-                    "type": {
-                        "nonModel": "SubmenuType"
-                    },
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "submenu2_sp": {
-                    "name": "submenu2_sp",
-                    "isArray": false,
-                    "type": {
-                        "nonModel": "SubmenuType"
-                    },
-                    "isRequired": false,
-                    "attributes": []
-                },
                 "menu0_sp": {
                     "name": "menu0_sp",
                     "isArray": false,
@@ -621,6 +603,20 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "updateduser": {
+                    "name": "updateduser",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "issecondaryclosed": {
+                    "name": "issecondaryclosed",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "Managers": {
                     "name": "Managers",
                     "isArray": true,
@@ -655,20 +651,6 @@ export const schema = {
                         ]
                     }
                 },
-                "updateduser": {
-                    "name": "updateduser",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "version": {
-                    "name": "version",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
                 "isoverride": {
                     "name": "isoverride",
                     "isArray": false,
@@ -690,10 +672,183 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "issecondaryclosed": {
-                    "name": "issecondaryclosed",
+                "submenu1": {
+                    "name": "submenu1",
                     "isArray": false,
-                    "type": "Boolean",
+                    "type": {
+                        "nonModel": "SubmenuType"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "submenu2": {
+                    "name": "submenu2",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "SubmenuType"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "submenu3": {
+                    "name": "submenu3",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "SubmenuType"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "submenu4": {
+                    "name": "submenu4",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "SubmenuType"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "submenu5": {
+                    "name": "submenu5",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "SubmenuType"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "submenu6": {
+                    "name": "submenu6",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "SubmenuType"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "submenu7": {
+                    "name": "submenu7",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "SubmenuType"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "submenu8": {
+                    "name": "submenu8",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "SubmenuType"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "submenu9": {
+                    "name": "submenu9",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "SubmenuType"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "submenu0": {
+                    "name": "submenu0",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "SubmenuType"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "submenu1_sp": {
+                    "name": "submenu1_sp",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "SubmenuType"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "submenu2_sp": {
+                    "name": "submenu2_sp",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "SubmenuType"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "submenu3_sp": {
+                    "name": "submenu3_sp",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "SubmenuType"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "submenu4_sp": {
+                    "name": "submenu4_sp",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "SubmenuType"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "submenu5_sp": {
+                    "name": "submenu5_sp",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "SubmenuType"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "submenu6_sp": {
+                    "name": "submenu6_sp",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "SubmenuType"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "submenu7_sp": {
+                    "name": "submenu7_sp",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "SubmenuType"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "submenu8_sp": {
+                    "name": "submenu8_sp",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "SubmenuType"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "submenu9_sp": {
+                    "name": "submenu9_sp",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "SubmenuType"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "submenu0_sp": {
+                    "name": "submenu0_sp",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "SubmenuType"
+                    },
                     "isRequired": false,
                     "attributes": []
                 },
@@ -1124,5 +1279,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.4.4",
-    "version": "9b93b36233ab91c023e00d466bb8ae49"
+    "version": "2744f5b4900611f9b44c11b94aa17c96"
 };

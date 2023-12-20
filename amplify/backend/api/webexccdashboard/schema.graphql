@@ -93,8 +93,6 @@ type ContactCenterModel @model @auth(rules: [{allow: public}]) {
   ccname: String
   welcomeprompt: String
   welcomeprompt_sp: String
-  submenu2: SubmenuType
-  submenu2_sp: SubmenuType
   menu0_sp: MenuType
   menu1_sp: MenuType
   menu2_sp: MenuType
@@ -106,13 +104,32 @@ type ContactCenterModel @model @auth(rules: [{allow: public}]) {
   menu8_sp: MenuType
   menu9_sp: MenuType
   override: MenuType
+  updateduser: String
+  issecondaryclosed: Boolean
   Managers: [ManagerModel] @manyToMany(relationName: "ContactCenterModelManagerModel")
   AssignedGroup: GroupModel @hasOne
-  updateduser: String
-  version: String
   isoverride: Boolean
   isholiday: Boolean
   isafterhours: Boolean
-  issecondaryclosed: Boolean
+  submenu1: SubmenuType
+  submenu2: SubmenuType
+  submenu3: SubmenuType
+  submenu4: SubmenuType
+  submenu5: SubmenuType
+  submenu6: SubmenuType
+  submenu7: SubmenuType
+  submenu8: SubmenuType
+  submenu9: SubmenuType
+  submenu0: SubmenuType
+  submenu1_sp: SubmenuType
+  submenu2_sp: SubmenuType
+  submenu3_sp: SubmenuType
+  submenu4_sp: SubmenuType
+  submenu5_sp: SubmenuType
+  submenu6_sp: SubmenuType
+  submenu7_sp: SubmenuType
+  submenu8_sp: SubmenuType
+  submenu9_sp: SubmenuType
+  submenu0_sp: SubmenuType
 }
  

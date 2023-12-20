@@ -18,12 +18,21 @@ import { useEffect, useState } from 'react'
 import { MyIcon } from '../ui-components'
 import { QueueModel, ContactCenterModel } from '../models'
 import { DataStore } from 'aws-amplify/datastore'
+import UpdateSubmenuModal from './UpdateSubmenuModal'
 
 const UpdateMenuModal = (props) => {
     const { tokens } = useTheme()
 
-    const { groupid, onClose, open, item, menunumber, contactcenter, user } =
-        props
+    const {
+        groupid,
+        onClose,
+        open,
+        item,
+        menunumber,
+        contactcenter,
+        user,
+        refreshContactCenterModal,
+    } = props
 
     const [showQueue, setshowQueue] = useState(false)
     const [showForward, setshowForward] = useState(false)
@@ -34,6 +43,23 @@ const UpdateMenuModal = (props) => {
     const [fieldValue, setfieldValue] = useState('')
     const [fieldMsg, setFieldMsg] = useState('')
     const [isdefault, setIsdefault] = useState(false)
+    const [submenu, setSubmenu] = useState()
+    const [submenuOpen, setSubmenuOpen] = useState(false)
+    const [optionnumber, setOptionnumber] = useState()
+    const [itemoption, setItemoption] = useState()
+
+    //Refresh Submenu Button after Save in the Submenu Modal
+    const updateOptionButton = (updatedMenu) => {
+        console.log(
+            `Start updateOptionButtonFn updatedMenu:${JSON.stringify(
+                updatedMenu
+            )}`
+        )
+        setItemoption(updatedMenu)
+        console.log(
+            `End updateOptionButtonFn itemoption:${JSON.stringify(itemoption)}`
+        )
+    }
 
     const toggleQueue = () => {
         setshowQueue(!showQueue)
@@ -46,7 +72,6 @@ const UpdateMenuModal = (props) => {
         } else {
             setfieldValue('')
         }
-
         setshowForward(false)
         setshowSubmenu(false)
         setshowMessage(false)
@@ -66,7 +91,6 @@ const UpdateMenuModal = (props) => {
         setshowMessage(false)
         setshowQueue(false)
     }
-
     const toggleSubmenu = () => {
         setshowSubmenu(!showSubmenu)
         if (!showSubmenu && item?.type == 'SUBMENU') {
@@ -78,6 +102,7 @@ const UpdateMenuModal = (props) => {
         } else {
             setfieldValue('')
         }
+
         setshowMessage(false)
         setshowQueue(false)
         setshowForward(false)
@@ -98,7 +123,6 @@ const UpdateMenuModal = (props) => {
         setshowForward(false)
         setshowSubmenu(false)
     }
-
     const checkIfDefault = () => {
         if (menunumber === contactcenter?.defaultroute && open) {
             //if menu number and default match set to default route on submit. else clear check box for next load.
@@ -120,7 +144,6 @@ const UpdateMenuModal = (props) => {
                 console.error(`Error retrieving Queues 💩! ${error}`)
             }
         }
-
         async function fetchDatawithoutrestrictions() {
             try {
                 if (open) {
@@ -132,15 +155,49 @@ const UpdateMenuModal = (props) => {
                 console.error(`Error retrieving Queues 💩! ${error}`)
             }
         }
-
         {
             groupid == '' ? fetchDatawithoutrestrictions() : fetchData()
         }
         setFieldMsg(item?.msg)
-
         //checkif field is default inital setup or when open changes
         checkIfDefault()
-    }, [open, groupid])
+
+        //setup submenu
+        switch (menunumber) {
+            case '1':
+                setSubmenu(contactcenter?.submenu1)
+                break
+            case '2':
+                setSubmenu(contactcenter?.submenu2)
+                break
+            case '3':
+                setSubmenu(contactcenter?.submenu3)
+                break
+            case '4':
+                setSubmenu(contactcenter?.submenu4)
+                break
+            case '5':
+                setSubmenu(contactcenter?.submenu5)
+                break
+            case '6':
+                setSubmenu(contactcenter?.submenu6)
+                break
+            case '7':
+                setSubmenu(contactcenter?.submenu7)
+                break
+            case '8':
+                setSubmenu(contactcenter?.submenu8)
+                break
+            case '9':
+                setSubmenu(contactcenter?.submenu9)
+                break
+            case '0':
+                setSubmenu(contactcenter?.submenu0)
+                break
+            default:
+                break
+        }
+    }, [open, optionnumber,contactcenter])
 
     const handleFieldChange = (e) => {
         setfieldValue(e.target.value)
@@ -148,7 +205,6 @@ const UpdateMenuModal = (props) => {
     const handleFieldMsgChange = (e) => {
         setFieldMsg(e.target.value)
     }
-
     const handleSubmit = async () => {
         const updatedMenu = { msg: fieldMsg, type: menuType, value: fieldValue }
 
@@ -286,7 +342,7 @@ const UpdateMenuModal = (props) => {
                     })
                 )
                 console.log(
-                    `Sucessful submition to the DB! 🚀: {"msg":"${fieldMsg}", "type":"${menuType}", "value" : "${fieldValue}" for menu: ${menunumber} default: ${isdefault}, ${updateContactCenter.defaultroute}}`
+                    `Successful submition to the DB! 🚀: {"msg":"${fieldMsg}", "type":"${menuType}", "value" : "${fieldValue}" for menu: ${menunumber} default: ${isdefault}, ${updateContactCenter.defaultroute}}`
                 )
             } catch (error) {
                 console.error(`Error in handleSubmit: ${error}`)
@@ -306,11 +362,22 @@ const UpdateMenuModal = (props) => {
         setIsdefault(false)
         onClose()
     }
-    /* console.log(
-        `{"msg":"${fieldMsg}", "type":"${menuType}", "value" : "${fieldValue}" for menu: ${menunumber} }`
-    ) */
+
     return (
         <>
+            <UpdateSubmenuModal
+                open={submenuOpen}
+                onClose={setSubmenuOpen}
+                groupid={groupid}
+                submenu={submenu}
+                menunumber={menunumber}
+                contactcenter={contactcenter}
+                optionnumber={optionnumber}
+                itemoption={itemoption}
+                user={user}
+                refreshContactCenterModal={refreshContactCenterModal}
+            />
+
             <Dialog fullWidth={true} maxWidth="lg" open={open}>
                 <View
                     backgroundColor={tokens.colors.background.secondary}
@@ -449,7 +516,7 @@ const UpdateMenuModal = (props) => {
                                     </Flex>
                                 )}
                                 {showSubmenu && (
-                                    <Flex>
+                                    <Flex direction="column">
                                         <View width="50em">
                                             <TextAreaField
                                                 rows={3}
@@ -462,6 +529,349 @@ const UpdateMenuModal = (props) => {
                                                         : ''
                                                 }
                                             />
+                                        </View>
+                                        <View
+                                            padding="2em"
+                                            border="1px solid var(--amplify-colors-black)"
+                                        >
+                                            <Flex justifyContent="center">
+                                                <View>
+                                                    <Button
+                                                        onClick={() => {
+                                                            setSubmenuOpen(true)
+                                                            setOptionnumber('1')
+                                                            setItemoption(
+                                                                submenu?.option1
+                                                            )
+                                                        }}
+                                                    >
+                                                        <MyIcon
+                                                            {...(submenu
+                                                                ?.option1
+                                                                ?.type ==
+                                                                'FORWARD' && {
+                                                                type: 'phone',
+                                                            })}
+                                                            {...(submenu
+                                                                ?.option1
+                                                                ?.type ==
+                                                                'MSG' && {
+                                                                type: 'chat',
+                                                            })}
+                                                            {...(submenu
+                                                                ?.option1
+                                                                ?.type ==
+                                                                'QUEUE' && {
+                                                                type: 'group',
+                                                            })}
+                                                        />
+                                                        Option 1
+                                                    </Button>
+                                                </View>
+                                                <View>
+                                                    <Button
+                                                        onClick={() => {
+                                                            setSubmenuOpen(true)
+                                                            setOptionnumber('2')
+                                                            setItemoption(
+                                                                submenu?.option2
+                                                            )
+                                                        }}
+                                                    >
+                                                        <MyIcon
+                                                            {...(submenu
+                                                                ?.option2
+                                                                ?.type ==
+                                                                'FORWARD' && {
+                                                                type: 'phone',
+                                                            })}
+                                                            {...(submenu
+                                                                ?.option2
+                                                                ?.type ==
+                                                                'MSG' && {
+                                                                type: 'chat',
+                                                            })}
+                                                            {...(submenu
+                                                                ?.option2
+                                                                ?.type ==
+                                                                'QUEUE' && {
+                                                                type: 'group',
+                                                            })}
+                                                        />
+                                                        Option 2
+                                                    </Button>
+                                                </View>
+                                                <View>
+                                                    <Button
+                                                        onClick={() => {
+                                                            setSubmenuOpen(true)
+                                                            setOptionnumber('3')
+                                                            setItemoption(
+                                                                submenu?.option3
+                                                            )
+                                                        }}
+                                                    >
+                                                        <MyIcon
+                                                            {...(submenu
+                                                                ?.option3
+                                                                ?.type ==
+                                                                'FORWARD' && {
+                                                                type: 'phone',
+                                                            })}
+                                                            {...(submenu
+                                                                ?.option3
+                                                                ?.type ==
+                                                                'MSG' && {
+                                                                type: 'chat',
+                                                            })}
+                                                            {...(submenu
+                                                                ?.option3
+                                                                ?.type ==
+                                                                'QUEUE' && {
+                                                                type: 'group',
+                                                            })}
+                                                        />
+                                                        Option 3
+                                                    </Button>
+                                                </View>
+                                            </Flex>
+                                            <Flex justifyContent="center">
+                                                <View>
+                                                    <Button
+                                                        onClick={() => {
+                                                            setSubmenuOpen(true)
+                                                            setOptionnumber('4')
+                                                            setItemoption(
+                                                                submenu?.option4
+                                                            )
+                                                        }}
+                                                    >
+                                                        <MyIcon
+                                                            {...(submenu
+                                                                ?.option4
+                                                                ?.type ==
+                                                                'FORWARD' && {
+                                                                type: 'phone',
+                                                            })}
+                                                            {...(submenu
+                                                                ?.option4
+                                                                ?.type ==
+                                                                'MSG' && {
+                                                                type: 'chat',
+                                                            })}
+                                                            {...(submenu
+                                                                ?.option4
+                                                                ?.type ==
+                                                                'QUEUE' && {
+                                                                type: 'group',
+                                                            })}
+                                                        />
+                                                        Option 4
+                                                    </Button>
+                                                </View>
+                                                <View>
+                                                    <Button
+                                                        onClick={() => {
+                                                            setSubmenuOpen(true)
+                                                            setOptionnumber('5')
+                                                            setItemoption(
+                                                                submenu?.option5
+                                                            )
+                                                        }}
+                                                    >
+                                                        <MyIcon
+                                                            {...(submenu
+                                                                ?.option5
+                                                                ?.type ==
+                                                                'FORWARD' && {
+                                                                type: 'phone',
+                                                            })}
+                                                            {...(submenu
+                                                                ?.option5
+                                                                ?.type ==
+                                                                'MSG' && {
+                                                                type: 'chat',
+                                                            })}
+                                                            {...(submenu
+                                                                ?.option5
+                                                                ?.type ==
+                                                                'QUEUE' && {
+                                                                type: 'group',
+                                                            })}
+                                                        />
+                                                        Option 5
+                                                    </Button>
+                                                </View>
+                                                <View>
+                                                    <Button
+                                                        onClick={() => {
+                                                            setSubmenuOpen(true)
+                                                            setOptionnumber('6')
+                                                            setItemoption(
+                                                                submenu?.option6
+                                                            )
+                                                        }}
+                                                    >
+                                                        <MyIcon
+                                                            {...(submenu
+                                                                ?.option6
+                                                                ?.type ==
+                                                                'FORWARD' && {
+                                                                type: 'phone',
+                                                            })}
+                                                            {...(submenu
+                                                                ?.option6
+                                                                ?.type ==
+                                                                'MSG' && {
+                                                                type: 'chat',
+                                                            })}
+                                                            {...(submenu
+                                                                ?.option6
+                                                                ?.type ==
+                                                                'QUEUE' && {
+                                                                type: 'group',
+                                                            })}
+                                                        />
+                                                        Option 6
+                                                    </Button>
+                                                </View>
+                                            </Flex>
+                                            <Flex justifyContent="center">
+                                                <View>
+                                                    <Button
+                                                        onClick={() => {
+                                                            setSubmenuOpen(true)
+                                                            setOptionnumber('7')
+                                                            setItemoption(
+                                                                submenu?.option7
+                                                            )
+                                                        }}
+                                                    >
+                                                        <MyIcon
+                                                            {...(submenu
+                                                                ?.option7
+                                                                ?.type ==
+                                                                'FORWARD' && {
+                                                                type: 'phone',
+                                                            })}
+                                                            {...(submenu
+                                                                ?.option7
+                                                                ?.type ==
+                                                                'MSG' && {
+                                                                type: 'chat',
+                                                            })}
+                                                            {...(submenu
+                                                                ?.option7
+                                                                ?.type ==
+                                                                'QUEUE' && {
+                                                                type: 'group',
+                                                            })}
+                                                        />
+                                                        Option 7
+                                                    </Button>
+                                                </View>
+                                                <View>
+                                                    <Button
+                                                        onClick={() => {
+                                                            setSubmenuOpen(true)
+                                                            setOptionnumber('8')
+                                                            setItemoption(
+                                                                submenu?.option8
+                                                            )
+                                                        }}
+                                                    >
+                                                        <MyIcon
+                                                            {...(submenu
+                                                                ?.option8
+                                                                ?.type ==
+                                                                'FORWARD' && {
+                                                                type: 'phone',
+                                                            })}
+                                                            {...(submenu
+                                                                ?.option8
+                                                                ?.type ==
+                                                                'MSG' && {
+                                                                type: 'chat',
+                                                            })}
+                                                            {...(submenu
+                                                                ?.option8
+                                                                ?.type ==
+                                                                'QUEUE' && {
+                                                                type: 'group',
+                                                            })}
+                                                        />
+                                                        Option 8
+                                                    </Button>
+                                                </View>
+                                                <View>
+                                                    <Button
+                                                        onClick={() => {
+                                                            setSubmenuOpen(true)
+                                                            setOptionnumber('9')
+                                                            setItemoption(
+                                                                submenu?.option9
+                                                            )
+                                                        }}
+                                                    >
+                                                        <MyIcon
+                                                            {...(submenu
+                                                                ?.option9
+                                                                ?.type ==
+                                                                'FORWARD' && {
+                                                                type: 'phone',
+                                                            })}
+                                                            {...(submenu
+                                                                ?.option9
+                                                                ?.type ==
+                                                                'MSG' && {
+                                                                type: 'chat',
+                                                            })}
+                                                            {...(submenu
+                                                                ?.option9
+                                                                ?.type ==
+                                                                'QUEUE' && {
+                                                                type: 'group',
+                                                            })}
+                                                        />
+                                                        Option 9
+                                                    </Button>
+                                                </View>
+                                            </Flex>
+                                            <Flex justifyContent="center">
+                                                <View>
+                                                    <Button
+                                                        onClick={() => {
+                                                            setSubmenuOpen(true)
+                                                            setOptionnumber('0')
+                                                            setItemoption(
+                                                                submenu?.option0
+                                                            )
+                                                        }}
+                                                    >
+                                                        <MyIcon
+                                                            {...(submenu
+                                                                ?.option0
+                                                                ?.type ==
+                                                                'FORWARD' && {
+                                                                type: 'phone',
+                                                            })}
+                                                            {...(submenu
+                                                                ?.option0
+                                                                ?.type ==
+                                                                'MSG' && {
+                                                                type: 'chat',
+                                                            })}
+                                                            {...(submenu
+                                                                ?.option0
+                                                                ?.type ==
+                                                                'QUEUE' && {
+                                                                type: 'group',
+                                                            })}
+                                                        />
+                                                        Option 0
+                                                    </Button>
+                                                </View>
+                                            </Flex>
                                         </View>
                                     </Flex>
                                 )}

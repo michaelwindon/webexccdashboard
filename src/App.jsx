@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import '@fontsource/inter/'
-import { Hub } from 'aws-amplify/utils'
 import dayjs from 'dayjs'
 import PropTypes from 'prop-types'
 
@@ -17,6 +16,7 @@ import UpdateisOverrideModal from './app-components/UpdateisOverrideModal'
 import UpdateMenuModal from './app-components/UpdateMenuModal'
 import DisplayCenterStatus from './app-components/DisplayCenterStatus'
 import UpdateTimeofDayModal from './app-components/UpdateTimeofDayModal'
+
 
 function App({ signOut, user }) {
     const theme = useTheme()
@@ -36,7 +36,8 @@ function App({ signOut, user }) {
 
     useEffect(() => {
         //cause page to refresh on status change
-    }, [statusTrigger, openuOfDateTimeofDay])
+    }, [statusTrigger, openuOfDateTimeofDay,contactcentermodel])
+
 
     const handleUpdateMenuModalOpen = (groupid, itemMenu, menu, item) => {
         setGroupid(groupid)
@@ -45,6 +46,10 @@ function App({ signOut, user }) {
         setOpenupdatemenu(true)
         setContactcentermodel(item)
     }
+    const refreshContactCenterModal = (updatedContactCenterModel) => {
+        setContactcentermodel(updatedContactCenterModel)
+    }
+
     const handleUpdateMenuModaclose = (groupid) => {
         setGroupid(null)
         setOpenupdatemenu(false)
@@ -65,6 +70,7 @@ function App({ signOut, user }) {
     const handleUpdateTimeofDayModalOpen = (item) => {
         setContactcentermodel(item)
         setOpenuOfDateTimeofDay(true)
+        console.log(`update Time of day item:${JSON.stringify(item)}`)
     }
 
     return (
@@ -83,6 +89,7 @@ function App({ signOut, user }) {
                 menunumber={menunumber}
                 contactcenter={contactcentermodel}
                 user={user}
+                refreshContactCenterModal={refreshContactCenterModal}
             />
             <UpdateisOverrideModal
                 open={openoverridemodal}
@@ -911,6 +918,7 @@ function App({ signOut, user }) {
                             ),
                         },
                         SwitchField: {
+                            label: 'Overide/Holiday',
                             onClick: () => {
                                 handleClickOverrideModalOpen(item.id)
                             },
