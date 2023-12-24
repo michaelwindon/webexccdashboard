@@ -192,9 +192,13 @@ export default function UpdateOverrideForm(props) {
   } = props;
   const initialValues = {
     isoverride: false,
+    presentlangoption: false,
     holiday: [],
   };
   const [isoverride, setIsoverride] = React.useState(initialValues.isoverride);
+  const [presentlangoption, setPresentlangoption] = React.useState(
+    initialValues.presentlangoption
+  );
   const [holiday, setHoliday] = React.useState(initialValues.holiday);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
@@ -202,6 +206,7 @@ export default function UpdateOverrideForm(props) {
       ? { ...initialValues, ...contactCenterModelRecord }
       : initialValues;
     setIsoverride(cleanValues.isoverride);
+    setPresentlangoption(cleanValues.presentlangoption);
     setHoliday(cleanValues.holiday ?? []);
     setCurrentHolidayValue("");
     setErrors({});
@@ -222,6 +227,7 @@ export default function UpdateOverrideForm(props) {
   const holidayRef = React.createRef();
   const validations = {
     isoverride: [],
+    presentlangoption: [],
     holiday: [],
   };
   const runValidationTasks = async (
@@ -251,6 +257,7 @@ export default function UpdateOverrideForm(props) {
         event.preventDefault();
         let modelFields = {
           isoverride,
+          presentlangoption,
           holiday,
         };
         const validationResponses = await Promise.all(
@@ -308,6 +315,7 @@ export default function UpdateOverrideForm(props) {
           if (onChange) {
             const modelFields = {
               isoverride: value,
+              presentlangoption,
               holiday,
             };
             const result = onChange(modelFields);
@@ -323,6 +331,34 @@ export default function UpdateOverrideForm(props) {
         hasError={errors.isoverride?.hasError}
         {...getOverrideProps(overrides, "isoverride")}
       ></SwitchField>
+      <SwitchField
+        label="Present Spanish Option"
+        defaultChecked={false}
+        isDisabled={false}
+        isChecked={presentlangoption}
+        onChange={(e) => {
+          let value = e.target.checked;
+          if (onChange) {
+            const modelFields = {
+              isoverride,
+              presentlangoption: value,
+              holiday,
+            };
+            const result = onChange(modelFields);
+            value = result?.presentlangoption ?? value;
+          }
+          if (errors.presentlangoption?.hasError) {
+            runValidationTasks("presentlangoption", value);
+          }
+          setPresentlangoption(value);
+        }}
+        onBlur={() =>
+          runValidationTasks("presentlangoption", presentlangoption)
+        }
+        errorMessage={errors.presentlangoption?.errorMessage}
+        hasError={errors.presentlangoption?.hasError}
+        {...getOverrideProps(overrides, "presentlangoption")}
+      ></SwitchField>
       <Divider
         orientation="horizontal"
         {...getOverrideProps(overrides, "SectionalElement0")}
@@ -333,6 +369,7 @@ export default function UpdateOverrideForm(props) {
           if (onChange) {
             const modelFields = {
               isoverride,
+              presentlangoption,
               holiday: values,
             };
             const result = onChange(modelFields);

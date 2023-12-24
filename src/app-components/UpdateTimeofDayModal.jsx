@@ -432,7 +432,7 @@ const UpdateTimeofDayModal = (props) => {
     }, [open])
 
     return (
-        <Dialog fullWidth={true} maxWidth="lg" open={open}>
+        <Dialog fullWidth={true} maxWidth="lg" open={open} onClose={onClose}>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <Flex direction="row" justifyContent="flex-start" wrap="nowrap">
                     <View

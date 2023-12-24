@@ -31,6 +31,7 @@ const UpdateMenuModal = (props) => {
         menunumber,
         contactcenter,
         user,
+        showSpanish,
         refreshContactCenterModal,
     } = props
 
@@ -197,7 +198,7 @@ const UpdateMenuModal = (props) => {
             default:
                 break
         }
-    }, [open, optionnumber,contactcenter])
+    }, [open, optionnumber, contactcenter])
 
     const handleFieldChange = (e) => {
         setfieldValue(e.target.value)
@@ -205,6 +206,7 @@ const UpdateMenuModal = (props) => {
     const handleFieldMsgChange = (e) => {
         setFieldMsg(e.target.value)
     }
+
     const handleSubmit = async () => {
         const updatedMenu = { msg: fieldMsg, type: menuType, value: fieldValue }
 
@@ -219,7 +221,12 @@ const UpdateMenuModal = (props) => {
                     ContactCenterModel.copyOf(orignal, (update) => {
                         switch (menunumber) {
                             case '1':
-                                update.menu1 = updatedMenu
+                                if (showSpanish) {
+                                    update.menu1_sp = updatedMenu
+                                } else {
+                                    update.menu1 = updatedMenu
+                                }
+
                                 update.updateduser = user.username
                                 if (isdefault) {
                                     update.defaultroute = '1'
@@ -228,7 +235,11 @@ const UpdateMenuModal = (props) => {
                                 }
                                 break
                             case '2':
-                                update.menu2 = updatedMenu
+                                if (showSpanish) {
+                                    update.menu2_sp = updatedMenu
+                                } else {
+                                    update.menu2 = updatedMenu
+                                }
                                 update.updateduser = user.username
                                 if (isdefault) {
                                     update.defaultroute = '2'
@@ -237,7 +248,11 @@ const UpdateMenuModal = (props) => {
                                 }
                                 break
                             case '3':
-                                update.menu3 = updatedMenu
+                                if (showSpanish) {
+                                    update.menu3_sp = updatedMenu
+                                } else {
+                                    update.menu3 = updatedMenu
+                                }
                                 update.updateduser = user.username
                                 if (isdefault) {
                                     update.defaultroute = '3'
@@ -246,7 +261,11 @@ const UpdateMenuModal = (props) => {
                                 }
                                 break
                             case '4':
-                                update.menu4 = updatedMenu
+                                if (showSpanish) {
+                                    update.menu4_sp = updatedMenu
+                                } else {
+                                    update.menu4 = updatedMenu
+                                }
                                 update.updateduser = user.username
                                 if (isdefault) {
                                     update.defaultroute = '4'
@@ -255,7 +274,11 @@ const UpdateMenuModal = (props) => {
                                 }
                                 break
                             case '5':
-                                update.menu5 = updatedMenu
+                                if (showSpanish) {
+                                    update.menu5_sp = updatedMenu
+                                } else {
+                                    update.menu5 = updatedMenu
+                                }
                                 update.updateduser = user.username
                                 if (isdefault) {
                                     update.defaultroute = '5'
@@ -264,7 +287,11 @@ const UpdateMenuModal = (props) => {
                                 }
                                 break
                             case '6':
-                                update.menu6 = updatedMenu
+                                if (showSpanish) {
+                                    update.menu6_sp = updatedMenu
+                                } else {
+                                    update.menu6 = updatedMenu
+                                }
                                 update.updateduser = user.username
                                 if (isdefault) {
                                     update.defaultroute = '6'
@@ -274,7 +301,11 @@ const UpdateMenuModal = (props) => {
                                 break
 
                             case '7':
-                                update.menu7 = updatedMenu
+                                if (showSpanish) {
+                                    update.menu7_sp = updatedMenu
+                                } else {
+                                    update.menu7 = updatedMenu
+                                }
                                 update.updateduser = user.username
                                 if (isdefault) {
                                     update.defaultroute = '7'
@@ -284,7 +315,11 @@ const UpdateMenuModal = (props) => {
                                 break
 
                             case '8':
-                                update.menu8 = updatedMenu
+                                if (showSpanish) {
+                                    update.menu8_sp = updatedMenu
+                                } else {
+                                    update.menu8 = updatedMenu
+                                }
                                 update.updateduser = user.username
                                 if (isdefault) {
                                     update.defaultroute = '8'
@@ -294,7 +329,11 @@ const UpdateMenuModal = (props) => {
                                 break
 
                             case '9':
-                                update.menu9 = updatedMenu
+                                if (showSpanish) {
+                                    update.menu9_sp = updatedMenu
+                                } else {
+                                    update.menu9 = updatedMenu
+                                }
                                 update.updateduser = user.username
                                 if (isdefault) {
                                     update.defaultroute = '9'
@@ -304,7 +343,11 @@ const UpdateMenuModal = (props) => {
                                 break
 
                             case '0':
-                                update.menu0 = updatedMenu
+                                if (showSpanish) {
+                                    update.menu0_sp = updatedMenu
+                                } else {
+                                    update.menu0 = updatedMenu
+                                }
                                 update.updateduser = user.username
                                 if (isdefault) {
                                     update.defaultroute = '0'
@@ -378,7 +421,12 @@ const UpdateMenuModal = (props) => {
                 refreshContactCenterModal={refreshContactCenterModal}
             />
 
-            <Dialog fullWidth={true} maxWidth="lg" open={open}>
+            <Dialog
+                fullWidth={true}
+                maxWidth="lg"
+                open={open}
+                onClose={onClose}
+            >
                 <View
                     backgroundColor={tokens.colors.background.secondary}
                     padding={tokens.space.medium}
@@ -450,14 +498,20 @@ const UpdateMenuModal = (props) => {
                                         >
                                             <MyIcon type="group" /> Queue
                                         </Button>
-                                        <Button
-                                            onClick={() => {
-                                                toggleSubmenu()
-                                                setmenuType('SUBMENU')
-                                            }}
-                                        >
-                                            <MyIcon type="share" /> Submenu
-                                        </Button>
+                                        {menunumber === 'override' ||
+                                        menunumber === 'afterhours' ||
+                                        menunumber === 'secondary' ||
+                                        menunumber ===
+                                            'holidayoption' ? null : (
+                                            <Button
+                                                onClick={() => {
+                                                    toggleSubmenu()
+                                                    setmenuType('SUBMENU')
+                                                }}
+                                            >
+                                                <MyIcon type="share" /> Submenu
+                                            </Button>
+                                        )}
                                     </ButtonGroup>
                                 </Flex>
                                 {showMessage && (
@@ -875,16 +929,26 @@ const UpdateMenuModal = (props) => {
                                         </View>
                                     </Flex>
                                 )}
+
                                 <Flex>
                                     <View>
-                                        <CheckboxField
-                                            label="Default Route"
-                                            name="defaultroute"
-                                            checked={isdefault}
-                                            onChange={(e) => {
-                                                setIsdefault(e.target.checked)
-                                            }}
-                                        />
+                                        {' '}
+                                        {menunumber === 'override' ||
+                                        menunumber === 'afterhours' ||
+                                        menunumber === 'secondary' ||
+                                        menunumber ===
+                                            'holidayoption' ? null : (
+                                            <CheckboxField
+                                                label="Default Route"
+                                                name="defaultroute"
+                                                checked={isdefault}
+                                                onChange={(e) => {
+                                                    setIsdefault(
+                                                        e.target.checked
+                                                    )
+                                                }}
+                                            />
+                                        )}
                                     </View>
                                 </Flex>
                                 <Flex>

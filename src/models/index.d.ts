@@ -256,6 +256,7 @@ type EagerContactCenterModel = {
   readonly submenu8_sp?: SubmenuType | null;
   readonly submenu9_sp?: SubmenuType | null;
   readonly submenu0_sp?: SubmenuType | null;
+  readonly presentlangoption?: boolean | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   readonly contactCenterModelAssignedGroupId?: string | null;
@@ -330,6 +331,7 @@ type LazyContactCenterModel = {
   readonly submenu8_sp?: SubmenuType | null;
   readonly submenu9_sp?: SubmenuType | null;
   readonly submenu0_sp?: SubmenuType | null;
+  readonly presentlangoption?: boolean | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   readonly contactCenterModelAssignedGroupId?: string | null;

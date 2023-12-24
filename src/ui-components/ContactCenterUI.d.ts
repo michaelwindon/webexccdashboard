@@ -20,6 +20,7 @@ export declare type Variant = {
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type ContactCenterUIOverridesProps = {
     ContactCenterUI?: PrimitiveOverrideProps<FlexProps>;
+    content?: PrimitiveOverrideProps<FlexProps>;
     headerbar?: PrimitiveOverrideProps<FlexProps>;
     titlesection?: PrimitiveOverrideProps<FlexProps>;
     ccname?: PrimitiveOverrideProps<TextProps>;
@@ -30,9 +31,11 @@ export declare type ContactCenterUIOverridesProps = {
     border3869763?: PrimitiveOverrideProps<FlexProps>;
     Divider3869742?: PrimitiveOverrideProps<DividerProps>;
     welcomepromptsec?: PrimitiveOverrideProps<FlexProps>;
-    "Thank you for calling Houston Methodist, Customer Service. <break time=\"1s\"/> If this is an emergency, please hangup, and dial 911. <break time=\"1s\"/>This call may be recorded for quality and training purposes. <break time=\"1s\"/>"?: PrimitiveOverrideProps<TextProps>;
+    "Thank you for calling Houston Methodist, Customer Service. <break time=\"1s\"/> If this is an emergency, please hangup, and dial 911. <break time=\"1s\"/>This call may be recorded for quality and training purposes. <break time=\"1s\"/> huidshuidshufusduhuifshihu jjdfsjiksdbuisd jisdhuisdhidu] jioudshiudshu nidsuhuid"?: PrimitiveOverrideProps<TextProps>;
     mainivrcontent?: PrimitiveOverrideProps<FlexProps>;
     ivrbuttonsec?: PrimitiveOverrideProps<FlexProps>;
+    ivrtitle?: PrimitiveOverrideProps<FlexProps>;
+    spanishMenu?: PrimitiveOverrideProps<TextProps>;
     rowone?: PrimitiveOverrideProps<ViewProps>;
     ButtonOne?: PrimitiveOverrideProps<ButtonProps>;
     ButtonTwo?: PrimitiveOverrideProps<ButtonProps>;

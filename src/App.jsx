@@ -16,14 +16,19 @@ import UpdateisOverrideModal from './app-components/UpdateisOverrideModal'
 import UpdateMenuModal from './app-components/UpdateMenuModal'
 import DisplayCenterStatus from './app-components/DisplayCenterStatus'
 import UpdateTimeofDayModal from './app-components/UpdateTimeofDayModal'
+import ShowSpanishModal from './app-components/ShowSpanishModal'
+import UpdateWelcomeModal from './app-components/UpdateWelcomeModal'
 
 function App({ signOut, user }) {
     const theme = useTheme()
     const [openoverridemodal, setOpenOverrideModal] = useState(false)
+    const [openwelcomeModal, setWelcomeModal] = useState(false)
     const [openupdatemenu, setOpenupdatemenu] = useState(false)
     const [openuOfDateTimeofDay, setOpenuOfDateTimeofDay] = useState(false)
     const [modelItem, setModelItem] = useState()
     const [menunumber, setMenuNumber] = useState()
+    const [showSpanish, setShowSpanish] = useState(false)
+    const [openSpanishModal, setOpenSpanishModal] = useState(false)
     const [contactcentermodel, setContactcentermodel] = useState()
     const [statusTrigger, setStatusTrigger] = useState({
         status: 'init',
@@ -37,6 +42,9 @@ function App({ signOut, user }) {
         //cause page to refresh on status change
     }, [statusTrigger, openuOfDateTimeofDay, contactcentermodel])
 
+    const handleShowSpanish = (state) => {
+        setShowSpanish(state)
+    }
     const handleUpdateMenuModalOpen = (groupid, itemMenu, menu, item) => {
         setGroupid(groupid)
         setModelItem(itemMenu)
@@ -53,6 +61,10 @@ function App({ signOut, user }) {
         setOpenupdatemenu(false)
     }
 
+    const handleClickWelcomePrompt = (item) => {
+        setContactcentermodel(item)
+        setWelcomeModal(true)
+    }
     const handleClickOverrideModalOpen = (id) => {
         setOpenOverrideModal(true)
         setId(id)
@@ -72,6 +84,19 @@ function App({ signOut, user }) {
 
     return (
         <>
+            <UpdateWelcomeModal
+                open={openwelcomeModal}
+                onClose={setWelcomeModal}
+                contactcenter={contactcentermodel}
+                user={user}
+            />
+            <ShowSpanishModal
+                open={openSpanishModal}
+                onClose={setOpenSpanishModal}
+                showSpanish={showSpanish}
+                handleShowSpanish={handleShowSpanish}
+            />
+
             <UpdateTimeofDayModal
                 open={openuOfDateTimeofDay}
                 user={user}
@@ -86,6 +111,7 @@ function App({ signOut, user }) {
                 menunumber={menunumber}
                 contactcenter={contactcentermodel}
                 user={user}
+                showSpanish={showSpanish}
                 refreshContactCenterModal={refreshContactCenterModal}
             />
             <UpdateisOverrideModal
@@ -93,10 +119,17 @@ function App({ signOut, user }) {
                 id={id}
                 onClose={handleClickOverrideModalClose}
                 user={user}
+                setShowSpanish={setShowSpanish}
             />
             <ContactCenterUICollection
                 overrideItems={({ item, index }) => ({
                     overrides: {
+                        welcomepromptsec: {
+                            className: 'clickAble',
+                            onClick: () => {
+                                handleClickWelcomePrompt(item)
+                            },
+                        },
                         todsec: {
                             className: 'clickAble',
                             onClick: () => {
@@ -524,7 +557,7 @@ function App({ signOut, user }) {
                                 new Date().toLocaleString('en-US', {
                                     weekday: 'short',
                                 }) == 'Fri'
-                                    ? 'var(--amplify-font-weights-bold)'
+                                    ? '{var(--amplify-font-weights-bold)}'
                                     : '',
                             children: (
                                 <>
@@ -584,6 +617,18 @@ function App({ signOut, user }) {
                                 />
                             ),
                         },
+                        titlesection: {
+                            className: item?.presentlangoption
+                                ? 'clickAble'
+                                : '',
+                            onClick: () => {
+                                if (item?.presentlangoption) {
+                                    setOpenSpanishModal(true)
+                                } else {
+                                    setOpenSpanishModal(false)
+                                }
+                            },
+                        },
                         ccmainnumber: {
                             children: (
                                 <>
@@ -591,6 +636,7 @@ function App({ signOut, user }) {
                                         /^(\d{3})(\d{3})(\d{4})/,
                                         '($1) $2-$3'
                                     )}
+                                    {item?.presentlangoption && ' [ES]'}
                                 </>
                             ),
                         },
@@ -599,30 +645,73 @@ function App({ signOut, user }) {
                                 ? { variation: 'primary', colorTheme: 'info' }
                                 : {}),
                             onClick: () => {
-                                handleUpdateMenuModalOpen(
-                                    item?.contactCenterModelAssignedGroupId,
-                                    item?.menu1,
-                                    '1',
-                                    item
-                                )
+                                if (!showSpanish || !item?.presentlangoption) {
+                                    handleUpdateMenuModalOpen(
+                                        item?.contactCenterModelAssignedGroupId,
+                                        item?.menu1,
+                                        '1',
+                                        item
+                                    )
+                                } else {
+                                    handleUpdateMenuModalOpen(
+                                        item?.contactCenterModelAssignedGroupId,
+                                        item?.menu1_sp,
+                                        '1',
+                                        item
+                                    )
+                                }
                             },
                             children: (
                                 <>
                                     1
-                                    <MyIcon
-                                        {...(item.menu1?.type == 'FORWARD' && {
-                                            type: 'phone',
-                                        })}
-                                        {...(item.menu1?.type == 'MSG' && {
-                                            type: 'chat',
-                                        })}
-                                        {...(item.menu1?.type == 'QUEUE' && {
-                                            type: 'group',
-                                        })}
-                                        {...(item.menu1?.type == 'SUBMENU' && {
-                                            type: 'share',
-                                        })}
-                                    />
+                                    {!showSpanish ||
+                                    !item?.presentlangoption ? (
+                                        <MyIcon
+                                            {...(item.menu1?.type ==
+                                                'FORWARD' && {
+                                                type: 'phone',
+                                            })}
+                                            {...(item.menu1?.type == 'MSG' && {
+                                                type: 'chat',
+                                            })}
+                                            {...(item.menu1?.type ==
+                                                'QUEUE' && {
+                                                type: 'group',
+                                            })}
+                                            {...(item.menu1?.type ==
+                                                'SUBMENU' && {
+                                                type: 'share',
+                                            })}
+                                        />
+                                    ) : (
+                                        <MyIcon
+                                            {...(item.menu1_sp?.type ==
+                                                'FORWARD' && {
+                                                type: 'phone',
+                                            })}
+                                            {...(item.menu1_sp?.type ==
+                                                'MSG' && {
+                                                type: 'chat',
+                                            })}
+                                            {...(item.menu1_sp?.type ==
+                                                'QUEUE' && {
+                                                type: 'group',
+                                            })}
+                                            {...(item.menu1_sp?.type ==
+                                                'SUBMENU' && {
+                                                type: 'share',
+                                            })}
+                                        />
+                                    )}
+                                </>
+                            ),
+                        },
+                        spanishMenu: {
+                            children: (
+                                <>
+                                    {showSpanish && item?.presentlangoption
+                                        ? 'Spanish Menu Displayed'
+                                        : ''}
                                 </>
                             ),
                         },
@@ -631,30 +720,64 @@ function App({ signOut, user }) {
                                 ? { variation: 'primary', colorTheme: 'info' }
                                 : {}),
                             onClick: () => {
-                                handleUpdateMenuModalOpen(
-                                    item?.contactCenterModelAssignedGroupId,
-                                    item?.menu2,
-                                    '2',
-                                    item
-                                )
+                                if (!showSpanish || !item?.presentlangoption) {
+                                    handleUpdateMenuModalOpen(
+                                        item?.contactCenterModelAssignedGroupId,
+                                        item?.menu2,
+                                        '2',
+                                        item
+                                    )
+                                } else {
+                                    handleUpdateMenuModalOpen(
+                                        item?.contactCenterModelAssignedGroupId,
+                                        item?.menu2_sp,
+                                        '2',
+                                        item
+                                    )
+                                }
                             },
                             children: (
                                 <>
                                     2
-                                    <MyIcon
-                                        {...(item.menu2?.type == 'FORWARD' && {
-                                            type: 'phone',
-                                        })}
-                                        {...(item.menu2?.type == 'MSG' && {
-                                            type: 'chat',
-                                        })}
-                                        {...(item.menu2?.type == 'QUEUE' && {
-                                            type: 'group',
-                                        })}
-                                        {...(item.menu2?.type == 'SUBMENU' && {
-                                            type: 'share',
-                                        })}
-                                    />
+                                    {!showSpanish ||
+                                    !item?.presentlangoption ? (
+                                        <MyIcon
+                                            {...(item.menu2?.type ==
+                                                'FORWARD' && {
+                                                type: 'phone',
+                                            })}
+                                            {...(item.menu2?.type == 'MSG' && {
+                                                type: 'chat',
+                                            })}
+                                            {...(item.menu2?.type ==
+                                                'QUEUE' && {
+                                                type: 'group',
+                                            })}
+                                            {...(item.menu2?.type ==
+                                                'SUBMENU' && {
+                                                type: 'share',
+                                            })}
+                                        />
+                                    ) : (
+                                        <MyIcon
+                                            {...(item.menu2_sp?.type ==
+                                                'FORWARD' && {
+                                                type: 'phone',
+                                            })}
+                                            {...(item.menu2_sp?.type ==
+                                                'MSG' && {
+                                                type: 'chat',
+                                            })}
+                                            {...(item.menu2_sp?.type ==
+                                                'QUEUE' && {
+                                                type: 'group',
+                                            })}
+                                            {...(item.menu2_sp?.type ==
+                                                'SUBMENU' && {
+                                                type: 'share',
+                                            })}
+                                        />
+                                    )}
                                 </>
                             ),
                         },
@@ -663,30 +786,64 @@ function App({ signOut, user }) {
                                 ? { variation: 'primary', colorTheme: 'info' }
                                 : {}),
                             onClick: () => {
-                                handleUpdateMenuModalOpen(
-                                    item?.contactCenterModelAssignedGroupId,
-                                    item?.menu3,
-                                    '3',
-                                    item
-                                )
+                                if (!showSpanish || !item?.presentlangoption) {
+                                    handleUpdateMenuModalOpen(
+                                        item?.contactCenterModelAssignedGroupId,
+                                        item?.menu3,
+                                        '3',
+                                        item
+                                    )
+                                } else {
+                                    handleUpdateMenuModalOpen(
+                                        item?.contactCenterModelAssignedGroupId,
+                                        item?.menu3_sp,
+                                        '3',
+                                        item
+                                    )
+                                }
                             },
                             children: (
                                 <>
                                     3
-                                    <MyIcon
-                                        {...(item.menu3?.type == 'FORWARD' && {
-                                            type: 'phone',
-                                        })}
-                                        {...(item.menu3?.type == 'MSG' && {
-                                            type: 'chat',
-                                        })}
-                                        {...(item.menu3?.type == 'QUEUE' && {
-                                            type: 'group',
-                                        })}
-                                        {...(item.menu3?.type == 'SUBMENU' && {
-                                            type: 'share',
-                                        })}
-                                    />
+                                    {!showSpanish ||
+                                    !item?.presentlangoption ? (
+                                        <MyIcon
+                                            {...(item.menu3?.type ==
+                                                'FORWARD' && {
+                                                type: 'phone',
+                                            })}
+                                            {...(item.menu3?.type == 'MSG' && {
+                                                type: 'chat',
+                                            })}
+                                            {...(item.menu3?.type ==
+                                                'QUEUE' && {
+                                                type: 'group',
+                                            })}
+                                            {...(item.menu3?.type ==
+                                                'SUBMENU' && {
+                                                type: 'share',
+                                            })}
+                                        />
+                                    ) : (
+                                        <MyIcon
+                                            {...(item.menu3_sp?.type ==
+                                                'FORWARD' && {
+                                                type: 'phone',
+                                            })}
+                                            {...(item.menu3_sp?.type ==
+                                                'MSG' && {
+                                                type: 'chat',
+                                            })}
+                                            {...(item.menu3_sp?.type ==
+                                                'QUEUE' && {
+                                                type: 'group',
+                                            })}
+                                            {...(item.menu3_sp?.type ==
+                                                'SUBMENU' && {
+                                                type: 'share',
+                                            })}
+                                        />
+                                    )}
                                 </>
                             ),
                         },
@@ -695,30 +852,64 @@ function App({ signOut, user }) {
                                 ? { variation: 'primary', colorTheme: 'info' }
                                 : {}),
                             onClick: () => {
-                                handleUpdateMenuModalOpen(
-                                    item?.contactCenterModelAssignedGroupId,
-                                    item?.menu4,
-                                    '4',
-                                    item
-                                )
+                                if (!showSpanish || !item?.presentlangoption) {
+                                    handleUpdateMenuModalOpen(
+                                        item?.contactCenterModelAssignedGroupId,
+                                        item?.menu4,
+                                        '4',
+                                        item
+                                    )
+                                } else {
+                                    handleUpdateMenuModalOpen(
+                                        item?.contactCenterModelAssignedGroupId,
+                                        item?.menu4_sp,
+                                        '4',
+                                        item
+                                    )
+                                }
                             },
                             children: (
                                 <>
                                     4
-                                    <MyIcon
-                                        {...(item.menu4?.type == 'FORWARD' && {
-                                            type: 'phone',
-                                        })}
-                                        {...(item.menu4?.type == 'MSG' && {
-                                            type: 'chat',
-                                        })}
-                                        {...(item.menu4?.type == 'QUEUE' && {
-                                            type: 'group',
-                                        })}
-                                        {...(item.menu4?.type == 'SUBMENU' && {
-                                            type: 'share',
-                                        })}
-                                    />
+                                    {!showSpanish ||
+                                    !item?.presentlangoption ? (
+                                        <MyIcon
+                                            {...(item.menu4?.type ==
+                                                'FORWARD' && {
+                                                type: 'phone',
+                                            })}
+                                            {...(item.menu4?.type == 'MSG' && {
+                                                type: 'chat',
+                                            })}
+                                            {...(item.menu4?.type ==
+                                                'QUEUE' && {
+                                                type: 'group',
+                                            })}
+                                            {...(item.menu4?.type ==
+                                                'SUBMENU' && {
+                                                type: 'share',
+                                            })}
+                                        />
+                                    ) : (
+                                        <MyIcon
+                                            {...(item.menu4_sp?.type ==
+                                                'FORWARD' && {
+                                                type: 'phone',
+                                            })}
+                                            {...(item.menu4_sp?.type ==
+                                                'MSG' && {
+                                                type: 'chat',
+                                            })}
+                                            {...(item.menu4_sp?.type ==
+                                                'QUEUE' && {
+                                                type: 'group',
+                                            })}
+                                            {...(item.menu4_sp?.type ==
+                                                'SUBMENU' && {
+                                                type: 'share',
+                                            })}
+                                        />
+                                    )}
                                 </>
                             ),
                         },
@@ -727,30 +918,64 @@ function App({ signOut, user }) {
                                 ? { variation: 'primary', colorTheme: 'info' }
                                 : {}),
                             onClick: () => {
-                                handleUpdateMenuModalOpen(
-                                    item?.contactCenterModelAssignedGroupId,
-                                    item?.menu5,
-                                    '5',
-                                    item
-                                )
+                                if (!showSpanish || !item?.presentlangoption) {
+                                    handleUpdateMenuModalOpen(
+                                        item?.contactCenterModelAssignedGroupId,
+                                        item?.menu5,
+                                        '5',
+                                        item
+                                    )
+                                } else {
+                                    handleUpdateMenuModalOpen(
+                                        item?.contactCenterModelAssignedGroupId,
+                                        item?.menu5_sp,
+                                        '5',
+                                        item
+                                    )
+                                }
                             },
                             children: (
                                 <>
                                     5
-                                    <MyIcon
-                                        {...(item.menu5?.type == 'FORWARD' && {
-                                            type: 'phone',
-                                        })}
-                                        {...(item.menu5?.type == 'MSG' && {
-                                            type: 'chat',
-                                        })}
-                                        {...(item.menu5?.type == 'QUEUE' && {
-                                            type: 'group',
-                                        })}
-                                        {...(item.menu5?.type == 'SUBMENU' && {
-                                            type: 'share',
-                                        })}
-                                    />
+                                    {!showSpanish ||
+                                    !item?.presentlangoption ? (
+                                        <MyIcon
+                                            {...(item.menu5?.type ==
+                                                'FORWARD' && {
+                                                type: 'phone',
+                                            })}
+                                            {...(item.menu5?.type == 'MSG' && {
+                                                type: 'chat',
+                                            })}
+                                            {...(item.menu5?.type ==
+                                                'QUEUE' && {
+                                                type: 'group',
+                                            })}
+                                            {...(item.menu5?.type ==
+                                                'SUBMENU' && {
+                                                type: 'share',
+                                            })}
+                                        />
+                                    ) : (
+                                        <MyIcon
+                                            {...(item.menu5_sp?.type ==
+                                                'FORWARD' && {
+                                                type: 'phone',
+                                            })}
+                                            {...(item.menu5_sp?.type ==
+                                                'MSG' && {
+                                                type: 'chat',
+                                            })}
+                                            {...(item.menu5_sp?.type ==
+                                                'QUEUE' && {
+                                                type: 'group',
+                                            })}
+                                            {...(item.menu5_sp?.type ==
+                                                'SUBMENU' && {
+                                                type: 'share',
+                                            })}
+                                        />
+                                    )}
                                 </>
                             ),
                         },
@@ -759,30 +984,64 @@ function App({ signOut, user }) {
                                 ? { variation: 'primary', colorTheme: 'info' }
                                 : {}),
                             onClick: () => {
-                                handleUpdateMenuModalOpen(
-                                    item?.contactCenterModelAssignedGroupId,
-                                    item?.menu6,
-                                    '6',
-                                    item
-                                )
+                                if (!showSpanish || !item?.presentlangoption) {
+                                    handleUpdateMenuModalOpen(
+                                        item?.contactCenterModelAssignedGroupId,
+                                        item?.menu6,
+                                        '6',
+                                        item
+                                    )
+                                } else {
+                                    handleUpdateMenuModalOpen(
+                                        item?.contactCenterModelAssignedGroupId,
+                                        item?.menu6_sp,
+                                        '6',
+                                        item
+                                    )
+                                }
                             },
                             children: (
                                 <>
                                     6
-                                    <MyIcon
-                                        {...(item.menu6?.type == 'FORWARD' && {
-                                            type: 'phone',
-                                        })}
-                                        {...(item.menu6?.type == 'MSG' && {
-                                            type: 'chat',
-                                        })}
-                                        {...(item.menu6?.type == 'QUEUE' && {
-                                            type: 'group',
-                                        })}
-                                        {...(item.menu6?.type == 'SUBMENU' && {
-                                            type: 'share',
-                                        })}
-                                    />
+                                    {!showSpanish ||
+                                    !item?.presentlangoption ? (
+                                        <MyIcon
+                                            {...(item.menu6?.type ==
+                                                'FORWARD' && {
+                                                type: 'phone',
+                                            })}
+                                            {...(item.menu6?.type == 'MSG' && {
+                                                type: 'chat',
+                                            })}
+                                            {...(item.menu6?.type ==
+                                                'QUEUE' && {
+                                                type: 'group',
+                                            })}
+                                            {...(item.menu6?.type ==
+                                                'SUBMENU' && {
+                                                type: 'share',
+                                            })}
+                                        />
+                                    ) : (
+                                        <MyIcon
+                                            {...(item.menu6_sp?.type ==
+                                                'FORWARD' && {
+                                                type: 'phone',
+                                            })}
+                                            {...(item.menu6_sp?.type ==
+                                                'MSG' && {
+                                                type: 'chat',
+                                            })}
+                                            {...(item.menu6_sp?.type ==
+                                                'QUEUE' && {
+                                                type: 'group',
+                                            })}
+                                            {...(item.menu6_sp?.type ==
+                                                'SUBMENU' && {
+                                                type: 'share',
+                                            })}
+                                        />
+                                    )}
                                 </>
                             ),
                         },
@@ -791,30 +1050,64 @@ function App({ signOut, user }) {
                                 ? { variation: 'primary', colorTheme: 'info' }
                                 : {}),
                             onClick: () => {
-                                handleUpdateMenuModalOpen(
-                                    item?.contactCenterModelAssignedGroupId,
-                                    item?.menu7,
-                                    '7',
-                                    item
-                                )
+                                if (!showSpanish || !item?.presentlangoption) {
+                                    handleUpdateMenuModalOpen(
+                                        item?.contactCenterModelAssignedGroupId,
+                                        item?.menu7,
+                                        '7',
+                                        item
+                                    )
+                                } else {
+                                    handleUpdateMenuModalOpen(
+                                        item?.contactCenterModelAssignedGroupId,
+                                        item?.menu7_sp,
+                                        '7',
+                                        item
+                                    )
+                                }
                             },
                             children: (
                                 <>
                                     7
-                                    <MyIcon
-                                        {...(item.menu7?.type == 'FORWARD' && {
-                                            type: 'phone',
-                                        })}
-                                        {...(item.menu7?.type == 'MSG' && {
-                                            type: 'chat',
-                                        })}
-                                        {...(item.menu7?.type == 'QUEUE' && {
-                                            type: 'group',
-                                        })}
-                                        {...(item.menu7?.type == 'SUBMENU' && {
-                                            type: 'share',
-                                        })}
-                                    />
+                                    {!showSpanish ||
+                                    !item?.presentlangoption ? (
+                                        <MyIcon
+                                            {...(item.menu7?.type ==
+                                                'FORWARD' && {
+                                                type: 'phone',
+                                            })}
+                                            {...(item.menu7?.type == 'MSG' && {
+                                                type: 'chat',
+                                            })}
+                                            {...(item.menu7?.type ==
+                                                'QUEUE' && {
+                                                type: 'group',
+                                            })}
+                                            {...(item.menu7?.type ==
+                                                'SUBMENU' && {
+                                                type: 'share',
+                                            })}
+                                        />
+                                    ) : (
+                                        <MyIcon
+                                            {...(item.menu7_sp?.type ==
+                                                'FORWARD' && {
+                                                type: 'phone',
+                                            })}
+                                            {...(item.menu7_sp?.type ==
+                                                'MSG' && {
+                                                type: 'chat',
+                                            })}
+                                            {...(item.menu7_sp?.type ==
+                                                'QUEUE' && {
+                                                type: 'group',
+                                            })}
+                                            {...(item.menu7_sp?.type ==
+                                                'SUBMENU' && {
+                                                type: 'share',
+                                            })}
+                                        />
+                                    )}
                                 </>
                             ),
                         },
@@ -823,30 +1116,64 @@ function App({ signOut, user }) {
                                 ? { variation: 'primary', colorTheme: 'info' }
                                 : {}),
                             onClick: () => {
-                                handleUpdateMenuModalOpen(
-                                    item?.contactCenterModelAssignedGroupId,
-                                    item?.menu8,
-                                    '8',
-                                    item
-                                )
+                                if (!showSpanish || !item?.presentlangoption) {
+                                    handleUpdateMenuModalOpen(
+                                        item?.contactCenterModelAssignedGroupId,
+                                        item?.menu8,
+                                        '8',
+                                        item
+                                    )
+                                } else {
+                                    handleUpdateMenuModalOpen(
+                                        item?.contactCenterModelAssignedGroupId,
+                                        item?.menu8_sp,
+                                        '8',
+                                        item
+                                    )
+                                }
                             },
                             children: (
                                 <>
                                     8
-                                    <MyIcon
-                                        {...(item.menu8?.type == 'FORWARD' && {
-                                            type: 'phone',
-                                        })}
-                                        {...(item.menu8?.type == 'MSG' && {
-                                            type: 'chat',
-                                        })}
-                                        {...(item.menu8?.type == 'QUEUE' && {
-                                            type: 'group',
-                                        })}
-                                        {...(item.menu8?.type == 'SUBMENU' && {
-                                            type: 'share',
-                                        })}
-                                    />
+                                    {!showSpanish ||
+                                    !item?.presentlangoption ? (
+                                        <MyIcon
+                                            {...(item.menu8?.type ==
+                                                'FORWARD' && {
+                                                type: 'phone',
+                                            })}
+                                            {...(item.menu8?.type == 'MSG' && {
+                                                type: 'chat',
+                                            })}
+                                            {...(item.menu8?.type ==
+                                                'QUEUE' && {
+                                                type: 'group',
+                                            })}
+                                            {...(item.menu8?.type ==
+                                                'SUBMENU' && {
+                                                type: 'share',
+                                            })}
+                                        />
+                                    ) : (
+                                        <MyIcon
+                                            {...(item.menu8_sp?.type ==
+                                                'FORWARD' && {
+                                                type: 'phone',
+                                            })}
+                                            {...(item.menu8_sp?.type ==
+                                                'MSG' && {
+                                                type: 'chat',
+                                            })}
+                                            {...(item.menu8_sp?.type ==
+                                                'QUEUE' && {
+                                                type: 'group',
+                                            })}
+                                            {...(item.menu8_sp?.type ==
+                                                'SUBMENU' && {
+                                                type: 'share',
+                                            })}
+                                        />
+                                    )}
                                 </>
                             ),
                         },
@@ -855,30 +1182,64 @@ function App({ signOut, user }) {
                                 ? { variation: 'primary', colorTheme: 'info' }
                                 : {}),
                             onClick: () => {
-                                handleUpdateMenuModalOpen(
-                                    item?.contactCenterModelAssignedGroupId,
-                                    item?.menu9,
-                                    '9',
-                                    item
-                                )
+                                if (!showSpanish || !item?.presentlangoption) {
+                                    handleUpdateMenuModalOpen(
+                                        item?.contactCenterModelAssignedGroupId,
+                                        item?.menu9,
+                                        '9',
+                                        item
+                                    )
+                                } else {
+                                    handleUpdateMenuModalOpen(
+                                        item?.contactCenterModelAssignedGroupId,
+                                        item?.menu9_sp,
+                                        '9',
+                                        item
+                                    )
+                                }
                             },
                             children: (
                                 <>
                                     9
-                                    <MyIcon
-                                        {...(item.menu9?.type == 'FORWARD' && {
-                                            type: 'phone',
-                                        })}
-                                        {...(item.menu9?.type == 'MSG' && {
-                                            type: 'chat',
-                                        })}
-                                        {...(item.menu9?.type == 'QUEUE' && {
-                                            type: 'group',
-                                        })}
-                                        {...(item.menu9?.type == 'SUBMENU' && {
-                                            type: 'share',
-                                        })}
-                                    />
+                                    {!showSpanish ||
+                                    !item?.presentlangoption ? (
+                                        <MyIcon
+                                            {...(item.menu9?.type ==
+                                                'FORWARD' && {
+                                                type: 'phone',
+                                            })}
+                                            {...(item.menu9?.type == 'MSG' && {
+                                                type: 'chat',
+                                            })}
+                                            {...(item.menu9?.type ==
+                                                'QUEUE' && {
+                                                type: 'group',
+                                            })}
+                                            {...(item.menu9?.type ==
+                                                'SUBMENU' && {
+                                                type: 'share',
+                                            })}
+                                        />
+                                    ) : (
+                                        <MyIcon
+                                            {...(item.menu9_sp?.type ==
+                                                'FORWARD' && {
+                                                type: 'phone',
+                                            })}
+                                            {...(item.menu9_sp?.type ==
+                                                'MSG' && {
+                                                type: 'chat',
+                                            })}
+                                            {...(item.menu9_sp?.type ==
+                                                'QUEUE' && {
+                                                type: 'group',
+                                            })}
+                                            {...(item.menu9_sp?.type ==
+                                                'SUBMENU' && {
+                                                type: 'share',
+                                            })}
+                                        />
+                                    )}
                                 </>
                             ),
                         },
@@ -887,30 +1248,64 @@ function App({ signOut, user }) {
                                 ? { variation: 'primary', colorTheme: 'info' }
                                 : {}),
                             onClick: () => {
-                                handleUpdateMenuModalOpen(
-                                    item?.contactCenterModelAssignedGroupId,
-                                    item?.menu0,
-                                    '0',
-                                    item
-                                )
+                                if (!showSpanish || !item?.presentlangoption) {
+                                    handleUpdateMenuModalOpen(
+                                        item?.contactCenterModelAssignedGroupId,
+                                        item?.menu0,
+                                        '0',
+                                        item
+                                    )
+                                } else {
+                                    handleUpdateMenuModalOpen(
+                                        item?.contactCenterModelAssignedGroupId,
+                                        item?.menu0_sp,
+                                        '0',
+                                        item
+                                    )
+                                }
                             },
                             children: (
                                 <>
                                     0
-                                    <MyIcon
-                                        {...(item.menu0?.type == 'FORWARD' && {
-                                            type: 'phone',
-                                        })}
-                                        {...(item.menu0?.type == 'MSG' && {
-                                            type: 'chat',
-                                        })}
-                                        {...(item.menu0?.type == 'QUEUE' && {
-                                            type: 'group',
-                                        })}
-                                        {...(item.menu0?.type == 'SUBMENU' && {
-                                            type: 'share',
-                                        })}
-                                    />
+                                    {!showSpanish ||
+                                    !item?.presentlangoption ? (
+                                        <MyIcon
+                                            {...(item.menu0?.type ==
+                                                'FORWARD' && {
+                                                type: 'phone',
+                                            })}
+                                            {...(item.menu0?.type == 'MSG' && {
+                                                type: 'chat',
+                                            })}
+                                            {...(item.menu0?.type ==
+                                                'QUEUE' && {
+                                                type: 'group',
+                                            })}
+                                            {...(item.menu0?.type ==
+                                                'SUBMENU' && {
+                                                type: 'share',
+                                            })}
+                                        />
+                                    ) : (
+                                        <MyIcon
+                                            {...(item.menu0_sp?.type ==
+                                                'FORWARD' && {
+                                                type: 'phone',
+                                            })}
+                                            {...(item.menu0_sp?.type ==
+                                                'MSG' && {
+                                                type: 'chat',
+                                            })}
+                                            {...(item.menu0_sp?.type ==
+                                                'QUEUE' && {
+                                                type: 'group',
+                                            })}
+                                            {...(item.menu0_sp?.type ==
+                                                'SUBMENU' && {
+                                                type: 'share',
+                                            })}
+                                        />
+                                    )}
                                 </>
                             ),
                         },

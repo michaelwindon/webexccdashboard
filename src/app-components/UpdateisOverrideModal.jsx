@@ -4,7 +4,7 @@ import DialogContent from '@mui/material/DialogContent'
 import DialogTitle from '@mui/material/DialogTitle'
 
 const UpdateisOverrideModal = (props) => {
-    const { id, onClose, open, user } = props
+    const { id, onClose, open, user, } = props
 
     return (
         <Dialog open={open}>

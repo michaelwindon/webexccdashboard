@@ -55,6 +55,7 @@ export default function UpdateMenuForm(props) {
     submenu8_sp: "",
     submenu9_sp: "",
     submenu0_sp: "",
+    presentlangoption: false,
   };
   const [menu0, setMenu0] = React.useState(initialValues.menu0);
   const [Field0, setField0] = React.useState(initialValues.Field0);
@@ -101,6 +102,9 @@ export default function UpdateMenuForm(props) {
   );
   const [submenu0_sp, setSubmenu0_sp] = React.useState(
     initialValues.submenu0_sp
+  );
+  const [presentlangoption, setPresentlangoption] = React.useState(
+    initialValues.presentlangoption
   );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
@@ -216,6 +220,7 @@ export default function UpdateMenuForm(props) {
         ? cleanValues.submenu0_sp
         : JSON.stringify(cleanValues.submenu0_sp)
     );
+    setPresentlangoption(cleanValues.presentlangoption);
     setErrors({});
   };
   const [contactCenterModelRecord, setContactCenterModelRecord] =
@@ -255,6 +260,7 @@ export default function UpdateMenuForm(props) {
     submenu8_sp: [{ type: "JSON" }],
     submenu9_sp: [{ type: "JSON" }],
     submenu0_sp: [{ type: "JSON" }],
+    presentlangoption: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -306,6 +312,7 @@ export default function UpdateMenuForm(props) {
           submenu8_sp,
           submenu9_sp,
           submenu0_sp,
+          presentlangoption,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -339,6 +346,7 @@ export default function UpdateMenuForm(props) {
             issecondaryclosed: modelFields.issecondaryclosed,
             isholiday: modelFields.isholiday,
             isafterhours: modelFields.isafterhours,
+            presentlangoption: modelFields.presentlangoption,
             menu0: modelFields.menu0
               ? JSON.parse(modelFields.menu0)
               : modelFields.menu0,
@@ -448,6 +456,7 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.menu0 ?? value;
@@ -494,6 +503,7 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.Field0 ?? value;
@@ -560,6 +570,7 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.Field1 ?? value;
@@ -607,6 +618,7 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.issecondaryclosed ?? value;
@@ -656,6 +668,7 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.isholiday ?? value;
@@ -703,6 +716,7 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.isafterhours ?? value;
@@ -750,6 +764,7 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.submenu1 ?? value;
@@ -797,6 +812,7 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.submenu3 ?? value;
@@ -844,6 +860,7 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.submenu4 ?? value;
@@ -891,6 +908,7 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.submenu5 ?? value;
@@ -938,6 +956,7 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.submenu6 ?? value;
@@ -985,6 +1004,7 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.submenu7 ?? value;
@@ -1032,6 +1052,7 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.submenu8 ?? value;
@@ -1079,6 +1100,7 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.submenu9 ?? value;
@@ -1126,6 +1148,7 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.submenu0 ?? value;
@@ -1173,6 +1196,7 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.submenu1_sp ?? value;
@@ -1220,6 +1244,7 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.submenu3_sp ?? value;
@@ -1267,6 +1292,7 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.submenu4_sp ?? value;
@@ -1314,6 +1340,7 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.submenu5_sp ?? value;
@@ -1361,6 +1388,7 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.submenu6_sp ?? value;
@@ -1408,6 +1436,7 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.submenu7_sp ?? value;
@@ -1455,6 +1484,7 @@ export default function UpdateMenuForm(props) {
               submenu8_sp: value,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.submenu8_sp ?? value;
@@ -1502,6 +1532,7 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp: value,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.submenu9_sp ?? value;
@@ -1549,6 +1580,7 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp: value,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.submenu0_sp ?? value;
@@ -1563,6 +1595,56 @@ export default function UpdateMenuForm(props) {
         hasError={errors.submenu0_sp?.hasError}
         {...getOverrideProps(overrides, "submenu0_sp")}
       ></TextAreaField>
+      <SwitchField
+        label="Presentlangoption"
+        defaultChecked={false}
+        isDisabled={false}
+        isChecked={presentlangoption}
+        onChange={(e) => {
+          let value = e.target.checked;
+          if (onChange) {
+            const modelFields = {
+              menu0,
+              Field0,
+              Field1,
+              issecondaryclosed,
+              isholiday,
+              isafterhours,
+              submenu1,
+              submenu3,
+              submenu4,
+              submenu5,
+              submenu6,
+              submenu7,
+              submenu8,
+              submenu9,
+              submenu0,
+              submenu1_sp,
+              submenu3_sp,
+              submenu4_sp,
+              submenu5_sp,
+              submenu6_sp,
+              submenu7_sp,
+              submenu8_sp,
+              submenu9_sp,
+              submenu0_sp,
+              presentlangoption: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.presentlangoption ?? value;
+          }
+          if (errors.presentlangoption?.hasError) {
+            runValidationTasks("presentlangoption", value);
+          }
+          setPresentlangoption(value);
+        }}
+        onBlur={() =>
+          runValidationTasks("presentlangoption", presentlangoption)
+        }
+        errorMessage={errors.presentlangoption?.errorMessage}
+        hasError={errors.presentlangoption?.hasError}
+        {...getOverrideProps(overrides, "presentlangoption")}
+      ></SwitchField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

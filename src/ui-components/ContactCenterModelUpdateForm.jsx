@@ -268,6 +268,7 @@ export default function ContactCenterModelUpdateForm(props) {
     submenu8_sp: "",
     submenu9_sp: "",
     submenu0_sp: "",
+    presentlangoption: false,
   };
   const [mainnumber, setMainnumber] = React.useState(initialValues.mainnumber);
   const [menu0, setMenu0] = React.useState(initialValues.menu0);
@@ -381,6 +382,9 @@ export default function ContactCenterModelUpdateForm(props) {
   );
   const [submenu0_sp, setSubmenu0_sp] = React.useState(
     initialValues.submenu0_sp
+  );
+  const [presentlangoption, setPresentlangoption] = React.useState(
+    initialValues.presentlangoption
   );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
@@ -656,6 +660,7 @@ export default function ContactCenterModelUpdateForm(props) {
         ? cleanValues.submenu0_sp
         : JSON.stringify(cleanValues.submenu0_sp)
     );
+    setPresentlangoption(cleanValues.presentlangoption);
     setErrors({});
   };
   const [contactCenterModelRecord, setContactCenterModelRecord] =
@@ -810,6 +815,7 @@ export default function ContactCenterModelUpdateForm(props) {
     submenu8_sp: [{ type: "JSON" }],
     submenu9_sp: [{ type: "JSON" }],
     submenu0_sp: [{ type: "JSON" }],
+    presentlangoption: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -902,6 +908,7 @@ export default function ContactCenterModelUpdateForm(props) {
           submenu8_sp,
           submenu9_sp,
           submenu0_sp,
+          presentlangoption,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -1030,6 +1037,7 @@ export default function ContactCenterModelUpdateForm(props) {
             issecondaryclosed: modelFields.issecondaryclosed,
             isholiday: modelFields.isholiday,
             isafterhours: modelFields.isafterhours,
+            presentlangoption: modelFields.presentlangoption,
             menu0: modelFields.menu0
               ? JSON.parse(modelFields.menu0)
               : modelFields.menu0,
@@ -1260,6 +1268,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.mainnumber ?? value;
@@ -1348,6 +1357,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.menu0 ?? value;
@@ -1435,6 +1445,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.Field0 ?? value;
@@ -1544,6 +1555,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.menu1 ?? value;
@@ -1632,6 +1644,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.menu2 ?? value;
@@ -1720,6 +1733,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.menu3 ?? value;
@@ -1808,6 +1822,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.menu4 ?? value;
@@ -1896,6 +1911,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.menu5 ?? value;
@@ -1984,6 +2000,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.menu6 ?? value;
@@ -2072,6 +2089,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.menu7 ?? value;
@@ -2160,6 +2178,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.menu8 ?? value;
@@ -2248,6 +2267,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.menu9 ?? value;
@@ -2332,6 +2352,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             values = result?.holiday ?? values;
@@ -2441,6 +2462,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             values = result?.secondarytodclose ?? values;
@@ -2558,6 +2580,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             values = result?.secondarytodopen ?? values;
@@ -2672,6 +2695,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             values = result?.daysopen ?? values;
@@ -2781,6 +2805,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             values = result?.daystodopen ?? values;
@@ -2892,6 +2917,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             values = result?.daystodclose ?? values;
@@ -3007,6 +3033,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.welcomeprompt ?? value;
@@ -3095,6 +3122,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.afterhours ?? value;
@@ -3183,6 +3211,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.ccdescription ?? value;
@@ -3271,6 +3300,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.ccname ?? value;
@@ -3359,6 +3389,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.defaultroute ?? value;
@@ -3447,6 +3478,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.holidayoption ?? value;
@@ -3535,6 +3567,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.isoverride ?? value;
@@ -3623,6 +3656,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.submenu2 ?? value;
@@ -3711,6 +3745,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.welcomeprompt_sp ?? value;
@@ -3799,6 +3834,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.submenu2_sp ?? value;
@@ -3887,6 +3923,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.menu0_sp ?? value;
@@ -3975,6 +4012,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.menu1_sp ?? value;
@@ -4063,6 +4101,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.menu2_sp ?? value;
@@ -4151,6 +4190,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.menu3_sp ?? value;
@@ -4239,6 +4279,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.menu4_sp ?? value;
@@ -4327,6 +4368,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.menu5_sp ?? value;
@@ -4415,6 +4457,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.menu6_sp ?? value;
@@ -4503,6 +4546,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.menu7_sp ?? value;
@@ -4591,6 +4635,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.menu8_sp ?? value;
@@ -4679,6 +4724,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.menu9_sp ?? value;
@@ -4765,6 +4811,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.version ?? value;
@@ -4849,6 +4896,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             values = result?.Managers ?? values;
@@ -4990,6 +5038,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.AssignedGroup ?? value;
@@ -5140,6 +5189,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.override ?? value;
@@ -5228,6 +5278,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.secondaryclose ?? value;
@@ -5316,6 +5367,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.updateduser ?? value;
@@ -5404,6 +5456,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.issecondaryclosed ?? value;
@@ -5494,6 +5547,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.isholiday ?? value;
@@ -5582,6 +5636,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.isafterhours ?? value;
@@ -5670,6 +5725,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.submenu1 ?? value;
@@ -5758,6 +5814,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.submenu3 ?? value;
@@ -5846,6 +5903,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.submenu4 ?? value;
@@ -5934,6 +5992,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.submenu5 ?? value;
@@ -6022,6 +6081,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.submenu6 ?? value;
@@ -6110,6 +6170,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.submenu7 ?? value;
@@ -6198,6 +6259,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.submenu8 ?? value;
@@ -6286,6 +6348,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.submenu9 ?? value;
@@ -6374,6 +6437,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.submenu0 ?? value;
@@ -6462,6 +6526,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.submenu1_sp ?? value;
@@ -6550,6 +6615,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.submenu3_sp ?? value;
@@ -6638,6 +6704,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.submenu4_sp ?? value;
@@ -6726,6 +6793,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.submenu5_sp ?? value;
@@ -6814,6 +6882,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.submenu6_sp ?? value;
@@ -6902,6 +6971,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.submenu7_sp ?? value;
@@ -6990,6 +7060,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp: value,
               submenu9_sp,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.submenu8_sp ?? value;
@@ -7078,6 +7149,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp: value,
               submenu0_sp,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.submenu9_sp ?? value;
@@ -7166,6 +7238,7 @@ export default function ContactCenterModelUpdateForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp: value,
+              presentlangoption,
             };
             const result = onChange(modelFields);
             value = result?.submenu0_sp ?? value;
@@ -7180,6 +7253,97 @@ export default function ContactCenterModelUpdateForm(props) {
         hasError={errors.submenu0_sp?.hasError}
         {...getOverrideProps(overrides, "submenu0_sp")}
       ></TextAreaField>
+      <SwitchField
+        label="Presentlangoption"
+        defaultChecked={false}
+        isDisabled={false}
+        isChecked={presentlangoption}
+        onChange={(e) => {
+          let value = e.target.checked;
+          if (onChange) {
+            const modelFields = {
+              mainnumber,
+              menu0,
+              Field0,
+              menu1,
+              menu2,
+              menu3,
+              menu4,
+              menu5,
+              menu6,
+              menu7,
+              menu8,
+              menu9,
+              holiday,
+              secondarytodclose,
+              secondarytodopen,
+              daysopen,
+              daystodopen,
+              daystodclose,
+              welcomeprompt,
+              afterhours,
+              ccdescription,
+              ccname,
+              defaultroute,
+              holidayoption,
+              isoverride,
+              submenu2,
+              welcomeprompt_sp,
+              submenu2_sp,
+              menu0_sp,
+              menu1_sp,
+              menu2_sp,
+              menu3_sp,
+              menu4_sp,
+              menu5_sp,
+              menu6_sp,
+              menu7_sp,
+              menu8_sp,
+              menu9_sp,
+              version,
+              Managers,
+              AssignedGroup,
+              override,
+              secondaryclose,
+              updateduser,
+              issecondaryclosed,
+              isholiday,
+              isafterhours,
+              submenu1,
+              submenu3,
+              submenu4,
+              submenu5,
+              submenu6,
+              submenu7,
+              submenu8,
+              submenu9,
+              submenu0,
+              submenu1_sp,
+              submenu3_sp,
+              submenu4_sp,
+              submenu5_sp,
+              submenu6_sp,
+              submenu7_sp,
+              submenu8_sp,
+              submenu9_sp,
+              submenu0_sp,
+              presentlangoption: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.presentlangoption ?? value;
+          }
+          if (errors.presentlangoption?.hasError) {
+            runValidationTasks("presentlangoption", value);
+          }
+          setPresentlangoption(value);
+        }}
+        onBlur={() =>
+          runValidationTasks("presentlangoption", presentlangoption)
+        }
+        errorMessage={errors.presentlangoption?.errorMessage}
+        hasError={errors.presentlangoption?.hasError}
+        {...getOverrideProps(overrides, "presentlangoption")}
+      ></SwitchField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

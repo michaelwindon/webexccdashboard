@@ -131,5 +131,6 @@ type ContactCenterModel @model @auth(rules: [{allow: public}]) {
   submenu8_sp: SubmenuType
   submenu9_sp: SubmenuType
   submenu0_sp: SubmenuType
+  presentlangoption: Boolean
 }
  

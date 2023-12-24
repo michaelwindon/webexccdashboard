@@ -54,6 +54,7 @@ export { default as SocialPost } from "./SocialPost";
 export { default as StandardCard } from "./StandardCard";
 export { default as Stat } from "./Stat";
 export { default as TallCard } from "./TallCard";
+export { default as UpdateContactCenterWelcome } from "./UpdateContactCenterWelcome";
 export { default as UpdateMenuForm } from "./UpdateMenuForm";
 export { default as UpdateOverrideForm } from "./UpdateOverrideForm";
 export { default as studioTheme } from "./studioTheme";
