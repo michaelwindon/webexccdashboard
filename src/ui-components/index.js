@@ -9,6 +9,7 @@ export { default as Ampligram } from "./Ampligram";
 export { default as CTASection } from "./CTASection";
 export { default as CheckoutPayment } from "./CheckoutPayment";
 export { default as CommentCard } from "./CommentCard";
+export { default as ContactCenterModelCreateForm } from "./ContactCenterModelCreateForm";
 export { default as ContactCenterUI } from "./ContactCenterUI";
 export { default as ContactCenterUICollection } from "./ContactCenterUICollection";
 export { default as ContactUs } from "./ContactUs";

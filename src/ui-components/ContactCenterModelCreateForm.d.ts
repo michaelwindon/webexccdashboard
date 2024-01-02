@@ -60,9 +60,9 @@ export declare type ContactCenterModelCreateFormInputValues = {
     menu9_sp?: string;
     override?: string;
     updateduser?: string;
-    issecondaryclosed?: boolean;
     Managers?: ManagerModel[];
     AssignedGroup?: GroupModel;
+    issecondaryclosed?: boolean;
     isoverride?: boolean;
     isholiday?: boolean;
     isafterhours?: boolean;
@@ -126,9 +126,9 @@ export declare type ContactCenterModelCreateFormValidationValues = {
     menu9_sp?: ValidationFunction<string>;
     override?: ValidationFunction<string>;
     updateduser?: ValidationFunction<string>;
-    issecondaryclosed?: ValidationFunction<boolean>;
     Managers?: ValidationFunction<ManagerModel>;
     AssignedGroup?: ValidationFunction<GroupModel>;
+    issecondaryclosed?: ValidationFunction<boolean>;
     isoverride?: ValidationFunction<boolean>;
     isholiday?: ValidationFunction<boolean>;
     isafterhours?: ValidationFunction<boolean>;
@@ -194,9 +194,9 @@ export declare type ContactCenterModelCreateFormOverridesProps = {
     menu9_sp?: PrimitiveOverrideProps<TextAreaFieldProps>;
     override?: PrimitiveOverrideProps<TextAreaFieldProps>;
     updateduser?: PrimitiveOverrideProps<TextFieldProps>;
-    issecondaryclosed?: PrimitiveOverrideProps<SwitchFieldProps>;
     Managers?: PrimitiveOverrideProps<AutocompleteProps>;
     AssignedGroup?: PrimitiveOverrideProps<AutocompleteProps>;
+    issecondaryclosed?: PrimitiveOverrideProps<SwitchFieldProps>;
     isoverride?: PrimitiveOverrideProps<SwitchFieldProps>;
     isholiday?: PrimitiveOverrideProps<SwitchFieldProps>;
     isafterhours?: PrimitiveOverrideProps<SwitchFieldProps>;
