@@ -5,8 +5,8 @@
  **************************************************************************/
 
 import * as React from "react";
-import { AutocompleteProps, GridProps, TextFieldProps } from "@aws-amplify/ui-react";
-import { GroupModel, ManagerModel } from "../models";
+import { GridProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { GroupModel } from "../models";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -25,19 +25,16 @@ export declare type ValidationFunction<T> = (value: T, validationResponse: Valid
 export declare type GroupModelUpdateFormInputValues = {
     fullname?: string;
     abbreviatedname?: string;
-    Managers?: ManagerModel[];
 };
 export declare type GroupModelUpdateFormValidationValues = {
     fullname?: ValidationFunction<string>;
     abbreviatedname?: ValidationFunction<string>;
-    Managers?: ValidationFunction<ManagerModel>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type GroupModelUpdateFormOverridesProps = {
     GroupModelUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
     fullname?: PrimitiveOverrideProps<TextFieldProps>;
     abbreviatedname?: PrimitiveOverrideProps<TextFieldProps>;
-    Managers?: PrimitiveOverrideProps<AutocompleteProps>;
 } & EscapeHatchProps;
 export declare type GroupModelUpdateFormProps = React.PropsWithChildren<{
     overrides?: GroupModelUpdateFormOverridesProps | undefined | null;
