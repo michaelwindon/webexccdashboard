@@ -28,22 +28,4 @@ export const SidebarData = [
         icon: <FaIcons.FaWrench />,
         cName: 'nav-text',
     },
-    {
-        title: 'Annoucements',
-        path: '/',
-        icon: <FaIcons.FaEnvelopeOpen />,
-        cName: 'nav-text',
-    },
-    {
-        title: 'User Profile',
-        path: '/',
-        icon: <IoIcons.IoIosPeople />,
-        cName: 'nav-text',
-    },
-    {
-        title: 'Training',
-        path: '/',
-        icon: <FaIcons.FaSchool />,
-        cName: 'nav-text',
-    },
 ]

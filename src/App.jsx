@@ -11,9 +11,13 @@ import Navbar from './app-components/Navbar'
 import ViewContactCenter from './pages/ViewContactCenter'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import QueueManagement from './pages/QueueManagement'
+import Annoucements from './pages/Annoucements'
+import UserProfile from './pages/UserProfile'
+import Training from './pages/Training'
 import UserManagement from './pages/UserManagement'
 import CreateContactCenter from './pages/CreateContactCenter'
 import { DataStore } from 'aws-amplify/datastore'
+import ErrorPage from './app-components/ErrorPage'
 
 function App({ signOut, user }) {
     const theme = useTheme()
@@ -30,7 +34,10 @@ function App({ signOut, user }) {
                         path="/"
                         exact
                         element={
-                            <ViewContactCenter signOut={signOut} user={user} />
+                            <ViewContactCenter
+                                signOut={handleSignout}
+                                user={user}
+                            />
                         }
                     />
                     <Route
@@ -45,6 +52,10 @@ function App({ signOut, user }) {
                         path="/queuemanagement"
                         element={<QueueManagement />}
                     />
+                    <Route path="/annoucements" element={<Annoucements />} />
+                    <Route path="/userprofile" element={<UserProfile />} />
+                    <Route path="/training" element={<Training />} />
+                    <Route path="*" element={<ErrorPage />} />
                 </Routes>
             </Router>
         </>
