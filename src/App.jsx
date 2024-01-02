@@ -1,35 +1,70 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
 
-function App() {
-  const [count, setCount] = useState(0)
+import {
+    Button,
+    Text,
+    useTheme,
+    withAuthenticator,
+} from '@aws-amplify/ui-react'
+import Navbar from './app-components/Navbar'
+import ViewContactCenter from './pages/ViewContactCenter'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import QueueManagement from './pages/QueueManagement'
+import Annoucements from './pages/Annoucements'
+import UserProfile from './pages/UserProfile'
+import Training from './pages/Training'
+import UserManagement from './pages/UserManagement'
+import CreateContactCenter from './pages/CreateContactCenter'
+import { DataStore } from 'aws-amplify/datastore'
+import ErrorPage from './app-components/ErrorPage'
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+function App({ signOut, user }) {
+    const theme = useTheme()
+    const handleSignout = () => {
+        DataStore.clear()
+        signOut()
+    }
+    return (
+        <>
+            <Router>
+                <Navbar signOut={handleSignout} />
+                <Routes>
+                    <Route
+                        path="/"
+                        exact
+                        element={
+                            <ViewContactCenter
+                                signOut={handleSignout}
+                                user={user}
+                            />
+                        }
+                    />
+                    <Route
+                        path="/addcontactcenter"
+                        element={<CreateContactCenter />}
+                    />
+                    <Route
+                        path="/usermanagement"
+                        element={<UserManagement />}
+                    />
+                    <Route
+                        path="/queuemanagement"
+                        element={<QueueManagement />}
+                    />
+                    <Route path="/annoucements" element={<Annoucements />} />
+                    <Route path="/userprofile" element={<UserProfile />} />
+                    <Route path="/training" element={<Training />} />
+                    <Route path="*" element={<ErrorPage />} />
+                </Routes>
+            </Router>
+        </>
+    )
 }
 
-export default App
+App.propTypes = {
+    signOut: PropTypes.func,
+    user: PropTypes.object,
+}
+
+export default withAuthenticator(App)
