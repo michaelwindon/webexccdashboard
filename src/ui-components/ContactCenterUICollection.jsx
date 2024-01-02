@@ -6,64 +6,30 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { ContactCenterModel } from "../models";
-import {
-  createDataStorePredicate,
-  getOverrideProps,
-  useDataStoreBinding,
-} from "./utils";
 import ContactCenterUI from "./ContactCenterUI";
+import { getOverrideProps } from "./utils";
 import { Collection } from "@aws-amplify/ui-react";
 export default function ContactCenterUICollection(props) {
-  const { items: itemsProp, overrideItems, overrides, ...rest } = props;
-  const itemsFilterObj = {
-    field: "contactCenterModelAssignedGroupId",
-    operand: '"user.email"',
-    operator: "eq",
-  };
-  const itemsFilter = createDataStorePredicate(itemsFilterObj);
-  const [items, setItems] = React.useState(undefined);
-  const itemsDataStore = useDataStoreBinding({
-    type: "collection",
-    model: ContactCenterModel,
-    criteria: itemsFilter,
-  }).items;
-  React.useEffect(() => {
-    if (itemsProp !== undefined) {
-      setItems(itemsProp);
-      return;
-    }
-    async function setItemsFromDataStore() {
-      var loaded = await Promise.all(
-        itemsDataStore.map(async (item) => ({
-          ...item,
-          AssignedGroup: await item.AssignedGroup,
-        }))
-      );
-      setItems(loaded);
-    }
-    setItemsFromDataStore();
-  }, [itemsProp, itemsDataStore]);
+  const { items, overrideItems, overrides, ...rest } = props;
   return (
     <Collection
       type="grid"
-      isSearchable="true"
+      isSearchable={true}
       isPaginated={true}
       searchPlaceholder="Search..."
-      itemsPerPage={6}
       templateColumns="1fr 1fr"
       autoFlow="row"
       alignItems="stretch"
-      justifyContent="center"
+      justifyContent="stretch"
       items={items || []}
       {...getOverrideProps(overrides, "ContactCenterUICollection")}
       {...rest}
     >
       {(item, index) => (
         <ContactCenterUI
-          contactcentermodel={item}
-          margin="0 0 10px 10px"
+          height="auto"
           width="auto"
+          margin="0 0 10px 10px"
           key={item.id}
           {...(overrideItems && overrideItems({ item, index }))}
         ></ContactCenterUI>

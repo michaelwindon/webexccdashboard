@@ -6,13 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
-import {
-  Button,
-  Flex,
-  Grid,
-  TextAreaField,
-  TextField,
-} from "@aws-amplify/ui-react";
+import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
 import { ContactCenterModel } from "../models";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { DataStore } from "aws-amplify/datastore";
@@ -47,7 +41,7 @@ export default function UpdateContactCenterWelcome(props) {
     setErrors({});
   };
   const validations = {
-    ccname: [],
+    ccname: [{ type: "Required" }],
     welcomeprompt: [],
     ccdescription: [],
   };
@@ -127,7 +121,7 @@ export default function UpdateContactCenterWelcome(props) {
     >
       <TextField
         label="Contact Center Name"
-        isRequired={false}
+        isRequired={true}
         isReadOnly={false}
         value={ccname}
         onChange={(e) => {
@@ -151,10 +145,11 @@ export default function UpdateContactCenterWelcome(props) {
         hasError={errors.ccname?.hasError}
         {...getOverrideProps(overrides, "ccname")}
       ></TextField>
-      <TextAreaField
-        label="Welcome Prompt"
+      <TextField
+        label="Welcomeprompt"
         isRequired={false}
         isReadOnly={false}
+        value={welcomeprompt}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -175,7 +170,7 @@ export default function UpdateContactCenterWelcome(props) {
         errorMessage={errors.welcomeprompt?.errorMessage}
         hasError={errors.welcomeprompt?.hasError}
         {...getOverrideProps(overrides, "welcomeprompt")}
-      ></TextAreaField>
+      ></TextField>
       <TextField
         label="Contact Center Description"
         isRequired={false}
