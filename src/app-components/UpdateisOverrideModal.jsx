@@ -1,10 +1,10 @@
-import { UpdateOverrideForm } from '../ui-components/'
+import UpdateOverrideForm from '../ui-components/UpdateOverrideForm'
 import Dialog from '@mui/material/Dialog'
 import DialogContent from '@mui/material/DialogContent'
 import DialogTitle from '@mui/material/DialogTitle'
 
 const UpdateisOverrideModal = (props) => {
-    const { id, onClose, open, user, } = props
+    const { id, onClose, open, user } = props
 
     return (
         <Dialog open={open}>
@@ -26,7 +26,9 @@ const UpdateisOverrideModal = (props) => {
                         Object.keys(fields).forEach((key) => {
                             if (key === 'holidayField') {
                                 const inputString = fields[key]
-                                const outputArray = inputString.map(date => date.replace(/-/g, '/'));
+                                const outputArray = inputString.map((date) =>
+                                    date.replace(/-/g, '/')
+                                )
                                 console.log(outputArray)
                             } else {
                                 updatedFields[key] = fields[key]
