@@ -5,7 +5,8 @@
  **************************************************************************/
 
 import * as React from "react";
-import { GridProps, SelectFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { AutocompleteProps, GridProps, SelectFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { ContactCenterModel, GroupModel } from "../models";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -27,6 +28,8 @@ export declare type ManagerModelCreateFormInputValues = {
     telephone?: string;
     profilepic?: string;
     role?: string;
+    ContactCenters?: ContactCenterModel[];
+    Groups?: GroupModel[];
 };
 export declare type ManagerModelCreateFormValidationValues = {
     name?: ValidationFunction<string>;
@@ -34,6 +37,8 @@ export declare type ManagerModelCreateFormValidationValues = {
     telephone?: ValidationFunction<string>;
     profilepic?: ValidationFunction<string>;
     role?: ValidationFunction<string>;
+    ContactCenters?: ValidationFunction<ContactCenterModel>;
+    Groups?: ValidationFunction<GroupModel>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type ManagerModelCreateFormOverridesProps = {
@@ -43,6 +48,8 @@ export declare type ManagerModelCreateFormOverridesProps = {
     telephone?: PrimitiveOverrideProps<TextFieldProps>;
     profilepic?: PrimitiveOverrideProps<TextFieldProps>;
     role?: PrimitiveOverrideProps<SelectFieldProps>;
+    ContactCenters?: PrimitiveOverrideProps<AutocompleteProps>;
+    Groups?: PrimitiveOverrideProps<AutocompleteProps>;
 } & EscapeHatchProps;
 export declare type ManagerModelCreateFormProps = React.PropsWithChildren<{
     overrides?: ManagerModelCreateFormOverridesProps | undefined | null;

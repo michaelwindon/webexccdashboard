@@ -7,15 +7,188 @@
 /* eslint-disable */
 import * as React from "react";
 import {
+  Autocomplete,
+  Badge,
   Button,
+  Divider,
   Flex,
   Grid,
+  Icon,
+  ScrollView,
   SelectField,
+  Text,
   TextField,
+  useTheme,
 } from "@aws-amplify/ui-react";
-import { ManagerModel } from "../models";
-import { fetchByPath, getOverrideProps, validateField } from "./utils";
+import {
+  ManagerModel,
+  ContactCenterModel,
+  GroupModel,
+  ContactCenterModelManagerModel,
+  GroupModelManagerModel,
+} from "../models";
+import {
+  fetchByPath,
+  getOverrideProps,
+  useDataStoreBinding,
+  validateField,
+} from "./utils";
 import { DataStore } from "aws-amplify/datastore";
+function ArrayField({
+  items = [],
+  onChange,
+  label,
+  inputFieldRef,
+  children,
+  hasError,
+  setFieldValue,
+  currentFieldValue,
+  defaultFieldValue,
+  lengthLimit,
+  getBadgeText,
+  runValidationTasks,
+  errorMessage,
+}) {
+  const labelElement = <Text>{label}</Text>;
+  const {
+    tokens: {
+      components: {
+        fieldmessages: { error: errorStyles },
+      },
+    },
+  } = useTheme();
+  const [selectedBadgeIndex, setSelectedBadgeIndex] = React.useState();
+  const [isEditing, setIsEditing] = React.useState();
+  React.useEffect(() => {
+    if (isEditing) {
+      inputFieldRef?.current?.focus();
+    }
+  }, [isEditing]);
+  const removeItem = async (removeIndex) => {
+    const newItems = items.filter((value, index) => index !== removeIndex);
+    await onChange(newItems);
+    setSelectedBadgeIndex(undefined);
+  };
+  const addItem = async () => {
+    const { hasError } = runValidationTasks();
+    if (
+      currentFieldValue !== undefined &&
+      currentFieldValue !== null &&
+      currentFieldValue !== "" &&
+      !hasError
+    ) {
+      const newItems = [...items];
+      if (selectedBadgeIndex !== undefined) {
+        newItems[selectedBadgeIndex] = currentFieldValue;
+        setSelectedBadgeIndex(undefined);
+      } else {
+        newItems.push(currentFieldValue);
+      }
+      await onChange(newItems);
+      setIsEditing(false);
+    }
+  };
+  const arraySection = (
+    <React.Fragment>
+      {!!items?.length && (
+        <ScrollView height="inherit" width="inherit" maxHeight={"7rem"}>
+          {items.map((value, index) => {
+            return (
+              <Badge
+                key={index}
+                style={{
+                  cursor: "pointer",
+                  alignItems: "center",
+                  marginRight: 3,
+                  marginTop: 3,
+                  backgroundColor:
+                    index === selectedBadgeIndex ? "#B8CEF9" : "",
+                }}
+                onClick={() => {
+                  setSelectedBadgeIndex(index);
+                  setFieldValue(items[index]);
+                  setIsEditing(true);
+                }}
+              >
+                {getBadgeText ? getBadgeText(value) : value.toString()}
+                <Icon
+                  style={{
+                    cursor: "pointer",
+                    paddingLeft: 3,
+                    width: 20,
+                    height: 20,
+                  }}
+                  viewBox={{ width: 20, height: 20 }}
+                  paths={[
+                    {
+                      d: "M10 10l5.09-5.09L10 10l5.09 5.09L10 10zm0 0L4.91 4.91 10 10l-5.09 5.09L10 10z",
+                      stroke: "black",
+                    },
+                  ]}
+                  ariaLabel="button"
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    removeItem(index);
+                  }}
+                />
+              </Badge>
+            );
+          })}
+        </ScrollView>
+      )}
+      <Divider orientation="horizontal" marginTop={5} />
+    </React.Fragment>
+  );
+  if (lengthLimit !== undefined && items.length >= lengthLimit && !isEditing) {
+    return (
+      <React.Fragment>
+        {labelElement}
+        {arraySection}
+      </React.Fragment>
+    );
+  }
+  return (
+    <React.Fragment>
+      {labelElement}
+      {isEditing && children}
+      {!isEditing ? (
+        <>
+          <Button
+            onClick={() => {
+              setIsEditing(true);
+            }}
+          >
+            Add item
+          </Button>
+          {errorMessage && hasError && (
+            <Text color={errorStyles.color} fontSize={errorStyles.fontSize}>
+              {errorMessage}
+            </Text>
+          )}
+        </>
+      ) : (
+        <Flex justifyContent="flex-end">
+          {(currentFieldValue || isEditing) && (
+            <Button
+              children="Cancel"
+              type="button"
+              size="small"
+              onClick={() => {
+                setFieldValue(defaultFieldValue);
+                setIsEditing(false);
+                setSelectedBadgeIndex(undefined);
+              }}
+            ></Button>
+          )}
+          <Button size="small" variation="link" onClick={addItem}>
+            {selectedBadgeIndex !== undefined ? "Save" : "Add"}
+          </Button>
+        </Flex>
+      )}
+      {arraySection}
+    </React.Fragment>
+  );
+}
 export default function ManagerModelCreateForm(props) {
   const {
     clearOnSuccess = true,
@@ -33,12 +206,18 @@ export default function ManagerModelCreateForm(props) {
     telephone: "",
     profilepic: "",
     role: "",
+    ContactCenters: [],
+    Groups: [],
   };
   const [name, setName] = React.useState(initialValues.name);
   const [email, setEmail] = React.useState(initialValues.email);
   const [telephone, setTelephone] = React.useState(initialValues.telephone);
   const [profilepic, setProfilepic] = React.useState(initialValues.profilepic);
   const [role, setRole] = React.useState(initialValues.role);
+  const [ContactCenters, setContactCenters] = React.useState(
+    initialValues.ContactCenters
+  );
+  const [Groups, setGroups] = React.useState(initialValues.Groups);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setName(initialValues.name);
@@ -46,7 +225,51 @@ export default function ManagerModelCreateForm(props) {
     setTelephone(initialValues.telephone);
     setProfilepic(initialValues.profilepic);
     setRole(initialValues.role);
+    setContactCenters(initialValues.ContactCenters);
+    setCurrentContactCentersValue(undefined);
+    setCurrentContactCentersDisplayValue("");
+    setGroups(initialValues.Groups);
+    setCurrentGroupsValue(undefined);
+    setCurrentGroupsDisplayValue("");
     setErrors({});
+  };
+  const [
+    currentContactCentersDisplayValue,
+    setCurrentContactCentersDisplayValue,
+  ] = React.useState("");
+  const [currentContactCentersValue, setCurrentContactCentersValue] =
+    React.useState(undefined);
+  const ContactCentersRef = React.createRef();
+  const [currentGroupsDisplayValue, setCurrentGroupsDisplayValue] =
+    React.useState("");
+  const [currentGroupsValue, setCurrentGroupsValue] = React.useState(undefined);
+  const GroupsRef = React.createRef();
+  const getIDValue = {
+    ContactCenters: (r) => JSON.stringify({ id: r?.id }),
+    Groups: (r) => JSON.stringify({ id: r?.id }),
+  };
+  const ContactCentersIdSet = new Set(
+    Array.isArray(ContactCenters)
+      ? ContactCenters.map((r) => getIDValue.ContactCenters?.(r))
+      : getIDValue.ContactCenters?.(ContactCenters)
+  );
+  const GroupsIdSet = new Set(
+    Array.isArray(Groups)
+      ? Groups.map((r) => getIDValue.Groups?.(r))
+      : getIDValue.Groups?.(Groups)
+  );
+  const contactCenterModelRecords = useDataStoreBinding({
+    type: "collection",
+    model: ContactCenterModel,
+  }).items;
+  const groupModelRecords = useDataStoreBinding({
+    type: "collection",
+    model: GroupModel,
+  }).items;
+  const getDisplayValue = {
+    ContactCenters: (r) =>
+      `${r?.mainnumber ? r?.mainnumber + " - " : ""}${r?.id}`,
+    Groups: (r) => `${r?.fullname ? r?.fullname + " - " : ""}${r?.id}`,
   };
   const validations = {
     name: [],
@@ -54,6 +277,8 @@ export default function ManagerModelCreateForm(props) {
     telephone: [{ type: "Phone" }],
     profilepic: [{ type: "URL" }],
     role: [],
+    ContactCenters: [],
+    Groups: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -86,19 +311,29 @@ export default function ManagerModelCreateForm(props) {
           telephone,
           profilepic,
           role,
+          ContactCenters,
+          Groups,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
             if (Array.isArray(modelFields[fieldName])) {
               promises.push(
                 ...modelFields[fieldName].map((item) =>
-                  runValidationTasks(fieldName, item)
+                  runValidationTasks(
+                    fieldName,
+                    item,
+                    getDisplayValue[fieldName]
+                  )
                 )
               );
               return promises;
             }
             promises.push(
-              runValidationTasks(fieldName, modelFields[fieldName])
+              runValidationTasks(
+                fieldName,
+                modelFields[fieldName],
+                getDisplayValue[fieldName]
+              )
             );
             return promises;
           }, [])
@@ -115,7 +350,44 @@ export default function ManagerModelCreateForm(props) {
               modelFields[key] = null;
             }
           });
-          await DataStore.save(new ManagerModel(modelFields));
+          const modelFieldsToSave = {
+            name: modelFields.name,
+            email: modelFields.email,
+            telephone: modelFields.telephone,
+            profilepic: modelFields.profilepic,
+            role: modelFields.role,
+          };
+          const managerModel = await DataStore.save(
+            new ManagerModel(modelFieldsToSave)
+          );
+          const promises = [];
+          promises.push(
+            ...ContactCenters.reduce((promises, contactCenterModel) => {
+              promises.push(
+                DataStore.save(
+                  new ContactCenterModelManagerModel({
+                    managerModel,
+                    contactCenterModel,
+                  })
+                )
+              );
+              return promises;
+            }, [])
+          );
+          promises.push(
+            ...Groups.reduce((promises, groupModel) => {
+              promises.push(
+                DataStore.save(
+                  new GroupModelManagerModel({
+                    managerModel,
+                    groupModel,
+                  })
+                )
+              );
+              return promises;
+            }, [])
+          );
+          await Promise.all(promises);
           if (onSuccess) {
             onSuccess(modelFields);
           }
@@ -145,6 +417,8 @@ export default function ManagerModelCreateForm(props) {
               telephone,
               profilepic,
               role,
+              ContactCenters,
+              Groups,
             };
             const result = onChange(modelFields);
             value = result?.name ?? value;
@@ -173,6 +447,8 @@ export default function ManagerModelCreateForm(props) {
               telephone,
               profilepic,
               role,
+              ContactCenters,
+              Groups,
             };
             const result = onChange(modelFields);
             value = result?.email ?? value;
@@ -202,6 +478,8 @@ export default function ManagerModelCreateForm(props) {
               telephone: value,
               profilepic,
               role,
+              ContactCenters,
+              Groups,
             };
             const result = onChange(modelFields);
             value = result?.telephone ?? value;
@@ -230,6 +508,8 @@ export default function ManagerModelCreateForm(props) {
               telephone,
               profilepic: value,
               role,
+              ContactCenters,
+              Groups,
             };
             const result = onChange(modelFields);
             value = result?.profilepic ?? value;
@@ -258,6 +538,8 @@ export default function ManagerModelCreateForm(props) {
               telephone,
               profilepic,
               role: value,
+              ContactCenters,
+              Groups,
             };
             const result = onChange(modelFields);
             value = result?.role ?? value;
@@ -288,6 +570,173 @@ export default function ManagerModelCreateForm(props) {
           {...getOverrideProps(overrides, "roleoption2")}
         ></option>
       </SelectField>
+      <ArrayField
+        onChange={async (items) => {
+          let values = items;
+          if (onChange) {
+            const modelFields = {
+              name,
+              email,
+              telephone,
+              profilepic,
+              role,
+              ContactCenters: values,
+              Groups,
+            };
+            const result = onChange(modelFields);
+            values = result?.ContactCenters ?? values;
+          }
+          setContactCenters(values);
+          setCurrentContactCentersValue(undefined);
+          setCurrentContactCentersDisplayValue("");
+        }}
+        currentFieldValue={currentContactCentersValue}
+        label={"Contact centers"}
+        items={ContactCenters}
+        hasError={errors?.ContactCenters?.hasError}
+        runValidationTasks={async () =>
+          await runValidationTasks("ContactCenters", currentContactCentersValue)
+        }
+        errorMessage={errors?.ContactCenters?.errorMessage}
+        getBadgeText={getDisplayValue.ContactCenters}
+        setFieldValue={(model) => {
+          setCurrentContactCentersDisplayValue(
+            model ? getDisplayValue.ContactCenters(model) : ""
+          );
+          setCurrentContactCentersValue(model);
+        }}
+        inputFieldRef={ContactCentersRef}
+        defaultFieldValue={""}
+      >
+        <Autocomplete
+          label="Contact centers"
+          isRequired={false}
+          isReadOnly={false}
+          placeholder="Search ContactCenterModel"
+          value={currentContactCentersDisplayValue}
+          options={contactCenterModelRecords
+            .filter(
+              (r) => !ContactCentersIdSet.has(getIDValue.ContactCenters?.(r))
+            )
+            .map((r) => ({
+              id: getIDValue.ContactCenters?.(r),
+              label: getDisplayValue.ContactCenters?.(r),
+            }))}
+          onSelect={({ id, label }) => {
+            setCurrentContactCentersValue(
+              contactCenterModelRecords.find((r) =>
+                Object.entries(JSON.parse(id)).every(
+                  ([key, value]) => r[key] === value
+                )
+              )
+            );
+            setCurrentContactCentersDisplayValue(label);
+            runValidationTasks("ContactCenters", label);
+          }}
+          onClear={() => {
+            setCurrentContactCentersDisplayValue("");
+          }}
+          onChange={(e) => {
+            let { value } = e.target;
+            if (errors.ContactCenters?.hasError) {
+              runValidationTasks("ContactCenters", value);
+            }
+            setCurrentContactCentersDisplayValue(value);
+            setCurrentContactCentersValue(undefined);
+          }}
+          onBlur={() =>
+            runValidationTasks(
+              "ContactCenters",
+              currentContactCentersDisplayValue
+            )
+          }
+          errorMessage={errors.ContactCenters?.errorMessage}
+          hasError={errors.ContactCenters?.hasError}
+          ref={ContactCentersRef}
+          labelHidden={true}
+          {...getOverrideProps(overrides, "ContactCenters")}
+        ></Autocomplete>
+      </ArrayField>
+      <ArrayField
+        onChange={async (items) => {
+          let values = items;
+          if (onChange) {
+            const modelFields = {
+              name,
+              email,
+              telephone,
+              profilepic,
+              role,
+              ContactCenters,
+              Groups: values,
+            };
+            const result = onChange(modelFields);
+            values = result?.Groups ?? values;
+          }
+          setGroups(values);
+          setCurrentGroupsValue(undefined);
+          setCurrentGroupsDisplayValue("");
+        }}
+        currentFieldValue={currentGroupsValue}
+        label={"Groups"}
+        items={Groups}
+        hasError={errors?.Groups?.hasError}
+        runValidationTasks={async () =>
+          await runValidationTasks("Groups", currentGroupsValue)
+        }
+        errorMessage={errors?.Groups?.errorMessage}
+        getBadgeText={getDisplayValue.Groups}
+        setFieldValue={(model) => {
+          setCurrentGroupsDisplayValue(
+            model ? getDisplayValue.Groups(model) : ""
+          );
+          setCurrentGroupsValue(model);
+        }}
+        inputFieldRef={GroupsRef}
+        defaultFieldValue={""}
+      >
+        <Autocomplete
+          label="Groups"
+          isRequired={false}
+          isReadOnly={false}
+          placeholder="Search GroupModel"
+          value={currentGroupsDisplayValue}
+          options={groupModelRecords
+            .filter((r) => !GroupsIdSet.has(getIDValue.Groups?.(r)))
+            .map((r) => ({
+              id: getIDValue.Groups?.(r),
+              label: getDisplayValue.Groups?.(r),
+            }))}
+          onSelect={({ id, label }) => {
+            setCurrentGroupsValue(
+              groupModelRecords.find((r) =>
+                Object.entries(JSON.parse(id)).every(
+                  ([key, value]) => r[key] === value
+                )
+              )
+            );
+            setCurrentGroupsDisplayValue(label);
+            runValidationTasks("Groups", label);
+          }}
+          onClear={() => {
+            setCurrentGroupsDisplayValue("");
+          }}
+          onChange={(e) => {
+            let { value } = e.target;
+            if (errors.Groups?.hasError) {
+              runValidationTasks("Groups", value);
+            }
+            setCurrentGroupsDisplayValue(value);
+            setCurrentGroupsValue(undefined);
+          }}
+          onBlur={() => runValidationTasks("Groups", currentGroupsDisplayValue)}
+          errorMessage={errors.Groups?.errorMessage}
+          hasError={errors.Groups?.hasError}
+          ref={GroupsRef}
+          labelHidden={true}
+          {...getOverrideProps(overrides, "Groups")}
+        ></Autocomplete>
+      </ArrayField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

@@ -1,4 +1,4 @@
-import UpdateOverrideForm from '../ui-components/UpdateOverrideForm'
+import { UpdateOverrideForm } from '../ui-components/'
 import Dialog from '@mui/material/Dialog'
 import DialogContent from '@mui/material/DialogContent'
 import DialogTitle from '@mui/material/DialogTitle'

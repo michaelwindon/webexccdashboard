@@ -16,7 +16,7 @@ import {
   View,
 } from "@aws-amplify/ui-react";
 export default function ContactCenterUI(props) {
-  const { contactcentermodel, overrides, ...rest } = props;
+  const { overrides, ...rest } = props;
   return (
     <Flex
       gap="0"
@@ -88,7 +88,7 @@ export default function ContactCenterUI(props) {
               position="relative"
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
-              children={contactcentermodel?.ccname}
+              children="Single Billing Office"
               {...getOverrideProps(overrides, "ccname")}
             ></Text>
             <Text
@@ -109,7 +109,7 @@ export default function ContactCenterUI(props) {
               position="relative"
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
-              children={contactcentermodel?.mainnumber}
+              children="713-366-5600"
               {...getOverrideProps(overrides, "ccmainnumber")}
             ></Text>
           </Flex>
@@ -226,7 +226,7 @@ export default function ContactCenterUI(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children={contactcentermodel?.welcomeprompt}
+            children='Thank you for calling Houston Methodist, Customer Service.  <break time="1s"/> If this is an emergency, please hangup, and dial 911.  <break time="1s"/>This call may be recorded for quality and training purposes. <break time="1s"/> huidshuidshufusduhuifshihu jjdfsjiksdbuisd jisdhuisdhidu] jioudshiudshu nidsuhuid'
             {...getOverrideProps(
               overrides,
               'Thank you for calling Houston Methodist, Customer Service. <break time="1s"/> If this is an emergency, please hangup, and dial 911. <break time="1s"/>This call may be recorded for quality and training purposes. <break time="1s"/> huidshuidshufusduhuifshihu jjdfsjiksdbuisd jisdhuisdhidu] jioudshiudshu nidsuhuid'
@@ -539,7 +539,6 @@ export default function ContactCenterUI(props) {
                 position="relative"
                 padding="0px 0px 0px 0px"
                 whiteSpace="pre-wrap"
-                backgroundColor=""
                 children="MON"
                 {...getOverrideProps(overrides, "dayyArray1")}
               ></Text>
@@ -1444,13 +1443,12 @@ export default function ContactCenterUI(props) {
           <SwitchField
             width="unset"
             height="unset"
-            label="isOverride"
+            label="Off"
             shrink="0"
             size="default"
             defaultChecked={false}
             isDisabled={false}
-            labelPosition="bottom"
-            isChecked={contactcentermodel?.isoverride}
+            labelPosition="start"
             {...getOverrideProps(overrides, "SwitchField")}
           ></SwitchField>
           <Button
@@ -1547,7 +1545,7 @@ export default function ContactCenterUI(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children={contactcentermodel?.updatedAt}
+            children="2023-12-06T19:23:33.617Z"
             {...getOverrideProps(overrides, "lastupdate")}
           ></Text>
           <Text
@@ -1589,7 +1587,7 @@ export default function ContactCenterUI(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children={contactcentermodel?.updateduser}
+            children="mlwindon@houstonmethodist.org"
             {...getOverrideProps(overrides, "lastuser")}
           ></Text>
         </Flex>

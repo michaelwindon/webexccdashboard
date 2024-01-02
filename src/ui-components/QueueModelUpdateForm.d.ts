@@ -5,8 +5,8 @@
  **************************************************************************/
 
 import * as React from "react";
-import { GridProps, TextFieldProps } from "@aws-amplify/ui-react";
-import { QueueModel } from "../models";
+import { AutocompleteProps, GridProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { QueueModel, GroupModel } from "../models";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -24,14 +24,17 @@ export declare type ValidationResponse = {
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
 export declare type QueueModelUpdateFormInputValues = {
     name?: string;
+    Group?: GroupModel;
 };
 export declare type QueueModelUpdateFormValidationValues = {
     name?: ValidationFunction<string>;
+    Group?: ValidationFunction<GroupModel>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type QueueModelUpdateFormOverridesProps = {
     QueueModelUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
     name?: PrimitiveOverrideProps<TextFieldProps>;
+    Group?: PrimitiveOverrideProps<AutocompleteProps>;
 } & EscapeHatchProps;
 export declare type QueueModelUpdateFormProps = React.PropsWithChildren<{
     overrides?: QueueModelUpdateFormOverridesProps | undefined | null;

@@ -5,8 +5,8 @@
  **************************************************************************/
 
 import * as React from "react";
-import { GridProps, SelectFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
-import { ManagerModel } from "../models";
+import { AutocompleteProps, GridProps, SelectFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { ManagerModel, ContactCenterModel, GroupModel } from "../models";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -28,6 +28,8 @@ export declare type ManagerModelUpdateFormInputValues = {
     telephone?: string;
     profilepic?: string;
     role?: string;
+    ContactCenters?: ContactCenterModel[];
+    Groups?: GroupModel[];
 };
 export declare type ManagerModelUpdateFormValidationValues = {
     name?: ValidationFunction<string>;
@@ -35,6 +37,8 @@ export declare type ManagerModelUpdateFormValidationValues = {
     telephone?: ValidationFunction<string>;
     profilepic?: ValidationFunction<string>;
     role?: ValidationFunction<string>;
+    ContactCenters?: ValidationFunction<ContactCenterModel>;
+    Groups?: ValidationFunction<GroupModel>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type ManagerModelUpdateFormOverridesProps = {
@@ -44,6 +48,8 @@ export declare type ManagerModelUpdateFormOverridesProps = {
     telephone?: PrimitiveOverrideProps<TextFieldProps>;
     profilepic?: PrimitiveOverrideProps<TextFieldProps>;
     role?: PrimitiveOverrideProps<SelectFieldProps>;
+    ContactCenters?: PrimitiveOverrideProps<AutocompleteProps>;
+    Groups?: PrimitiveOverrideProps<AutocompleteProps>;
 } & EscapeHatchProps;
 export declare type ManagerModelUpdateFormProps = React.PropsWithChildren<{
     overrides?: ManagerModelUpdateFormOverridesProps | undefined | null;
