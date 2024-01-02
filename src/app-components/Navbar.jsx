@@ -27,7 +27,7 @@ const Navbar = ({ signOut }) => {
                     <Link to="#" className="menu-bar">
                         <FaIcons.FaBars size="2.5em" onClick={showSidebar} />
                     </Link>
-                    <Text color='white' fontSize='2em'>Webex Interface and Online Manangement Tool</Text>
+                    <Text color='white' fontSize='2em'>Webex Admin Manangement Tool</Text>
                     <div>
                         <Link to="/annoucements">
                             <Badge badgeContent={4} color="primary">
