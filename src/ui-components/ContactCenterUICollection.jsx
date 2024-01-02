@@ -7,15 +7,26 @@
 /* eslint-disable */
 import * as React from "react";
 import { ContactCenterModel } from "../models";
-import { getOverrideProps, useDataStoreBinding } from "./utils";
+import {
+  createDataStorePredicate,
+  getOverrideProps,
+  useDataStoreBinding,
+} from "./utils";
 import ContactCenterUI from "./ContactCenterUI";
 import { Collection } from "@aws-amplify/ui-react";
 export default function ContactCenterUICollection(props) {
   const { items: itemsProp, overrideItems, overrides, ...rest } = props;
+  const itemsFilterObj = {
+    field: "contactCenterModelAssignedGroupId",
+    operand: '"user.email"',
+    operator: "eq",
+  };
+  const itemsFilter = createDataStorePredicate(itemsFilterObj);
   const [items, setItems] = React.useState(undefined);
   const itemsDataStore = useDataStoreBinding({
     type: "collection",
     model: ContactCenterModel,
+    criteria: itemsFilter,
   }).items;
   React.useEffect(() => {
     if (itemsProp !== undefined) {

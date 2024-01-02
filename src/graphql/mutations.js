@@ -1,6 +1,75 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createGroupModel = /* GraphQL */ `
+  mutation CreateGroupModel(
+    $input: CreateGroupModelInput!
+    $condition: ModelGroupModelConditionInput
+  ) {
+    createGroupModel(input: $input, condition: $condition) {
+      id
+      fullname
+      abbreviatedname
+      Managers {
+        nextToken
+        startedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const updateGroupModel = /* GraphQL */ `
+  mutation UpdateGroupModel(
+    $input: UpdateGroupModelInput!
+    $condition: ModelGroupModelConditionInput
+  ) {
+    updateGroupModel(input: $input, condition: $condition) {
+      id
+      fullname
+      abbreviatedname
+      Managers {
+        nextToken
+        startedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const deleteGroupModel = /* GraphQL */ `
+  mutation DeleteGroupModel(
+    $input: DeleteGroupModelInput!
+    $condition: ModelGroupModelConditionInput
+  ) {
+    deleteGroupModel(input: $input, condition: $condition) {
+      id
+      fullname
+      abbreviatedname
+      Managers {
+        nextToken
+        startedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
 export const createQueueModel = /* GraphQL */ `
   mutation CreateQueueModel(
     $input: CreateQueueModelInput!
@@ -9,9 +78,23 @@ export const createQueueModel = /* GraphQL */ `
     createQueueModel(input: $input, condition: $condition) {
       id
       name
-      group
+      Group {
+        id
+        fullname
+        abbreviatedname
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      queueModelGroupId
       __typename
     }
   }
@@ -24,9 +107,23 @@ export const updateQueueModel = /* GraphQL */ `
     updateQueueModel(input: $input, condition: $condition) {
       id
       name
-      group
+      Group {
+        id
+        fullname
+        abbreviatedname
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      queueModelGroupId
       __typename
     }
   }
@@ -39,78 +136,116 @@ export const deleteQueueModel = /* GraphQL */ `
     deleteQueueModel(input: $input, condition: $condition) {
       id
       name
-      group
+      Group {
+        id
+        fullname
+        abbreviatedname
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      queueModelGroupId
       __typename
     }
   }
 `;
-export const createUserModel = /* GraphQL */ `
-  mutation CreateUserModel(
-    $input: CreateUserModelInput!
-    $condition: ModelUserModelConditionInput
+export const createManagerModel = /* GraphQL */ `
+  mutation CreateManagerModel(
+    $input: CreateManagerModelInput!
+    $condition: ModelManagerModelConditionInput
   ) {
-    createUserModel(input: $input, condition: $condition) {
+    createManagerModel(input: $input, condition: $condition) {
       id
       name
       email
       telephone
       profilepic
       role
-      group
-      contactcentermodels {
+      ContactCenters {
         nextToken
+        startedAt
+        __typename
+      }
+      Groups {
+        nextToken
+        startedAt
         __typename
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       __typename
     }
   }
 `;
-export const updateUserModel = /* GraphQL */ `
-  mutation UpdateUserModel(
-    $input: UpdateUserModelInput!
-    $condition: ModelUserModelConditionInput
+export const updateManagerModel = /* GraphQL */ `
+  mutation UpdateManagerModel(
+    $input: UpdateManagerModelInput!
+    $condition: ModelManagerModelConditionInput
   ) {
-    updateUserModel(input: $input, condition: $condition) {
+    updateManagerModel(input: $input, condition: $condition) {
       id
       name
       email
       telephone
       profilepic
       role
-      group
-      contactcentermodels {
+      ContactCenters {
         nextToken
+        startedAt
+        __typename
+      }
+      Groups {
+        nextToken
+        startedAt
         __typename
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       __typename
     }
   }
 `;
-export const deleteUserModel = /* GraphQL */ `
-  mutation DeleteUserModel(
-    $input: DeleteUserModelInput!
-    $condition: ModelUserModelConditionInput
+export const deleteManagerModel = /* GraphQL */ `
+  mutation DeleteManagerModel(
+    $input: DeleteManagerModelInput!
+    $condition: ModelManagerModelConditionInput
   ) {
-    deleteUserModel(input: $input, condition: $condition) {
+    deleteManagerModel(input: $input, condition: $condition) {
       id
       name
       email
       telephone
       profilepic
       role
-      group
-      contactcentermodels {
+      ContactCenters {
         nextToken
+        startedAt
+        __typename
+      }
+      Groups {
+        nextToken
+        startedAt
         __typename
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       __typename
     }
   }
@@ -184,12 +319,23 @@ export const createContactCenterModel = /* GraphQL */ `
         __typename
       }
       holiday
-      secondarytodclose
+      holidayoption {
+        msg
+        type
+        value
+        __typename
+      }
       secondarytodopen
-      daysopen
+      secondarytodclose
+      secondaryclose {
+        msg
+        type
+        value
+        __typename
+      }
       daystodopen
       daystodclose
-      welcomeprompt
+      daysopen
       afterhours {
         msg
         type
@@ -197,43 +343,16 @@ export const createContactCenterModel = /* GraphQL */ `
         __typename
       }
       ccdescription
-      ccname
       defaultroute
-      holidayoption {
+      ccname
+      welcomeprompt
+      welcomeprompt_sp
+      menu0_sp {
         msg
         type
         value
         __typename
       }
-      isoverride
-      submenu2 {
-        option0
-        option1
-        option2
-        option3
-        opiton4
-        option5
-        option6
-        option7
-        option8
-        option9
-        __typename
-      }
-      welcomeprompt_sp
-      submenu2_sp {
-        option0
-        option1
-        option2
-        option3
-        opiton4
-        option5
-        option6
-        option7
-        option8
-        option9
-        __typename
-      }
-      menu0_sp
       menu1_sp {
         msg
         type
@@ -288,14 +407,100 @@ export const createContactCenterModel = /* GraphQL */ `
         value
         __typename
       }
-      group
-      version
-      UserModels {
-        nextToken
+      override {
+        msg
+        type
+        value
         __typename
       }
+      updateduser
+      issecondaryclosed
+      Managers {
+        nextToken
+        startedAt
+        __typename
+      }
+      AssignedGroup {
+        id
+        fullname
+        abbreviatedname
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      isoverride
+      isholiday
+      isafterhours
+      submenu1 {
+        __typename
+      }
+      submenu2 {
+        __typename
+      }
+      submenu3 {
+        __typename
+      }
+      submenu4 {
+        __typename
+      }
+      submenu5 {
+        __typename
+      }
+      submenu6 {
+        __typename
+      }
+      submenu7 {
+        __typename
+      }
+      submenu8 {
+        __typename
+      }
+      submenu9 {
+        __typename
+      }
+      submenu0 {
+        __typename
+      }
+      submenu1_sp {
+        __typename
+      }
+      submenu2_sp {
+        __typename
+      }
+      submenu3_sp {
+        __typename
+      }
+      submenu4_sp {
+        __typename
+      }
+      submenu5_sp {
+        __typename
+      }
+      submenu6_sp {
+        __typename
+      }
+      submenu7_sp {
+        __typename
+      }
+      submenu8_sp {
+        __typename
+      }
+      submenu9_sp {
+        __typename
+      }
+      submenu0_sp {
+        __typename
+      }
+      presentlangoption
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      contactCenterModelAssignedGroupId
       __typename
     }
   }
@@ -369,12 +574,23 @@ export const updateContactCenterModel = /* GraphQL */ `
         __typename
       }
       holiday
-      secondarytodclose
+      holidayoption {
+        msg
+        type
+        value
+        __typename
+      }
       secondarytodopen
-      daysopen
+      secondarytodclose
+      secondaryclose {
+        msg
+        type
+        value
+        __typename
+      }
       daystodopen
       daystodclose
-      welcomeprompt
+      daysopen
       afterhours {
         msg
         type
@@ -382,43 +598,16 @@ export const updateContactCenterModel = /* GraphQL */ `
         __typename
       }
       ccdescription
-      ccname
       defaultroute
-      holidayoption {
+      ccname
+      welcomeprompt
+      welcomeprompt_sp
+      menu0_sp {
         msg
         type
         value
         __typename
       }
-      isoverride
-      submenu2 {
-        option0
-        option1
-        option2
-        option3
-        opiton4
-        option5
-        option6
-        option7
-        option8
-        option9
-        __typename
-      }
-      welcomeprompt_sp
-      submenu2_sp {
-        option0
-        option1
-        option2
-        option3
-        opiton4
-        option5
-        option6
-        option7
-        option8
-        option9
-        __typename
-      }
-      menu0_sp
       menu1_sp {
         msg
         type
@@ -473,14 +662,100 @@ export const updateContactCenterModel = /* GraphQL */ `
         value
         __typename
       }
-      group
-      version
-      UserModels {
-        nextToken
+      override {
+        msg
+        type
+        value
         __typename
       }
+      updateduser
+      issecondaryclosed
+      Managers {
+        nextToken
+        startedAt
+        __typename
+      }
+      AssignedGroup {
+        id
+        fullname
+        abbreviatedname
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      isoverride
+      isholiday
+      isafterhours
+      submenu1 {
+        __typename
+      }
+      submenu2 {
+        __typename
+      }
+      submenu3 {
+        __typename
+      }
+      submenu4 {
+        __typename
+      }
+      submenu5 {
+        __typename
+      }
+      submenu6 {
+        __typename
+      }
+      submenu7 {
+        __typename
+      }
+      submenu8 {
+        __typename
+      }
+      submenu9 {
+        __typename
+      }
+      submenu0 {
+        __typename
+      }
+      submenu1_sp {
+        __typename
+      }
+      submenu2_sp {
+        __typename
+      }
+      submenu3_sp {
+        __typename
+      }
+      submenu4_sp {
+        __typename
+      }
+      submenu5_sp {
+        __typename
+      }
+      submenu6_sp {
+        __typename
+      }
+      submenu7_sp {
+        __typename
+      }
+      submenu8_sp {
+        __typename
+      }
+      submenu9_sp {
+        __typename
+      }
+      submenu0_sp {
+        __typename
+      }
+      presentlangoption
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      contactCenterModelAssignedGroupId
       __typename
     }
   }
@@ -554,12 +829,23 @@ export const deleteContactCenterModel = /* GraphQL */ `
         __typename
       }
       holiday
-      secondarytodclose
+      holidayoption {
+        msg
+        type
+        value
+        __typename
+      }
       secondarytodopen
-      daysopen
+      secondarytodclose
+      secondaryclose {
+        msg
+        type
+        value
+        __typename
+      }
       daystodopen
       daystodclose
-      welcomeprompt
+      daysopen
       afterhours {
         msg
         type
@@ -567,43 +853,16 @@ export const deleteContactCenterModel = /* GraphQL */ `
         __typename
       }
       ccdescription
-      ccname
       defaultroute
-      holidayoption {
+      ccname
+      welcomeprompt
+      welcomeprompt_sp
+      menu0_sp {
         msg
         type
         value
         __typename
       }
-      isoverride
-      submenu2 {
-        option0
-        option1
-        option2
-        option3
-        opiton4
-        option5
-        option6
-        option7
-        option8
-        option9
-        __typename
-      }
-      welcomeprompt_sp
-      submenu2_sp {
-        option0
-        option1
-        option2
-        option3
-        opiton4
-        option5
-        option6
-        option7
-        option8
-        option9
-        __typename
-      }
-      menu0_sp
       menu1_sp {
         msg
         type
@@ -658,161 +917,409 @@ export const deleteContactCenterModel = /* GraphQL */ `
         value
         __typename
       }
-      group
-      version
-      UserModels {
+      override {
+        msg
+        type
+        value
+        __typename
+      }
+      updateduser
+      issecondaryclosed
+      Managers {
         nextToken
+        startedAt
         __typename
       }
+      AssignedGroup {
+        id
+        fullname
+        abbreviatedname
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      isoverride
+      isholiday
+      isafterhours
+      submenu1 {
+        __typename
+      }
+      submenu2 {
+        __typename
+      }
+      submenu3 {
+        __typename
+      }
+      submenu4 {
+        __typename
+      }
+      submenu5 {
+        __typename
+      }
+      submenu6 {
+        __typename
+      }
+      submenu7 {
+        __typename
+      }
+      submenu8 {
+        __typename
+      }
+      submenu9 {
+        __typename
+      }
+      submenu0 {
+        __typename
+      }
+      submenu1_sp {
+        __typename
+      }
+      submenu2_sp {
+        __typename
+      }
+      submenu3_sp {
+        __typename
+      }
+      submenu4_sp {
+        __typename
+      }
+      submenu5_sp {
+        __typename
+      }
+      submenu6_sp {
+        __typename
+      }
+      submenu7_sp {
+        __typename
+      }
+      submenu8_sp {
+        __typename
+      }
+      submenu9_sp {
+        __typename
+      }
+      submenu0_sp {
+        __typename
+      }
+      presentlangoption
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      contactCenterModelAssignedGroupId
       __typename
     }
   }
 `;
-export const createContactCenterModelUserModel = /* GraphQL */ `
-  mutation CreateContactCenterModelUserModel(
-    $input: CreateContactCenterModelUserModelInput!
-    $condition: ModelContactCenterModelUserModelConditionInput
+export const createGroupModelManagerModel = /* GraphQL */ `
+  mutation CreateGroupModelManagerModel(
+    $input: CreateGroupModelManagerModelInput!
+    $condition: ModelGroupModelManagerModelConditionInput
   ) {
-    createContactCenterModelUserModel(input: $input, condition: $condition) {
+    createGroupModelManagerModel(input: $input, condition: $condition) {
       id
-      userModelId
-      contactCenterModelId
-      userModel {
+      groupModelId
+      managerModelId
+      groupModel {
+        id
+        fullname
+        abbreviatedname
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      managerModel {
         id
         name
         email
         telephone
         profilepic
         role
-        group
         createdAt
         updatedAt
-        __typename
-      }
-      contactCenterModel {
-        id
-        mainnumber
-        holiday
-        secondarytodclose
-        secondarytodopen
-        daysopen
-        daystodopen
-        daystodclose
-        welcomeprompt
-        ccdescription
-        ccname
-        defaultroute
-        isoverride
-        welcomeprompt_sp
-        menu0_sp
-        group
-        version
-        createdAt
-        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
         __typename
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       __typename
     }
   }
 `;
-export const updateContactCenterModelUserModel = /* GraphQL */ `
-  mutation UpdateContactCenterModelUserModel(
-    $input: UpdateContactCenterModelUserModelInput!
-    $condition: ModelContactCenterModelUserModelConditionInput
+export const updateGroupModelManagerModel = /* GraphQL */ `
+  mutation UpdateGroupModelManagerModel(
+    $input: UpdateGroupModelManagerModelInput!
+    $condition: ModelGroupModelManagerModelConditionInput
   ) {
-    updateContactCenterModelUserModel(input: $input, condition: $condition) {
+    updateGroupModelManagerModel(input: $input, condition: $condition) {
       id
-      userModelId
-      contactCenterModelId
-      userModel {
+      groupModelId
+      managerModelId
+      groupModel {
+        id
+        fullname
+        abbreviatedname
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      managerModel {
         id
         name
         email
         telephone
         profilepic
         role
-        group
         createdAt
         updatedAt
-        __typename
-      }
-      contactCenterModel {
-        id
-        mainnumber
-        holiday
-        secondarytodclose
-        secondarytodopen
-        daysopen
-        daystodopen
-        daystodclose
-        welcomeprompt
-        ccdescription
-        ccname
-        defaultroute
-        isoverride
-        welcomeprompt_sp
-        menu0_sp
-        group
-        version
-        createdAt
-        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
         __typename
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       __typename
     }
   }
 `;
-export const deleteContactCenterModelUserModel = /* GraphQL */ `
-  mutation DeleteContactCenterModelUserModel(
-    $input: DeleteContactCenterModelUserModelInput!
-    $condition: ModelContactCenterModelUserModelConditionInput
+export const deleteGroupModelManagerModel = /* GraphQL */ `
+  mutation DeleteGroupModelManagerModel(
+    $input: DeleteGroupModelManagerModelInput!
+    $condition: ModelGroupModelManagerModelConditionInput
   ) {
-    deleteContactCenterModelUserModel(input: $input, condition: $condition) {
+    deleteGroupModelManagerModel(input: $input, condition: $condition) {
       id
-      userModelId
-      contactCenterModelId
-      userModel {
+      groupModelId
+      managerModelId
+      groupModel {
+        id
+        fullname
+        abbreviatedname
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      managerModel {
         id
         name
         email
         telephone
         profilepic
         role
-        group
         createdAt
         updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const createContactCenterModelManagerModel = /* GraphQL */ `
+  mutation CreateContactCenterModelManagerModel(
+    $input: CreateContactCenterModelManagerModelInput!
+    $condition: ModelContactCenterModelManagerModelConditionInput
+  ) {
+    createContactCenterModelManagerModel(input: $input, condition: $condition) {
+      id
+      managerModelId
+      contactCenterModelId
+      managerModel {
+        id
+        name
+        email
+        telephone
+        profilepic
+        role
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
         __typename
       }
       contactCenterModel {
         id
         mainnumber
         holiday
-        secondarytodclose
         secondarytodopen
-        daysopen
+        secondarytodclose
         daystodopen
         daystodclose
-        welcomeprompt
+        daysopen
         ccdescription
-        ccname
         defaultroute
-        isoverride
+        ccname
+        welcomeprompt
         welcomeprompt_sp
-        menu0_sp
-        group
-        version
+        updateduser
+        issecondaryclosed
+        isoverride
+        isholiday
+        isafterhours
+        presentlangoption
         createdAt
         updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        contactCenterModelAssignedGroupId
         __typename
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const updateContactCenterModelManagerModel = /* GraphQL */ `
+  mutation UpdateContactCenterModelManagerModel(
+    $input: UpdateContactCenterModelManagerModelInput!
+    $condition: ModelContactCenterModelManagerModelConditionInput
+  ) {
+    updateContactCenterModelManagerModel(input: $input, condition: $condition) {
+      id
+      managerModelId
+      contactCenterModelId
+      managerModel {
+        id
+        name
+        email
+        telephone
+        profilepic
+        role
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      contactCenterModel {
+        id
+        mainnumber
+        holiday
+        secondarytodopen
+        secondarytodclose
+        daystodopen
+        daystodclose
+        daysopen
+        ccdescription
+        defaultroute
+        ccname
+        welcomeprompt
+        welcomeprompt_sp
+        updateduser
+        issecondaryclosed
+        isoverride
+        isholiday
+        isafterhours
+        presentlangoption
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        contactCenterModelAssignedGroupId
+        __typename
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      __typename
+    }
+  }
+`;
+export const deleteContactCenterModelManagerModel = /* GraphQL */ `
+  mutation DeleteContactCenterModelManagerModel(
+    $input: DeleteContactCenterModelManagerModelInput!
+    $condition: ModelContactCenterModelManagerModelConditionInput
+  ) {
+    deleteContactCenterModelManagerModel(input: $input, condition: $condition) {
+      id
+      managerModelId
+      contactCenterModelId
+      managerModel {
+        id
+        name
+        email
+        telephone
+        profilepic
+        role
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      contactCenterModel {
+        id
+        mainnumber
+        holiday
+        secondarytodopen
+        secondarytodclose
+        daystodopen
+        daystodclose
+        daysopen
+        ccdescription
+        defaultroute
+        ccname
+        welcomeprompt
+        welcomeprompt_sp
+        updateduser
+        issecondaryclosed
+        isoverride
+        isholiday
+        isafterhours
+        presentlangoption
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        contactCenterModelAssignedGroupId
+        __typename
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       __typename
     }
   }

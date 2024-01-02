@@ -13,14 +13,18 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import QueueManagement from './pages/QueueManagement'
 import UserManagement from './pages/UserManagement'
 import CreateContactCenter from './pages/CreateContactCenter'
+import { DataStore } from 'aws-amplify/datastore'
 
 function App({ signOut, user }) {
     const theme = useTheme()
-
+    const handleSignout = () => {
+        DataStore.clear()
+        signOut()
+    }
     return (
         <>
             <Router>
-                <Navbar signOut={signOut} />
+                <Navbar signOut={handleSignout} />
                 <Routes>
                     <Route
                         path="/"

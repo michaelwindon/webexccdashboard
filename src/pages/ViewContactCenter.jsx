@@ -7,10 +7,9 @@ import { useTheme } from '@aws-amplify/ui-react'
 
 import { ContactCenterUICollection, MyIcon } from '../ui-components'
 import { generateClient } from 'aws-amplify/api'
-import * as queries from '../graphql/queries'
-
-const gqlclient = generateClient()
-
+import * as queries from '../graphql/mycustomqueries'
+import { useDataStoreBinding } from '../ui-components/utils'
+import { ContactCenterModel } from '../models'
 import UpdateisOverrideModal from '../app-components/UpdateisOverrideModal'
 import UpdateMenuModal from '../app-components/UpdateMenuModal'
 import DisplayCenterStatus from '../app-components/DisplayCenterStatus'
@@ -35,34 +34,92 @@ function ViewContactCenter({ signOut, user }) {
         status: 'init',
         center: 'init',
     })
-
     const [id, setId] = useState()
     const [groupid, setGroupid] = useState()
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
+    const [authorizedItems, setAuthorizedItems] = useState([])
+    const gqlclient = generateClient()
+    const itemsDataStore = useDataStoreBinding({
+        type: 'collection',
+        model: ContactCenterModel,
+    }).items
 
+    //using datastore collection models to get Items
     useEffect(() => {
-        const getUserData = async () => {
-            const variables = {
-                filter: {
-                    email: { eq: {...user.email} },
-                },
-            }
-            try {
-                const priv = await gqlclient.graphql({
-                    query: queries.listManagerModels,
-                    variables: 'filter: {email:mlwindon@houstonmethodist.org}',
+        async function setItemsFromDataStore() {
+            const customFilters = { listfilter: user.username } //get logged in user email
+
+            //get user ID and Role
+            var userRoleId = await gqlclient.graphql({
+                query: queries.listManagerIdRoleQuery,
+                variables: customFilters,
+            })
+            
+            //use DataStore hook to get items comes with subscription for auto updates when data changes within the contact center model.
+            var loaded = await Promise.all(
+                itemsDataStore.map(async (item) => {
+                    var managerArrary = await item.Managers.values
+                    if (
+                        managerArrary.some(
+                            (obj) =>
+                                obj.managerModelId === userRoleId.data.listManagerModels.items[0].id
+                        ) || userRoleId.data.listManagerModels.items[0].role === 'ADMIN'
+                    ) {
+                        return {
+                            ...item,
+                            AssignedGroup: await item.AssignedGroup,
+                            Managers: await item.Managers.values,
+                        }
+                    } else {
+                        return
+                    }
                 })
-                console.log(`getUserData(): ${priv}`)
-            } catch (e) {
-                console.log(`error: ${e}`)
+            )
+
+            //remove undefined items that dont meet the filter
+            const newValue = loaded.filter((d) => d != undefined)
+            setAuthorizedItems(newValue)
+            //clear loader
+            setLoading(false)
+        }
+        setItemsFromDataStore()
+    }, [itemsDataStore])
+
+    //using Graphql to get items
+    /*  useEffect(() => {
+        const customFilters = { listfilter: user.username }
+
+        const getItems = async () => {
+            var items = await gqlclient.graphql({
+                query: queries.listManagerModelsQuery,
+                variables: customFilters,
+            })
+            if (items !== undefined) {
+                //load all contact centers for admins
+                if (items.data.listManagerModels.items[0].role == 'ADMIN') {
+                    items = await gqlclient.graphql({
+                        query: queries.adminContactCenterListQuery,
+                    })
+                    var loaded = items.data.listContactCenterModels.items
+                } else {
+                    var loaded =
+                        items.data.listManagerModels.items[0].ContactCenters.items.map(
+                            (item) => {
+                                return item.contactCenterModel
+                            }
+                        )
+                }
+
+                setAuthorizedItems(loaded)
             }
         }
-        getUserData()
-    }, [contactcentermodel])
+
+        getItems()
+        setLoading(false)
+    }, [contactcentermodel]) */
 
     useEffect(() => {
         //cause page to refresh on status change
-        console.log(`${JSON.stringify(user, null, 2)}`)
     }, [statusTrigger, openuOfDateTimeofDay])
 
     const handleShowSpanish = (state) => {
@@ -151,6 +208,7 @@ function ViewContactCenter({ signOut, user }) {
                         setShowSpanish={setShowSpanish}
                     />
                     <ContactCenterUICollection
+                        items={authorizedItems}
                         overrideItems={({ item, index }) => ({
                             overrides: {
                                 welcomepromptsec: {
@@ -168,24 +226,24 @@ function ViewContactCenter({ signOut, user }) {
                                 openArray1: {
                                     children: (
                                         <>
-                                            {item.daystodopen[1] == '' ||
-                                            item.daystodopen[1] ==
+                                            {item?.daystodopen[1] == '' ||
+                                            item?.daystodopen[1] ==
                                                 'Invalid Date' ||
-                                            item.daystodopen[1] === undefined
+                                            item?.daystodopen[1] === undefined
                                                 ? 'NA'
-                                                : item.daystodopen[1]}
+                                                : item?.daystodopen[1]}
                                         </>
                                     ),
                                 },
                                 openArray2: {
                                     children: (
                                         <>
-                                            {item.daystodopen[2] == '' ||
-                                            item.daystodopen[2] ==
+                                            {item?.daystodopen[2] == '' ||
+                                            item?.daystodopen[2] ==
                                                 'Invalid Date' ||
-                                            item.daystodopen[2] === undefined
+                                            item?.daystodopen[2] === undefined
                                                 ? 'NA'
-                                                : item.daystodopen[2]}
+                                                : item?.daystodopen[2]}
                                         </>
                                     ),
                                 },

@@ -34,10 +34,10 @@ export default function ContactCenterUI(props) {
       <Flex
         gap="5px"
         direction="column"
-        width="unset"
+        width="776px"
         height="unset"
         justifyContent="flex-start"
-        alignItems="flex-start"
+        alignItems="center"
         overflow="hidden"
         shrink="0"
         position="relative"
