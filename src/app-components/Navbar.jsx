@@ -5,18 +5,35 @@ import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'
 import Badge from '@mui/material/Badge'
 import MailIcon from '@mui/icons-material/Mail'
 import HelpCenterIcon from '@mui/icons-material/HelpCenter'
-import {Text} from '@aws-amplify/ui-react'
+import { Text } from '@aws-amplify/ui-react'
+import {
+    useDataStoreBinding,
+    createDataStorePredicate,
+} from '../ui-components/utils'
+import { ManagerModel } from '../models'
 
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { SidebarData } from './SidebarData'
 import { IconContext } from 'react-icons'
 
 import './Navbar.css'
 import { Button, Icon } from '@mui/material'
 
-const Navbar = ({ signOut }) => {
+const Navbar = ({ signOut, user }) => {
     const [sidebar, setSidebar] = useState(false)
+    const itemsFilterObj = {
+        field: 'ManagerModel.email',
+        operand: user.username,
+        operator: 'eq',
+    }
+
+    const itemsFilter = createDataStorePredicate(itemsFilterObj)
+    const itemsDataStore = useDataStoreBinding({
+        type: 'collection',
+        model: ManagerModel,
+        criteria: itemsFilter,
+    }).items
 
     const showSidebar = () => setSidebar(!sidebar)
 
@@ -27,7 +44,9 @@ const Navbar = ({ signOut }) => {
                     <Link to="#" className="menu-bar">
                         <FaIcons.FaBars size="2.5em" onClick={showSidebar} />
                     </Link>
-                    <Text color='white' fontSize='2em'>Webex Admin Manangement Tool</Text>
+                    <Text color="white" fontSize="2em">
+                        Webex Admin Manangement Tool
+                    </Text>
                     <div>
                         <Link to="/annoucements">
                             <Badge badgeContent={4} color="primary">
@@ -66,12 +85,15 @@ const Navbar = ({ signOut }) => {
                         </li>
                         {SidebarData.map((item, index) => {
                             return (
-                                <li key={index} className={item.cName}>
-                                    <Link to={item.path}>
-                                        {item.icon}
-                                        <span>{item.title}</span>
-                                    </Link>
-                                </li>
+                                (item.role === itemsDataStore[0]?.role ||
+                                    item.role == 'ALL') && (
+                                    <li key={index} className={item.cName}>
+                                        <Link to={item.path}>
+                                            {item.icon}
+                                            <span>{item.title}</span>
+                                        </Link>
+                                    </li>
+                                )
                             )
                         })}
                     </ul>
