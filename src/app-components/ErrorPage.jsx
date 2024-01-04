@@ -7,7 +7,7 @@ const ErrorPage = () => {
                 <Text fontSize="10em">💣</Text>
                 <Text fontSize="4em">
                     Error 404 - The page you are attempting to access does not
-                    exist. Please check your link and try again.{' '}
+                    exist. Please check your link and try again.
                 </Text>
             </Flex>
         </>

@@ -18,6 +18,15 @@ import UserManagement from './pages/UserManagement'
 import CreateContactCenter from './pages/CreateContactCenter'
 import { DataStore } from 'aws-amplify/datastore'
 import ErrorPage from './app-components/ErrorPage'
+import Administration from './pages/Administration'
+
+import {
+    useDataStoreBinding,
+    createDataStorePredicate,
+} from './ui-components/utils'
+
+import { ManagerModel } from './models'
+import PermissionDenied from './pages/PermissionDenied'
 
 function App({ signOut, user }) {
     const theme = useTheme()
@@ -25,11 +34,34 @@ function App({ signOut, user }) {
         DataStore.clear()
         signOut()
     }
+    const itemsFilterObj = {
+        field: 'ManagerModel.email',
+        operand: user.username,
+        operator: 'eq',
+    }
+
+    const itemsFilter = createDataStorePredicate(itemsFilterObj)
+    const itemsDataStore = useDataStoreBinding({
+        type: 'collection',
+        model: ManagerModel,
+        criteria: itemsFilter,
+    }).items
+
     return (
         <>
             <Router>
-                <Navbar signOut={handleSignout} />
+                <Navbar signOut={handleSignout} user={user} />
                 <Routes>
+                    <Route
+                        path="/admin"
+                        element={
+                            itemsDataStore[0]?.role == 'ADMIN' ? (
+                                <Administration />
+                            ) : (
+                                <PermissionDenied path="/admin" />
+                            )
+                        }
+                    />
                     <Route
                         path="/"
                         exact
@@ -42,15 +74,33 @@ function App({ signOut, user }) {
                     />
                     <Route
                         path="/addcontactcenter"
-                        element={<CreateContactCenter />}
+                        element={
+                            itemsDataStore[0]?.role == 'ADMIN' ? (
+                                <CreateContactCenter />
+                            ) : (
+                                <PermissionDenied path="/addcontactcenter" />
+                            )
+                        }
                     />
                     <Route
                         path="/usermanagement"
-                        element={<UserManagement />}
+                        element={
+                            itemsDataStore[0]?.role == 'ADMIN' ? (
+                                <UserManagement />
+                            ) : (
+                                <PermissionDenied path="/usermanagement" />
+                            )
+                        }
                     />
                     <Route
                         path="/queuemanagement"
-                        element={<QueueManagement />}
+                        element={
+                            itemsDataStore[0]?.role == 'ADMIN' ? (
+                                <QueueManagement />
+                            ) : (
+                                <PermissionDenied path="/queuemanagement" />
+                            )
+                        }
                     />
                     <Route path="/annoucements" element={<Annoucements />} />
                     <Route path="/userprofile" element={<UserProfile />} />

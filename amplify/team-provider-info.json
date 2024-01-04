@@ -27,5 +27,12 @@
         "api8e4b8cf1": {}
       }
     }
+  },
+  "main": {
+    "categories": {
+      "auth": {
+        "webexccdashboard": {}
+      }
+    }
   }
 }
