@@ -5,12 +5,16 @@ import TextField from '@mui/material/TextField'
 import { Flex, View, Button } from '@aws-amplify/ui-react'
 import { ContactCenterModel } from '../models'
 import { DataStore } from 'aws-amplify/datastore'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const UpdateWelcomeModal = (props) => {
     const { open, onClose, contactcenter, user } = props
 
-    const [fieldValue, setfieldValue] = useState('')
+    const [fieldValue, setfieldValue] = useState()
+
+    useEffect(() => {
+        setfieldValue(contactcenter?.welcomeprompt)
+    },[open])
 
     const handleFieldChange = (e) => {
         setfieldValue(e.target.value)
@@ -51,7 +55,7 @@ const UpdateWelcomeModal = (props) => {
                             multiline
                             rows={4}
                             onChange={handleFieldChange}
-                            defaultValue={contactcenter?.welcomeprompt}
+                            defaultValue={fieldValue}
                             fullWidth={true}
                         />
                         <Flex paddingTop="2rem">
