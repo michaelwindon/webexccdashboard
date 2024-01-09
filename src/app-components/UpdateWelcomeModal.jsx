@@ -14,7 +14,7 @@ const UpdateWelcomeModal = (props) => {
 
     useEffect(() => {
         setfieldValue(contactcenter?.welcomeprompt)
-    },[open])
+    }, [open])
 
     const handleFieldChange = (e) => {
         setfieldValue(e.target.value)
@@ -22,6 +22,7 @@ const UpdateWelcomeModal = (props) => {
 
     const handleclose = () => {
         onClose(false)
+        setfieldValue('')
     }
     const handleSubmit = async () => {
         const orignal = await DataStore.query(
