@@ -1,136 +1,138 @@
 type OptionMenuType {
-  msg: String
-  type: OptionTypeENUM
-  value: String
+    msg: String
+    type: OptionTypeENUM
+    value: String
 }
 
 type MenuType {
-  msg: String
-  type: MenuTypeENUM
-  value: String
+    msg: String
+    type: MenuTypeENUM
+    value: String
 }
 
-type GroupModel @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  fullname: String
-  abbreviatedname: String
-  Managers: [ManagerModel] @manyToMany(relationName: "GroupModelManagerModel")
+type GroupModel @model @auth(rules: [{ allow: public }]) {
+    id: ID!
+    fullname: String
+    abbreviatedname: String
+    Managers: [ManagerModel] @manyToMany(relationName: "GroupModelManagerModel")
 }
 
-type QueueModel @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  name: String
-  Group: GroupModel @hasOne
+type QueueModel @model @auth(rules: [{ allow: public }]) {
+    id: ID!
+    name: String
+    Group: GroupModel @hasOne
 }
 
 enum RoleEnum {
-  ADMIN
-  MANAGER
-  VIEW
+    ADMIN
+    MANAGER
+    VIEW
 }
 
-type ManagerModel @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  name: String
-  email: AWSEmail
-  telephone: AWSPhone
-  profilepic: AWSURL
-  role: RoleEnum
-  ContactCenters: [ContactCenterModel] @manyToMany(relationName: "ContactCenterModelManagerModel")
-  Groups: [GroupModel] @manyToMany(relationName: "GroupModelManagerModel")
+type ManagerModel @model @auth(rules: [{ allow: public }]) {
+    id: ID!
+    name: String
+    email: AWSEmail
+    telephone: AWSPhone
+    profilepic: AWSURL
+    role: RoleEnum
+    ContactCenters: [ContactCenterModel]
+        @manyToMany(relationName: "ContactCenterModelManagerModel")
+    Groups: [GroupModel] @manyToMany(relationName: "GroupModelManagerModel")
 }
 
 enum OptionTypeENUM {
-  MSG
-  FORWARD
-  QUEUE
+    MSG
+    FORWARD
+    QUEUE
 }
 
 type SubmenuType {
-  option0: OptionMenuType
-  option1: OptionMenuType
-  option2: OptionMenuType
-  option3: OptionMenuType
-  option4: OptionMenuType
-  option5: OptionMenuType
-  option6: OptionMenuType
-  option7: OptionMenuType
-  option8: OptionMenuType
-  option9: OptionMenuType
+    option0: OptionMenuType
+    option1: OptionMenuType
+    option2: OptionMenuType
+    option3: OptionMenuType
+    option4: OptionMenuType
+    option5: OptionMenuType
+    option6: OptionMenuType
+    option7: OptionMenuType
+    option8: OptionMenuType
+    option9: OptionMenuType
 }
 
 enum MenuTypeENUM {
-  MSG
-  FORWARD
-  QUEUE
-  SUBMENU
+    MSG
+    FORWARD
+    QUEUE
+    SUBMENU
 }
 
-type ContactCenterModel @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  mainnumber: String!
-  menu0: MenuType
-  menu1: MenuType
-  menu2: MenuType
-  menu3: MenuType
-  menu4: MenuType
-  menu5: MenuType
-  menu6: MenuType
-  menu7: MenuType
-  menu8: MenuType
-  menu9: MenuType
-  holiday: [String]
-  holidayoption: MenuType
-  secondarytodopen: [String]
-  secondarytodclose: [String]
-  secondaryclose: MenuType
-  daystodopen: [String]
-  daystodclose: [String]
-  daysopen: [String]
-  afterhours: MenuType
-  ccdescription: String
-  defaultroute: String
-  ccname: String
-  welcomeprompt: String
-  welcomeprompt_sp: String
-  menu0_sp: MenuType
-  menu1_sp: MenuType
-  menu2_sp: MenuType
-  menu3_sp: MenuType
-  menu4_sp: MenuType
-  menu5_sp: MenuType
-  menu6_sp: MenuType
-  menu7_sp: MenuType
-  menu8_sp: MenuType
-  menu9_sp: MenuType
-  override: MenuType
-  updateduser: String
-  issecondaryclosed: Boolean
-  Managers: [ManagerModel] @manyToMany(relationName: "ContactCenterModelManagerModel")
-  AssignedGroup: GroupModel @hasOne
-  isoverride: Boolean
-  isholiday: Boolean
-  isafterhours: Boolean
-  submenu1: SubmenuType
-  submenu2: SubmenuType
-  submenu3: SubmenuType
-  submenu4: SubmenuType
-  submenu5: SubmenuType
-  submenu6: SubmenuType
-  submenu7: SubmenuType
-  submenu8: SubmenuType
-  submenu9: SubmenuType
-  submenu0: SubmenuType
-  submenu1_sp: SubmenuType
-  submenu2_sp: SubmenuType
-  submenu3_sp: SubmenuType
-  submenu4_sp: SubmenuType
-  submenu5_sp: SubmenuType
-  submenu6_sp: SubmenuType
-  submenu7_sp: SubmenuType
-  submenu8_sp: SubmenuType
-  submenu9_sp: SubmenuType
-  submenu0_sp: SubmenuType
-  presentlangoption: Boolean
+type ContactCenterModel @model @auth(rules: [{ allow: public }]) {
+    id: ID!
+    ccname: String
+    mainnumber: String!
+    ccdescription: String
+    Managers: [ManagerModel]
+        @manyToMany(relationName: "ContactCenterModelManagerModel")
+    AssignedGroup: GroupModel @hasOne
+    presentlangoption: Boolean
+    isoverride: Boolean
+    isholiday: Boolean
+    isafterhours: Boolean
+    issecondaryclosed: Boolean
+    epiccontext: String
+    welcomeprompt: String
+    welcomeprompt_sp: String
+    menu0: MenuType
+    menu1: MenuType
+    menu2: MenuType
+    menu3: MenuType
+    menu4: MenuType
+    menu5: MenuType
+    menu6: MenuType
+    menu7: MenuType
+    menu8: MenuType
+    menu9: MenuType
+    holiday: [String]
+    secondarytodopen: [String]
+    secondarytodclose: [String]
+    daystodopen: [String]
+    daystodclose: [String]
+    daysopen: [String]
+    holidayoption: MenuType
+    afterhours: MenuType
+    secondaryclose: MenuType
+    override: MenuType
+    defaultroute: String
+    updateduser: String
+    menu0_sp: MenuType
+    menu1_sp: MenuType
+    menu2_sp: MenuType
+    menu3_sp: MenuType
+    menu4_sp: MenuType
+    menu5_sp: MenuType
+    menu6_sp: MenuType
+    menu7_sp: MenuType
+    menu8_sp: MenuType
+    menu9_sp: MenuType
+    submenu1: SubmenuType
+    submenu2: SubmenuType
+    submenu3: SubmenuType
+    submenu4: SubmenuType
+    submenu5: SubmenuType
+    submenu6: SubmenuType
+    submenu7: SubmenuType
+    submenu8: SubmenuType
+    submenu9: SubmenuType
+    submenu0: SubmenuType
+    submenu1_sp: SubmenuType
+    submenu2_sp: SubmenuType
+    submenu3_sp: SubmenuType
+    submenu4_sp: SubmenuType
+    submenu5_sp: SubmenuType
+    submenu6_sp: SubmenuType
+    submenu7_sp: SubmenuType
+    submenu8_sp: SubmenuType
+    submenu9_sp: SubmenuType
+    submenu0_sp: SubmenuType
 }
- 

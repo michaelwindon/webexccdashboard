@@ -26,9 +26,11 @@ export declare type UpdateMenuFormInputValues = {
     menu0?: string;
     Field0?: string;
     Field1?: string;
-    issecondaryclosed?: boolean;
+    presentlangoption?: boolean;
     isholiday?: boolean;
     isafterhours?: boolean;
+    issecondaryclosed?: boolean;
+    epiccontext?: string;
     submenu1?: string;
     submenu3?: string;
     submenu4?: string;
@@ -47,15 +49,16 @@ export declare type UpdateMenuFormInputValues = {
     submenu8_sp?: string;
     submenu9_sp?: string;
     submenu0_sp?: string;
-    presentlangoption?: boolean;
 };
 export declare type UpdateMenuFormValidationValues = {
     menu0?: ValidationFunction<string>;
     Field0?: ValidationFunction<string>;
     Field1?: ValidationFunction<string>;
-    issecondaryclosed?: ValidationFunction<boolean>;
+    presentlangoption?: ValidationFunction<boolean>;
     isholiday?: ValidationFunction<boolean>;
     isafterhours?: ValidationFunction<boolean>;
+    issecondaryclosed?: ValidationFunction<boolean>;
+    epiccontext?: ValidationFunction<string>;
     submenu1?: ValidationFunction<string>;
     submenu3?: ValidationFunction<string>;
     submenu4?: ValidationFunction<string>;
@@ -74,7 +77,6 @@ export declare type UpdateMenuFormValidationValues = {
     submenu8_sp?: ValidationFunction<string>;
     submenu9_sp?: ValidationFunction<string>;
     submenu0_sp?: ValidationFunction<string>;
-    presentlangoption?: ValidationFunction<boolean>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type UpdateMenuFormOverridesProps = {
@@ -82,9 +84,11 @@ export declare type UpdateMenuFormOverridesProps = {
     menu0?: PrimitiveOverrideProps<TextAreaFieldProps>;
     Field0?: PrimitiveOverrideProps<SelectFieldProps>;
     Field1?: PrimitiveOverrideProps<TextFieldProps>;
-    issecondaryclosed?: PrimitiveOverrideProps<SwitchFieldProps>;
+    presentlangoption?: PrimitiveOverrideProps<SwitchFieldProps>;
     isholiday?: PrimitiveOverrideProps<SwitchFieldProps>;
     isafterhours?: PrimitiveOverrideProps<SwitchFieldProps>;
+    issecondaryclosed?: PrimitiveOverrideProps<SwitchFieldProps>;
+    epiccontext?: PrimitiveOverrideProps<TextFieldProps>;
     submenu1?: PrimitiveOverrideProps<TextAreaFieldProps>;
     submenu3?: PrimitiveOverrideProps<TextAreaFieldProps>;
     submenu4?: PrimitiveOverrideProps<TextAreaFieldProps>;
@@ -103,7 +107,6 @@ export declare type UpdateMenuFormOverridesProps = {
     submenu8_sp?: PrimitiveOverrideProps<TextAreaFieldProps>;
     submenu9_sp?: PrimitiveOverrideProps<TextAreaFieldProps>;
     submenu0_sp?: PrimitiveOverrideProps<TextAreaFieldProps>;
-    presentlangoption?: PrimitiveOverrideProps<SwitchFieldProps>;
 } & EscapeHatchProps;
 export declare type UpdateMenuFormProps = React.PropsWithChildren<{
     overrides?: UpdateMenuFormOverridesProps | undefined | null;

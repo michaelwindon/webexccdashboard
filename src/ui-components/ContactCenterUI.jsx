@@ -6,7 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps } from "./utils";
+import { getOverrideProps, useNavigateAction } from "./utils";
 import {
   Button,
   Divider,
@@ -17,6 +17,10 @@ import {
 } from "@aws-amplify/ui-react";
 export default function ContactCenterUI(props) {
   const { contactcentermodel, overrides, ...rest } = props;
+  const ccnameOnClick = useNavigateAction({
+    type: "url",
+    url: `${"/admin/"}${contactcentermodel?.id}`,
+  });
   return (
     <Flex
       gap="0"
@@ -88,7 +92,11 @@ export default function ContactCenterUI(props) {
               position="relative"
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
+              className="clickAble"
               children={contactcentermodel?.ccname}
+              onClick={() => {
+                ccnameOnClick();
+              }}
               {...getOverrideProps(overrides, "ccname")}
             ></Text>
             <Text

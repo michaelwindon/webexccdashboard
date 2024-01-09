@@ -28,10 +28,12 @@ export default function UpdateContactCenterWelcome(props) {
     ...rest
   } = props;
   const initialValues = {
+    mainnumber: "",
     ccname: "",
     welcomeprompt: "",
     ccdescription: "",
   };
+  const [mainnumber, setMainnumber] = React.useState(initialValues.mainnumber);
   const [ccname, setCcname] = React.useState(initialValues.ccname);
   const [welcomeprompt, setWelcomeprompt] = React.useState(
     initialValues.welcomeprompt
@@ -41,12 +43,14 @@ export default function UpdateContactCenterWelcome(props) {
   );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
+    setMainnumber(initialValues.mainnumber);
     setCcname(initialValues.ccname);
     setWelcomeprompt(initialValues.welcomeprompt);
     setCcdescription(initialValues.ccdescription);
     setErrors({});
   };
   const validations = {
+    mainnumber: [{ type: "Required" }],
     ccname: [],
     welcomeprompt: [],
     ccdescription: [],
@@ -77,6 +81,7 @@ export default function UpdateContactCenterWelcome(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
+          mainnumber,
           ccname,
           welcomeprompt,
           ccdescription,
@@ -126,6 +131,33 @@ export default function UpdateContactCenterWelcome(props) {
       {...rest}
     >
       <TextField
+        label="Contact Center Number"
+        isRequired={true}
+        isReadOnly={false}
+        value={mainnumber}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              mainnumber: value,
+              ccname,
+              welcomeprompt,
+              ccdescription,
+            };
+            const result = onChange(modelFields);
+            value = result?.mainnumber ?? value;
+          }
+          if (errors.mainnumber?.hasError) {
+            runValidationTasks("mainnumber", value);
+          }
+          setMainnumber(value);
+        }}
+        onBlur={() => runValidationTasks("mainnumber", mainnumber)}
+        errorMessage={errors.mainnumber?.errorMessage}
+        hasError={errors.mainnumber?.hasError}
+        {...getOverrideProps(overrides, "mainnumber")}
+      ></TextField>
+      <TextField
         label="Contact Center Name"
         isRequired={false}
         isReadOnly={false}
@@ -134,6 +166,7 @@ export default function UpdateContactCenterWelcome(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
+              mainnumber,
               ccname: value,
               welcomeprompt,
               ccdescription,
@@ -159,6 +192,7 @@ export default function UpdateContactCenterWelcome(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
+              mainnumber,
               ccname,
               welcomeprompt: value,
               ccdescription,
@@ -185,6 +219,7 @@ export default function UpdateContactCenterWelcome(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
+              mainnumber,
               ccname,
               welcomeprompt,
               ccdescription: value,

@@ -247,7 +247,33 @@ export const onCreateContactCenterModel = /* GraphQL */ `
   ) {
     onCreateContactCenterModel(filter: $filter) {
       id
+      ccname
       mainnumber
+      ccdescription
+      Managers {
+        nextToken
+        startedAt
+        __typename
+      }
+      AssignedGroup {
+        id
+        fullname
+        abbreviatedname
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      presentlangoption
+      isoverride
+      isholiday
+      isafterhours
+      issecondaryclosed
+      epiccontext
+      welcomeprompt
+      welcomeprompt_sp
       menu0 {
         msg
         type
@@ -309,34 +335,37 @@ export const onCreateContactCenterModel = /* GraphQL */ `
         __typename
       }
       holiday
+      secondarytodopen
+      secondarytodclose
+      daystodopen
+      daystodclose
+      daysopen
       holidayoption {
         msg
         type
         value
         __typename
       }
-      secondarytodopen
-      secondarytodclose
-      secondaryclose {
-        msg
-        type
-        value
-        __typename
-      }
-      daystodopen
-      daystodclose
-      daysopen
       afterhours {
         msg
         type
         value
         __typename
       }
-      ccdescription
+      secondaryclose {
+        msg
+        type
+        value
+        __typename
+      }
+      override {
+        msg
+        type
+        value
+        __typename
+      }
       defaultroute
-      ccname
-      welcomeprompt
-      welcomeprompt_sp
+      updateduser
       menu0_sp {
         msg
         type
@@ -397,33 +426,6 @@ export const onCreateContactCenterModel = /* GraphQL */ `
         value
         __typename
       }
-      override {
-        msg
-        type
-        value
-        __typename
-      }
-      updateduser
-      issecondaryclosed
-      Managers {
-        nextToken
-        startedAt
-        __typename
-      }
-      AssignedGroup {
-        id
-        fullname
-        abbreviatedname
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        __typename
-      }
-      isoverride
-      isholiday
-      isafterhours
       submenu1 {
         __typename
       }
@@ -484,7 +486,6 @@ export const onCreateContactCenterModel = /* GraphQL */ `
       submenu0_sp {
         __typename
       }
-      presentlangoption
       createdAt
       updatedAt
       _version
@@ -501,7 +502,33 @@ export const onUpdateContactCenterModel = /* GraphQL */ `
   ) {
     onUpdateContactCenterModel(filter: $filter) {
       id
+      ccname
       mainnumber
+      ccdescription
+      Managers {
+        nextToken
+        startedAt
+        __typename
+      }
+      AssignedGroup {
+        id
+        fullname
+        abbreviatedname
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      presentlangoption
+      isoverride
+      isholiday
+      isafterhours
+      issecondaryclosed
+      epiccontext
+      welcomeprompt
+      welcomeprompt_sp
       menu0 {
         msg
         type
@@ -563,34 +590,37 @@ export const onUpdateContactCenterModel = /* GraphQL */ `
         __typename
       }
       holiday
+      secondarytodopen
+      secondarytodclose
+      daystodopen
+      daystodclose
+      daysopen
       holidayoption {
         msg
         type
         value
         __typename
       }
-      secondarytodopen
-      secondarytodclose
-      secondaryclose {
-        msg
-        type
-        value
-        __typename
-      }
-      daystodopen
-      daystodclose
-      daysopen
       afterhours {
         msg
         type
         value
         __typename
       }
-      ccdescription
+      secondaryclose {
+        msg
+        type
+        value
+        __typename
+      }
+      override {
+        msg
+        type
+        value
+        __typename
+      }
       defaultroute
-      ccname
-      welcomeprompt
-      welcomeprompt_sp
+      updateduser
       menu0_sp {
         msg
         type
@@ -651,33 +681,6 @@ export const onUpdateContactCenterModel = /* GraphQL */ `
         value
         __typename
       }
-      override {
-        msg
-        type
-        value
-        __typename
-      }
-      updateduser
-      issecondaryclosed
-      Managers {
-        nextToken
-        startedAt
-        __typename
-      }
-      AssignedGroup {
-        id
-        fullname
-        abbreviatedname
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        __typename
-      }
-      isoverride
-      isholiday
-      isafterhours
       submenu1 {
         __typename
       }
@@ -738,7 +741,6 @@ export const onUpdateContactCenterModel = /* GraphQL */ `
       submenu0_sp {
         __typename
       }
-      presentlangoption
       createdAt
       updatedAt
       _version
@@ -755,7 +757,33 @@ export const onDeleteContactCenterModel = /* GraphQL */ `
   ) {
     onDeleteContactCenterModel(filter: $filter) {
       id
+      ccname
       mainnumber
+      ccdescription
+      Managers {
+        nextToken
+        startedAt
+        __typename
+      }
+      AssignedGroup {
+        id
+        fullname
+        abbreviatedname
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      presentlangoption
+      isoverride
+      isholiday
+      isafterhours
+      issecondaryclosed
+      epiccontext
+      welcomeprompt
+      welcomeprompt_sp
       menu0 {
         msg
         type
@@ -817,34 +845,37 @@ export const onDeleteContactCenterModel = /* GraphQL */ `
         __typename
       }
       holiday
+      secondarytodopen
+      secondarytodclose
+      daystodopen
+      daystodclose
+      daysopen
       holidayoption {
         msg
         type
         value
         __typename
       }
-      secondarytodopen
-      secondarytodclose
-      secondaryclose {
-        msg
-        type
-        value
-        __typename
-      }
-      daystodopen
-      daystodclose
-      daysopen
       afterhours {
         msg
         type
         value
         __typename
       }
-      ccdescription
+      secondaryclose {
+        msg
+        type
+        value
+        __typename
+      }
+      override {
+        msg
+        type
+        value
+        __typename
+      }
       defaultroute
-      ccname
-      welcomeprompt
-      welcomeprompt_sp
+      updateduser
       menu0_sp {
         msg
         type
@@ -905,33 +936,6 @@ export const onDeleteContactCenterModel = /* GraphQL */ `
         value
         __typename
       }
-      override {
-        msg
-        type
-        value
-        __typename
-      }
-      updateduser
-      issecondaryclosed
-      Managers {
-        nextToken
-        startedAt
-        __typename
-      }
-      AssignedGroup {
-        id
-        fullname
-        abbreviatedname
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        __typename
-      }
-      isoverride
-      isholiday
-      isafterhours
       submenu1 {
         __typename
       }
@@ -992,7 +996,6 @@ export const onDeleteContactCenterModel = /* GraphQL */ `
       submenu0_sp {
         __typename
       }
-      presentlangoption
       createdAt
       updatedAt
       _version
@@ -1153,24 +1156,25 @@ export const onCreateContactCenterModelManagerModel = /* GraphQL */ `
       }
       contactCenterModel {
         id
+        ccname
         mainnumber
+        ccdescription
+        presentlangoption
+        isoverride
+        isholiday
+        isafterhours
+        issecondaryclosed
+        epiccontext
+        welcomeprompt
+        welcomeprompt_sp
         holiday
         secondarytodopen
         secondarytodclose
         daystodopen
         daystodclose
         daysopen
-        ccdescription
         defaultroute
-        ccname
-        welcomeprompt
-        welcomeprompt_sp
         updateduser
-        issecondaryclosed
-        isoverride
-        isholiday
-        isafterhours
-        presentlangoption
         createdAt
         updatedAt
         _version
@@ -1212,24 +1216,25 @@ export const onUpdateContactCenterModelManagerModel = /* GraphQL */ `
       }
       contactCenterModel {
         id
+        ccname
         mainnumber
+        ccdescription
+        presentlangoption
+        isoverride
+        isholiday
+        isafterhours
+        issecondaryclosed
+        epiccontext
+        welcomeprompt
+        welcomeprompt_sp
         holiday
         secondarytodopen
         secondarytodclose
         daystodopen
         daystodclose
         daysopen
-        ccdescription
         defaultroute
-        ccname
-        welcomeprompt
-        welcomeprompt_sp
         updateduser
-        issecondaryclosed
-        isoverride
-        isholiday
-        isafterhours
-        presentlangoption
         createdAt
         updatedAt
         _version
@@ -1271,24 +1276,25 @@ export const onDeleteContactCenterModelManagerModel = /* GraphQL */ `
       }
       contactCenterModel {
         id
+        ccname
         mainnumber
+        ccdescription
+        presentlangoption
+        isoverride
+        isholiday
+        isafterhours
+        issecondaryclosed
+        epiccontext
+        welcomeprompt
+        welcomeprompt_sp
         holiday
         secondarytodopen
         secondarytodclose
         daystodopen
         daystodclose
         daysopen
-        ccdescription
         defaultroute
-        ccname
-        welcomeprompt
-        welcomeprompt_sp
         updateduser
-        issecondaryclosed
-        isoverride
-        isholiday
-        isafterhours
-        presentlangoption
         createdAt
         updatedAt
         _version
