@@ -14,7 +14,7 @@ const UpdateWelcomeModal = (props) => {
 
     useEffect(() => {
         setfieldValue(contactcenter?.welcomeprompt)
-    }, [open])
+    }, [open, contactcenter])
 
     const handleFieldChange = (e) => {
         setfieldValue(e.target.value)
