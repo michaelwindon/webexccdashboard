@@ -56,7 +56,7 @@ const UpdateWelcomeModal = (props) => {
                             multiline
                             rows={4}
                             onChange={handleFieldChange}
-                            defaultValue={fieldValue}
+                            defaultValue={contactcenter?.welcomeprompt}
                             fullWidth={true}
                         />
                         <Flex paddingTop="2rem">
