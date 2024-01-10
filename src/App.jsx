@@ -3,7 +3,9 @@ import PropTypes from 'prop-types'
 
 import {
     Button,
+    Loader,
     Text,
+    Flex,
     useTheme,
     withAuthenticator,
 } from '@aws-amplify/ui-react'
@@ -41,11 +43,19 @@ function App({ signOut, user }) {
     }
 
     const itemsFilter = createDataStorePredicate(itemsFilterObj)
-    const itemsDataStore = useDataStoreBinding({
+    const { isLoading, items } = useDataStoreBinding({
         type: 'collection',
         model: ManagerModel,
         criteria: itemsFilter,
-    }).items
+    })
+
+    const [userRole, setUserRole] = useState(null)
+
+    useEffect(() => {
+        if (!isLoading) {
+            setUserRole(items[0]?.role)
+        }
+    }, [items, isLoading])
 
     return (
         <>
@@ -53,12 +63,22 @@ function App({ signOut, user }) {
                 <Navbar signOut={handleSignout} user={user} />
                 <Routes>
                     <Route
-                        path="/admin"
+                        path="/admin/:ccid?"
                         element={
-                            itemsDataStore[0]?.role == 'ADMIN' ? (
-                                <Administration />
+                            isLoading ? (
+                                <Flex justifyContent="center" padding="20%">
+                                    <Loader height="20%" width="20%" />
+                                </Flex>
+                            ) : userRole ? (
+                                userRole == 'ADMIN' ? (
+                                    <Administration />
+                                ) : (
+                                    <PermissionDenied path="/admin" />
+                                )
                             ) : (
-                                <PermissionDenied path="/admin" />
+                                <Flex justifyContent="center" padding="20%">
+                                    <Loader height="20%" width="20%" />
+                                </Flex>
                             )
                         }
                     />
@@ -75,30 +95,60 @@ function App({ signOut, user }) {
                     <Route
                         path="/addcontactcenter"
                         element={
-                            itemsDataStore[0]?.role == 'ADMIN' ? (
-                                <CreateContactCenter />
+                            isLoading ? (
+                                <Flex justifyContent="center" padding="20%">
+                                    <Loader height="20%" width="20%" />
+                                </Flex>
+                            ) : userRole ? (
+                                userRole == 'ADMIN' ? (
+                                    <CreateContactCenter />
+                                ) : (
+                                    <PermissionDenied path="/admin" />
+                                )
                             ) : (
-                                <PermissionDenied path="/addcontactcenter" />
+                                <Flex justifyContent="center" padding="20%">
+                                    <Loader height="20%" width="20%" />
+                                </Flex>
                             )
                         }
                     />
                     <Route
                         path="/usermanagement"
                         element={
-                            itemsDataStore[0]?.role == 'ADMIN' ? (
-                                <UserManagement />
+                            isLoading ? (
+                                <Flex justifyContent="center" padding="20%">
+                                    <Loader height="20%" width="20%" />
+                                </Flex>
+                            ) : userRole ? (
+                                userRole == 'ADMIN' ? (
+                                    <UserManagement />
+                                ) : (
+                                    <PermissionDenied path="/admin" />
+                                )
                             ) : (
-                                <PermissionDenied path="/usermanagement" />
+                                <Flex justifyContent="center" padding="20%">
+                                    <Loader height="20%" width="20%" />
+                                </Flex>
                             )
                         }
                     />
                     <Route
                         path="/queuemanagement"
                         element={
-                            itemsDataStore[0]?.role == 'ADMIN' ? (
-                                <QueueManagement />
+                            isLoading ? (
+                                <Flex justifyContent="center" padding="20%">
+                                    <Loader height="20%" width="20%" />
+                                </Flex>
+                            ) : userRole ? (
+                                userRole == 'ADMIN' ? (
+                                    <QueueManagement />
+                                ) : (
+                                    <PermissionDenied path="/admin" />
+                                )
                             ) : (
-                                <PermissionDenied path="/queuemanagement" />
+                                <Flex justifyContent="center" padding="20%">
+                                    <Loader height="20%" width="20%" />
+                                </Flex>
                             )
                         }
                     />

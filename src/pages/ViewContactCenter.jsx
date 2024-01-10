@@ -16,10 +16,14 @@ import DisplayCenterStatus from '../app-components/DisplayCenterStatus'
 import UpdateTimeofDayModal from '../app-components/UpdateTimeofDayModal'
 import ShowSpanishModal from '../app-components/ShowSpanishModal'
 import UpdateWelcomeModal from '../app-components/UpdateWelcomeModal'
+import UpdateTitleDetailsModal from '../app-components/UpdateTitleDetailsModal'
+
 import { Loader, Flex, ThemeProvider } from '@aws-amplify/ui-react'
 
 function ViewContactCenter({ signOut, user }) {
     const theme = useTheme()
+
+    const [opencctitledetails, setOpencctitledetails] = useState(false)
 
     const [openoverridemodal, setOpenOverrideModal] = useState(false)
     const [openwelcomeModal, setWelcomeModal] = useState(false)
@@ -88,39 +92,6 @@ function ViewContactCenter({ signOut, user }) {
         setItemsFromDataStore()
     }, [itemsDataStore])
 
-    //using Graphql to get items
-    /*  useEffect(() => {
-        const customFilters = { listfilter: user.username }
-
-        const getItems = async () => {
-            var items = await gqlclient.graphql({
-                query: queries.listManagerModelsQuery,
-                variables: customFilters,
-            })
-            if (items !== undefined) {
-                //load all contact centers for admins
-                if (items.data.listManagerModels.items[0].role == 'ADMIN') {
-                    items = await gqlclient.graphql({
-                        query: queries.adminContactCenterListQuery,
-                    })
-                    var loaded = items.data.listContactCenterModels.items
-                } else {
-                    var loaded =
-                        items.data.listManagerModels.items[0].ContactCenters.items.map(
-                            (item) => {
-                                return item.contactCenterModel
-                            }
-                        )
-                }
-
-                setAuthorizedItems(loaded)
-            }
-        }
-
-        getItems()
-        setLoading(false)
-    }, [contactcentermodel]) */
-
     useEffect(() => {
         //cause page to refresh on status change
     }, [statusTrigger, openuOfDateTimeofDay])
@@ -148,6 +119,7 @@ function ViewContactCenter({ signOut, user }) {
         setContactcentermodel(item)
         setWelcomeModal(true)
     }
+
     const handleClickOverrideModalOpen = (id) => {
         setOpenOverrideModal(true)
         setId(id)
@@ -164,6 +136,14 @@ function ViewContactCenter({ signOut, user }) {
         setContactcentermodel(item)
         setOpenuOfDateTimeofDay(true)
     }
+    const handleUpdateContactCenterTitleDetailsOpen = (item) => {
+        setId(item.id)
+        setOpencctitledetails(true)
+    }
+    const handleUpdateContactCenterTitleDetailsClose = () => {
+        setOpencctitledetails(false)
+        setId(null)
+    }
 
     return (
         <>
@@ -173,6 +153,13 @@ function ViewContactCenter({ signOut, user }) {
                 </Flex>
             ) : (
                 <>
+                    <UpdateTitleDetailsModal
+                        open={opencctitledetails}
+                        onClose={handleUpdateContactCenterTitleDetailsClose}
+                        id={id}
+                        user={user}
+                    />
+
                     <UpdateWelcomeModal
                         open={openwelcomeModal}
                         onClose={setWelcomeModal}
@@ -773,7 +760,15 @@ function ViewContactCenter({ signOut, user }) {
                                             />
                                         ),
                                     },
-                                    titlesection: {
+                                    ccname: {
+                                        className: 'clickAble',
+                                        onClick: () => {
+                                            handleUpdateContactCenterTitleDetailsOpen(
+                                                item
+                                            )
+                                        },
+                                    },
+                                    ccmainnumber: {
                                         className: item?.presentlangoption
                                             ? 'clickAble'
                                             : '',
@@ -784,8 +779,6 @@ function ViewContactCenter({ signOut, user }) {
                                                 setOpenSpanishModal(false)
                                             }
                                         },
-                                    },
-                                    ccmainnumber: {
                                         children: (
                                             <>
                                                 {item?.mainnumber.replace(

@@ -5,7 +5,11 @@
  **************************************************************************/
 
 import * as React from "react";
+<<<<<<< HEAD
 import { GridProps, SwitchFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
+=======
+import { DividerProps, GridProps, SelectFieldProps, SwitchFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
+>>>>>>> dev
 import { ContactCenterModel } from "../models";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
@@ -26,11 +30,13 @@ export declare type UpdateOverrideFormInputValues = {
     isoverride?: boolean;
     presentlangoption?: boolean;
     holiday?: string[];
+    epiccontext?: string;
 };
 export declare type UpdateOverrideFormValidationValues = {
     isoverride?: ValidationFunction<boolean>;
     presentlangoption?: ValidationFunction<boolean>;
     holiday?: ValidationFunction<string>;
+    epiccontext?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type UpdateOverrideFormOverridesProps = {
@@ -38,6 +44,7 @@ export declare type UpdateOverrideFormOverridesProps = {
     isoverride?: PrimitiveOverrideProps<SwitchFieldProps>;
     presentlangoption?: PrimitiveOverrideProps<SwitchFieldProps>;
     holiday?: PrimitiveOverrideProps<TextFieldProps>;
+    epiccontext?: PrimitiveOverrideProps<SelectFieldProps>;
 } & EscapeHatchProps;
 export declare type UpdateOverrideFormProps = React.PropsWithChildren<{
     overrides?: UpdateOverrideFormOverridesProps | undefined | null;

@@ -8,4 +8,7 @@ div.clickAble:hover {
     cursor: pointer;
   }
   
+  p.clickAble:hover {
+    cursor: pointer;
+  }
   

@@ -297,11 +297,115 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "ccname": {
+                    "name": "ccname",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "mainnumber": {
                     "name": "mainnumber",
                     "isArray": false,
                     "type": "String",
                     "isRequired": true,
+                    "attributes": []
+                },
+                "ccdescription": {
+                    "name": "ccdescription",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "Managers": {
+                    "name": "Managers",
+                    "isArray": true,
+                    "type": {
+                        "model": "ContactCenterModelManagerModel"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": [
+                            "contactCenterModel"
+                        ]
+                    }
+                },
+                "AssignedGroup": {
+                    "name": "AssignedGroup",
+                    "isArray": false,
+                    "type": {
+                        "model": "GroupModel"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "HAS_ONE",
+                        "associatedWith": [
+                            "id"
+                        ],
+                        "targetNames": [
+                            "contactCenterModelAssignedGroupId"
+                        ]
+                    }
+                },
+                "presentlangoption": {
+                    "name": "presentlangoption",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "isoverride": {
+                    "name": "isoverride",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "isholiday": {
+                    "name": "isholiday",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "isafterhours": {
+                    "name": "isafterhours",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "issecondaryclosed": {
+                    "name": "issecondaryclosed",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "epiccontext": {
+                    "name": "epiccontext",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "welcomeprompt": {
+                    "name": "welcomeprompt",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "welcomeprompt_sp": {
+                    "name": "welcomeprompt_sp",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
                     "attributes": []
                 },
                 "menu0": {
@@ -402,15 +506,6 @@ export const schema = {
                     "attributes": [],
                     "isArrayNullable": true
                 },
-                "holidayoption": {
-                    "name": "holidayoption",
-                    "isArray": false,
-                    "type": {
-                        "nonModel": "MenuType"
-                    },
-                    "isRequired": false,
-                    "attributes": []
-                },
                 "secondarytodopen": {
                     "name": "secondarytodopen",
                     "isArray": true,
@@ -426,15 +521,6 @@ export const schema = {
                     "isRequired": false,
                     "attributes": [],
                     "isArrayNullable": true
-                },
-                "secondaryclose": {
-                    "name": "secondaryclose",
-                    "isArray": false,
-                    "type": {
-                        "nonModel": "MenuType"
-                    },
-                    "isRequired": false,
-                    "attributes": []
                 },
                 "daystodopen": {
                     "name": "daystodopen",
@@ -460,6 +546,15 @@ export const schema = {
                     "attributes": [],
                     "isArrayNullable": true
                 },
+                "holidayoption": {
+                    "name": "holidayoption",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "MenuType"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "afterhours": {
                     "name": "afterhours",
                     "isArray": false,
@@ -469,10 +564,21 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "ccdescription": {
-                    "name": "ccdescription",
+                "secondaryclose": {
+                    "name": "secondaryclose",
                     "isArray": false,
-                    "type": "String",
+                    "type": {
+                        "nonModel": "MenuType"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "override": {
+                    "name": "override",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "MenuType"
+                    },
                     "isRequired": false,
                     "attributes": []
                 },
@@ -483,22 +589,8 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "ccname": {
-                    "name": "ccname",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "welcomeprompt": {
-                    "name": "welcomeprompt",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "welcomeprompt_sp": {
-                    "name": "welcomeprompt_sp",
+                "updateduser": {
+                    "name": "updateduser",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -591,84 +683,6 @@ export const schema = {
                     "type": {
                         "nonModel": "MenuType"
                     },
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "override": {
-                    "name": "override",
-                    "isArray": false,
-                    "type": {
-                        "nonModel": "MenuType"
-                    },
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "updateduser": {
-                    "name": "updateduser",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "issecondaryclosed": {
-                    "name": "issecondaryclosed",
-                    "isArray": false,
-                    "type": "Boolean",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "Managers": {
-                    "name": "Managers",
-                    "isArray": true,
-                    "type": {
-                        "model": "ContactCenterModelManagerModel"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": [
-                            "contactCenterModel"
-                        ]
-                    }
-                },
-                "AssignedGroup": {
-                    "name": "AssignedGroup",
-                    "isArray": false,
-                    "type": {
-                        "model": "GroupModel"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "HAS_ONE",
-                        "associatedWith": [
-                            "id"
-                        ],
-                        "targetNames": [
-                            "contactCenterModelAssignedGroupId"
-                        ]
-                    }
-                },
-                "isoverride": {
-                    "name": "isoverride",
-                    "isArray": false,
-                    "type": "Boolean",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "isholiday": {
-                    "name": "isholiday",
-                    "isArray": false,
-                    "type": "Boolean",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "isafterhours": {
-                    "name": "isafterhours",
-                    "isArray": false,
-                    "type": "Boolean",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -849,13 +863,6 @@ export const schema = {
                     "type": {
                         "nonModel": "SubmenuType"
                     },
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "presentlangoption": {
-                    "name": "presentlangoption",
-                    "isArray": false,
-                    "type": "Boolean",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -1286,5 +1293,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.4.4",
-    "version": "5cc55c70e021bff9078bbd8e71beab36"
+    "version": "7550366bcb9b2e6ce4c77958940ae6e5"
 };

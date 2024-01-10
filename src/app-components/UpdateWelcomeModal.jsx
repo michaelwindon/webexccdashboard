@@ -5,12 +5,16 @@ import TextField from '@mui/material/TextField'
 import { Flex, View, Button } from '@aws-amplify/ui-react'
 import { ContactCenterModel } from '../models'
 import { DataStore } from 'aws-amplify/datastore'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const UpdateWelcomeModal = (props) => {
     const { open, onClose, contactcenter, user } = props
 
-    const [fieldValue, setfieldValue] = useState('')
+    const [fieldValue, setfieldValue] = useState()
+
+    useEffect(() => {
+        setfieldValue(contactcenter?.welcomeprompt)
+    }, [open, contactcenter])
 
     const handleFieldChange = (e) => {
         setfieldValue(e.target.value)
@@ -18,6 +22,7 @@ const UpdateWelcomeModal = (props) => {
 
     const handleclose = () => {
         onClose(false)
+        setfieldValue('')
     }
     const handleSubmit = async () => {
         const orignal = await DataStore.query(

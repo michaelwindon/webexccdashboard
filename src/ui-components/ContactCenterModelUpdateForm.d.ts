@@ -25,6 +25,15 @@ export declare type ValidationFunction<T> = (value: T, validationResponse: Valid
 export declare type ContactCenterModelUpdateFormInputValues = {
     mainnumber?: string;
     menu0?: string;
+<<<<<<< HEAD
+=======
+    presentlangoption?: boolean;
+    isholiday?: boolean;
+    isafterhours?: boolean;
+    issecondaryclosed?: boolean;
+    epiccontext?: string;
+    Field0?: string;
+>>>>>>> dev
     menu1?: string;
     menu2?: string;
     menu3?: string;
@@ -60,12 +69,15 @@ export declare type ContactCenterModelUpdateFormInputValues = {
     menu9_sp?: string;
     override?: string;
     updateduser?: string;
+<<<<<<< HEAD
     issecondaryclosed?: boolean;
     Managers?: ManagerModel[];
     AssignedGroup?: GroupModel;
     isoverride?: boolean;
     isholiday?: boolean;
     isafterhours?: boolean;
+=======
+>>>>>>> dev
     submenu1?: string;
     submenu2?: string;
     submenu3?: string;
@@ -86,11 +98,19 @@ export declare type ContactCenterModelUpdateFormInputValues = {
     submenu8_sp?: string;
     submenu9_sp?: string;
     submenu0_sp?: string;
-    presentlangoption?: boolean;
 };
 export declare type ContactCenterModelUpdateFormValidationValues = {
     mainnumber?: ValidationFunction<string>;
     menu0?: ValidationFunction<string>;
+<<<<<<< HEAD
+=======
+    presentlangoption?: ValidationFunction<boolean>;
+    isholiday?: ValidationFunction<boolean>;
+    isafterhours?: ValidationFunction<boolean>;
+    issecondaryclosed?: ValidationFunction<boolean>;
+    epiccontext?: ValidationFunction<string>;
+    Field0?: ValidationFunction<string>;
+>>>>>>> dev
     menu1?: ValidationFunction<string>;
     menu2?: ValidationFunction<string>;
     menu3?: ValidationFunction<string>;
@@ -126,12 +146,15 @@ export declare type ContactCenterModelUpdateFormValidationValues = {
     menu9_sp?: ValidationFunction<string>;
     override?: ValidationFunction<string>;
     updateduser?: ValidationFunction<string>;
+<<<<<<< HEAD
     issecondaryclosed?: ValidationFunction<boolean>;
     Managers?: ValidationFunction<ManagerModel>;
     AssignedGroup?: ValidationFunction<GroupModel>;
     isoverride?: ValidationFunction<boolean>;
     isholiday?: ValidationFunction<boolean>;
     isafterhours?: ValidationFunction<boolean>;
+=======
+>>>>>>> dev
     submenu1?: ValidationFunction<string>;
     submenu2?: ValidationFunction<string>;
     submenu3?: ValidationFunction<string>;
@@ -152,13 +175,21 @@ export declare type ContactCenterModelUpdateFormValidationValues = {
     submenu8_sp?: ValidationFunction<string>;
     submenu9_sp?: ValidationFunction<string>;
     submenu0_sp?: ValidationFunction<string>;
-    presentlangoption?: ValidationFunction<boolean>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type ContactCenterModelUpdateFormOverridesProps = {
     ContactCenterModelUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
     mainnumber?: PrimitiveOverrideProps<TextFieldProps>;
     menu0?: PrimitiveOverrideProps<TextAreaFieldProps>;
+<<<<<<< HEAD
+=======
+    presentlangoption?: PrimitiveOverrideProps<SwitchFieldProps>;
+    isholiday?: PrimitiveOverrideProps<SwitchFieldProps>;
+    isafterhours?: PrimitiveOverrideProps<SwitchFieldProps>;
+    issecondaryclosed?: PrimitiveOverrideProps<SwitchFieldProps>;
+    epiccontext?: PrimitiveOverrideProps<TextFieldProps>;
+    Field0?: PrimitiveOverrideProps<SelectFieldProps>;
+>>>>>>> dev
     menu1?: PrimitiveOverrideProps<TextAreaFieldProps>;
     menu2?: PrimitiveOverrideProps<TextAreaFieldProps>;
     menu3?: PrimitiveOverrideProps<TextAreaFieldProps>;
@@ -194,12 +225,15 @@ export declare type ContactCenterModelUpdateFormOverridesProps = {
     menu9_sp?: PrimitiveOverrideProps<TextAreaFieldProps>;
     override?: PrimitiveOverrideProps<TextAreaFieldProps>;
     updateduser?: PrimitiveOverrideProps<TextFieldProps>;
+<<<<<<< HEAD
     issecondaryclosed?: PrimitiveOverrideProps<SwitchFieldProps>;
     Managers?: PrimitiveOverrideProps<AutocompleteProps>;
     AssignedGroup?: PrimitiveOverrideProps<AutocompleteProps>;
     isoverride?: PrimitiveOverrideProps<SwitchFieldProps>;
     isholiday?: PrimitiveOverrideProps<SwitchFieldProps>;
     isafterhours?: PrimitiveOverrideProps<SwitchFieldProps>;
+=======
+>>>>>>> dev
     submenu1?: PrimitiveOverrideProps<TextAreaFieldProps>;
     submenu2?: PrimitiveOverrideProps<TextAreaFieldProps>;
     submenu3?: PrimitiveOverrideProps<TextAreaFieldProps>;
@@ -220,7 +254,6 @@ export declare type ContactCenterModelUpdateFormOverridesProps = {
     submenu8_sp?: PrimitiveOverrideProps<TextAreaFieldProps>;
     submenu9_sp?: PrimitiveOverrideProps<TextAreaFieldProps>;
     submenu0_sp?: PrimitiveOverrideProps<TextAreaFieldProps>;
-    presentlangoption?: PrimitiveOverrideProps<SwitchFieldProps>;
 } & EscapeHatchProps;
 export declare type ContactCenterModelUpdateFormProps = React.PropsWithChildren<{
     overrides?: ContactCenterModelUpdateFormOverridesProps | undefined | null;

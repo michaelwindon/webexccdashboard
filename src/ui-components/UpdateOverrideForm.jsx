@@ -14,6 +14,7 @@ import {
   Grid,
   Icon,
   ScrollView,
+  SelectField,
   SwitchField,
   Text,
   TextField,
@@ -193,12 +194,16 @@ export default function UpdateOverrideForm(props) {
     isoverride: false,
     presentlangoption: false,
     holiday: [],
+    epiccontext: "",
   };
   const [isoverride, setIsoverride] = React.useState(initialValues.isoverride);
   const [presentlangoption, setPresentlangoption] = React.useState(
     initialValues.presentlangoption
   );
   const [holiday, setHoliday] = React.useState(initialValues.holiday);
+  const [epiccontext, setEpiccontext] = React.useState(
+    initialValues.epiccontext
+  );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = contactCenterModelRecord
@@ -208,6 +213,7 @@ export default function UpdateOverrideForm(props) {
     setPresentlangoption(cleanValues.presentlangoption);
     setHoliday(cleanValues.holiday ?? []);
     setCurrentHolidayValue("");
+    setEpiccontext(cleanValues.epiccontext);
     setErrors({});
   };
   const [contactCenterModelRecord, setContactCenterModelRecord] =
@@ -228,6 +234,7 @@ export default function UpdateOverrideForm(props) {
     isoverride: [],
     presentlangoption: [],
     holiday: [],
+    epiccontext: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -258,6 +265,7 @@ export default function UpdateOverrideForm(props) {
           isoverride,
           presentlangoption,
           holiday,
+          epiccontext,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -316,6 +324,7 @@ export default function UpdateOverrideForm(props) {
               isoverride: value,
               presentlangoption,
               holiday,
+              epiccontext,
             };
             const result = onChange(modelFields);
             value = result?.isoverride ?? value;
@@ -342,6 +351,7 @@ export default function UpdateOverrideForm(props) {
               isoverride,
               presentlangoption: value,
               holiday,
+              epiccontext,
             };
             const result = onChange(modelFields);
             value = result?.presentlangoption ?? value;
@@ -366,6 +376,7 @@ export default function UpdateOverrideForm(props) {
               isoverride,
               presentlangoption,
               holiday: values,
+              epiccontext,
             };
             const result = onChange(modelFields);
             values = result?.holiday ?? values;
@@ -407,6 +418,49 @@ export default function UpdateOverrideForm(props) {
           {...getOverrideProps(overrides, "holiday")}
         ></TextField>
       </ArrayField>
+      <SelectField
+        label="EPIC Screen Pop Context"
+        placeholder="Please select an option"
+        isDisabled={false}
+        value={epiccontext}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              isoverride,
+              presentlangoption,
+              holiday,
+              epiccontext: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.epiccontext ?? value;
+          }
+          if (errors.epiccontext?.hasError) {
+            runValidationTasks("epiccontext", value);
+          }
+          setEpiccontext(value);
+        }}
+        onBlur={() => runValidationTasks("epiccontext", epiccontext)}
+        errorMessage={errors.epiccontext?.errorMessage}
+        hasError={errors.epiccontext?.hasError}
+        {...getOverrideProps(overrides, "epiccontext")}
+      >
+        <option
+          children=""
+          value=""
+          {...getOverrideProps(overrides, "epiccontextoption0")}
+        ></option>
+        <option
+          children="Call Hub"
+          value="Call Hub"
+          {...getOverrideProps(overrides, "epiccontextoption1")}
+        ></option>
+        <option
+          children="Scheduling"
+          value="Scheduling"
+          {...getOverrideProps(overrides, "epiccontextoption2")}
+        ></option>
+      </SelectField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

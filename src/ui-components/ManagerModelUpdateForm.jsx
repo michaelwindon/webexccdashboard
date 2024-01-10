@@ -317,8 +317,7 @@ export default function ManagerModelUpdateForm(props) {
     model: GroupModel,
   }).items;
   const getDisplayValue = {
-    ContactCenters: (r) =>
-      `${r?.mainnumber ? r?.mainnumber + " - " : ""}${r?.id}`,
+    ContactCenters: (r) => `${r?.ccname ? r?.ccname + " - " : ""}${r?.id}`,
     Groups: (r) => `${r?.fullname ? r?.fullname + " - " : ""}${r?.id}`,
   };
   const validations = {
