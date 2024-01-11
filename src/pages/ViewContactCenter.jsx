@@ -541,7 +541,7 @@ function ViewContactCenter({ signOut, user }) {
                                             <>
                                                 {item.secondarytodclose[4] ==
                                                     '' ||
-                                                item.secondarytodclose[1] ==
+                                                item.secondarytodclose[4] ==
                                                     'Invalid Date' ||
                                                 item.secondarytodclose[4] ===
                                                     undefined
@@ -583,7 +583,7 @@ function ViewContactCenter({ signOut, user }) {
                                             <>
                                                 {item.secondarytodclose[0] ==
                                                     '' ||
-                                                item.secondarytodclose[7] ==
+                                                item.secondarytodclose[0] ==
                                                     'Invalid Date' ||
                                                 item.secondarytodclose[0] ===
                                                     undefined

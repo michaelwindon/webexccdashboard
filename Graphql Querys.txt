@@ -1,5 +1,14 @@
-query 
-getContactCenterDetails {
+
+RAW Call
+
+https://gw3svcvuare3fbgsgnfqzp26na.appsync-api.us-east-2.amazonaws.com/graphql
+Header
+X-Api-Key: da2-noawmbt5zzgkxns7ghko7irfhe
+results: $data.listContactCenterModels.items[0]
+
+
+App Sync query
+query getContactCenterDetails {
   listContactCenterModels(filter: {mainnumber: {eq: "7133635600"}}) {
     items {
       mainnumber
@@ -10,6 +19,13 @@ getContactCenterDetails {
       issecondaryclosed
       epiccontext
       defaultroute
+      presentlangoption
+      welcomeprompt
+      welcomeprompt_sp
+      secondaryclose{msg type value} 
+      afterhours {msg type value} 
+      holidayoption {msg type value} 
+      override{msg type value}
       menu0 {
         msg
         type
@@ -1164,9 +1180,9 @@ getContactCenterDetails {
           value
         }
       }
-      presentlangoption
-      welcomeprompt
-      welcomeprompt_sp
     }
   }
 }
+
+
+
