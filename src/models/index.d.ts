@@ -154,7 +154,7 @@ type EagerManagerModel = {
   };
   readonly id: string;
   readonly name?: string | null;
-  readonly email?: string | null;
+  readonly email: string;
   readonly telephone?: string | null;
   readonly profilepic?: string | null;
   readonly role?: RoleEnum | keyof typeof RoleEnum | null;
@@ -171,7 +171,7 @@ type LazyManagerModel = {
   };
   readonly id: string;
   readonly name?: string | null;
-  readonly email?: string | null;
+  readonly email: string;
   readonly telephone?: string | null;
   readonly profilepic?: string | null;
   readonly role?: RoleEnum | keyof typeof RoleEnum | null;

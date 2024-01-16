@@ -187,10 +187,9 @@ function ArrayField({
     </React.Fragment>
   );
 }
-export default function UpdateContactCenterTitleDetails(props) {
+export default function CreateContactCenterTitleDetails(props) {
   const {
-    id: idProp,
-    contactCenterModel: contactCenterModelModelProp,
+    clearOnSuccess = true,
     onSuccess,
     onError,
     onSubmit,
@@ -205,6 +204,7 @@ export default function UpdateContactCenterTitleDetails(props) {
     ccdescription: "",
     Managers: [],
     AssignedGroup: undefined,
+    epiccontext: "",
   };
   const [ccname, setCcname] = React.useState(initialValues.ccname);
   const [mainnumber, setMainnumber] = React.useState(initialValues.mainnumber);
@@ -215,59 +215,23 @@ export default function UpdateContactCenterTitleDetails(props) {
   const [AssignedGroup, setAssignedGroup] = React.useState(
     initialValues.AssignedGroup
   );
+  const [epiccontext, setEpiccontext] = React.useState(
+    initialValues.epiccontext
+  );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    const cleanValues = contactCenterModelRecord
-      ? {
-          ...initialValues,
-          ...contactCenterModelRecord,
-          Managers: linkedManagers,
-          AssignedGroup,
-        }
-      : initialValues;
-    setCcname(cleanValues.ccname);
-    setMainnumber(cleanValues.mainnumber);
-    setCcdescription(cleanValues.ccdescription);
-    setManagers(cleanValues.Managers ?? []);
+    setCcname(initialValues.ccname);
+    setMainnumber(initialValues.mainnumber);
+    setCcdescription(initialValues.ccdescription);
+    setManagers(initialValues.Managers);
     setCurrentManagersValue(undefined);
     setCurrentManagersDisplayValue("");
-    setAssignedGroup(cleanValues.AssignedGroup);
+    setAssignedGroup(initialValues.AssignedGroup);
     setCurrentAssignedGroupValue(undefined);
     setCurrentAssignedGroupDisplayValue("");
+    setEpiccontext(initialValues.epiccontext);
     setErrors({});
   };
-  const [contactCenterModelRecord, setContactCenterModelRecord] =
-    React.useState(contactCenterModelModelProp);
-  const [linkedManagers, setLinkedManagers] = React.useState([]);
-  const canUnlinkManagers = false;
-  React.useEffect(() => {
-    const queryData = async () => {
-      const record = idProp
-        ? await DataStore.query(ContactCenterModel, idProp)
-        : contactCenterModelModelProp;
-      setContactCenterModelRecord(record);
-      const linkedManagers = record
-        ? await Promise.all(
-            (
-              await record.Managers.toArray()
-            ).map((r) => {
-              return r.managerModel;
-            })
-          )
-        : [];
-      setLinkedManagers(linkedManagers);
-      const AssignedGroupRecord = record
-        ? await record.AssignedGroup
-        : undefined;
-      setAssignedGroup(AssignedGroupRecord);
-    };
-    queryData();
-  }, [idProp, contactCenterModelModelProp]);
-  React.useEffect(resetStateValues, [
-    contactCenterModelRecord,
-    linkedManagers,
-    AssignedGroup,
-  ]);
   const [currentManagersDisplayValue, setCurrentManagersDisplayValue] =
     React.useState("");
   const [currentManagersValue, setCurrentManagersValue] =
@@ -312,6 +276,7 @@ export default function UpdateContactCenterTitleDetails(props) {
     ccdescription: [],
     Managers: [],
     AssignedGroup: [],
+    epiccontext: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -344,6 +309,7 @@ export default function UpdateContactCenterTitleDetails(props) {
           ccdescription,
           Managers,
           AssignedGroup,
+          epiccontext,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -381,97 +347,36 @@ export default function UpdateContactCenterTitleDetails(props) {
               modelFields[key] = null;
             }
           });
-          const promises = [];
-          const managersToLinkMap = new Map();
-          const managersToUnLinkMap = new Map();
-          const managersMap = new Map();
-          const linkedManagersMap = new Map();
-          Managers.forEach((r) => {
-            const count = managersMap.get(getIDValue.Managers?.(r));
-            const newCount = count ? count + 1 : 1;
-            managersMap.set(getIDValue.Managers?.(r), newCount);
-          });
-          linkedManagers.forEach((r) => {
-            const count = linkedManagersMap.get(getIDValue.Managers?.(r));
-            const newCount = count ? count + 1 : 1;
-            linkedManagersMap.set(getIDValue.Managers?.(r), newCount);
-          });
-          linkedManagersMap.forEach((count, id) => {
-            const newCount = managersMap.get(id);
-            if (newCount) {
-              const diffCount = count - newCount;
-              if (diffCount > 0) {
-                managersToUnLinkMap.set(id, diffCount);
-              }
-            } else {
-              managersToUnLinkMap.set(id, count);
-            }
-          });
-          managersMap.forEach((count, id) => {
-            const originalCount = linkedManagersMap.get(id);
-            if (originalCount) {
-              const diffCount = count - originalCount;
-              if (diffCount > 0) {
-                managersToLinkMap.set(id, diffCount);
-              }
-            } else {
-              managersToLinkMap.set(id, count);
-            }
-          });
-          managersToUnLinkMap.forEach(async (count, id) => {
-            const recordKeys = JSON.parse(id);
-            const contactCenterModelManagerModelRecords = await DataStore.query(
-              ContactCenterModelManagerModel,
-              (r) =>
-                r.and((r) => {
-                  return [
-                    r.managerModelId.eq(recordKeys.id),
-                    r.contactCenterModelId.eq(contactCenterModelRecord.id),
-                  ];
-                })
-            );
-            for (let i = 0; i < count; i++) {
-              promises.push(
-                DataStore.delete(contactCenterModelManagerModelRecords[i])
-              );
-            }
-          });
-          managersToLinkMap.forEach((count, id) => {
-            const managerModelToLink = managerModelRecords.find((r) =>
-              Object.entries(JSON.parse(id)).every(
-                ([key, value]) => r[key] === value
-              )
-            );
-            for (let i = count; i > 0; i--) {
-              promises.push(
-                DataStore.save(
-                  new ContactCenterModelManagerModel({
-                    contactCenterModel: contactCenterModelRecord,
-                    managerModel: managerModelToLink,
-                  })
-                )
-              );
-            }
-          });
           const modelFieldsToSave = {
             ccname: modelFields.ccname,
             mainnumber: modelFields.mainnumber,
             ccdescription: modelFields.ccdescription,
             AssignedGroup: modelFields.AssignedGroup,
+            epiccontext: modelFields.epiccontext,
           };
+          const contactCenterModel = await DataStore.save(
+            new ContactCenterModel(modelFieldsToSave)
+          );
+          const promises = [];
           promises.push(
-            DataStore.save(
-              ContactCenterModel.copyOf(contactCenterModelRecord, (updated) => {
-                Object.assign(updated, modelFieldsToSave);
-                if (!modelFieldsToSave.AssignedGroup) {
-                  updated.contactCenterModelAssignedGroupId = undefined;
-                }
-              })
-            )
+            ...Managers.reduce((promises, managerModel) => {
+              promises.push(
+                DataStore.save(
+                  new ContactCenterModelManagerModel({
+                    contactCenterModel,
+                    managerModel,
+                  })
+                )
+              );
+              return promises;
+            }, [])
           );
           await Promise.all(promises);
           if (onSuccess) {
             onSuccess(modelFields);
+          }
+          if (clearOnSuccess) {
+            resetStateValues();
           }
         } catch (err) {
           if (onError) {
@@ -479,11 +384,19 @@ export default function UpdateContactCenterTitleDetails(props) {
           }
         }
       }}
-      {...getOverrideProps(overrides, "UpdateContactCenterTitleDetails")}
+      {...getOverrideProps(overrides, "CreateContactCenterTitleDetails")}
       {...rest}
     >
       <TextField
-        label="Contact Center Name"
+        label={
+          <span style={{ display: "inline-flex" }}>
+            <span>Contact Center Name</span>
+            <span style={{ whiteSpace: "pre", fontStyle: "italic" }}>
+              {" "}
+              - optional
+            </span>
+          </span>
+        }
         isRequired={false}
         isReadOnly={false}
         value={ccname}
@@ -496,6 +409,7 @@ export default function UpdateContactCenterTitleDetails(props) {
               ccdescription,
               Managers,
               AssignedGroup,
+              epiccontext,
             };
             const result = onChange(modelFields);
             value = result?.ccname ?? value;
@@ -511,7 +425,7 @@ export default function UpdateContactCenterTitleDetails(props) {
         {...getOverrideProps(overrides, "ccname")}
       ></TextField>
       <TextField
-        label="Contact Center Number"
+        label="Contact Center Name"
         isRequired={true}
         isReadOnly={false}
         value={mainnumber}
@@ -524,6 +438,7 @@ export default function UpdateContactCenterTitleDetails(props) {
               ccdescription,
               Managers,
               AssignedGroup,
+              epiccontext,
             };
             const result = onChange(modelFields);
             value = result?.mainnumber ?? value;
@@ -539,7 +454,15 @@ export default function UpdateContactCenterTitleDetails(props) {
         {...getOverrideProps(overrides, "mainnumber")}
       ></TextField>
       <TextField
-        label="Contact Center Description"
+        label={
+          <span style={{ display: "inline-flex" }}>
+            <span>Contact Center Description</span>
+            <span style={{ whiteSpace: "pre", fontStyle: "italic" }}>
+              {" "}
+              - optional
+            </span>
+          </span>
+        }
         isRequired={false}
         isReadOnly={false}
         value={ccdescription}
@@ -552,6 +475,7 @@ export default function UpdateContactCenterTitleDetails(props) {
               ccdescription: value,
               Managers,
               AssignedGroup,
+              epiccontext,
             };
             const result = onChange(modelFields);
             value = result?.ccdescription ?? value;
@@ -576,6 +500,7 @@ export default function UpdateContactCenterTitleDetails(props) {
               ccdescription,
               Managers: values,
               AssignedGroup,
+              epiccontext,
             };
             const result = onChange(modelFields);
             values = result?.Managers ?? values;
@@ -585,7 +510,15 @@ export default function UpdateContactCenterTitleDetails(props) {
           setCurrentManagersDisplayValue("");
         }}
         currentFieldValue={currentManagersValue}
-        label={"Managers"}
+        label={
+          <span style={{ display: "inline-flex" }}>
+            <span>Managers</span>
+            <span style={{ whiteSpace: "pre", fontStyle: "italic" }}>
+              {" "}
+              - optional
+            </span>
+          </span>
+        }
         items={Managers}
         hasError={errors?.Managers?.hasError}
         runValidationTasks={async () =>
@@ -657,6 +590,7 @@ export default function UpdateContactCenterTitleDetails(props) {
               ccdescription,
               Managers,
               AssignedGroup: value,
+              epiccontext,
             };
             const result = onChange(modelFields);
             value = result?.AssignedGroup ?? value;
@@ -666,7 +600,15 @@ export default function UpdateContactCenterTitleDetails(props) {
           setCurrentAssignedGroupDisplayValue("");
         }}
         currentFieldValue={currentAssignedGroupValue}
-        label={"Assigned group"}
+        label={
+          <span style={{ display: "inline-flex" }}>
+            <span>Assigned group</span>
+            <span style={{ whiteSpace: "pre", fontStyle: "italic" }}>
+              {" "}
+              - optional
+            </span>
+          </span>
+        }
         items={AssignedGroup ? [AssignedGroup] : []}
         hasError={errors?.AssignedGroup?.hasError}
         runValidationTasks={async () =>
@@ -684,7 +626,15 @@ export default function UpdateContactCenterTitleDetails(props) {
         defaultFieldValue={""}
       >
         <Autocomplete
-          label="Assigned group"
+          label={
+            <span style={{ display: "inline-flex" }}>
+              <span>Assigned group</span>
+              <span style={{ whiteSpace: "pre", fontStyle: "italic" }}>
+                {" "}
+                - optional
+              </span>
+            </span>
+          }
           isRequired={false}
           isReadOnly={false}
           placeholder="Search GroupModel"
@@ -711,7 +661,6 @@ export default function UpdateContactCenterTitleDetails(props) {
           onClear={() => {
             setCurrentAssignedGroupDisplayValue("");
           }}
-          defaultValue={AssignedGroup}
           onChange={(e) => {
             let { value } = e.target;
             if (errors.AssignedGroup?.hasError) {
@@ -733,19 +682,55 @@ export default function UpdateContactCenterTitleDetails(props) {
           {...getOverrideProps(overrides, "AssignedGroup")}
         ></Autocomplete>
       </ArrayField>
+      <TextField
+        label={
+          <span style={{ display: "inline-flex" }}>
+            <span>Epic Context</span>
+            <span style={{ whiteSpace: "pre", fontStyle: "italic" }}>
+              {" "}
+              - optional
+            </span>
+          </span>
+        }
+        isRequired={false}
+        isReadOnly={false}
+        value={epiccontext}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              ccname,
+              mainnumber,
+              ccdescription,
+              Managers,
+              AssignedGroup,
+              epiccontext: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.epiccontext ?? value;
+          }
+          if (errors.epiccontext?.hasError) {
+            runValidationTasks("epiccontext", value);
+          }
+          setEpiccontext(value);
+        }}
+        onBlur={() => runValidationTasks("epiccontext", epiccontext)}
+        errorMessage={errors.epiccontext?.errorMessage}
+        hasError={errors.epiccontext?.hasError}
+        {...getOverrideProps(overrides, "epiccontext")}
+      ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}
       >
         <Button
-          children="Reset"
+          children="Clear"
           type="reset"
           onClick={(event) => {
             event.preventDefault();
             resetStateValues();
           }}
-          isDisabled={!(idProp || contactCenterModelModelProp)}
-          {...getOverrideProps(overrides, "ResetButton")}
+          {...getOverrideProps(overrides, "ClearButton")}
         ></Button>
         <Flex
           gap="15px"
@@ -755,10 +740,7 @@ export default function UpdateContactCenterTitleDetails(props) {
             children="Submit"
             type="submit"
             variation="primary"
-            isDisabled={
-              !(idProp || contactCenterModelModelProp) ||
-              Object.values(errors).some((e) => e?.hasError)
-            }
+            isDisabled={Object.values(errors).some((e) => e?.hasError)}
             {...getOverrideProps(overrides, "SubmitButton")}
           ></Button>
         </Flex>

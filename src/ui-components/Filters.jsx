@@ -14,7 +14,7 @@ export default function Filters(props) {
     <Flex
       gap="16px"
       direction="row"
-      width="unset"
+      width="863px"
       height="unset"
       justifyContent="center"
       alignItems="flex-end"
@@ -27,26 +27,37 @@ export default function Filters(props) {
       <SelectField
         width="240px"
         height="unset"
-        label="Status"
         placeholder="All"
         shrink="0"
         size="small"
         isDisabled={false}
         labelHidden={false}
         variation="default"
-        {...getOverrideProps(overrides, "SelectField38963527")}
+        {...getOverrideProps(overrides, "GroupSelectField")}
       ></SelectField>
       <SelectField
         width="240px"
         height="unset"
-        label="Channel"
+        label="Contact Center Name"
         placeholder="All"
         shrink="0"
         size="small"
         isDisabled={false}
         labelHidden={false}
         variation="default"
-        {...getOverrideProps(overrides, "SelectField38963544")}
+        {...getOverrideProps(overrides, "ContactCenterNameSelectField")}
+      ></SelectField>
+      <SelectField
+        width="240px"
+        height="unset"
+        label="Telephone Number"
+        placeholder="All"
+        shrink="0"
+        size="small"
+        isDisabled={false}
+        labelHidden={false}
+        variation="default"
+        {...getOverrideProps(overrides, "TelephoneSelectField")}
       ></SelectField>
       <Button
         width="unset"

@@ -187,7 +187,7 @@ export const schema = {
                     "name": "email",
                     "isArray": false,
                     "type": "AWSEmail",
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 },
                 "telephone": {
@@ -268,6 +268,16 @@ export const schema = {
                 {
                     "type": "model",
                     "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "ManagerByEmail",
+                        "fields": [
+                            "email",
+                            "id"
+                        ]
+                    }
                 },
                 {
                     "type": "auth",
@@ -1293,5 +1303,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.4.4",
-    "version": "7550366bcb9b2e6ce4c77958940ae6e5"
+    "version": "f4e9c817bff06f0b9503004f2fc86cce"
 };

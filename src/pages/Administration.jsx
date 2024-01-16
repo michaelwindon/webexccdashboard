@@ -1,30 +1,40 @@
-import { useParams } from 'react-router-dom'
-import ContactCenterUI from '../ui-components/ContactCenterUI'
-import { ContactCenterModel } from '../models'
-import { useDataStoreBinding } from '../ui-components/utils'
-import { Flex, Loader } from '@aws-amplify/ui-react'
-import ErrorPage from '../app-components/ErrorPage'
+import { SelectField, Flex, View, Tabs } from '@aws-amplify/ui-react'
+import {
+    CreateContactCenterTitleDetails,
+    GroupModelCreateForm,
+    ManagerModelCreateForm,
+    QueueModelCreateForm,
+} from '../ui-components'
 
-const Administration = (props) => {
-    let parms = useParams()
-
-    const { isLoading, item } = useDataStoreBinding({
-        type: 'record',
-        model: ContactCenterModel,
-        id: parms.ccid,
-    })
-
+const Administration = () => {
     return (
         <>
-            {isLoading ? (
-                <Flex justifyContent="center" padding="20%">
-                    <Loader height="20%" width="20%" />
-                </Flex>
-            ) : item ? (
-                <Flex justifyContent="center">
-                    <ContactCenterUI contactcentermodel={item} />
-                </Flex>
-            ) : <ErrorPage />}
+            <Tabs
+                justifyContent="flex-start"
+                defaultValue="Create Contact Center"
+                items={[
+                    {
+                        label: 'Create Contact Center',
+                        value: 'Create Contact Center',
+                        content: <CreateContactCenterTitleDetails />,
+                    },
+                    {
+                        label: 'Create Groups',
+                        value: 'Create Groups',
+                        content: <GroupModelCreateForm />,
+                    },
+                    {
+                        label: 'Create Managers',
+                        value: 'Create Managers',
+                        content: <ManagerModelCreateForm />,
+                    },
+                    {
+                        label: 'Create Queues',
+                        value: 'Create Queues',
+                        content: <QueueModelCreateForm />,
+                    },
+                ]}
+            />
         </>
     )
 }
