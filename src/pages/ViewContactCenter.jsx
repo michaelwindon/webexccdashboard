@@ -78,6 +78,11 @@ function ViewContactCenter({ signOut, user }) {
                             Managers: await item.Managers.values,
                         }
                     } else {
+                        console.log(
+                            `${JSON.stringify(
+                                userRoleId.data.listManagerModels.items[0].id
+                            )}`
+                        )
                         return
                     }
                 })
