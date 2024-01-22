@@ -17,7 +17,7 @@ import Annoucements from './pages/Annoucements'
 import UserProfile from './pages/UserProfile'
 import Training from './pages/Training'
 import UserManagement from './pages/UserManagement'
-import CreateContactCenter from './pages/CreateContactCenter'
+import GroupManagement from './pages/GroupManagement'
 import { DataStore } from 'aws-amplify/datastore'
 import ErrorPage from './app-components/ErrorPage'
 import Administration from './pages/Administration'
@@ -92,26 +92,7 @@ function App({ signOut, user }) {
                             />
                         }
                     />
-                    <Route
-                        path="/addcontactcenter"
-                        element={
-                            isLoading ? (
-                                <Flex justifyContent="center" padding="20%">
-                                    <Loader height="20%" width="20%" />
-                                </Flex>
-                            ) : userRole ? (
-                                userRole == 'ADMIN' ? (
-                                    <CreateContactCenter />
-                                ) : (
-                                    <PermissionDenied path="/admin" />
-                                )
-                            ) : (
-                                <Flex justifyContent="center" padding="20%">
-                                    <Loader height="20%" width="20%" />
-                                </Flex>
-                            )
-                        }
-                    />
+
                     <Route
                         path="/usermanagement"
                         element={
@@ -152,9 +133,35 @@ function App({ signOut, user }) {
                             )
                         }
                     />
+
+                    <Route
+                        path="/groupmanagement"
+                        element={
+                            isLoading ? (
+                                <Flex justifyContent="center" padding="20%">
+                                    <Loader height="20%" width="20%" />
+                                </Flex>
+                            ) : userRole ? (
+                                userRole == 'ADMIN' ? (
+                                    <GroupManagement />
+                                ) : (
+                                    <PermissionDenied path="/admin" />
+                                )
+                            ) : (
+                                <Flex justifyContent="center" padding="20%">
+                                    <Loader height="20%" width="20%" />
+                                </Flex>
+                            )
+                        }
+                    />
+                    <Route
+                        path="/signout"
+                    />
+
                     <Route path="/annoucements" element={<Annoucements />} />
                     <Route path="/userprofile" element={<UserProfile />} />
                     <Route path="/training" element={<Training />} />
+
                     <Route path="*" element={<ErrorPage />} />
                 </Routes>
             </Router>

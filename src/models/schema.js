@@ -270,16 +270,6 @@ export const schema = {
                     "properties": {}
                 },
                 {
-                    "type": "key",
-                    "properties": {
-                        "name": "ManagerByEmail",
-                        "fields": [
-                            "email",
-                            "id"
-                        ]
-                    }
-                },
-                {
                     "type": "auth",
                     "properties": {
                         "rules": [

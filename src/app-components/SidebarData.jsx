@@ -2,6 +2,9 @@ import React from 'react'
 import * as FaIcons from 'react-icons/fa'
 import * as AiIcons from 'react-icons/ai'
 import * as IoIcons from 'react-icons/io'
+import * as MdOutIcons from 'react-icons/md'
+
+import { MyIcon } from '../ui-components'
 
 export const SidebarData = [
     {
@@ -19,24 +22,25 @@ export const SidebarData = [
         role: 'ADMIN',
     },
     {
-        title: 'Add Contact Center',
-        path: '/addcontactcenter',
+        title: 'Update Queue',
+        path: '/queuemanagement',
+        icon: <MdOutIcons.MdOutlinePeopleAlt />,
+        cName: 'nav-text',
+        role: 'ADMIN',
+    },
+    {
+        title: 'Update Management',
+        path: '/usermanagement',
+        icon: <MdOutIcons.MdAdminPanelSettings />,
+        cName: 'nav-text',
+        role: 'ADMIN',
+    },
+    {
+        title: 'Update Groups',
+        path: '/groupmanagement',
         icon: <IoIcons.IoMdAddCircle />,
         cName: 'nav-text',
         role: 'ADMIN',
     },
-    {
-        title: 'User Management',
-        path: '/usermanagement',
-        icon: <IoIcons.IoMdPersonAdd />,
-        cName: 'nav-text',
-        role: 'ADMIN',
-    },
-    {
-        title: 'Queue Management',
-        path: '/queuemanagement',
-        icon: <FaIcons.FaWrench />,
-        cName: 'nav-text',
-        role: 'ADMIN',
-    },
+
 ]

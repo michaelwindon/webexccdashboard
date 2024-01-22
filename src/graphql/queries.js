@@ -243,43 +243,6 @@ export const syncManagerModels = /* GraphQL */ `
     }
   }
 `;
-export const managerModelsByEmailAndId = /* GraphQL */ `
-  query ManagerModelsByEmailAndId(
-    $email: AWSEmail!
-    $id: ModelIDKeyConditionInput
-    $sortDirection: ModelSortDirection
-    $filter: ModelManagerModelFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    managerModelsByEmailAndId(
-      email: $email
-      id: $id
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        name
-        email
-        telephone
-        profilepic
-        role
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        __typename
-      }
-      nextToken
-      startedAt
-      __typename
-    }
-  }
-`;
 export const getContactCenterModel = /* GraphQL */ `
   query GetContactCenterModel($id: ID!) {
     getContactCenterModel(id: $id) {
