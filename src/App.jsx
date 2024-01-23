@@ -21,6 +21,7 @@ import GroupManagement from './pages/GroupManagement'
 import { DataStore } from 'aws-amplify/datastore'
 import ErrorPage from './app-components/ErrorPage'
 import Administration from './pages/Administration'
+import { fetchUserAttributes } from 'aws-amplify/auth'
 
 import {
     useDataStoreBinding,
@@ -36,9 +37,20 @@ function App({ signOut, user }) {
         DataStore.clear()
         signOut()
     }
+
+    var userAttributes
+    fetchUserAttributes()
+        .then((result) => {
+            userAttributes = result
+            console.log(`${JSON.stringify(userAttributes)}`)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+
     const itemsFilterObj = {
         field: 'ManagerModel.email',
-        operand: user.username,
+        operand: userAttributes?.email,
         operator: 'eq',
     }
 
@@ -71,7 +83,7 @@ function App({ signOut, user }) {
                                 </Flex>
                             ) : userRole ? (
                                 userRole == 'ADMIN' ? (
-                                    <Administration />
+                                    <Administration user={userAttributes} />
                                 ) : (
                                     <PermissionDenied path="/admin" />
                                 )
@@ -154,9 +166,7 @@ function App({ signOut, user }) {
                             )
                         }
                     />
-                    <Route
-                        path="/signout"
-                    />
+                    <Route path="/signout" />
 
                     <Route path="/annoucements" element={<Annoucements />} />
                     <Route path="/userprofile" element={<UserProfile />} />

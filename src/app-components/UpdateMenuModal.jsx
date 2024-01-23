@@ -512,6 +512,14 @@ const UpdateMenuModal = (props) => {
                                                 <MyIcon type="share" /> Submenu
                                             </Button>
                                         )}
+                                        <Button
+                                            onClick={() => {
+                                                toggleQueue()
+                                                setmenuType('')
+                                            }}
+                                        >
+                                            <MyIcon type="" /> Reset
+                                        </Button>
                                     </ButtonGroup>
                                 </Flex>
                                 {showMessage && (
@@ -569,6 +577,7 @@ const UpdateMenuModal = (props) => {
                                         </SelectField>
                                     </Flex>
                                 )}
+
                                 {showSubmenu && (
                                     <Flex direction="column">
                                         <View width="50em">

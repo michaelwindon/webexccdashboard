@@ -268,8 +268,8 @@ export default function CreateContactCenterTitleDetails(props) {
     model: GroupModel,
   }).items;
   const getDisplayValue = {
-    Managers: (r) => `${r?.name}${" - "}`,
-    AssignedGroup: (r) => `${r?.fullname}${" - "}`,
+    Managers: (r) => `${r?.name}`,
+    AssignedGroup: (r) => `${r?.fullname}`,
   };
   const validations = {
     ccname: [],
@@ -686,11 +686,6 @@ export default function CreateContactCenterTitleDetails(props) {
           children="Scheduling"
           value="Scheduling"
           {...getOverrideProps(overrides, "epiccontextoption1")}
-        ></option>
-        <option
-          children='""'
-          value='""'
-          {...getOverrideProps(overrides, "epiccontextoption2")}
         ></option>
       </SelectField>
       <Flex

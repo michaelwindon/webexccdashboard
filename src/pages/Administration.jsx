@@ -1,6 +1,6 @@
 import { SelectField, Flex, View, Tabs } from '@aws-amplify/ui-react'
 import {
-    CreateContactCenterTitleDetails,
+    ContactCenterModelCreateForm,
     GroupModelCreateForm,
     ManagerModelCreateForm,
     QueueModelCreateForm,
@@ -9,8 +9,19 @@ import {
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import SyncQueues from './SyncQueues'
+import { fetchUserAttributes } from 'aws-amplify/auth'
 
 const Administration = () => {
+    var userAttributes
+    fetchUserAttributes()
+        .then((result) => {
+            userAttributes = result
+            console.log(`${JSON.stringify(userAttributes)}`)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+
     const handleonError = () => {
         showToastMessage(`Error Saving!`, 'error')
     }
@@ -45,9 +56,28 @@ const Administration = () => {
                         label: 'Create Contact Center',
                         value: 'Create Contact Center',
                         content: (
-                            <CreateContactCenterTitleDetails
+                            <ContactCenterModelCreateForm
                                 onError={handleonError}
-                                onSuccess={handleonSuccess}
+                                onSuccess={(fields) => {
+                                    showToastMessage(
+                                        `${fields.ccname} was created!`,
+                                        'success'
+                                    )
+                                }}
+                                onSubmit={(fields) => {
+                                    var updatedFields = {
+                                        ...fields,
+                                    }
+                                    updatedFields['updateduser'] =
+                                        userAttributes?.email
+
+                                    console.log(
+                                        `updating ${JSON.stringify(
+                                            updatedFields
+                                        )}`
+                                    )
+                                    return updatedFields
+                                }}
                             />
                         ),
                     },
@@ -88,6 +118,7 @@ const Administration = () => {
                     },
                 ]}
             />
+            <ToastContainer />
         </>
     )
 }
