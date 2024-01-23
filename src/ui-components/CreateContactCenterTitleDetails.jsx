@@ -15,6 +15,7 @@ import {
   Grid,
   Icon,
   ScrollView,
+  SelectField,
   Text,
   TextField,
   useTheme,
@@ -267,8 +268,8 @@ export default function CreateContactCenterTitleDetails(props) {
     model: GroupModel,
   }).items;
   const getDisplayValue = {
-    Managers: (r) => `${r?.name ? r?.name + " - " : ""}${r?.id}`,
-    AssignedGroup: (r) => `${r?.fullname ? r?.fullname + " - " : ""}${r?.id}`,
+    Managers: (r) => `${r?.name}${" - "}`,
+    AssignedGroup: (r) => `${r?.fullname}${" - "}`,
   };
   const validations = {
     ccname: [],
@@ -388,15 +389,7 @@ export default function CreateContactCenterTitleDetails(props) {
       {...rest}
     >
       <TextField
-        label={
-          <span style={{ display: "inline-flex" }}>
-            <span>Contact Center Name</span>
-            <span style={{ whiteSpace: "pre", fontStyle: "italic" }}>
-              {" "}
-              - optional
-            </span>
-          </span>
-        }
+        label="Contact Center Name"
         isRequired={false}
         isReadOnly={false}
         value={ccname}
@@ -425,7 +418,12 @@ export default function CreateContactCenterTitleDetails(props) {
         {...getOverrideProps(overrides, "ccname")}
       ></TextField>
       <TextField
-        label="Contact Center Name"
+        label={
+          <span style={{ display: "inline-flex" }}>
+            <span>Contact Center Number</span>
+            <span style={{ color: "red" }}>*</span>
+          </span>
+        }
         isRequired={true}
         isReadOnly={false}
         value={mainnumber}
@@ -454,15 +452,7 @@ export default function CreateContactCenterTitleDetails(props) {
         {...getOverrideProps(overrides, "mainnumber")}
       ></TextField>
       <TextField
-        label={
-          <span style={{ display: "inline-flex" }}>
-            <span>Contact Center Description</span>
-            <span style={{ whiteSpace: "pre", fontStyle: "italic" }}>
-              {" "}
-              - optional
-            </span>
-          </span>
-        }
+        label="Contact Center Description"
         isRequired={false}
         isReadOnly={false}
         value={ccdescription}
@@ -510,15 +500,7 @@ export default function CreateContactCenterTitleDetails(props) {
           setCurrentManagersDisplayValue("");
         }}
         currentFieldValue={currentManagersValue}
-        label={
-          <span style={{ display: "inline-flex" }}>
-            <span>Managers</span>
-            <span style={{ whiteSpace: "pre", fontStyle: "italic" }}>
-              {" "}
-              - optional
-            </span>
-          </span>
-        }
+        label={"Managers"}
         items={Managers}
         hasError={errors?.Managers?.hasError}
         runValidationTasks={async () =>
@@ -600,15 +582,7 @@ export default function CreateContactCenterTitleDetails(props) {
           setCurrentAssignedGroupDisplayValue("");
         }}
         currentFieldValue={currentAssignedGroupValue}
-        label={
-          <span style={{ display: "inline-flex" }}>
-            <span>Assigned group</span>
-            <span style={{ whiteSpace: "pre", fontStyle: "italic" }}>
-              {" "}
-              - optional
-            </span>
-          </span>
-        }
+        label={"Assigned group"}
         items={AssignedGroup ? [AssignedGroup] : []}
         hasError={errors?.AssignedGroup?.hasError}
         runValidationTasks={async () =>
@@ -626,15 +600,7 @@ export default function CreateContactCenterTitleDetails(props) {
         defaultFieldValue={""}
       >
         <Autocomplete
-          label={
-            <span style={{ display: "inline-flex" }}>
-              <span>Assigned group</span>
-              <span style={{ whiteSpace: "pre", fontStyle: "italic" }}>
-                {" "}
-                - optional
-              </span>
-            </span>
-          }
+          label="Assigned group"
           isRequired={false}
           isReadOnly={false}
           placeholder="Search GroupModel"
@@ -682,18 +648,10 @@ export default function CreateContactCenterTitleDetails(props) {
           {...getOverrideProps(overrides, "AssignedGroup")}
         ></Autocomplete>
       </ArrayField>
-      <TextField
-        label={
-          <span style={{ display: "inline-flex" }}>
-            <span>Epic Context</span>
-            <span style={{ whiteSpace: "pre", fontStyle: "italic" }}>
-              {" "}
-              - optional
-            </span>
-          </span>
-        }
-        isRequired={false}
-        isReadOnly={false}
+      <SelectField
+        label="Epic Context"
+        placeholder="Please select an option"
+        isDisabled={false}
         value={epiccontext}
         onChange={(e) => {
           let { value } = e.target;
@@ -718,7 +676,23 @@ export default function CreateContactCenterTitleDetails(props) {
         errorMessage={errors.epiccontext?.errorMessage}
         hasError={errors.epiccontext?.hasError}
         {...getOverrideProps(overrides, "epiccontext")}
-      ></TextField>
+      >
+        <option
+          children="Call Hub"
+          value="Call Hub"
+          {...getOverrideProps(overrides, "epiccontextoption0")}
+        ></option>
+        <option
+          children="Scheduling"
+          value="Scheduling"
+          {...getOverrideProps(overrides, "epiccontextoption1")}
+        ></option>
+        <option
+          children='""'
+          value='""'
+          {...getOverrideProps(overrides, "epiccontextoption2")}
+        ></option>
+      </SelectField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

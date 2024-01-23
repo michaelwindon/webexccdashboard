@@ -230,7 +230,7 @@ export default function GroupModelCreateForm(props) {
     model: ManagerModel,
   }).items;
   const getDisplayValue = {
-    Managers: (r) => `${r?.name ? r?.name + " - " : ""}${r?.id}`,
+    Managers: (r) => `${r?.name}${" - "}`,
   };
   const validations = {
     fullname: [],

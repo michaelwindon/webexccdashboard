@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { AutocompleteProps, GridProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { AutocompleteProps, GridProps, SelectFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
 import { ManagerModel, GroupModel } from "../models";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
@@ -46,7 +46,7 @@ export declare type CreateContactCenterTitleDetailsOverridesProps = {
     ccdescription?: PrimitiveOverrideProps<TextFieldProps>;
     Managers?: PrimitiveOverrideProps<AutocompleteProps>;
     AssignedGroup?: PrimitiveOverrideProps<AutocompleteProps>;
-    epiccontext?: PrimitiveOverrideProps<TextFieldProps>;
+    epiccontext?: PrimitiveOverrideProps<SelectFieldProps>;
 } & EscapeHatchProps;
 export declare type CreateContactCenterTitleDetailsProps = React.PropsWithChildren<{
     overrides?: CreateContactCenterTitleDetailsOverridesProps | undefined | null;
