@@ -982,7 +982,8 @@ const UpdateMenuModal = (props) => {
                                             showMessage ||
                                             showForward ||
                                             showQueue ||
-                                            showSubmenu
+                                            showSubmenu ||
+                                            menuType == ''
                                                 ? false
                                                 : true
                                         }
