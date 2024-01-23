@@ -1099,6 +1099,13 @@ const UpdateSubmenuModal = (props) => {
                                     >
                                         <MyIcon type="group" /> Queue
                                     </Button>
+                                    <Button
+                                        onClick={() => {
+                                            setmenuType('')
+                                        }}
+                                    >
+                                        <MyIcon type="" /> Reset
+                                    </Button>
                                 </ButtonGroup>
                             </Flex>
                             {showSubmenuMessage && (

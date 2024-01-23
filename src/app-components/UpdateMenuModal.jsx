@@ -514,7 +514,6 @@ const UpdateMenuModal = (props) => {
                                         )}
                                         <Button
                                             onClick={() => {
-                                                toggleQueue()
                                                 setmenuType('')
                                             }}
                                         >
