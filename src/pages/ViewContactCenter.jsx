@@ -58,7 +58,6 @@ function ViewContactCenter({ signOut, user }) {
                 query: queries.listManagerIdRoleQuery,
                 variables: customFilters,
             })
-
             //use DataStore hook to get items comes with subscription for auto updates when data changes within the contact center model.
             var loaded = await Promise.all(
                 itemsDataStore.map(async (item) => {
