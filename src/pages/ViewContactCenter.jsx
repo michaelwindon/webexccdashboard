@@ -4,6 +4,7 @@ import dayjs from 'dayjs'
 import PropTypes from 'prop-types'
 
 import { useTheme } from '@aws-amplify/ui-react'
+import { fetchUserAttributes } from 'aws-amplify/auth'
 
 import { ContactCenterUICollection, MyIcon } from '../ui-components'
 import { generateClient } from 'aws-amplify/api'
@@ -51,7 +52,8 @@ function ViewContactCenter({ signOut, user }) {
     //using datastore collection models to get Items
     useEffect(() => {
         async function setItemsFromDataStore() {
-            const customFilters = { listfilter: user.username } //get logged in user email
+            const userAttributes = await fetchUserAttributes()
+            const customFilters = { listfilter: userAttributes.email } //get logged in user email
 
             //get user ID and Role
             var userRoleId = await gqlclient.graphql({
@@ -77,11 +79,6 @@ function ViewContactCenter({ signOut, user }) {
                             Managers: await item.Managers.values,
                         }
                     } else {
-                        console.log(
-                            `${JSON.stringify(
-                                userRoleId.data.listManagerModels.items[0].id
-                            )}`
-                        )
                         return
                     }
                 })

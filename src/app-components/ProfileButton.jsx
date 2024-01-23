@@ -23,7 +23,7 @@ const ProfileButton = ({ photoUrl, size, gotolink }) => {
             <img
                 src={photoUrl}
                 alt="Profile Pic"
-                style={{ width: '100%', height: '100%', borderRadius: '50%' }}
+                style={{ width: '75%', height: '100%', borderRadius: '50%' }}
             />
         </Button>
     )
@@ -31,7 +31,7 @@ const ProfileButton = ({ photoUrl, size, gotolink }) => {
 
 ProfileButton.propTypes = {
     photoUrl: PropTypes.string.isRequired,
-    size: PropTypes.string, // Define size as a string prop
+    size: PropTypes.number, // Define size as a string prop
     gotolink: PropTypes.string,
 }
 

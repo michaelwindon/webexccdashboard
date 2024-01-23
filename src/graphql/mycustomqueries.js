@@ -1392,7 +1392,7 @@ export const adminContactCenterListQuery = `query AdminContactCenterListQuery{
   `
 
 export const listManagerIdRoleQuery = `query listManagerIdRole($listfilter: String!) {
-    listManagerModels(filter: {email: {contains:$listfilter}}) {
+    listManagerModels(filter: {email: {eq:$listfilter}}) {
       items {
         role
         id
