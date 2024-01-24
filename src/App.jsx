@@ -42,7 +42,6 @@ function App({ signOut, user }) {
     fetchUserAttributes()
         .then((result) => {
             userAttributes = result
-            console.log(`${JSON.stringify(userAttributes)}`)
         })
         .catch((err) => {
             console.log(err)
@@ -55,6 +54,7 @@ function App({ signOut, user }) {
     }
 
     const itemsFilter = createDataStorePredicate(itemsFilterObj)
+
     const { isLoading, items } = useDataStoreBinding({
         type: 'collection',
         model: ManagerModel,

@@ -11,7 +11,6 @@ const UpdateTitleDetailsModal = (props) => {
     fetchUserAttributes()
         .then((result) => {
             userAttributes = result
-            console.log(`${JSON.stringify(userAttributes)}`)
         })
         .catch((err) => {
             console.log(err)

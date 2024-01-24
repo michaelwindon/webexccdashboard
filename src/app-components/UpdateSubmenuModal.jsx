@@ -37,7 +37,7 @@ const UpdateSubmenuModal = (props) => {
     const [showSubmenuForward, setShowSubmenuForward] = useState(false)
     const [showSubmenuMessage, setShowSubmenuMessage] = useState(false)
     const [queues, setQueues] = useState([])
-    const [menuType, setmenuType] = useState('')
+    const [menuType, setmenuType] = useState('NONE')
     const [fieldValue, setfieldValue] = useState('')
 
     useEffect(() => {
@@ -1011,7 +1011,7 @@ const UpdateSubmenuModal = (props) => {
         }
 
         //clear and reset form after submition
-        setmenuType('')
+        setmenuType('NONE')
         setShowSubmenuForward(false)
         setShowSubmenuMessage(false)
         setShowSubmenuQueue(false)
@@ -1101,7 +1101,9 @@ const UpdateSubmenuModal = (props) => {
                                     </Button>
                                     <Button
                                         onClick={() => {
-                                            setmenuType('')
+                                            setmenuType('NONE')
+                                            setfieldValue('')
+                                            handleSubmit()
                                         }}
                                     >
                                         <MyIcon type="" /> Reset
@@ -1167,7 +1169,7 @@ const UpdateSubmenuModal = (props) => {
                                 <View>
                                     <Button
                                         onClick={() => {
-                                            setmenuType('')
+                                            setmenuType('NONE')
                                             setShowSubmenuForward(false)
                                             setShowSubmenuMessage(false)
                                             setShowSubmenuQueue(false)

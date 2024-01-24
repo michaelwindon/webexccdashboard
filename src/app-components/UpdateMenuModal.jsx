@@ -39,7 +39,7 @@ const UpdateMenuModal = (props) => {
     const [showForward, setshowForward] = useState(false)
     const [showSubmenu, setshowSubmenu] = useState(false)
     const [showMessage, setshowMessage] = useState(false)
-    const [menuType, setmenuType] = useState('')
+    const [menuType, setmenuType] = useState('NONE')
     const [queues, setQueues] = useState([])
     const [fieldValue, setfieldValue] = useState('')
     const [fieldMsg, setFieldMsg] = useState('')
@@ -64,14 +64,16 @@ const UpdateMenuModal = (props) => {
 
     const toggleQueue = () => {
         setshowQueue(!showQueue)
-        if (!showQueue && item?.type == 'QUEUE') {
+        if (!showQueue) {
             setfieldValue(item.value)
+            setmenuType('QUEUE')
             if (menunumber === contactcenter?.defaultroute && open) {
                 //if menu number and default match set to default route on submit. else clear check box for next load.
                 setIsdefault(true)
             }
         } else {
             setfieldValue('')
+            setmenuType('NONE')
         }
         setshowForward(false)
         setshowSubmenu(false)
@@ -79,14 +81,17 @@ const UpdateMenuModal = (props) => {
     }
     const toggleForward = () => {
         setshowForward(!showForward)
-        if (!showForward && item?.type == 'FORWARD') {
+
+        if (!showForward) {
             setfieldValue(item.value)
+            setmenuType('FORWARD')
             if (menunumber === contactcenter?.defaultroute && open) {
                 //if menu number and default match set to default route on submit. else clear check box for next load.
                 setIsdefault(true)
             }
         } else {
             setfieldValue('')
+            setmenuType('NONE')
         }
         setshowSubmenu(false)
         setshowMessage(false)
@@ -94,14 +99,16 @@ const UpdateMenuModal = (props) => {
     }
     const toggleSubmenu = () => {
         setshowSubmenu(!showSubmenu)
-        if (!showSubmenu && item?.type == 'SUBMENU') {
+        if (!showSubmenu) {
             setfieldValue(item.value)
+            setmenuType('SUBMENU')
             if (menunumber === contactcenter?.defaultroute && open) {
                 //if menu number and default match set to default route on submit. else clear check box for next load.
                 setIsdefault(true)
             }
         } else {
             setfieldValue('')
+            setmenuType('NONE')
         }
 
         setshowMessage(false)
@@ -111,14 +118,17 @@ const UpdateMenuModal = (props) => {
     const toggleMessge = () => {
         setshowMessage(!showMessage)
 
-        if (!showMessage && item?.type == 'MSG') {
+        if (!showMessage) {
             setfieldValue(item.value)
+            setmenuType('MSG')
+
             if (menunumber === contactcenter?.defaultroute && open) {
                 //if menu number and default match set to default route on submit. else clear check box for next load.
                 setIsdefault(true)
             }
         } else {
             setfieldValue('')
+            setmenuType('NONE')
         }
         setshowQueue(false)
         setshowForward(false)
@@ -395,7 +405,7 @@ const UpdateMenuModal = (props) => {
             }
         }
         //clear form after submit
-        setmenuType('')
+        setmenuType('NONE')
         setshowForward(false)
         setshowMessage(false)
         setshowQueue(false)
@@ -477,7 +487,6 @@ const UpdateMenuModal = (props) => {
                                         <Button
                                             onClick={() => {
                                                 toggleMessge()
-                                                setmenuType('MSG')
                                             }}
                                         >
                                             <MyIcon type="chat" /> Message
@@ -485,7 +494,6 @@ const UpdateMenuModal = (props) => {
                                         <Button
                                             onClick={() => {
                                                 toggleForward()
-                                                setmenuType('FORWARD')
                                             }}
                                         >
                                             <MyIcon type="phone" /> Forward
@@ -493,7 +501,6 @@ const UpdateMenuModal = (props) => {
                                         <Button
                                             onClick={() => {
                                                 toggleQueue()
-                                                setmenuType('QUEUE')
                                             }}
                                         >
                                             <MyIcon type="group" /> Queue
@@ -506,7 +513,6 @@ const UpdateMenuModal = (props) => {
                                             <Button
                                                 onClick={() => {
                                                     toggleSubmenu()
-                                                    setmenuType('SUBMENU')
                                                 }}
                                             >
                                                 <MyIcon type="share" /> Submenu
@@ -514,7 +520,10 @@ const UpdateMenuModal = (props) => {
                                         )}
                                         <Button
                                             onClick={() => {
-                                                setmenuType('')
+                                                setmenuType('NONE')
+                                                setfieldValue('')
+                                                setFieldMsg('')
+                                                handleSubmit()
                                             }}
                                         >
                                             <MyIcon type="" /> Reset
@@ -962,7 +971,7 @@ const UpdateMenuModal = (props) => {
                                 <Flex>
                                     <Button
                                         onClick={() => {
-                                            setmenuType('')
+                                            setmenuType('NONE')
                                             setshowForward(false)
                                             setshowMessage(false)
                                             setshowQueue(false)
@@ -982,8 +991,7 @@ const UpdateMenuModal = (props) => {
                                             showMessage ||
                                             showForward ||
                                             showQueue ||
-                                            showSubmenu ||
-                                            menuType == ''
+                                            showSubmenu
                                                 ? false
                                                 : true
                                         }

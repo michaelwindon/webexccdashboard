@@ -1126,7 +1126,8 @@ export const schema = {
             "values": [
                 "MSG",
                 "FORWARD",
-                "QUEUE"
+                "QUEUE",
+                "NONE"
             ]
         },
         "MenuTypeEnum": {
@@ -1135,7 +1136,8 @@ export const schema = {
                 "MSG",
                 "FORWARD",
                 "QUEUE",
-                "SUBMENU"
+                "SUBMENU",
+                "NONE"
             ]
         }
     },
