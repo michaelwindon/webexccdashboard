@@ -11,14 +11,16 @@ export enum RoleEnum {
 export enum OptionTypeEnum {
   MSG = "MSG",
   FORWARD = "FORWARD",
-  QUEUE = "QUEUE"
+  QUEUE = "QUEUE",
+  NONE = "NONE"
 }
 
 export enum MenuTypeEnum {
   MSG = "MSG",
   FORWARD = "FORWARD",
   QUEUE = "QUEUE",
-  SUBMENU = "SUBMENU"
+  SUBMENU = "SUBMENU",
+  NONE = "NONE"
 }
 
 type EagerOptionMenuType = {
