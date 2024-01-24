@@ -6,7 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps } from "./utils";
+import { getOverrideProps, useNavigateAction } from "./utils";
 import {
   Button,
   Divider,
@@ -16,7 +16,11 @@ import {
   View,
 } from "@aws-amplify/ui-react";
 export default function ContactCenterUI(props) {
-  const { overrides, ...rest } = props;
+  const { contactcentermodel, overrides, ...rest } = props;
+  const ccnameOnClick = useNavigateAction({
+    type: "url",
+    url: `${"/admin/"}${contactcentermodel?.id}`,
+  });
   return (
     <Flex
       gap="0"
@@ -88,7 +92,11 @@ export default function ContactCenterUI(props) {
               position="relative"
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
-              children="Single Billing Office"
+              className="clickAble"
+              children={contactcentermodel?.ccname}
+              onClick={() => {
+                ccnameOnClick();
+              }}
               {...getOverrideProps(overrides, "ccname")}
             ></Text>
             <Text
@@ -109,7 +117,7 @@ export default function ContactCenterUI(props) {
               position="relative"
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
-              children="713-366-5600"
+              children={contactcentermodel?.mainnumber}
               {...getOverrideProps(overrides, "ccmainnumber")}
             ></Text>
           </Flex>
@@ -226,7 +234,7 @@ export default function ContactCenterUI(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children='Thank you for calling Houston Methodist, Customer Service.  <break time="1s"/> If this is an emergency, please hangup, and dial 911.  <break time="1s"/>This call may be recorded for quality and training purposes. <break time="1s"/> huidshuidshufusduhuifshihu jjdfsjiksdbuisd jisdhuisdhidu] jioudshiudshu nidsuhuid'
+            children={contactcentermodel?.welcomeprompt}
             {...getOverrideProps(
               overrides,
               'Thank you for calling Houston Methodist, Customer Service. <break time="1s"/> If this is an emergency, please hangup, and dial 911. <break time="1s"/>This call may be recorded for quality and training purposes. <break time="1s"/> huidshuidshufusduhuifshihu jjdfsjiksdbuisd jisdhuisdhidu] jioudshiudshu nidsuhuid'
@@ -539,6 +547,7 @@ export default function ContactCenterUI(props) {
                 position="relative"
                 padding="0px 0px 0px 0px"
                 whiteSpace="pre-wrap"
+                backgroundColor=""
                 children="MON"
                 {...getOverrideProps(overrides, "dayyArray1")}
               ></Text>
@@ -1443,12 +1452,13 @@ export default function ContactCenterUI(props) {
           <SwitchField
             width="unset"
             height="unset"
-            label="Off"
+            label="isOverride"
             shrink="0"
             size="default"
             defaultChecked={false}
             isDisabled={false}
-            labelPosition="start"
+            labelPosition="bottom"
+            isChecked={contactcentermodel?.isoverride}
             {...getOverrideProps(overrides, "SwitchField")}
           ></SwitchField>
           <Button
@@ -1545,7 +1555,7 @@ export default function ContactCenterUI(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children="2023-12-06T19:23:33.617Z"
+            children={contactcentermodel?.updatedAt}
             {...getOverrideProps(overrides, "lastupdate")}
           ></Text>
           <Text
@@ -1587,7 +1597,7 @@ export default function ContactCenterUI(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children="mlwindon@houstonmethodist.org"
+            children={contactcentermodel?.updateduser}
             {...getOverrideProps(overrides, "lastuser")}
           ></Text>
         </Flex>

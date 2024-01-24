@@ -14,6 +14,7 @@ import {
   Grid,
   Icon,
   ScrollView,
+  SelectField,
   SwitchField,
   Text,
   TextField,
@@ -184,6 +185,7 @@ export default function UpdateOverrideForm(props) {
     onSuccess,
     onError,
     onSubmit,
+    onCancel,
     onValidate,
     onChange,
     overrides,
@@ -312,7 +314,7 @@ export default function UpdateOverrideForm(props) {
       {...rest}
     >
       <SwitchField
-        label="Enable Override"
+        label="Isoverride"
         defaultChecked={false}
         isDisabled={false}
         isChecked={isoverride}
@@ -367,6 +369,10 @@ export default function UpdateOverrideForm(props) {
         hasError={errors.presentlangoption?.hasError}
         {...getOverrideProps(overrides, "presentlangoption")}
       ></SwitchField>
+      <Divider
+        orientation="horizontal"
+        {...getOverrideProps(overrides, "SectionalElement0")}
+      ></Divider>
       <ArrayField
         onChange={async (items) => {
           let values = items;
@@ -417,10 +423,10 @@ export default function UpdateOverrideForm(props) {
           {...getOverrideProps(overrides, "holiday")}
         ></TextField>
       </ArrayField>
-      <TextField
-        label="Epiccontext"
-        isRequired={false}
-        isReadOnly={false}
+      <SelectField
+        label="EPIC Screen Pop Context"
+        placeholder="Please select an option"
+        isDisabled={false}
         value={epiccontext}
         onChange={(e) => {
           let { value } = e.target;
@@ -443,25 +449,39 @@ export default function UpdateOverrideForm(props) {
         errorMessage={errors.epiccontext?.errorMessage}
         hasError={errors.epiccontext?.hasError}
         {...getOverrideProps(overrides, "epiccontext")}
-      ></TextField>
+      >
+        <option
+          children=""
+          value=""
+          {...getOverrideProps(overrides, "epiccontextoption0")}
+        ></option>
+        <option
+          children="Call Hub"
+          value="Call Hub"
+          {...getOverrideProps(overrides, "epiccontextoption1")}
+        ></option>
+        <option
+          children="Scheduling"
+          value="Scheduling"
+          {...getOverrideProps(overrides, "epiccontextoption2")}
+        ></option>
+      </SelectField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}
       >
-        <Button
-          children="Reset"
-          type="reset"
-          onClick={(event) => {
-            event.preventDefault();
-            resetStateValues();
-          }}
-          isDisabled={!(idProp || contactCenterModelModelProp)}
-          {...getOverrideProps(overrides, "ResetButton")}
-        ></Button>
         <Flex
           gap="15px"
           {...getOverrideProps(overrides, "RightAlignCTASubFlex")}
         >
+          <Button
+            children="Cancel"
+            type="button"
+            onClick={() => {
+              onCancel && onCancel();
+            }}
+            {...getOverrideProps(overrides, "CancelButton")}
+          ></Button>
           <Button
             children="Submit"
             type="submit"

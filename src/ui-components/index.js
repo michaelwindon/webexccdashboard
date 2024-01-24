@@ -10,14 +10,12 @@ export { default as CTASection } from "./CTASection";
 export { default as CheckoutPayment } from "./CheckoutPayment";
 export { default as CommentCard } from "./CommentCard";
 export { default as ContactCenterModelCreateForm } from "./ContactCenterModelCreateForm";
+export { default as ContactCenterModelUpdateForm } from "./ContactCenterModelUpdateForm";
 export { default as ContactCenterUI } from "./ContactCenterUI";
 export { default as ContactCenterUICollection } from "./ContactCenterUICollection";
 export { default as ContactUs } from "./ContactUs";
-<<<<<<< HEAD
-=======
 export { default as CounterTile } from "./CounterTile";
 export { default as CreateContactCenterTitleDetails } from "./CreateContactCenterTitleDetails";
->>>>>>> dev
 export { default as DataRow } from "./DataRow";
 export { default as EditProfile } from "./EditProfile";
 export { default as Features2x2 } from "./Features2x2";
@@ -35,6 +33,12 @@ export { default as ManagerModelUpdateForm } from "./ManagerModelUpdateForm";
 export { default as MarketingFooter } from "./MarketingFooter";
 export { default as MarketingFooterBrand } from "./MarketingFooterBrand";
 export { default as MarketingPricing } from "./MarketingPricing";
+export { default as MenuTypeIconafterhours } from "./MenuTypeIconafterhours";
+export { default as MenuTypeIconforward } from "./MenuTypeIconforward";
+export { default as MenuTypeIconholiday } from "./MenuTypeIconholiday";
+export { default as MenuTypeIconmsg } from "./MenuTypeIconmsg";
+export { default as MenuTypeIconqueue } from "./MenuTypeIconqueue";
+export { default as MenuTypeIconsubmenu } from "./MenuTypeIconsubmenu";
 export { default as MyIcon } from "./MyIcon";
 export { default as NavBarHeader } from "./NavBarHeader";
 export { default as NavBarHeader2 } from "./NavBarHeader2";
@@ -52,6 +56,7 @@ export { default as SocialPost } from "./SocialPost";
 export { default as StandardCard } from "./StandardCard";
 export { default as Stat } from "./Stat";
 export { default as TallCard } from "./TallCard";
+export { default as UpdateContactCenterTitleDetails } from "./UpdateContactCenterTitleDetails";
 export { default as UpdateContactCenterWelcome } from "./UpdateContactCenterWelcome";
 export { default as UpdateMenuForm } from "./UpdateMenuForm";
 export { default as UpdateOverrideForm } from "./UpdateOverrideForm";

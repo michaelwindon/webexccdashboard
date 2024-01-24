@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { GridProps, SwitchFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { DividerProps, GridProps, SelectFieldProps, SwitchFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
 import { ContactCenterModel } from "../models";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
@@ -39,8 +39,9 @@ export declare type UpdateOverrideFormOverridesProps = {
     UpdateOverrideFormGrid?: PrimitiveOverrideProps<GridProps>;
     isoverride?: PrimitiveOverrideProps<SwitchFieldProps>;
     presentlangoption?: PrimitiveOverrideProps<SwitchFieldProps>;
+    SectionalElement0?: PrimitiveOverrideProps<DividerProps>;
     holiday?: PrimitiveOverrideProps<TextFieldProps>;
-    epiccontext?: PrimitiveOverrideProps<TextFieldProps>;
+    epiccontext?: PrimitiveOverrideProps<SelectFieldProps>;
 } & EscapeHatchProps;
 export declare type UpdateOverrideFormProps = React.PropsWithChildren<{
     overrides?: UpdateOverrideFormOverridesProps | undefined | null;
@@ -50,6 +51,7 @@ export declare type UpdateOverrideFormProps = React.PropsWithChildren<{
     onSubmit?: (fields: UpdateOverrideFormInputValues) => UpdateOverrideFormInputValues;
     onSuccess?: (fields: UpdateOverrideFormInputValues) => void;
     onError?: (fields: UpdateOverrideFormInputValues, errorMessage: string) => void;
+    onCancel?: () => void;
     onChange?: (fields: UpdateOverrideFormInputValues) => UpdateOverrideFormInputValues;
     onValidate?: UpdateOverrideFormValidationValues;
 } & React.CSSProperties>;

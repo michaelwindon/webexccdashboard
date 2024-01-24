@@ -5,6 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
+import { ContactCenterModel } from "../models";
 import { ButtonProps, DividerProps, FlexProps, SwitchFieldProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
@@ -110,6 +111,8 @@ export declare type ContactCenterUIOverridesProps = {
     lastuser?: PrimitiveOverrideProps<TextProps>;
 } & EscapeHatchProps;
 export declare type ContactCenterUIProps = React.PropsWithChildren<Partial<FlexProps> & {
+    contactcentermodel?: ContactCenterModel;
+} & {
     overrides?: ContactCenterUIOverridesProps | undefined | null;
 }>;
 export default function ContactCenterUI(props: ContactCenterUIProps): React.ReactElement;
