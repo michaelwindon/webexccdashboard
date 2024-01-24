@@ -39,9 +39,9 @@ const UpdateMenuModal = (props) => {
     const [showForward, setshowForward] = useState(false)
     const [showSubmenu, setshowSubmenu] = useState(false)
     const [showMessage, setshowMessage] = useState(false)
-    const [menuType, setmenuType] = useState('NONE')
+    const [menuType, setMenuType] = useState('NONE')
     const [queues, setQueues] = useState([])
-    const [fieldValue, setfieldValue] = useState('')
+    const [fieldValue, setFieldValue] = useState('')
     const [fieldMsg, setFieldMsg] = useState('')
     const [isdefault, setIsdefault] = useState(false)
     const [submenu, setSubmenu] = useState()
@@ -65,9 +65,9 @@ const UpdateMenuModal = (props) => {
     const toggleQueue = () => {
         setshowQueue(!showQueue)
         if (!showQueue && item?.type == 'QUEUE') {
-            setfieldValue(item.value)
+            setFieldValue(item.value)
         } else {
-            setfieldValue('')
+            setFieldValue('')
         }
         setshowForward(false)
         setshowSubmenu(false)
@@ -77,9 +77,9 @@ const UpdateMenuModal = (props) => {
         setshowForward(!showForward)
 
         if (!showForward && item?.type == 'FORWARD') {
-            setfieldValue(item.value)
+            setFieldValue(item.value)
         } else {
-            setfieldValue('')
+            setFieldValue('')
         }
 
         setshowSubmenu(false)
@@ -89,9 +89,9 @@ const UpdateMenuModal = (props) => {
     const toggleSubmenu = () => {
         setshowSubmenu(!showSubmenu)
         if (!showSubmenu && item?.type == 'SUBMENU') {
-            setfieldValue(item.value)
+            setFieldValue(item.value)
         } else {
-            setfieldValue('')
+            setFieldValue('')
         }
 
         setshowMessage(false)
@@ -102,9 +102,9 @@ const UpdateMenuModal = (props) => {
         setshowMessage(!showMessage)
 
         if (!showMessage && item?.type == 'MSG') {
-            setfieldValue(item.value)
+            setFieldValue(item.value)
         } else {
-            setfieldValue('')
+            setFieldValue('')
         }
         setshowQueue(false)
         setshowForward(false)
@@ -187,7 +187,7 @@ const UpdateMenuModal = (props) => {
     }, [open, optionnumber, contactcenter])
 
     const handleFieldChange = (e) => {
-        setfieldValue(e.target.value)
+        setFieldValue(e.target.value)
     }
     const handleFieldMsgChange = (e) => {
         setFieldMsg(e.target.value)
@@ -377,12 +377,12 @@ const UpdateMenuModal = (props) => {
             }
         }
         //clear form after submit
-        setmenuType('NONE')
+        setMenuType('NONE')
         setshowForward(false)
         setshowMessage(false)
         setshowQueue(false)
         setshowSubmenu(false)
-        setfieldValue('')
+        setFieldValue('')
         setFieldMsg('')
         setIsdefault(false)
         onClose()
@@ -459,7 +459,7 @@ const UpdateMenuModal = (props) => {
                                         <Button
                                             onClick={() => {
                                                 toggleMessge()
-                                                setmenuType('MSG')
+                                                setMenuType('MSG')
                                             }}
                                         >
                                             <MyIcon type="chat" /> Message
@@ -467,7 +467,7 @@ const UpdateMenuModal = (props) => {
                                         <Button
                                             onClick={() => {
                                                 toggleForward()
-                                                setmenuType('FORWARD')
+                                                setMenuType('FORWARD')
                                             }}
                                         >
                                             <MyIcon type="phone" /> Forward
@@ -475,7 +475,7 @@ const UpdateMenuModal = (props) => {
                                         <Button
                                             onClick={() => {
                                                 toggleQueue()
-                                                setmenuType('QUEUE')
+                                                setMenuType('QUEUE')
                                             }}
                                         >
                                             <MyIcon type="group" /> Queue
@@ -488,7 +488,7 @@ const UpdateMenuModal = (props) => {
                                             <Button
                                                 onClick={() => {
                                                     toggleSubmenu()
-                                                    setmenuType('SUBMENU')
+                                                    setMenuType('SUBMENU')
                                                 }}
                                             >
                                                 <MyIcon type="share" /> Submenu
@@ -496,8 +496,8 @@ const UpdateMenuModal = (props) => {
                                         )}
                                         <Button
                                             onClick={() => {
-                                                setmenuType('NONE')
-                                                setfieldValue('')
+                                                setMenuType('NONE')
+                                                setFieldValue('')
                                                 setFieldMsg('')
                                                 handleSubmit()
                                             }}
@@ -947,12 +947,12 @@ const UpdateMenuModal = (props) => {
                                 <Flex>
                                     <Button
                                         onClick={() => {
-                                            setmenuType('NONE')
+                                            setMenuType('NONE')
                                             setshowForward(false)
                                             setshowMessage(false)
                                             setshowQueue(false)
                                             setshowSubmenu(false)
-                                            setfieldValue('')
+                                            setFieldValue('')
                                             setFieldMsg('')
                                             setIsdefault(false)
                                             onClose()
