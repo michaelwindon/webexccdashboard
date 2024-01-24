@@ -1,26 +1,8 @@
 {
   "main": {
-    "awscloudformation": {
-      "AuthRoleName": "amplify-webexccdashboard-main-210416-authRole",
-      "UnauthRoleArn": "arn:aws:iam::492501353902:role/amplify-webexccdashboard-main-210416-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::492501353902:role/amplify-webexccdashboard-main-210416-authRole",
-      "Region": "us-east-2",
-      "DeploymentBucketName": "amplify-webexccdashboard-main-210416-deployment",
-      "UnauthRoleName": "amplify-webexccdashboard-main-210416-unauthRole",
-      "StackName": "amplify-webexccdashboard-main-210416",
-      "StackId": "arn:aws:cloudformation:us-east-2:492501353902:stack/amplify-webexccdashboard-main-210416/7d9abdb0-a9b2-11ee-9c27-06f160e4c833",
-      "AmplifyAppId": "d38ecdl24o4b6d",
-      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-webexccdashboard-main-210416-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
-    },
     "categories": {
       "auth": {
         "webexccdashboard": {}
-      },
-      "function": {
-        "webexccdashboard1fe66cea": {
-          "deploymentBucketName": "amplify-webexccdashboard-main-210416-deployment",
-          "s3Key": "amplify-builds/webexccdashboard1fe66cea-582b3650344c3468686a-build.zip"
-        }
       }
     }
   },
@@ -41,7 +23,7 @@
       "function": {
         "webexccdashboard1fe66cea": {
           "deploymentBucketName": "amplify-amplify57ccfec327114-staging-160216-deployment",
-          "s3Key": "amplify-builds/webexccdashboard1fe66cea-445844542f582f62744e-build.zip"
+          "s3Key": "amplify-builds/webexccdashboard1fe66cea-582b3650344c3468686a-build.zip"
         }
       },
       "auth": {
@@ -50,13 +32,6 @@
       "api": {
         "webexccdashboard": {},
         "api8e4b8cf1": {}
-      }
-    }
-  },
-  "main": {
-    "categories": {
-      "auth": {
-        "webexccdashboard": {}
       }
     }
   }

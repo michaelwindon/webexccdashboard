@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { GridProps, SwitchFieldProps, TextAreaFieldProps } from "@aws-amplify/ui-react";
+import { GridProps, SwitchFieldProps, TextAreaFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
 import { ContactCenterModel } from "../models";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
@@ -24,7 +24,6 @@ export declare type ValidationResponse = {
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
 export declare type UpdateMenuFormInputValues = {
     menu0?: string;
-<<<<<<< HEAD
     menu1?: string;
     menu2?: string;
     menu3?: string;
@@ -45,15 +44,6 @@ export declare type UpdateMenuFormInputValues = {
     menu8_sp?: string;
     menu9_sp?: string;
     issecondaryclosed?: boolean;
-=======
-    Field0?: string;
-    Field1?: string;
-    presentlangoption?: boolean;
-    isholiday?: boolean;
-    isafterhours?: boolean;
-    issecondaryclosed?: boolean;
-    epiccontext?: string;
->>>>>>> dev
     submenu1?: string;
     submenu2?: string;
     submenu3?: string;
@@ -74,10 +64,11 @@ export declare type UpdateMenuFormInputValues = {
     submenu8_sp?: string;
     submenu9_sp?: string;
     submenu0_sp?: string;
+    presentlangoption?: boolean;
+    epiccontext?: string;
 };
 export declare type UpdateMenuFormValidationValues = {
     menu0?: ValidationFunction<string>;
-<<<<<<< HEAD
     menu1?: ValidationFunction<string>;
     menu2?: ValidationFunction<string>;
     menu3?: ValidationFunction<string>;
@@ -98,15 +89,6 @@ export declare type UpdateMenuFormValidationValues = {
     menu8_sp?: ValidationFunction<string>;
     menu9_sp?: ValidationFunction<string>;
     issecondaryclosed?: ValidationFunction<boolean>;
-=======
-    Field0?: ValidationFunction<string>;
-    Field1?: ValidationFunction<string>;
-    presentlangoption?: ValidationFunction<boolean>;
-    isholiday?: ValidationFunction<boolean>;
-    isafterhours?: ValidationFunction<boolean>;
-    issecondaryclosed?: ValidationFunction<boolean>;
-    epiccontext?: ValidationFunction<string>;
->>>>>>> dev
     submenu1?: ValidationFunction<string>;
     submenu2?: ValidationFunction<string>;
     submenu3?: ValidationFunction<string>;
@@ -127,12 +109,13 @@ export declare type UpdateMenuFormValidationValues = {
     submenu8_sp?: ValidationFunction<string>;
     submenu9_sp?: ValidationFunction<string>;
     submenu0_sp?: ValidationFunction<string>;
+    presentlangoption?: ValidationFunction<boolean>;
+    epiccontext?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type UpdateMenuFormOverridesProps = {
     UpdateMenuFormGrid?: PrimitiveOverrideProps<GridProps>;
     menu0?: PrimitiveOverrideProps<TextAreaFieldProps>;
-<<<<<<< HEAD
     menu1?: PrimitiveOverrideProps<TextAreaFieldProps>;
     menu2?: PrimitiveOverrideProps<TextAreaFieldProps>;
     menu3?: PrimitiveOverrideProps<TextAreaFieldProps>;
@@ -153,15 +136,6 @@ export declare type UpdateMenuFormOverridesProps = {
     menu8_sp?: PrimitiveOverrideProps<TextAreaFieldProps>;
     menu9_sp?: PrimitiveOverrideProps<TextAreaFieldProps>;
     issecondaryclosed?: PrimitiveOverrideProps<SwitchFieldProps>;
-=======
-    Field0?: PrimitiveOverrideProps<SelectFieldProps>;
-    Field1?: PrimitiveOverrideProps<TextFieldProps>;
-    presentlangoption?: PrimitiveOverrideProps<SwitchFieldProps>;
-    isholiday?: PrimitiveOverrideProps<SwitchFieldProps>;
-    isafterhours?: PrimitiveOverrideProps<SwitchFieldProps>;
-    issecondaryclosed?: PrimitiveOverrideProps<SwitchFieldProps>;
-    epiccontext?: PrimitiveOverrideProps<TextFieldProps>;
->>>>>>> dev
     submenu1?: PrimitiveOverrideProps<TextAreaFieldProps>;
     submenu2?: PrimitiveOverrideProps<TextAreaFieldProps>;
     submenu3?: PrimitiveOverrideProps<TextAreaFieldProps>;
@@ -182,6 +156,8 @@ export declare type UpdateMenuFormOverridesProps = {
     submenu8_sp?: PrimitiveOverrideProps<TextAreaFieldProps>;
     submenu9_sp?: PrimitiveOverrideProps<TextAreaFieldProps>;
     submenu0_sp?: PrimitiveOverrideProps<TextAreaFieldProps>;
+    presentlangoption?: PrimitiveOverrideProps<SwitchFieldProps>;
+    epiccontext?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type UpdateMenuFormProps = React.PropsWithChildren<{
     overrides?: UpdateMenuFormOverridesProps | undefined | null;

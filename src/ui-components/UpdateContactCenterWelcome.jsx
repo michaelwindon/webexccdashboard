@@ -22,35 +22,33 @@ export default function UpdateContactCenterWelcome(props) {
     ...rest
   } = props;
   const initialValues = {
-    mainnumber: "",
     ccname: "",
     welcomeprompt: "",
+    epiccontext: "",
     ccdescription: "",
   };
-  const [mainnumber, setMainnumber] = React.useState(initialValues.mainnumber);
   const [ccname, setCcname] = React.useState(initialValues.ccname);
   const [welcomeprompt, setWelcomeprompt] = React.useState(
     initialValues.welcomeprompt
+  );
+  const [epiccontext, setEpiccontext] = React.useState(
+    initialValues.epiccontext
   );
   const [ccdescription, setCcdescription] = React.useState(
     initialValues.ccdescription
   );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    setMainnumber(initialValues.mainnumber);
     setCcname(initialValues.ccname);
     setWelcomeprompt(initialValues.welcomeprompt);
+    setEpiccontext(initialValues.epiccontext);
     setCcdescription(initialValues.ccdescription);
     setErrors({});
   };
   const validations = {
-<<<<<<< HEAD
     ccname: [{ type: "Required" }],
-=======
-    mainnumber: [{ type: "Required" }],
-    ccname: [],
->>>>>>> dev
     welcomeprompt: [],
+    epiccontext: [],
     ccdescription: [],
   };
   const runValidationTasks = async (
@@ -79,9 +77,9 @@ export default function UpdateContactCenterWelcome(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          mainnumber,
           ccname,
           welcomeprompt,
+          epiccontext,
           ccdescription,
         };
         const validationResponses = await Promise.all(
@@ -129,33 +127,6 @@ export default function UpdateContactCenterWelcome(props) {
       {...rest}
     >
       <TextField
-        label="Contact Center Number"
-        isRequired={true}
-        isReadOnly={false}
-        value={mainnumber}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              mainnumber: value,
-              ccname,
-              welcomeprompt,
-              ccdescription,
-            };
-            const result = onChange(modelFields);
-            value = result?.mainnumber ?? value;
-          }
-          if (errors.mainnumber?.hasError) {
-            runValidationTasks("mainnumber", value);
-          }
-          setMainnumber(value);
-        }}
-        onBlur={() => runValidationTasks("mainnumber", mainnumber)}
-        errorMessage={errors.mainnumber?.errorMessage}
-        hasError={errors.mainnumber?.hasError}
-        {...getOverrideProps(overrides, "mainnumber")}
-      ></TextField>
-      <TextField
         label="Contact Center Name"
         isRequired={true}
         isReadOnly={false}
@@ -164,9 +135,9 @@ export default function UpdateContactCenterWelcome(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              mainnumber,
               ccname: value,
               welcomeprompt,
+              epiccontext,
               ccdescription,
             };
             const result = onChange(modelFields);
@@ -191,9 +162,9 @@ export default function UpdateContactCenterWelcome(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              mainnumber,
               ccname,
               welcomeprompt: value,
+              epiccontext,
               ccdescription,
             };
             const result = onChange(modelFields);
@@ -210,6 +181,33 @@ export default function UpdateContactCenterWelcome(props) {
         {...getOverrideProps(overrides, "welcomeprompt")}
       ></TextField>
       <TextField
+        label="Epiccontext"
+        isRequired={false}
+        isReadOnly={false}
+        value={epiccontext}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              ccname,
+              welcomeprompt,
+              epiccontext: value,
+              ccdescription,
+            };
+            const result = onChange(modelFields);
+            value = result?.epiccontext ?? value;
+          }
+          if (errors.epiccontext?.hasError) {
+            runValidationTasks("epiccontext", value);
+          }
+          setEpiccontext(value);
+        }}
+        onBlur={() => runValidationTasks("epiccontext", epiccontext)}
+        errorMessage={errors.epiccontext?.errorMessage}
+        hasError={errors.epiccontext?.hasError}
+        {...getOverrideProps(overrides, "epiccontext")}
+      ></TextField>
+      <TextField
         label="Contact Center Description"
         isRequired={false}
         isReadOnly={false}
@@ -218,9 +216,9 @@ export default function UpdateContactCenterWelcome(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              mainnumber,
               ccname,
               welcomeprompt,
+              epiccontext,
               ccdescription: value,
             };
             const result = onChange(modelFields);

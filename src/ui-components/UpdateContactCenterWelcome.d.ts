@@ -22,23 +22,23 @@ export declare type ValidationResponse = {
 };
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
 export declare type UpdateContactCenterWelcomeInputValues = {
-    mainnumber?: string;
     ccname?: string;
     welcomeprompt?: string;
+    epiccontext?: string;
     ccdescription?: string;
 };
 export declare type UpdateContactCenterWelcomeValidationValues = {
-    mainnumber?: ValidationFunction<string>;
     ccname?: ValidationFunction<string>;
     welcomeprompt?: ValidationFunction<string>;
+    epiccontext?: ValidationFunction<string>;
     ccdescription?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type UpdateContactCenterWelcomeOverridesProps = {
     UpdateContactCenterWelcomeGrid?: PrimitiveOverrideProps<GridProps>;
-    mainnumber?: PrimitiveOverrideProps<TextFieldProps>;
     ccname?: PrimitiveOverrideProps<TextFieldProps>;
     welcomeprompt?: PrimitiveOverrideProps<TextFieldProps>;
+    epiccontext?: PrimitiveOverrideProps<TextFieldProps>;
     ccdescription?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type UpdateContactCenterWelcomeProps = React.PropsWithChildren<{

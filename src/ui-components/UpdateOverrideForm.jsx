@@ -14,7 +14,6 @@ import {
   Grid,
   Icon,
   ScrollView,
-  SelectField,
   SwitchField,
   Text,
   TextField,
@@ -418,10 +417,10 @@ export default function UpdateOverrideForm(props) {
           {...getOverrideProps(overrides, "holiday")}
         ></TextField>
       </ArrayField>
-      <SelectField
-        label="EPIC Screen Pop Context"
-        placeholder="Please select an option"
-        isDisabled={false}
+      <TextField
+        label="Epiccontext"
+        isRequired={false}
+        isReadOnly={false}
         value={epiccontext}
         onChange={(e) => {
           let { value } = e.target;
@@ -444,23 +443,7 @@ export default function UpdateOverrideForm(props) {
         errorMessage={errors.epiccontext?.errorMessage}
         hasError={errors.epiccontext?.hasError}
         {...getOverrideProps(overrides, "epiccontext")}
-      >
-        <option
-          children=""
-          value=""
-          {...getOverrideProps(overrides, "epiccontextoption0")}
-        ></option>
-        <option
-          children="Call Hub"
-          value="Call Hub"
-          {...getOverrideProps(overrides, "epiccontextoption1")}
-        ></option>
-        <option
-          children="Scheduling"
-          value="Scheduling"
-          {...getOverrideProps(overrides, "epiccontextoption2")}
-        ></option>
-      </SelectField>
+      ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

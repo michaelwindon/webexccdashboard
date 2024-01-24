@@ -5,11 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-<<<<<<< HEAD
 import { GridProps, SwitchFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
-=======
-import { DividerProps, GridProps, SelectFieldProps, SwitchFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
->>>>>>> dev
 import { ContactCenterModel } from "../models";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
@@ -44,7 +40,7 @@ export declare type UpdateOverrideFormOverridesProps = {
     isoverride?: PrimitiveOverrideProps<SwitchFieldProps>;
     presentlangoption?: PrimitiveOverrideProps<SwitchFieldProps>;
     holiday?: PrimitiveOverrideProps<TextFieldProps>;
-    epiccontext?: PrimitiveOverrideProps<SelectFieldProps>;
+    epiccontext?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type UpdateOverrideFormProps = React.PropsWithChildren<{
     overrides?: UpdateOverrideFormOverridesProps | undefined | null;
