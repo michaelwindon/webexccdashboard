@@ -16,7 +16,7 @@
       "function": {
         "webexccdashboard1fe66cea": {
           "deploymentBucketName": "amplify-amplify57ccfec327114-staging-160216-deployment",
-          "s3Key": "amplify-builds/webexccdashboard1fe66cea-445844542f582f62744e-build.zip"
+          "s3Key": "amplify-builds/webexccdashboard1fe66cea-582b3650344c3468686a-build.zip"
         }
       },
       "auth": {

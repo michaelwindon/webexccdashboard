@@ -11,16 +11,14 @@ const RoleEnum = {
 const OptionTypeEnum = {
   "MSG": "MSG",
   "FORWARD": "FORWARD",
-  "QUEUE": "QUEUE",
-  "NONE": "NONE"
+  "QUEUE": "QUEUE"
 };
 
 const MenuTypeEnum = {
   "MSG": "MSG",
   "FORWARD": "FORWARD",
   "QUEUE": "QUEUE",
-  "SUBMENU": "SUBMENU",
-  "NONE": "NONE"
+  "SUBMENU": "SUBMENU"
 };
 
 const { GroupModel, QueueModel, ManagerModel, ContactCenterModel, GroupModelManagerModel, ContactCenterModelManagerModel, OptionMenuType, MenuType, SubmenuType } = initSchema(schema);

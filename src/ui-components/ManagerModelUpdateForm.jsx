@@ -322,7 +322,7 @@ export default function ManagerModelUpdateForm(props) {
   };
   const validations = {
     name: [],
-    email: [{ type: "Required" }, { type: "Email" }],
+    email: [{ type: "Email" }],
     telephone: [{ type: "Phone" }],
     profilepic: [{ type: "URL" }],
     role: [],
@@ -605,7 +605,7 @@ export default function ManagerModelUpdateForm(props) {
       ></TextField>
       <TextField
         label="Email"
-        isRequired={true}
+        isRequired={false}
         isReadOnly={false}
         value={email}
         onChange={(e) => {

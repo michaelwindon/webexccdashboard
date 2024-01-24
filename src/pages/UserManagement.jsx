@@ -1,5 +1,5 @@
 import { ManagerModelUpdateForm } from '../ui-components'
-import { SelectField } from '@aws-amplify/ui-react'
+import { SelectField, Flex, View } from '@aws-amplify/ui-react'
 import { ManagerModel } from '../models'
 import { useEffect, useState } from 'react'
 import { DataStore, Predicates, SortDirection } from 'aws-amplify/datastore'
@@ -50,37 +50,41 @@ const UserManagement = () => {
 
     return (
         <>
-            <h1>Update Managers</h1>
-            <SelectField
-                label="Managers"
-                icon={<MyIcon type="group" />}
-                onChange={(e) => {
-                    setValue(e.target.value)
-                    setShowForm(true)
-                }}
-            >
-                <option key="start" value="">
-                    Pick Manager to Update
-                </option>
-                {data.map((item, index) => (
-                    <option key={index} value={item.id}>
-                        {item.name}
-                    </option>
-                ))}
-            </SelectField>
+            <Flex direction="row" justifyContent="center">
+                <View maxWidth="100%" width="40rem">
+                    <h1>Update Managers</h1>
+                    <SelectField
+                        label="Managers"
+                        icon={<MyIcon type="group" />}
+                        onChange={(e) => {
+                            setValue(e.target.value)
+                            setShowForm(true)
+                        }}
+                    >
+                        <option key="start" value="">
+                            Pick Manager to Update
+                        </option>
+                        {data.map((item, index) => (
+                            <option key={index} value={item.id}>
+                                {item.name}
+                            </option>
+                        ))}
+                    </SelectField>
 
-            {showForm && (
-                <ManagerModelUpdateForm
-                    id={value}
-                    onError={(fields) => {
-                        handleonError(fields.name)
-                    }}
-                    onSuccess={(fields) => {
-                        handleonSuccess(fields.name)
-                    }}
-                />
-            )}
-            <ToastContainer />
+                    {showForm && (
+                        <ManagerModelUpdateForm
+                            id={value}
+                            onError={(fields) => {
+                                handleonError(fields.name)
+                            }}
+                            onSuccess={(fields) => {
+                                handleonSuccess(fields.name)
+                            }}
+                        />
+                    )}
+                    <ToastContainer />
+                </View>
+            </Flex>
         </>
     )
 }

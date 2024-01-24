@@ -1,5 +1,5 @@
 import { GroupModelUpdateForm } from '../ui-components'
-import { SelectField } from '@aws-amplify/ui-react'
+import { SelectField, Flex, View } from '@aws-amplify/ui-react'
 
 import { GroupModel } from '../models'
 
@@ -52,37 +52,41 @@ const GroupManagement = () => {
 
     return (
         <>
-            <h1>Group Management - Update Existing</h1>
-            <SelectField
-                label="Groups"
-                icon={<MyIcon type="group" />}
-                onChange={(e) => {
-                    setValue(e.target.value)
-                    setShowForm(true)
-                }}
-            >
-                <option key="start" value="">
-                    Pick Group to Update
-                </option>
-                {data.map((item, index) => (
-                    <option key={index} value={item.id}>
-                        {item.fullname}
-                    </option>
-                ))}
-            </SelectField>
+            <Flex direction="row" justifyContent="center">
+                <View maxWidth="100%" width="40rem">
+                    <h1>Group Management - Update Existing</h1>
+                    <SelectField
+                        label="Groups"
+                        icon={<MyIcon type="group" />}
+                        onChange={(e) => {
+                            setValue(e.target.value)
+                            setShowForm(true)
+                        }}
+                    >
+                        <option key="start" value="">
+                            Pick Group to Update
+                        </option>
+                        {data.map((item, index) => (
+                            <option key={index} value={item.id}>
+                                {item.fullname}
+                            </option>
+                        ))}
+                    </SelectField>
 
-            {showForm && (
-                <GroupModelUpdateForm
-                    id={value}
-                    onError={(fields) => {
-                        handleonError(fields.fullname)
-                    }}
-                    onSuccess={(fields) => {
-                        handleonSuccess(fields.fullname)
-                    }}
-                />
-            )}
-            <ToastContainer />
+                    {showForm && (
+                        <GroupModelUpdateForm
+                            id={value}
+                            onError={(fields) => {
+                                handleonError(fields.fullname)
+                            }}
+                            onSuccess={(fields) => {
+                                handleonSuccess(fields.fullname)
+                            }}
+                        />
+                    )}
+                    <ToastContainer />
+                </View>
+            </Flex>
         </>
     )
 }

@@ -1,5 +1,5 @@
 import { QueueModelUpdateForm } from '../ui-components'
-import { SelectField } from '@aws-amplify/ui-react'
+import { SelectField, Flex, View } from '@aws-amplify/ui-react'
 
 import { QueueModel } from '../models'
 
@@ -51,39 +51,41 @@ const QueueManagement = () => {
 
     return (
         <>
-            <h1>Queue Management - Update Existing</h1>
-
-            <SelectField
-                label="Queues"
-                icon={<MyIcon type="group" />}
-                onChange={(e) => {
-                    setValue(e.target.value)
-                    setShowForm(true)
-                }}
-            >
-                <option key="start" value="">
-                    Pick Queue to Update
-                </option>
-                {data.map((item, index) => (
-                    <option key={index} value={item.id}>
-                        {item.name}
-                    </option>
-                ))}
-            </SelectField>
-            Queues Count: {data.length}
-            
-            {showForm && (
-                <QueueModelUpdateForm
-                    id={value}
-                    onError={(fields) => {
-                        handleonError(fields.name)
-                    }}
-                    onSuccess={(fields) => {
-                        handleonSuccess(fields.name)
-                    }}
-                />
-            )}
-            <ToastContainer />
+            <Flex direction="row" justifyContent="center">
+                <View maxWidth="100%" width="40rem">
+                    <h1>Queue Management - Update Existing</h1>
+                    <SelectField
+                        label="Queues"
+                        icon={<MyIcon type="group" />}
+                        onChange={(e) => {
+                            setValue(e.target.value)
+                            setShowForm(true)
+                        }}
+                    >
+                        <option key="start" value="">
+                            Pick Queue to Update
+                        </option>
+                        {data.map((item, index) => (
+                            <option key={index} value={item.id}>
+                                {item.name}
+                            </option>
+                        ))}
+                    </SelectField>
+                    Queues Count: {data.length}
+                    {showForm && (
+                        <QueueModelUpdateForm
+                            id={value}
+                            onError={(fields) => {
+                                handleonError(fields.name)
+                            }}
+                            onSuccess={(fields) => {
+                                handleonSuccess(fields.name)
+                            }}
+                        />
+                    )}
+                    <ToastContainer />
+                </View>
+            </Flex>
         </>
     )
 }

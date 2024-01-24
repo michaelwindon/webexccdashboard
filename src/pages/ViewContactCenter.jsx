@@ -198,7 +198,7 @@ function ViewContactCenter({ signOut, user }) {
                         user={user}
                         setShowSpanish={setShowSpanish}
                     />
-                    <Flex padding="25px">
+                    <Flex padding="25px" justifyContent="center">
                         <ContactCenterUICollection
                             items={authorizedItems}
                             overrideItems={({ item, index }) => ({

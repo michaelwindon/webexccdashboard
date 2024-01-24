@@ -187,7 +187,7 @@ export const schema = {
                     "name": "email",
                     "isArray": false,
                     "type": "AWSEmail",
-                    "isRequired": true,
+                    "isRequired": false,
                     "attributes": []
                 },
                 "telephone": {
@@ -1126,8 +1126,7 @@ export const schema = {
             "values": [
                 "MSG",
                 "FORWARD",
-                "QUEUE",
-                "NONE"
+                "QUEUE"
             ]
         },
         "MenuTypeEnum": {
@@ -1136,8 +1135,7 @@ export const schema = {
                 "MSG",
                 "FORWARD",
                 "QUEUE",
-                "SUBMENU",
-                "NONE"
+                "SUBMENU"
             ]
         }
     },
@@ -1295,5 +1293,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.4.4",
-    "version": "f4e9c817bff06f0b9503004f2fc86cce"
+    "version": "7550366bcb9b2e6ce4c77958940ae6e5"
 };
