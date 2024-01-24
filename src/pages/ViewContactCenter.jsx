@@ -4,6 +4,7 @@ import dayjs from 'dayjs'
 import PropTypes from 'prop-types'
 
 import { useTheme } from '@aws-amplify/ui-react'
+import { fetchUserAttributes } from 'aws-amplify/auth'
 
 import { ContactCenterUICollection, MyIcon } from '../ui-components'
 import { generateClient } from 'aws-amplify/api'
@@ -51,14 +52,14 @@ function ViewContactCenter({ signOut, user }) {
     //using datastore collection models to get Items
     useEffect(() => {
         async function setItemsFromDataStore() {
-            const customFilters = { listfilter: user.username } //get logged in user email
+            const userAttributes = await fetchUserAttributes()
+            const customFilters = { listfilter: userAttributes.email } //get logged in user email
 
             //get user ID and Role
             var userRoleId = await gqlclient.graphql({
                 query: queries.listManagerIdRoleQuery,
                 variables: customFilters,
             })
-
             //use DataStore hook to get items comes with subscription for auto updates when data changes within the contact center model.
             var loaded = await Promise.all(
                 itemsDataStore.map(async (item) => {
@@ -541,7 +542,7 @@ function ViewContactCenter({ signOut, user }) {
                                             <>
                                                 {item.secondarytodclose[4] ==
                                                     '' ||
-                                                item.secondarytodclose[1] ==
+                                                item.secondarytodclose[4] ==
                                                     'Invalid Date' ||
                                                 item.secondarytodclose[4] ===
                                                     undefined
@@ -583,7 +584,7 @@ function ViewContactCenter({ signOut, user }) {
                                             <>
                                                 {item.secondarytodclose[0] ==
                                                     '' ||
-                                                item.secondarytodclose[7] ==
+                                                item.secondarytodclose[0] ==
                                                     'Invalid Date' ||
                                                 item.secondarytodclose[0] ===
                                                     undefined

@@ -5,7 +5,8 @@
  **************************************************************************/
 
 import * as React from "react";
-import { ButtonProps, FlexProps, SelectFieldProps } from "@aws-amplify/ui-react";
+import { SmallContactCenterCardProps } from "./SmallContactCenterCard";
+import { CollectionProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -17,14 +18,17 @@ export declare type Variant = {
     overrides: EscapeHatchProps;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type FiltersOverridesProps = {
-    Filters?: PrimitiveOverrideProps<FlexProps>;
-    GroupSelectField?: PrimitiveOverrideProps<SelectFieldProps>;
-    ContactCenterNameSelectField?: PrimitiveOverrideProps<SelectFieldProps>;
-    TelephoneSelectField?: PrimitiveOverrideProps<SelectFieldProps>;
-    Button?: PrimitiveOverrideProps<ButtonProps>;
+export declare type SmallContactCenterCardCollectionOverridesProps = {
+    SmallContactCenterCardCollection?: PrimitiveOverrideProps<CollectionProps>;
+    SmallContactCenterCard?: SmallContactCenterCardProps;
 } & EscapeHatchProps;
-export declare type FiltersProps = React.PropsWithChildren<Partial<FlexProps> & {
-    overrides?: FiltersOverridesProps | undefined | null;
+export declare type SmallContactCenterCardCollectionProps = React.PropsWithChildren<Partial<CollectionProps<any>> & {
+    items?: any[];
+    overrideItems?: (collectionItem: {
+        item: any;
+        index: number;
+    }) => SmallContactCenterCardProps;
+} & {
+    overrides?: SmallContactCenterCardCollectionOverridesProps | undefined | null;
 }>;
-export default function Filters(props: FiltersProps): React.ReactElement;
+export default function SmallContactCenterCardCollection(props: SmallContactCenterCardCollectionProps): React.ReactElement;

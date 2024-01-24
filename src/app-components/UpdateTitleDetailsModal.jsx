@@ -2,9 +2,19 @@ import { UpdateContactCenterTitleDetails } from '../ui-components/'
 import Dialog from '@mui/material/Dialog'
 import DialogContent from '@mui/material/DialogContent'
 import DialogTitle from '@mui/material/DialogTitle'
+import { fetchUserAttributes } from 'aws-amplify/auth'
 
 const UpdateTitleDetailsModal = (props) => {
     const { id, onClose, open, user } = props
+
+    var userAttributes
+    fetchUserAttributes()
+        .then((result) => {
+            userAttributes = result
+        })
+        .catch((err) => {
+            console.log(err)
+        })
 
     return (
         <Dialog onClose={onClose} open={open}>
@@ -19,11 +29,12 @@ const UpdateTitleDetailsModal = (props) => {
                         onClose()
                     }}
                     onSubmit={(fields) => {
-                        const updatedFields = {}
-                        Object.keys(fields).forEach((key) => {
-                            updatedFields[key] = fields[key]
-                        })
-                        updatedFields['updateduser'] = user.username // add username to contact center to know who last updated the record
+                        var updatedFields = {
+                            ...fields,
+                        }
+                        updatedFields['updateduser'] = userAttributes?.email
+
+                        console.log(`updating ${JSON.stringify(updatedFields)}`)
                         return updatedFields
                     }}
                 />

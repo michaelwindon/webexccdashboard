@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { AutocompleteProps, GridProps, SwitchFieldProps, TextAreaFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { AutocompleteProps, GridProps, SelectFieldProps, SwitchFieldProps, TextAreaFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
 import { ManagerModel, GroupModel } from "../models";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
@@ -24,6 +24,17 @@ export declare type ValidationResponse = {
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
 export declare type ContactCenterModelCreateFormInputValues = {
     mainnumber?: string;
+    ccdescription?: string;
+    Managers?: ManagerModel[];
+    AssignedGroup?: GroupModel;
+    epiccontext?: string;
+    presentlangoption?: boolean;
+    isoverride?: boolean;
+    isholiday?: boolean;
+    isafterhours?: boolean;
+    issecondaryclosed?: boolean;
+    welcomeprompt?: string;
+    welcomeprompt_sp?: string;
     menu0?: string;
     menu1?: string;
     menu2?: string;
@@ -91,6 +102,17 @@ export declare type ContactCenterModelCreateFormInputValues = {
 };
 export declare type ContactCenterModelCreateFormValidationValues = {
     mainnumber?: ValidationFunction<string>;
+    ccdescription?: ValidationFunction<string>;
+    Managers?: ValidationFunction<ManagerModel>;
+    AssignedGroup?: ValidationFunction<GroupModel>;
+    presentlangoption?: ValidationFunction<boolean>;
+    isoverride?: ValidationFunction<boolean>;
+    isholiday?: ValidationFunction<boolean>;
+    isafterhours?: ValidationFunction<boolean>;
+    issecondaryclosed?: ValidationFunction<boolean>;
+    epiccontext?: ValidationFunction<string>;
+    welcomeprompt?: ValidationFunction<string>;
+    welcomeprompt_sp?: ValidationFunction<string>;
     menu0?: ValidationFunction<string>;
     menu1?: ValidationFunction<string>;
     menu2?: ValidationFunction<string>;
@@ -160,6 +182,17 @@ export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes
 export declare type ContactCenterModelCreateFormOverridesProps = {
     ContactCenterModelCreateFormGrid?: PrimitiveOverrideProps<GridProps>;
     mainnumber?: PrimitiveOverrideProps<TextFieldProps>;
+    ccdescription?: PrimitiveOverrideProps<TextFieldProps>;
+    Managers?: PrimitiveOverrideProps<AutocompleteProps>;
+    AssignedGroup?: PrimitiveOverrideProps<AutocompleteProps>;
+    presentlangoption?: PrimitiveOverrideProps<SwitchFieldProps>;
+    isoverride?: PrimitiveOverrideProps<SwitchFieldProps>;
+    isholiday?: PrimitiveOverrideProps<SwitchFieldProps>;
+    isafterhours?: PrimitiveOverrideProps<SwitchFieldProps>;
+    issecondaryclosed?: PrimitiveOverrideProps<SwitchFieldProps>;
+    epiccontext?: PrimitiveOverrideProps<TextFieldProps>;
+    welcomeprompt?: PrimitiveOverrideProps<TextFieldProps>;
+    welcomeprompt_sp?: PrimitiveOverrideProps<TextFieldProps>;
     menu0?: PrimitiveOverrideProps<TextAreaFieldProps>;
     menu1?: PrimitiveOverrideProps<TextAreaFieldProps>;
     menu2?: PrimitiveOverrideProps<TextAreaFieldProps>;

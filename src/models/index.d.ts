@@ -11,14 +11,16 @@ export enum RoleEnum {
 export enum OptionTypeEnum {
   MSG = "MSG",
   FORWARD = "FORWARD",
-  QUEUE = "QUEUE"
+  QUEUE = "QUEUE",
+  NONE = "NONE"
 }
 
 export enum MenuTypeEnum {
   MSG = "MSG",
   FORWARD = "FORWARD",
   QUEUE = "QUEUE",
-  SUBMENU = "SUBMENU"
+  SUBMENU = "SUBMENU",
+  NONE = "NONE"
 }
 
 type EagerOptionMenuType = {
@@ -154,7 +156,7 @@ type EagerManagerModel = {
   };
   readonly id: string;
   readonly name?: string | null;
-  readonly email?: string | null;
+  readonly email: string;
   readonly telephone?: string | null;
   readonly profilepic?: string | null;
   readonly role?: RoleEnum | keyof typeof RoleEnum | null;
@@ -171,7 +173,7 @@ type LazyManagerModel = {
   };
   readonly id: string;
   readonly name?: string | null;
-  readonly email?: string | null;
+  readonly email: string;
   readonly telephone?: string | null;
   readonly profilepic?: string | null;
   readonly role?: RoleEnum | keyof typeof RoleEnum | null;

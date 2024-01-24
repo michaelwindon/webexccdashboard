@@ -1,7 +1,7 @@
-import { QueueModelUpdateForm } from '../ui-components'
+import { GroupModelUpdateForm } from '../ui-components'
 import { SelectField } from '@aws-amplify/ui-react'
 
-import { QueueModel } from '../models'
+import { GroupModel } from '../models'
 
 import { useEffect, useState } from 'react'
 import { DataStore, Predicates, SortDirection } from 'aws-amplify/datastore'
@@ -9,15 +9,15 @@ import { ToastContainer, toast } from 'react-toastify'
 import { MyIcon } from '../ui-components/'
 import 'react-toastify/dist/ReactToastify.css'
 
-const QueueManagement = () => {
+const GroupManagement = () => {
     const [data, setData] = useState([])
     const [value, setValue] = useState()
     const [showForm, setShowForm] = useState(false)
 
     useEffect(() => {
         const getData = async () => {
-            const que = await DataStore.query(QueueModel, Predicates.ALL, {
-                sort: (s) => s.name(SortDirection.ASCENDING),
+            const que = await DataStore.query(GroupModel, Predicates.ALL, {
+                sort: (s) => s.fullname(SortDirection.ASCENDING),
             })
             setData(que)
         }
@@ -35,6 +35,7 @@ const QueueManagement = () => {
                 break
 
             default:
+                toast(msg)
                 break
         }
     }
@@ -51,10 +52,9 @@ const QueueManagement = () => {
 
     return (
         <>
-            <h1>Queue Management - Update Existing</h1>
-
+            <h1>Group Management - Update Existing</h1>
             <SelectField
-                label="Queues"
+                label="Groups"
                 icon={<MyIcon type="group" />}
                 onChange={(e) => {
                     setValue(e.target.value)
@@ -62,24 +62,23 @@ const QueueManagement = () => {
                 }}
             >
                 <option key="start" value="">
-                    Pick Queue to Update
+                    Pick Group to Update
                 </option>
                 {data.map((item, index) => (
                     <option key={index} value={item.id}>
-                        {item.name}
+                        {item.fullname}
                     </option>
                 ))}
             </SelectField>
-            Queues Count: {data.length}
-            
+
             {showForm && (
-                <QueueModelUpdateForm
+                <GroupModelUpdateForm
                     id={value}
                     onError={(fields) => {
-                        handleonError(fields.name)
+                        handleonError(fields.fullname)
                     }}
                     onSuccess={(fields) => {
-                        handleonSuccess(fields.name)
+                        handleonSuccess(fields.fullname)
                     }}
                 />
             )}
@@ -87,4 +86,4 @@ const QueueManagement = () => {
         </>
     )
 }
-export default QueueManagement
+export default GroupManagement

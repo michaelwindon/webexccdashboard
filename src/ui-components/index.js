@@ -13,6 +13,11 @@ export { default as ContactCenterModelCreateForm } from "./ContactCenterModelCre
 export { default as ContactCenterUI } from "./ContactCenterUI";
 export { default as ContactCenterUICollection } from "./ContactCenterUICollection";
 export { default as ContactUs } from "./ContactUs";
+<<<<<<< HEAD
+=======
+export { default as CounterTile } from "./CounterTile";
+export { default as CreateContactCenterTitleDetails } from "./CreateContactCenterTitleDetails";
+>>>>>>> dev
 export { default as DataRow } from "./DataRow";
 export { default as EditProfile } from "./EditProfile";
 export { default as Features2x2 } from "./Features2x2";
@@ -22,7 +27,6 @@ export { default as GroupModelCreateForm } from "./GroupModelCreateForm";
 export { default as GroupModelUpdateForm } from "./GroupModelUpdateForm";
 export { default as HeroLayout1 } from "./HeroLayout1";
 export { default as HeroLayout2 } from "./HeroLayout2";
-export { default as ItemCard } from "./ItemCard";
 export { default as IvrActionIcon } from "./IvrActionIcon";
 export { default as Logo } from "./Logo";
 export { default as LogoWithText } from "./LogoWithText";
@@ -42,6 +46,8 @@ export { default as QueueModelCreateForm } from "./QueueModelCreateForm";
 export { default as QueueModelUpdateForm } from "./QueueModelUpdateForm";
 export { default as ReviewCard } from "./ReviewCard";
 export { default as SideBar } from "./SideBar";
+export { default as SmallContactCenterCard } from "./SmallContactCenterCard";
+export { default as SmallContactCenterCardCollection } from "./SmallContactCenterCardCollection";
 export { default as SocialPost } from "./SocialPost";
 export { default as StandardCard } from "./StandardCard";
 export { default as Stat } from "./Stat";

@@ -19,6 +19,7 @@ import { IconContext } from 'react-icons'
 
 import './Navbar.css'
 import { Button, Icon } from '@mui/material'
+import ProfileButton from './ProfileButton'
 
 const Navbar = ({ signOut, user }) => {
     const [sidebar, setSidebar] = useState(false)
@@ -47,7 +48,7 @@ const Navbar = ({ signOut, user }) => {
                     <Text color="white" fontSize="2em">
                         Webex Admin Manangement Tool
                     </Text>
-                    <div>
+                    {/*                     <div>
                         <Link to="/annoucements">
                             <Badge badgeContent={4} color="primary">
                                 <MailIcon
@@ -74,7 +75,8 @@ const Navbar = ({ signOut, user }) => {
                                 sx={{ color: '#fff', fontSize: '2.5em' }}
                             />
                         </Button>
-                    </div>
+                    </div> */}
+                    <ProfileButton gotolink="/userprofile/" />
                 </div>
                 <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
                     <ul className="nav-menu-items" onClick={showSidebar}>
@@ -96,6 +98,17 @@ const Navbar = ({ signOut, user }) => {
                                 )
                             )
                         })}
+                        <li key="signout" className="nav-text">
+                            <Link
+                                to="#"
+                                onClick={() => {
+                                    signOut()
+                                }}
+                            >
+                                <FaIcons.FaSignOutAlt />
+                                <span>Sign Out</span>
+                            </Link>
+                        </li>
                     </ul>
                 </nav>
             </IconContext.Provider>
