@@ -27,7 +27,7 @@
           "refreshToken": "NTFkOGIzYTAtOTMyNy00NjgwLWIxNGItMzFiY2Q2NzIyMDg4NDM0Y2ZlMGYtOTFj_PF84_19244874-d919-4bde-9d9a-dbff87ae472c",
           "authurl": "https://webexapis.com/v1/access_token",
           "deploymentBucketName": "amplify-amplify57ccfec327114-staging-160216-deployment",
-          "s3Key": "amplify-builds/WebExApiTokenRefreshfn-63494f6f6a4b2f6d3861-build.zip"
+          "s3Key": "amplify-builds/WebExApiTokenRefreshfn-61574f465149676d5244-build.zip"
         }
       }
     }
