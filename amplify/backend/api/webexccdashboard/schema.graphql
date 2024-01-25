@@ -1,3 +1,13 @@
+type TokenModel @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  org_id: String
+  access_token: String
+  expires_in: Int
+  refresh_token: String
+  refresh_token_expires_in: String
+  token_type: String
+}
+
 type OptionMenuType {
   msg: String
   type: OptionTypeENUM

@@ -6,9 +6,5 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "@types/aws-lambda": "^8.10.92"
-  },
-  "dependencies": {
-    "aws-amplify": "^6.0.13",
-    "axios": "^1.6.7"
   }
 }
