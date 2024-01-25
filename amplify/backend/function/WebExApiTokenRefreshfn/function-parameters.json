@@ -1,0 +1,26 @@
+{
+  "permissions": {},
+  "lambdaLayers": [],
+  "environmentVariableList": [
+    {
+      "cloudFormationParameterName": "clientId",
+      "environmentVariableName": "CLIENT_ID"
+    },
+    {
+      "cloudFormationParameterName": "clientSecret",
+      "environmentVariableName": "CLIENT_SECRET"
+    },
+    {
+      "cloudFormationParameterName": "accessToken",
+      "environmentVariableName": "ACCESS_TOKEN"
+    },
+    {
+      "cloudFormationParameterName": "refreshToken",
+      "environmentVariableName": "REFRESH_TOKEN"
+    },
+    {
+      "cloudFormationParameterName": "authurl",
+      "environmentVariableName": "AUTHURL"
+    }
+  ]
+}

@@ -48,5 +48,70 @@
       "serviceType": "managed"
     }
   },
-  "function": {}
+  "function": {
+    "WebExApiTokenRefreshfn": {
+      "build": true,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_WebExApiTokenRefreshfn_accessToken": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "WebExApiTokenRefreshfn"
+        }
+      ]
+    },
+    "AMPLIFY_function_WebExApiTokenRefreshfn_authurl": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "WebExApiTokenRefreshfn"
+        }
+      ]
+    },
+    "AMPLIFY_function_WebExApiTokenRefreshfn_clientId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "WebExApiTokenRefreshfn"
+        }
+      ]
+    },
+    "AMPLIFY_function_WebExApiTokenRefreshfn_clientSecret": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "WebExApiTokenRefreshfn"
+        }
+      ]
+    },
+    "AMPLIFY_function_WebExApiTokenRefreshfn_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "WebExApiTokenRefreshfn"
+        }
+      ]
+    },
+    "AMPLIFY_function_WebExApiTokenRefreshfn_refreshToken": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "WebExApiTokenRefreshfn"
+        }
+      ]
+    },
+    "AMPLIFY_function_WebExApiTokenRefreshfn_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "WebExApiTokenRefreshfn"
+        }
+      ]
+    }
+  }
 }
