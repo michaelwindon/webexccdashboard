@@ -8,6 +8,7 @@
 	AUTHURL
 Amplify Params - DO NOT EDIT */
 
+
 const Amplify = require('@aws-amplify/core')
 const DataStore = require('@aws-amplify/datastore')
 const { TokenModel } = require('./models')
