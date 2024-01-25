@@ -13,18 +13,11 @@
       "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-amplify57ccfec327114-staging-160216-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
-      "function": {
-        "webexccdashboard1fe66cea": {
-          "deploymentBucketName": "amplify-amplify57ccfec327114-staging-160216-deployment",
-          "s3Key": "amplify-builds/webexccdashboard1fe66cea-582b3650344c3468686a-build.zip"
-        }
-      },
       "auth": {
         "webexccdashboard": {}
       },
       "api": {
-        "webexccdashboard": {},
-        "api8e4b8cf1": {}
+        "webexccdashboard": {}
       }
     }
   },
