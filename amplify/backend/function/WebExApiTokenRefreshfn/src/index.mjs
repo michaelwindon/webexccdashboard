@@ -11,7 +11,7 @@ const client = new DynamoDBClient({})
 
 const dynamo = DynamoDBDocumentClient.from(client)
 
-const tableName = 'TokenStore-evofqle4kjbshkoqv75xg6by3a-staging'
+const tableName = 'KeyStore-evofqle4kjbshkoqv75xg6by3a-staging'
 
 export const handler = async (event, context) => {
     let token
@@ -20,7 +20,7 @@ export const handler = async (event, context) => {
         token = await dynamo.send(
             new GetCommand({
                 TableName: tableName,
-                Key: { id: '1' },
+                Key: { id: '1cd13a9c-6c62-45fb-9ec1-9af2704a1561' },
             })
         )
     } catch (error) {
