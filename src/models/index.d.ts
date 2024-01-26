@@ -85,9 +85,9 @@ export declare type SubmenuType = LazyLoading extends LazyLoadingDisabled ? Eage
 
 export declare const SubmenuType: (new (init: ModelInit<SubmenuType>) => SubmenuType)
 
-type EagerTokenStore = {
+type EagerKeyStore = {
   readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<TokenStore, 'id'>;
+    identifier: ManagedIdentifier<KeyStore, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
@@ -101,9 +101,9 @@ type EagerTokenStore = {
   readonly updatedAt?: string | null;
 }
 
-type LazyTokenStore = {
+type LazyKeyStore = {
   readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<TokenStore, 'id'>;
+    identifier: ManagedIdentifier<KeyStore, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
@@ -117,10 +117,10 @@ type LazyTokenStore = {
   readonly updatedAt?: string | null;
 }
 
-export declare type TokenStore = LazyLoading extends LazyLoadingDisabled ? EagerTokenStore : LazyTokenStore
+export declare type KeyStore = LazyLoading extends LazyLoadingDisabled ? EagerKeyStore : LazyKeyStore
 
-export declare const TokenStore: (new (init: ModelInit<TokenStore>) => TokenStore) & {
-  copyOf(source: TokenStore, mutator: (draft: MutableModel<TokenStore>) => MutableModel<TokenStore> | void): TokenStore;
+export declare const KeyStore: (new (init: ModelInit<KeyStore>) => KeyStore) & {
+  copyOf(source: KeyStore, mutator: (draft: MutableModel<KeyStore>) => MutableModel<KeyStore> | void): KeyStore;
 }
 
 type EagerGroupModel = {

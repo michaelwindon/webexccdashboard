@@ -20,7 +20,7 @@ export const handler = async (event, context) => {
         token = await dynamo.send(
             new GetCommand({
                 TableName: tableName,
-                Key: { id: '1cd13a9c-6c62-45fb-9ec1-9af2704a1561' },
+                Key: { id: '1' },
             })
         )
     } catch (error) {

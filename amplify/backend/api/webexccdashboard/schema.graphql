@@ -1,4 +1,4 @@
-type TokenStore @model @auth(rules: [{allow: public}]) {
+type KeyStore @model @auth(rules: [{allow: public}]) {
   id: ID!
   org_id: String
   access_token: String
