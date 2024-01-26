@@ -85,9 +85,9 @@ export declare type SubmenuType = LazyLoading extends LazyLoadingDisabled ? Eage
 
 export declare const SubmenuType: (new (init: ModelInit<SubmenuType>) => SubmenuType)
 
-type EagerTokenModel = {
+type EagerTokenStore = {
   readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<TokenModel, 'id'>;
+    identifier: ManagedIdentifier<TokenStore, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
@@ -95,15 +95,15 @@ type EagerTokenModel = {
   readonly access_token?: string | null;
   readonly expires_in?: number | null;
   readonly refresh_token?: string | null;
-  readonly refresh_token_expires_in?: string | null;
+  readonly refresh_token_expires_in?: number | null;
   readonly token_type?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
 
-type LazyTokenModel = {
+type LazyTokenStore = {
   readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<TokenModel, 'id'>;
+    identifier: ManagedIdentifier<TokenStore, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
@@ -111,16 +111,16 @@ type LazyTokenModel = {
   readonly access_token?: string | null;
   readonly expires_in?: number | null;
   readonly refresh_token?: string | null;
-  readonly refresh_token_expires_in?: string | null;
+  readonly refresh_token_expires_in?: number | null;
   readonly token_type?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
 
-export declare type TokenModel = LazyLoading extends LazyLoadingDisabled ? EagerTokenModel : LazyTokenModel
+export declare type TokenStore = LazyLoading extends LazyLoadingDisabled ? EagerTokenStore : LazyTokenStore
 
-export declare const TokenModel: (new (init: ModelInit<TokenModel>) => TokenModel) & {
-  copyOf(source: TokenModel, mutator: (draft: MutableModel<TokenModel>) => MutableModel<TokenModel> | void): TokenModel;
+export declare const TokenStore: (new (init: ModelInit<TokenStore>) => TokenStore) & {
+  copyOf(source: TokenStore, mutator: (draft: MutableModel<TokenStore>) => MutableModel<TokenStore> | void): TokenStore;
 }
 
 type EagerGroupModel = {

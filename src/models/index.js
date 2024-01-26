@@ -23,10 +23,10 @@ const MenuTypeEnum = {
   "NONE": "NONE"
 };
 
-const { TokenModel, GroupModel, QueueModel, ManagerModel, ContactCenterModel, GroupModelManagerModel, ContactCenterModelManagerModel, OptionMenuType, MenuType, SubmenuType } = initSchema(schema);
+const { TokenStore, GroupModel, QueueModel, ManagerModel, ContactCenterModel, GroupModelManagerModel, ContactCenterModelManagerModel, OptionMenuType, MenuType, SubmenuType } = initSchema(schema);
 
 export {
-  TokenModel,
+  TokenStore,
   GroupModel,
   QueueModel,
   ManagerModel,

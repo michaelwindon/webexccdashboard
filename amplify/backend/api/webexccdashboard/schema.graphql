@@ -1,10 +1,10 @@
-type TokenModel @model @auth(rules: [{allow: public}]) {
+type TokenStore @model @auth(rules: [{allow: public}]) {
   id: ID!
   org_id: String
   access_token: String
   expires_in: Int
   refresh_token: String
-  refresh_token_expires_in: String
+  refresh_token_expires_in: Int
   token_type: String
 }
 

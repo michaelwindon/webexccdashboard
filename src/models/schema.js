@@ -1,7 +1,7 @@
 export const schema = {
     "models": {
-        "TokenModel": {
-            "name": "TokenModel",
+        "TokenStore": {
+            "name": "TokenStore",
             "fields": {
                 "id": {
                     "name": "id",
@@ -41,7 +41,7 @@ export const schema = {
                 "refresh_token_expires_in": {
                     "name": "refresh_token_expires_in",
                     "isArray": false,
-                    "type": "String",
+                    "type": "Int",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -70,7 +70,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "TokenModels",
+            "pluralName": "TokenStores",
             "attributes": [
                 {
                     "type": "model",
@@ -1389,5 +1389,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.4.4",
-    "version": "924397d6355ccf553b413443a5ef14ee"
+    "version": "c9f37f1597897e1deb23d07ec74f3c67"
 };
