@@ -1,10 +1,8 @@
-import { DynamoDBClient } from '@aws-sdk/client-dynamodb'
+import { DynamoDBClient,UpdateItemCommand } from '@aws-sdk/client-dynamodb'
 import {
     DynamoDBDocumentClient,
-    ScanCommand,
-    PutCommand,
     GetCommand,
-    DeleteCommand,
+    PutCommand
 } from '@aws-sdk/lib-dynamodb'
 
 const client = new DynamoDBClient({})
@@ -16,6 +14,7 @@ const tableName = 'KeyStore-evofqle4kjbshkoqv75xg6by3a-staging'
 export const handler = async (event, context) => {
     let token
     console.log(`Get Token from DB`)
+    
     try {
         token = await dynamo.send(
             new GetCommand({
@@ -77,6 +76,7 @@ export const handler = async (event, context) => {
 
     console.log(`Store new token`)
     let newToken
+    
     try {
         newToken = await dynamo.send(
             new PutCommand({
@@ -88,6 +88,13 @@ export const handler = async (event, context) => {
                     refresh_token: responseData.refresh_token,
                     refresh_token_expires_in:
                         responseData.refresh_token_expires_in,
+                        _version: 1,
+                        updatedAt: new Date().toISOString(),
+                        createdAt : new Date().toISOString(),
+                        _lastChangedAt : new Date().getTime(),
+                        __typename : 'KeyStore',
+                        token_type : 'Bearer',
+                        org_id : '1',
                 },
             })
         )
