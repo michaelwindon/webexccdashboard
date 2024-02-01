@@ -331,7 +331,8 @@ export default function SyncQueues({ showToastMessage }) {
                     </Grid>
                 </Grid>
                 <Grid item>
-                    {customList(right, 'To WAM')} {right.length} of Webex Queues
+                    {customList(right, 'To WAM')} {right.length} of{' '}
+                    {webexQueueData.length} Webex Queues
                 </Grid>
             </Grid>
         </>
