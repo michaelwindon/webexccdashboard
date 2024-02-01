@@ -11,7 +11,7 @@ import Typography from '@mui/material/Typography'
 import { DummyQueueData } from './DummyQueueData'
 import { QueueModel } from '../models'
 import { DataStore, Predicates, SortDirection } from 'aws-amplify/datastore'
-import { Link } from 'react-router-dom'
+
 import { gql, ApolloClient, InMemoryCache } from '@apollo/client'
 
 import axios from 'axios'
@@ -70,6 +70,7 @@ export default function SyncQueues({ showToastMessage }) {
             }
         }
     `
+
     const client = new ApolloClient({
         uri: 'https://gw3svcvuare3fbgsgnfqzp26na.appsync-api.us-east-2.amazonaws.com/graphql',
         cache: new InMemoryCache(),
@@ -77,7 +78,10 @@ export default function SyncQueues({ showToastMessage }) {
             'X-Api-Key': 'da2-noawmbt5zzgkxns7ghko7irfhe',
         },
     })
+
     React.useEffect(() => {
+        //initalize selectors
+
         try {
             client.query({ query: GET_TOKEN }).then((results) => {
                 setToken(results.data.listKeyStores.items[0].access_token)
@@ -86,13 +90,10 @@ export default function SyncQueues({ showToastMessage }) {
             console.log(e)
         }
         console.log(`Retreived Token: ${token}`)
-    }, [client])
 
-    React.useEffect(() => {
-        //initalize selector
-        const getWamData = async () => {
-            try {
-                const headers = { Authorization: `Bearer ${token}` }
+        const headers = { Authorization: `Bearer ${token}` }
+        try {
+            if (token) {
                 axios
                     .get(
                         'https://api.wxcc-us1.cisco.com/organization/19244874-d919-4bde-9d9a-dbff87ae472c/v2/contact-service-queue?page=0&pageSize=100&attributes=id,name,description,active',
@@ -102,9 +103,12 @@ export default function SyncQueues({ showToastMessage }) {
                         setWebexQueueData(response.data.data)
                         console.log(`Set Webex Queue Data`)
                     })
-            } catch (error) {
-                console.log(error)
             }
+        } catch (error) {
+            console.log(e)
+        }
+
+        const getWamData = async () => {
             const que = await DataStore.query(QueueModel, Predicates.ALL, {
                 sort: (s) => s.name(SortDirection.ASCENDING),
             })
@@ -236,8 +240,6 @@ export default function SyncQueues({ showToastMessage }) {
         showToastMessage(`${name} Sync Sucessfully!🚀`, 'success')
     }
 
-    const handleWebexAPICall = () => {}
-
     const customList = (items, title) => (
         <>
             <Typography variant="h4" gutterBottom>
@@ -332,7 +334,7 @@ export default function SyncQueues({ showToastMessage }) {
                 </Grid>
                 <Grid item>
                     {customList(right, 'To WAM')} {right.length} of{' '}
-                    {webexQueueData.length} Webex Queues
+                    {webexQueueData.length} Queues
                 </Grid>
             </Grid>
         </>
