@@ -22,7 +22,7 @@
       "function": {
         "WebExApiTokenRefreshfn": {
           "deploymentBucketName": "amplify-amplify57ccfec327114-staging-160216-deployment",
-          "s3Key": "amplify-builds/WebExApiTokenRefreshfn-7a58304f4947536e6c53-build.zip",
+          "s3Key": "amplify-builds/WebExApiTokenRefreshfn-7463552b614c646f6131-build.zip",
           "clientId": "C6f3036355fe6126d48c4b3936589609d83210431f725bf3d926e134611894a2b",
           "clientSecret": "0a8ca299a61a26debb2dfd6ab93a0fa2a47fa877471b674b82783038b4708d05",
           "accessToken": "ODYxMzJjZDYtZDFhMi00YTZhLWI4N2YtMzFlOWMzYTM4MmVhZmIyZWUyZTItMmNh_PF84_19244874-d919-4bde-9d9a-dbff87ae472c",
