@@ -93,7 +93,7 @@ export default function SyncQueues({ showToastMessage }) {
 
         const headers = { Authorization: `Bearer ${token}` }
         try {
-            if (token) {
+            if (token != '') {
                 axios
                     .get(
                         'https://api.wxcc-us1.cisco.com/organization/19244874-d919-4bde-9d9a-dbff87ae472c/v2/contact-service-queue?page=0&pageSize=100&attributes=id,name,description,active',
