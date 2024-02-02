@@ -101,7 +101,7 @@ export default function SyncQueues({ showToastMessage }) {
                     )
                     .then((response) => {
                         setWebexQueueData(response.data.data)
-                        console.log(`Set Webex Queue Data`)
+                        console.log(`Set Webex Queue Data!`)
                     })
             }
         } catch (error) {
@@ -131,7 +131,7 @@ export default function SyncQueues({ showToastMessage }) {
             setRight(que)
         }
         getWamData()
-    }, [])
+    }, [token])
 
     const handleToggle = (value) => () => {
         const currentIndex = checked.indexOf(value)
