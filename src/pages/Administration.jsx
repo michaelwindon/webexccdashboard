@@ -16,7 +16,7 @@ const Administration = () => {
     fetchUserAttributes()
         .then((result) => {
             userAttributes = result
-            console.log(`${JSON.stringify(userAttributes)}`)
+            console.log(`Signed-in:${JSON.stringify(userAttributes.email)}`)
         })
         .catch((err) => {
             console.log(err)
@@ -47,11 +47,7 @@ const Administration = () => {
 
     return (
         <>
-            <Flex
-                direction="row"
-                justifyContent="center"
-                
-            >
+            <Flex direction="row" justifyContent="center">
                 <View maxWidth="100%" width="70rem">
                     <h1>Administration</h1>
                     <Tabs
@@ -120,7 +116,11 @@ const Administration = () => {
                             {
                                 label: 'Sync Queues from Webex',
                                 value: 'Sync',
-                                content: <SyncQueues />,
+                                content: (
+                                    <SyncQueues
+                                        showToastMessage={showToastMessage}
+                                    />
+                                ),
                             },
                         ]}
                     />

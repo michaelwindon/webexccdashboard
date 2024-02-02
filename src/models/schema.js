@@ -1,7 +1,7 @@
 export const schema = {
     "models": {
-        "TokenStore": {
-            "name": "TokenStore",
+        "KeyStore": {
+            "name": "KeyStore",
             "fields": {
                 "id": {
                     "name": "id",
@@ -70,7 +70,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "TokenStores",
+            "pluralName": "KeyStores",
             "attributes": [
                 {
                     "type": "model",
@@ -1389,5 +1389,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.4.4",
-    "version": "c9f37f1597897e1deb23d07ec74f3c67"
+    "version": "b848fb2ff004ba448020a41d101408ad"
 };

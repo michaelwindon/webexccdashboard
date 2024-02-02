@@ -194,7 +194,11 @@ const UpdateMenuModal = (props) => {
     }
 
     const handleSubmit = async () => {
-        const updatedMenu = { msg: fieldMsg, type: menuType, value: fieldValue }
+        const updatedMenu = {
+            msg: fieldMsg.replace(/(\r\n|\n|\r)/gm, '').trim(),
+            type: menuType,
+            value: fieldValue.replace(/(\r\n|\n|\r)/gm, '').trim(),
+        }
         console.log(`Update Menu with:${JSON.stringify(updatedMenu)}`)
 
         const orignal = await DataStore.query(

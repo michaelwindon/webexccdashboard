@@ -11,9 +11,10 @@ import Typography from '@mui/material/Typography'
 import { DummyQueueData } from './DummyQueueData'
 import { QueueModel } from '../models'
 import { DataStore, Predicates, SortDirection } from 'aws-amplify/datastore'
-import 'react-toastify/dist/ReactToastify.css'
-import { ToastContainer, toast } from 'react-toastify'
-import { Link } from 'react-router-dom'
+
+import { gql, ApolloClient, InMemoryCache } from '@apollo/client'
+
+import axios from 'axios'
 
 function returndelta(arr1, arr2) {
     const names1 = arr1.map((obj) => obj.name)
@@ -45,7 +46,7 @@ function intersection(a, b) {
     return a.filter((value) => b.indexOf(value) !== -1)
 }
 
-export default function SyncQueues() {
+export default function SyncQueues({ showToastMessage }) {
     const [checked, setChecked] = React.useState([])
 
     //left is webext Queue data
@@ -57,14 +58,63 @@ export default function SyncQueues() {
     const leftChecked = intersection(checked, left)
     const rightChecked = intersection(checked, right)
 
+    const [webexQueueData, setWebexQueueData] = React.useState([])
+    const [token, setToken] = React.useState('')
+
+    const GET_TOKEN = gql`
+        query MyQuery {
+            listKeyStores(filter: { id: { eq: "1" } }) {
+                items {
+                    access_token
+                }
+            }
+        }
+    `
+
+    const client = new ApolloClient({
+        uri: 'https://gw3svcvuare3fbgsgnfqzp26na.appsync-api.us-east-2.amazonaws.com/graphql',
+        cache: new InMemoryCache(),
+        headers: {
+            'X-Api-Key': 'da2-noawmbt5zzgkxns7ghko7irfhe',
+        },
+    })
+
     React.useEffect(() => {
         //initalize selectors
+
+        try {
+            client.query({ query: GET_TOKEN }).then((results) => {
+                setToken(results.data.listKeyStores.items[0].access_token)
+            })
+        } catch (error) {
+            console.log(e)
+        }
+        console.log(`Retreived Token: ${token}`)
+
+        const headers = { Authorization: `Bearer ${token}` }
+        try {
+            if (token) {
+                axios
+                    .get(
+                        'https://api.wxcc-us1.cisco.com/organization/19244874-d919-4bde-9d9a-dbff87ae472c/v2/contact-service-queue?page=0&pageSize=100&attributes=id,name,description,active',
+                        { headers }
+                    )
+                    .then((response) => {
+                        setWebexQueueData(response.data.data)
+                        console.log(`Set Webex Queue Data!`)
+                    })
+            }
+        } catch (error) {
+            console.log(e)
+        }
+
         const getWamData = async () => {
             const que = await DataStore.query(QueueModel, Predicates.ALL, {
                 sort: (s) => s.name(SortDirection.ASCENDING),
             })
             //set left to the delta of what Webex has and what is the WAM
-            DummyQueueData.sort((a, b) => {
+
+            webexQueueData.sort((a, b) => {
                 const nameA = a.name.toUpperCase()
                 const nameB = b.name.toUpperCase()
                 if (nameA < nameB) {
@@ -76,12 +126,12 @@ export default function SyncQueues() {
                 return 0
             })
             //Set left with the latest from Webex - minus whats already in WAM
-            setLeft(returndelta([...DummyQueueData], que))
+            setLeft(returndelta([...webexQueueData], que))
             //set right to everything in WAM
             setRight(que)
         }
         getWamData()
-    }, [])
+    }, [token])
 
     const handleToggle = (value) => () => {
         const currentIndex = checked.indexOf(value)
@@ -182,22 +232,6 @@ export default function SyncQueues() {
         })
     }
 
-    const showToastMessage = (msg, status) => {
-        switch (status) {
-            case 'success':
-                toast.success(msg)
-                break
-
-            case 'error':
-                toast.error(msg)
-                break
-
-            default:
-                toast(msg)
-                break
-        }
-    }
-
     const handleonError = (name) => {
         showToastMessage(`💣 ${name} Error Saving Queues!`, 'error')
     }
@@ -253,20 +287,6 @@ export default function SyncQueues() {
                 alignItems="center"
                 padding="1rem"
             >
-                <Typography
-                    sx={{
-                        maxWidth: '10%',
-                        paddingLeft: 'px',
-                        whiteSpace: 'pre-wrap',
-                    }}
-                >
-                    Update "From Webex" List with the lates Queues copying
-                    Personal OAUTH from{' '}
-                    <Link to="https://developer.webex-cx.com/documentation/contact-service-queue/v2/list-contact-service-queues">
-                        Webex API Page
-                    </Link>
-                </Typography>
-
                 <Grid item>{customList(left, 'From Webex')}</Grid>
                 <Grid item>
                     <Grid container direction="column" alignItems="center">
@@ -312,15 +332,11 @@ export default function SyncQueues() {
                         </Button>
                     </Grid>
                 </Grid>
-                <Grid item>{customList(right, 'To WAM')}</Grid>
+                <Grid item>
+                    {customList(right, 'To WAM')} {right.length} of{' '}
+                    {webexQueueData.length} Queues
+                </Grid>
             </Grid>
-            <Grid
-                container
-                justifyContent="center"
-                alignItems="center"
-                padding="2rem"
-            ></Grid>
-            <ToastContainer />
         </>
     )
 }

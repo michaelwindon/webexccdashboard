@@ -71,7 +71,10 @@ const UpdateSubmenuModal = (props) => {
     }, [open])
 
     const handleSubmit = async () => {
-        const updatedMenu = { type: menuType, value: fieldValue }
+        const updatedMenu = {
+            type: menuType,
+            value: fieldValue.replace(/(\r\n|\n|\r)/gm, '').trim(),
+        }
 
         const orignal = await DataStore.query(
             ContactCenterModel,

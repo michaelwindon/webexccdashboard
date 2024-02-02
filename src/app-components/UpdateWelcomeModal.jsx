@@ -34,6 +34,8 @@ const UpdateWelcomeModal = (props) => {
                 const updateContactCenter = await DataStore.save(
                     ContactCenterModel.copyOf(orignal, (update) => {
                         update.welcomeprompt = fieldValue
+                            .replace(/(\r\n|\n|\r)/gm, '')
+                            .trim()
                         update.updateduser = user.username
                     })
                 )
