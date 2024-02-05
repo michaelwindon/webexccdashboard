@@ -30,6 +30,7 @@ import {
 
 import { ManagerModel } from './models'
 import PermissionDenied from './pages/PermissionDenied'
+import WhisperPlayer from './app-components/WhisperPlayer'
 
 function App({ signOut, user }) {
     const theme = useTheme()
@@ -145,7 +146,10 @@ function App({ signOut, user }) {
                             )
                         }
                     />
-
+                    <Route
+                        path="/whisper/:audiofile"
+                        element={<WhisperPlayer />}
+                    />
                     <Route
                         path="/groupmanagement"
                         element={
