@@ -1,4 +1,10 @@
-import { SelectField, Flex, View, Tabs } from '@aws-amplify/ui-react'
+import {
+    useAuthenticator,
+    withAuthenticator,
+    Flex,
+    View,
+    Tabs,
+} from '@aws-amplify/ui-react'
 import {
     ContactCenterModelCreateForm,
     GroupModelCreateForm,
@@ -12,6 +18,7 @@ import SyncQueues from './SyncQueues'
 import { fetchUserAttributes } from 'aws-amplify/auth'
 
 const Administration = () => {
+    const { user, signOut } = useAuthenticator()
     var userAttributes
     fetchUserAttributes()
         .then((result) => {
@@ -130,4 +137,4 @@ const Administration = () => {
         </>
     )
 }
-export default Administration
+export default withAuthenticator(Administration)

@@ -1,5 +1,11 @@
 import { ManagerModelUpdateForm } from '../ui-components'
-import { SelectField, Flex, View } from '@aws-amplify/ui-react'
+import {
+    SelectField,
+    Flex,
+    View,
+    useAuthenticator,
+    withAuthenticator,
+} from '@aws-amplify/ui-react'
 import { ManagerModel } from '../models'
 import { useEffect, useState } from 'react'
 import { DataStore, Predicates, SortDirection } from 'aws-amplify/datastore'
@@ -88,4 +94,4 @@ const UserManagement = () => {
         </>
     )
 }
-export default UserManagement
+export default withAuthenticator(UserManagement)

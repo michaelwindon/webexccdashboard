@@ -1,4 +1,11 @@
 import { ManagerModelUpdateForm } from '../ui-components'
+import {
+    useAuthenticator,
+    withAuthenticator,
+    Flex,
+    View,
+    Tabs,
+} from '@aws-amplify/ui-react'
 
 const UserProfile = () => {
     return (
@@ -8,4 +15,4 @@ const UserProfile = () => {
         </>
     )
 }
-export default UserProfile
+export default withAuthenticator(UserProfile)

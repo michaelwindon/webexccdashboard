@@ -19,9 +19,10 @@ import ShowSpanishModal from '../app-components/ShowSpanishModal'
 import UpdateWelcomeModal from '../app-components/UpdateWelcomeModal'
 import UpdateTitleDetailsModal from '../app-components/UpdateTitleDetailsModal'
 
-import { Loader, Flex, ThemeProvider } from '@aws-amplify/ui-react'
+import { Loader, Flex,withAuthenticator,useAuthenticator } from '@aws-amplify/ui-react'
 
-function ViewContactCenter({ signOut, user }) {
+function ViewContactCenter() {
+    const { user, signOut } = useAuthenticator()
     const theme = useTheme()
 
     const [opencctitledetails, setOpencctitledetails] = useState(false)
@@ -1720,4 +1721,4 @@ ViewContactCenter.propTypes = {
     user: PropTypes.object,
 }
 
-export default ViewContactCenter
+export default withAuthenticator(ViewContactCenter)

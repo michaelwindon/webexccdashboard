@@ -5,7 +5,7 @@ import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'
 import Badge from '@mui/material/Badge'
 import MailIcon from '@mui/icons-material/Mail'
 import HelpCenterIcon from '@mui/icons-material/HelpCenter'
-import { Text } from '@aws-amplify/ui-react'
+import { Text, useAuthenticator } from '@aws-amplify/ui-react'
 import {
     useDataStoreBinding,
     createDataStorePredicate,
@@ -21,11 +21,13 @@ import './Navbar.css'
 import { Button, Icon } from '@mui/material'
 import ProfileButton from './ProfileButton'
 
-const Navbar = ({ signOut, user }) => {
+const Navbar = () => {
     const [sidebar, setSidebar] = useState(false)
+    const { user, authStatus, signOut } = useAuthenticator()
+
     const itemsFilterObj = {
         field: 'ManagerModel.email',
-        operand: user.username,
+        operand: user?.username,
         operator: 'eq',
     }
 
@@ -48,35 +50,11 @@ const Navbar = ({ signOut, user }) => {
                     <Text color="white" fontSize="2em">
                         Webex Admin Manangement Tool
                     </Text>
-                    {/* <div>
-                        <Link to="/annoucements">
-                            <Badge badgeContent={4} color="primary">
-                                <MailIcon
-                                    sx={{ fontSize: '2.4em', color: '#fff' }}
-                                />
-                            </Badge>
-                        </Link>
-                        <Link to="/userprofile">
-                            <Button>
-                                <ManageAccountsIcon
-                                    sx={{ fontSize: '3em', color: '#fff' }}
-                                />
-                            </Button>
-                        </Link>
-                        <Link to="/training">
-                            <Button>
-                                <HelpCenterIcon
-                                    sx={{ fontSize: '2.8em', color: '#fff' }}
-                                />
-                            </Button>
-                        </Link>
-                        <Button onClick={signOut}>
-                            <ExitToAppIcon
-                                sx={{ color: '#fff', fontSize: '2.5em' }}
-                            />
-                        </Button>
-                    </div> */}
-                    <ProfileButton gotolink="/userprofile/" />
+                    {authStatus === 'authenticated' ? (
+                        <ProfileButton gotolink="/userprofile/" />
+                    ) : (
+                        <div></div>
+                    )}
                 </div>
                 <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
                     <ul className="nav-menu-items" onClick={showSidebar}>

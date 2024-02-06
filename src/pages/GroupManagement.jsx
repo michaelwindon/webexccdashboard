@@ -1,5 +1,11 @@
 import { GroupModelUpdateForm } from '../ui-components'
-import { SelectField, Flex, View } from '@aws-amplify/ui-react'
+import {
+    SelectField,
+    Flex,
+    View,
+    useAuthenticator,
+    withAuthenticator,
+} from '@aws-amplify/ui-react'
 
 import { GroupModel } from '../models'
 
@@ -90,4 +96,4 @@ const GroupManagement = () => {
         </>
     )
 }
-export default GroupManagement
+export default withAuthenticator(GroupManagement)

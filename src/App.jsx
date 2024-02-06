@@ -7,7 +7,7 @@ import {
     Text,
     Flex,
     useTheme,
-    withAuthenticator,
+    useAuthenticator,
 } from '@aws-amplify/ui-react'
 import Navbar from './app-components/Navbar'
 import ViewContactCenter from './pages/ViewContactCenter'
@@ -32,28 +32,32 @@ import { ManagerModel } from './models'
 import PermissionDenied from './pages/PermissionDenied'
 import WhisperPlayer from './app-components/WhisperPlayer'
 
-function App({ signOut, user }) {
+function App() {
+    const { user, authStatus, signOut } = useAuthenticator()
+    const [userRole, setUserRole] = useState(null)
+
     const theme = useTheme()
     const handleSignout = () => {
         DataStore.clear()
         signOut()
     }
 
-    var userAttributes
-    fetchUserAttributes()
-        .then((result) => {
-            userAttributes = result
-        })
-        .catch((err) => {
-            console.log(err)
-        })
+    if (authStatus == 'authenticated') {
+        var userAttributes
+        fetchUserAttributes()
+            .then((result) => {
+                userAttributes = result
+            })
+            .catch((err) => {
+                //console.log(err)
+            })
 
+    } 
     const itemsFilterObj = {
         field: 'ManagerModel.email',
         operand: userAttributes?.email,
         operator: 'eq',
     }
-
     const itemsFilter = createDataStorePredicate(itemsFilterObj)
 
     const { isLoading, items } = useDataStoreBinding({
@@ -61,8 +65,6 @@ function App({ signOut, user }) {
         model: ManagerModel,
         criteria: itemsFilter,
     })
-
-    const [userRole, setUserRole] = useState(null)
 
     useEffect(() => {
         if (!isLoading) {
@@ -183,9 +185,4 @@ function App({ signOut, user }) {
     )
 }
 
-App.propTypes = {
-    signOut: PropTypes.func,
-    user: PropTypes.object,
-}
-
-export default withAuthenticator(App)
+export default App

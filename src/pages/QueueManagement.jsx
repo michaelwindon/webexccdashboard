@@ -1,5 +1,10 @@
 import { QueueModelUpdateForm } from '../ui-components'
-import { SelectField, Flex, View } from '@aws-amplify/ui-react'
+import {
+    SelectField,
+    Flex,
+    View,
+    withAuthenticator,
+} from '@aws-amplify/ui-react'
 
 import { QueueModel } from '../models'
 
@@ -89,4 +94,4 @@ const QueueManagement = () => {
         </>
     )
 }
-export default QueueManagement
+export default withAuthenticator(QueueManagement)

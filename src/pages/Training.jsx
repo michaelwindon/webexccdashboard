@@ -1,6 +1,12 @@
+import {
+    useAuthenticator,
+    withAuthenticator,
+    Flex,
+    View,
+    Tabs,
+} from '@aws-amplify/ui-react'
+
 const Training = () => {
-  return (
-    <div>Training</div>
-  )
+    return <div>Training</div>
 }
-export default Training
+export default withAuthenticator(Training)
