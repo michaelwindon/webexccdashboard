@@ -48,12 +48,15 @@ function intersection(a, b) {
 
 export default function SyncQueues({ showToastMessage }) {
     const [checked, setChecked] = React.useState([])
+    const [webexToggle, setWebexToggle] = React.useState(false)
 
     //left is webext Queue data
     const [left, setLeft] = React.useState([])
 
     //right is WAM Queue Data
     const [right, setRight] = React.useState([])
+
+    const [initWamQueue, setInitWamQueue] = React.useState([])
 
     const leftChecked = intersection(checked, left)
     const rightChecked = intersection(checked, right)
@@ -78,60 +81,72 @@ export default function SyncQueues({ showToastMessage }) {
             'X-Api-Key': 'da2-noawmbt5zzgkxns7ghko7irfhe',
         },
     })
-
-    React.useEffect(() => {
-        //initalize selectors
-
+    const handleQueueRefresh = () => {
+        setLeft([])
         try {
-            client.query({ query: GET_TOKEN }).then((results) => {
-                setToken(results.data.listKeyStores.items[0].access_token)
-            })
-        } catch (error) {
-            console.log(e)
-        }
-        console.log(`Retreived Token: ${token}`)
-
-        const headers = { Authorization: `Bearer ${token}` }
-        try {
-            if (token != '') {
-                axios
-                    .get(
-                        'https://api.wxcc-us1.cisco.com/organization/19244874-d919-4bde-9d9a-dbff87ae472c/v2/contact-service-queue?page=0&pageSize=100&attributes=id,name,description,active',
-                        { headers }
+            if (token == '') {
+                client.query({ query: GET_TOKEN }).then((results) => {
+                    setToken(results.data.listKeyStores.items[0].access_token)
+                    console.log(
+                        `Retreived Token: ${JSON.stringify(
+                            results,
+                            null,
+                            2
+                        )} and token is: ${token}`
                     )
-                    .then((response) => {
-                        setWebexQueueData(response.data.data)
-                        console.log(`Set Webex Queue Data!`)
-                    })
+
+                    const headers = {
+                        Authorization: `Bearer ${results?.data.listKeyStores.items[0].access_token}`,
+                    }
+
+                    axios
+                        .get(
+                            'https://api.wxcc-us1.cisco.com/organization/19244874-d919-4bde-9d9a-dbff87ae472c/v2/contact-service-queue?page=0&pageSize=100&attributes=id,name,description,active',
+                            { headers }
+                        )
+                        .then((response) => {
+                            setWebexQueueData(response.data.data)
+                            console.log(response.data.data)
+                            //set left to the delta of what Webex has and what is the WAM
+                            response.data.data.sort((a, b) => {
+                                const nameA = a.name.toUpperCase()
+                                const nameB = b.name.toUpperCase()
+                                if (nameA < nameB) {
+                                    return -1
+                                }
+                                if (nameA > nameB) {
+                                    return 1
+                                }
+                                return 0
+                            })
+                            //Set left with the latest from Webex - minus whats already in WAM
+                            setLeft(
+                                returndelta(
+                                    [...response.data.data],
+                                    initWamQueue
+                                )
+                            )
+                        })
+                })
+            } else {
+                console.log(`Already got Token: ${token}`)
             }
         } catch (error) {
-            console.log(e)
+            console.log(error)
         }
+    }
 
+    React.useEffect(() => {
         const getWamData = async () => {
             const que = await DataStore.query(QueueModel, Predicates.ALL, {
                 sort: (s) => s.name(SortDirection.ASCENDING),
             })
-            //set left to the delta of what Webex has and what is the WAM
-
-            webexQueueData.sort((a, b) => {
-                const nameA = a.name.toUpperCase()
-                const nameB = b.name.toUpperCase()
-                if (nameA < nameB) {
-                    return -1
-                }
-                if (nameA > nameB) {
-                    return 1
-                }
-                return 0
-            })
-            //Set left with the latest from Webex - minus whats already in WAM
-            setLeft(returndelta([...webexQueueData], que))
+            setInitWamQueue(que)
             //set right to everything in WAM
             setRight(que)
         }
         getWamData()
-    }, [token])
+    }, [webexToggle])
 
     const handleToggle = (value) => () => {
         const currentIndex = checked.indexOf(value)
@@ -212,6 +227,7 @@ export default function SyncQueues({ showToastMessage }) {
 
         Promise.all(savePromises).then(() => {
             setChecked(not(checked, rightChecked))
+            setWebexToggle(!webexToggle)
         })
     }
 
@@ -287,6 +303,10 @@ export default function SyncQueues({ showToastMessage }) {
                 alignItems="center"
                 padding="1rem"
             >
+                {' '}
+                <Grid item>
+                    <Button onClick={handleQueueRefresh}>Sync Queues</Button>
+                </Grid>
                 <Grid item>{customList(left, 'From Webex')}</Grid>
                 <Grid item>
                     <Grid container direction="column" alignItems="center">

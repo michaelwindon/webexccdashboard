@@ -19,6 +19,8 @@ import { fetchUserAttributes } from 'aws-amplify/auth'
 
 const Administration = () => {
     const { user, signOut } = useAuthenticator()
+
+    
     var userAttributes
     fetchUserAttributes()
         .then((result) => {
@@ -28,7 +30,8 @@ const Administration = () => {
         .catch((err) => {
             console.log(err)
         })
-
+    
+   
     const handleonError = () => {
         showToastMessage(`Error Saving!`, 'error')
     }

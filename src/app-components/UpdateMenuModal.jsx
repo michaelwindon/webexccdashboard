@@ -195,9 +195,9 @@ const UpdateMenuModal = (props) => {
 
     const handleSubmit = async () => {
         const updatedMenu = {
-            msg: fieldMsg.replace(/(\r\n|\n|\r)/gm, '').trim(),
+            msg: fieldMsg?.replace(/(\r\n|\n|\r)/gm, '').trim(),
             type: menuType,
-            value: fieldValue.replace(/(\r\n|\n|\r)/gm, '').trim(),
+            value: fieldValue?.replace(/(\r\n|\n|\r)/gm, '').trim(),
         }
         console.log(`Update Menu with:${JSON.stringify(updatedMenu)}`)
 
