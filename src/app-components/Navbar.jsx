@@ -1,9 +1,6 @@
 import * as FaIcons from 'react-icons/fa'
 import * as AiIcons from 'react-icons/ai'
-import ExitToAppIcon from '@mui/icons-material/ExitToApp'
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'
-import Badge from '@mui/material/Badge'
-import MailIcon from '@mui/icons-material/Mail'
+import { DataStore } from 'aws-amplify/datastore'
 import HelpCenterIcon from '@mui/icons-material/HelpCenter'
 import { Text, useAuthenticator } from '@aws-amplify/ui-react'
 import {
@@ -80,6 +77,7 @@ const Navbar = () => {
                             <Link
                                 to="#"
                                 onClick={() => {
+                                    DataStore.clear()
                                     signOut()
                                 }}
                             >
