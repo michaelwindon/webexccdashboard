@@ -73,8 +73,6 @@ export const handler = async (event, context) => {
             headers: { 'Content-Type': 'applications/json' },
         }
     }
-
-    console.log(`Store new token`)
     let newToken
     
     try {
