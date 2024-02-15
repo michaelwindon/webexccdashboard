@@ -179,7 +179,6 @@ export default function SyncQueues({ showToastMessage }) {
                                     allData = allData.concat(
                                         innerResponse.data.data
                                     )
-                                    console.log(innerResponse.data.data)
                                 })
 
                                 //set left to the delta of what Webex has and what is the WAM
@@ -195,9 +194,9 @@ export default function SyncQueues({ showToastMessage }) {
                                     return 0
                                 })
                                 setWebexQueueData(allData)
-
+                                console.log(returndelta(allData, initWamQueue))
                                 //Set left with the latest from Webex - minus whats already in WAM
-                                setLeft(returndelta([...allData], initWamQueue))
+                                setLeft(returndelta(allData, initWamQueue))
                             })
                             .catch((error) => {
                                 console.log(error)
@@ -217,6 +216,7 @@ export default function SyncQueues({ showToastMessage }) {
 
             //set right to everything in WAM
             setRight(que)
+            setInitWamQueue(que)
         }
         getWamData()
     }, [webexToggle])
