@@ -19,7 +19,12 @@ import ShowSpanishModal from '../app-components/ShowSpanishModal'
 import UpdateWelcomeModal from '../app-components/UpdateWelcomeModal'
 import UpdateTitleDetailsModal from '../app-components/UpdateTitleDetailsModal'
 
-import { Loader, Flex,withAuthenticator,useAuthenticator } from '@aws-amplify/ui-react'
+import {
+    Loader,
+    Flex,
+    withAuthenticator,
+    useAuthenticator,
+} from '@aws-amplify/ui-react'
 
 function ViewContactCenter() {
     const { user, signOut } = useAuthenticator()
@@ -824,46 +829,62 @@ function ViewContactCenter() {
                                                 1
                                                 {!showSpanish ||
                                                 !item?.presentlangoption ? (
-                                                    <MyIcon
-                                                        {...(item.menu1?.type ==
-                                                            'FORWARD' && {
-                                                            type: 'phone',
-                                                        })}
-                                                        {...(item.menu1?.type ==
-                                                            'MSG' && {
-                                                            type: 'chat',
-                                                        })}
-                                                        {...(item.menu1?.type ==
-                                                            'QUEUE' && {
-                                                            type: 'group',
-                                                        })}
-                                                        {...(item.menu1?.type ==
-                                                            'SUBMENU' && {
-                                                            type: 'share',
-                                                        })}
-                                                    />
+                                                    <div class="tooltip">
+                                                        <MyIcon
+                                                            {...(item.menu1
+                                                                ?.type ==
+                                                                'FORWARD' && {
+                                                                type: 'phone',
+                                                            })}
+                                                            {...(item.menu1
+                                                                ?.type ==
+                                                                'MSG' && {
+                                                                type: 'chat',
+                                                            })}
+                                                            {...(item.menu1
+                                                                ?.type ==
+                                                                'QUEUE' && {
+                                                                type: 'group',
+                                                            })}
+                                                            {...(item.menu1
+                                                                ?.type ==
+                                                                'SUBMENU' && {
+                                                                type: 'share',
+                                                            })}
+                                                        />
+
+                                                        <span class="tooltiptext">
+                                                            {item.menu1?.value}
+                                                        </span>
+                                                    </div>
                                                 ) : (
-                                                    <MyIcon
-                                                        {...(item.menu1_sp
-                                                            ?.type ==
-                                                            'FORWARD' && {
-                                                            type: 'phone',
-                                                        })}
-                                                        {...(item.menu1_sp
-                                                            ?.type == 'MSG' && {
-                                                            type: 'chat',
-                                                        })}
-                                                        {...(item.menu1_sp
-                                                            ?.type ==
-                                                            'QUEUE' && {
-                                                            type: 'group',
-                                                        })}
-                                                        {...(item.menu1_sp
-                                                            ?.type ==
-                                                            'SUBMENU' && {
-                                                            type: 'share',
-                                                        })}
-                                                    />
+                                                    <div class="tooltip">
+                                                        <MyIcon
+                                                            {...(item.menu1_sp
+                                                                ?.type ==
+                                                                'FORWARD' && {
+                                                                type: 'phone',
+                                                            })}
+                                                            {...(item.menu1_sp
+                                                                ?.type ==
+                                                                'MSG' && {
+                                                                type: 'chat',
+                                                            })}
+                                                            {...(item.menu1_sp
+                                                                ?.type ==
+                                                                'QUEUE' && {
+                                                                type: 'group',
+                                                            })}
+                                                            {...(item.menu1_sp
+                                                                ?.type ==
+                                                                'SUBMENU' && {
+                                                                type: 'share',
+                                                            })}
+                                                        />
+                                                        <span class="tooltiptext">
+                                                            {item.menu1?.value}
+                                                        </span>
+                                                    </div>
                                                 )}
                                             </>
                                         ),
@@ -910,46 +931,61 @@ function ViewContactCenter() {
                                                 2
                                                 {!showSpanish ||
                                                 !item?.presentlangoption ? (
-                                                    <MyIcon
-                                                        {...(item.menu2?.type ==
-                                                            'FORWARD' && {
-                                                            type: 'phone',
-                                                        })}
-                                                        {...(item.menu2?.type ==
-                                                            'MSG' && {
-                                                            type: 'chat',
-                                                        })}
-                                                        {...(item.menu2?.type ==
-                                                            'QUEUE' && {
-                                                            type: 'group',
-                                                        })}
-                                                        {...(item.menu2?.type ==
-                                                            'SUBMENU' && {
-                                                            type: 'share',
-                                                        })}
-                                                    />
+                                                    <div class="tooltip">
+                                                        <MyIcon
+                                                            {...(item.menu2
+                                                                ?.type ==
+                                                                'FORWARD' && {
+                                                                type: 'phone',
+                                                            })}
+                                                            {...(item.menu2
+                                                                ?.type ==
+                                                                'MSG' && {
+                                                                type: 'chat',
+                                                            })}
+                                                            {...(item.menu2
+                                                                ?.type ==
+                                                                'QUEUE' && {
+                                                                type: 'group',
+                                                            })}
+                                                            {...(item.menu2
+                                                                ?.type ==
+                                                                'SUBMENU' && {
+                                                                type: 'share',
+                                                            })}
+                                                        />
+                                                        <span class="tooltiptext">
+                                                            {item.menu2?.value}
+                                                        </span>
+                                                    </div>
                                                 ) : (
-                                                    <MyIcon
-                                                        {...(item.menu2_sp
-                                                            ?.type ==
-                                                            'FORWARD' && {
-                                                            type: 'phone',
-                                                        })}
-                                                        {...(item.menu2_sp
-                                                            ?.type == 'MSG' && {
-                                                            type: 'chat',
-                                                        })}
-                                                        {...(item.menu2_sp
-                                                            ?.type ==
-                                                            'QUEUE' && {
-                                                            type: 'group',
-                                                        })}
-                                                        {...(item.menu2_sp
-                                                            ?.type ==
-                                                            'SUBMENU' && {
-                                                            type: 'share',
-                                                        })}
-                                                    />
+                                                    <div class="tooltip">
+                                                        <MyIcon
+                                                            {...(item.menu2_sp
+                                                                ?.type ==
+                                                                'FORWARD' && {
+                                                                type: 'phone',
+                                                            })}
+                                                            {...(item.menu2_sp
+                                                                ?.type ==
+                                                                'MSG' && {
+                                                                type: 'chat',
+                                                            })}
+                                                            {...(item.menu2_sp
+                                                                ?.type ==
+                                                                'QUEUE' && {
+                                                                type: 'group',
+                                                            })}
+                                                            {...(item.menu2_sp
+                                                                ?.type ==
+                                                                'SUBMENU' && {
+                                                                type: 'share',
+                                                            })}
+                                                        />
+                                                        <span class="tooltiptext">
+                                                            {item.menu2?.value}
+                                                        </span>
+                                                    </div>
                                                 )}
                                             </>
                                         ),
@@ -986,46 +1022,61 @@ function ViewContactCenter() {
                                                 3
                                                 {!showSpanish ||
                                                 !item?.presentlangoption ? (
-                                                    <MyIcon
-                                                        {...(item.menu3?.type ==
-                                                            'FORWARD' && {
-                                                            type: 'phone',
-                                                        })}
-                                                        {...(item.menu3?.type ==
-                                                            'MSG' && {
-                                                            type: 'chat',
-                                                        })}
-                                                        {...(item.menu3?.type ==
-                                                            'QUEUE' && {
-                                                            type: 'group',
-                                                        })}
-                                                        {...(item.menu3?.type ==
-                                                            'SUBMENU' && {
-                                                            type: 'share',
-                                                        })}
-                                                    />
+                                                    <div class="tooltip">
+                                                        <MyIcon
+                                                            {...(item.menu3
+                                                                ?.type ==
+                                                                'FORWARD' && {
+                                                                type: 'phone',
+                                                            })}
+                                                            {...(item.menu3
+                                                                ?.type ==
+                                                                'MSG' && {
+                                                                type: 'chat',
+                                                            })}
+                                                            {...(item.menu3
+                                                                ?.type ==
+                                                                'QUEUE' && {
+                                                                type: 'group',
+                                                            })}
+                                                            {...(item.menu3
+                                                                ?.type ==
+                                                                'SUBMENU' && {
+                                                                type: 'share',
+                                                            })}
+                                                        />
+                                                        <span class="tooltiptext">
+                                                            {item.menu3?.value}
+                                                        </span>
+                                                    </div>
                                                 ) : (
-                                                    <MyIcon
-                                                        {...(item.menu3_sp
-                                                            ?.type ==
-                                                            'FORWARD' && {
-                                                            type: 'phone',
-                                                        })}
-                                                        {...(item.menu3_sp
-                                                            ?.type == 'MSG' && {
-                                                            type: 'chat',
-                                                        })}
-                                                        {...(item.menu3_sp
-                                                            ?.type ==
-                                                            'QUEUE' && {
-                                                            type: 'group',
-                                                        })}
-                                                        {...(item.menu3_sp
-                                                            ?.type ==
-                                                            'SUBMENU' && {
-                                                            type: 'share',
-                                                        })}
-                                                    />
+                                                    <div class="tooltip">
+                                                        <MyIcon
+                                                            {...(item.menu3_sp
+                                                                ?.type ==
+                                                                'FORWARD' && {
+                                                                type: 'phone',
+                                                            })}
+                                                            {...(item.menu3_sp
+                                                                ?.type ==
+                                                                'MSG' && {
+                                                                type: 'chat',
+                                                            })}
+                                                            {...(item.menu3_sp
+                                                                ?.type ==
+                                                                'QUEUE' && {
+                                                                type: 'group',
+                                                            })}
+                                                            {...(item.menu3_sp
+                                                                ?.type ==
+                                                                'SUBMENU' && {
+                                                                type: 'share',
+                                                            })}
+                                                        />
+                                                        <span class="tooltiptext">
+                                                            {item.menu3?.value}
+                                                        </span>
+                                                    </div>
                                                 )}
                                             </>
                                         ),
@@ -1062,46 +1113,61 @@ function ViewContactCenter() {
                                                 4
                                                 {!showSpanish ||
                                                 !item?.presentlangoption ? (
-                                                    <MyIcon
-                                                        {...(item.menu4?.type ==
-                                                            'FORWARD' && {
-                                                            type: 'phone',
-                                                        })}
-                                                        {...(item.menu4?.type ==
-                                                            'MSG' && {
-                                                            type: 'chat',
-                                                        })}
-                                                        {...(item.menu4?.type ==
-                                                            'QUEUE' && {
-                                                            type: 'group',
-                                                        })}
-                                                        {...(item.menu4?.type ==
-                                                            'SUBMENU' && {
-                                                            type: 'share',
-                                                        })}
-                                                    />
+                                                    <div class="tooltip">
+                                                        <MyIcon
+                                                            {...(item.menu4
+                                                                ?.type ==
+                                                                'FORWARD' && {
+                                                                type: 'phone',
+                                                            })}
+                                                            {...(item.menu4
+                                                                ?.type ==
+                                                                'MSG' && {
+                                                                type: 'chat',
+                                                            })}
+                                                            {...(item.menu4
+                                                                ?.type ==
+                                                                'QUEUE' && {
+                                                                type: 'group',
+                                                            })}
+                                                            {...(item.menu4
+                                                                ?.type ==
+                                                                'SUBMENU' && {
+                                                                type: 'share',
+                                                            })}
+                                                        />
+                                                        <span class="tooltiptext">
+                                                            {item.menu4?.value}
+                                                        </span>
+                                                    </div>
                                                 ) : (
-                                                    <MyIcon
-                                                        {...(item.menu4_sp
-                                                            ?.type ==
-                                                            'FORWARD' && {
-                                                            type: 'phone',
-                                                        })}
-                                                        {...(item.menu4_sp
-                                                            ?.type == 'MSG' && {
-                                                            type: 'chat',
-                                                        })}
-                                                        {...(item.menu4_sp
-                                                            ?.type ==
-                                                            'QUEUE' && {
-                                                            type: 'group',
-                                                        })}
-                                                        {...(item.menu4_sp
-                                                            ?.type ==
-                                                            'SUBMENU' && {
-                                                            type: 'share',
-                                                        })}
-                                                    />
+                                                    <div class="tooltip">
+                                                        <MyIcon
+                                                            {...(item.menu4_sp
+                                                                ?.type ==
+                                                                'FORWARD' && {
+                                                                type: 'phone',
+                                                            })}
+                                                            {...(item.menu4_sp
+                                                                ?.type ==
+                                                                'MSG' && {
+                                                                type: 'chat',
+                                                            })}
+                                                            {...(item.menu4_sp
+                                                                ?.type ==
+                                                                'QUEUE' && {
+                                                                type: 'group',
+                                                            })}
+                                                            {...(item.menu4_sp
+                                                                ?.type ==
+                                                                'SUBMENU' && {
+                                                                type: 'share',
+                                                            })}
+                                                        />
+                                                        <span class="tooltiptext">
+                                                            {item.menu4?.value}
+                                                        </span>
+                                                    </div>
                                                 )}
                                             </>
                                         ),
@@ -1138,46 +1204,61 @@ function ViewContactCenter() {
                                                 5
                                                 {!showSpanish ||
                                                 !item?.presentlangoption ? (
-                                                    <MyIcon
-                                                        {...(item.menu5?.type ==
-                                                            'FORWARD' && {
-                                                            type: 'phone',
-                                                        })}
-                                                        {...(item.menu5?.type ==
-                                                            'MSG' && {
-                                                            type: 'chat',
-                                                        })}
-                                                        {...(item.menu5?.type ==
-                                                            'QUEUE' && {
-                                                            type: 'group',
-                                                        })}
-                                                        {...(item.menu5?.type ==
-                                                            'SUBMENU' && {
-                                                            type: 'share',
-                                                        })}
-                                                    />
+                                                    <div class="tooltip">
+                                                        <MyIcon
+                                                            {...(item.menu5
+                                                                ?.type ==
+                                                                'FORWARD' && {
+                                                                type: 'phone',
+                                                            })}
+                                                            {...(item.menu5
+                                                                ?.type ==
+                                                                'MSG' && {
+                                                                type: 'chat',
+                                                            })}
+                                                            {...(item.menu5
+                                                                ?.type ==
+                                                                'QUEUE' && {
+                                                                type: 'group',
+                                                            })}
+                                                            {...(item.menu5
+                                                                ?.type ==
+                                                                'SUBMENU' && {
+                                                                type: 'share',
+                                                            })}
+                                                        />
+                                                        <span class="tooltiptext">
+                                                            {item.menu5?.value}
+                                                        </span>
+                                                    </div>
                                                 ) : (
-                                                    <MyIcon
-                                                        {...(item.menu5_sp
-                                                            ?.type ==
-                                                            'FORWARD' && {
-                                                            type: 'phone',
-                                                        })}
-                                                        {...(item.menu5_sp
-                                                            ?.type == 'MSG' && {
-                                                            type: 'chat',
-                                                        })}
-                                                        {...(item.menu5_sp
-                                                            ?.type ==
-                                                            'QUEUE' && {
-                                                            type: 'group',
-                                                        })}
-                                                        {...(item.menu5_sp
-                                                            ?.type ==
-                                                            'SUBMENU' && {
-                                                            type: 'share',
-                                                        })}
-                                                    />
+                                                    <div class="tooltip">
+                                                        <MyIcon
+                                                            {...(item.menu5_sp
+                                                                ?.type ==
+                                                                'FORWARD' && {
+                                                                type: 'phone',
+                                                            })}
+                                                            {...(item.menu5_sp
+                                                                ?.type ==
+                                                                'MSG' && {
+                                                                type: 'chat',
+                                                            })}
+                                                            {...(item.menu5_sp
+                                                                ?.type ==
+                                                                'QUEUE' && {
+                                                                type: 'group',
+                                                            })}
+                                                            {...(item.menu5_sp
+                                                                ?.type ==
+                                                                'SUBMENU' && {
+                                                                type: 'share',
+                                                            })}
+                                                        />
+                                                        <span class="tooltiptext">
+                                                            {item.menu5?.value}
+                                                        </span>
+                                                    </div>
                                                 )}
                                             </>
                                         ),
@@ -1214,46 +1295,61 @@ function ViewContactCenter() {
                                                 6
                                                 {!showSpanish ||
                                                 !item?.presentlangoption ? (
-                                                    <MyIcon
-                                                        {...(item.menu6?.type ==
-                                                            'FORWARD' && {
-                                                            type: 'phone',
-                                                        })}
-                                                        {...(item.menu6?.type ==
-                                                            'MSG' && {
-                                                            type: 'chat',
-                                                        })}
-                                                        {...(item.menu6?.type ==
-                                                            'QUEUE' && {
-                                                            type: 'group',
-                                                        })}
-                                                        {...(item.menu6?.type ==
-                                                            'SUBMENU' && {
-                                                            type: 'share',
-                                                        })}
-                                                    />
+                                                    <div class="tooltip">
+                                                        <MyIcon
+                                                            {...(item.menu6
+                                                                ?.type ==
+                                                                'FORWARD' && {
+                                                                type: 'phone',
+                                                            })}
+                                                            {...(item.menu6
+                                                                ?.type ==
+                                                                'MSG' && {
+                                                                type: 'chat',
+                                                            })}
+                                                            {...(item.menu6
+                                                                ?.type ==
+                                                                'QUEUE' && {
+                                                                type: 'group',
+                                                            })}
+                                                            {...(item.menu6
+                                                                ?.type ==
+                                                                'SUBMENU' && {
+                                                                type: 'share',
+                                                            })}
+                                                        />
+                                                        <span class="tooltiptext">
+                                                            {item.menu6?.value}
+                                                        </span>
+                                                    </div>
                                                 ) : (
-                                                    <MyIcon
-                                                        {...(item.menu6_sp
-                                                            ?.type ==
-                                                            'FORWARD' && {
-                                                            type: 'phone',
-                                                        })}
-                                                        {...(item.menu6_sp
-                                                            ?.type == 'MSG' && {
-                                                            type: 'chat',
-                                                        })}
-                                                        {...(item.menu6_sp
-                                                            ?.type ==
-                                                            'QUEUE' && {
-                                                            type: 'group',
-                                                        })}
-                                                        {...(item.menu6_sp
-                                                            ?.type ==
-                                                            'SUBMENU' && {
-                                                            type: 'share',
-                                                        })}
-                                                    />
+                                                    <div class="tooltip">
+                                                        <MyIcon
+                                                            {...(item.menu6_sp
+                                                                ?.type ==
+                                                                'FORWARD' && {
+                                                                type: 'phone',
+                                                            })}
+                                                            {...(item.menu6_sp
+                                                                ?.type ==
+                                                                'MSG' && {
+                                                                type: 'chat',
+                                                            })}
+                                                            {...(item.menu6_sp
+                                                                ?.type ==
+                                                                'QUEUE' && {
+                                                                type: 'group',
+                                                            })}
+                                                            {...(item.menu6_sp
+                                                                ?.type ==
+                                                                'SUBMENU' && {
+                                                                type: 'share',
+                                                            })}
+                                                        />
+                                                        <span class="tooltiptext">
+                                                            {item.menu6?.value}
+                                                        </span>
+                                                    </div>
                                                 )}
                                             </>
                                         ),
@@ -1290,46 +1386,61 @@ function ViewContactCenter() {
                                                 7
                                                 {!showSpanish ||
                                                 !item?.presentlangoption ? (
-                                                    <MyIcon
-                                                        {...(item.menu7?.type ==
-                                                            'FORWARD' && {
-                                                            type: 'phone',
-                                                        })}
-                                                        {...(item.menu7?.type ==
-                                                            'MSG' && {
-                                                            type: 'chat',
-                                                        })}
-                                                        {...(item.menu7?.type ==
-                                                            'QUEUE' && {
-                                                            type: 'group',
-                                                        })}
-                                                        {...(item.menu7?.type ==
-                                                            'SUBMENU' && {
-                                                            type: 'share',
-                                                        })}
-                                                    />
+                                                    <div class="tooltip">
+                                                        <MyIcon
+                                                            {...(item.menu7
+                                                                ?.type ==
+                                                                'FORWARD' && {
+                                                                type: 'phone',
+                                                            })}
+                                                            {...(item.menu7
+                                                                ?.type ==
+                                                                'MSG' && {
+                                                                type: 'chat',
+                                                            })}
+                                                            {...(item.menu7
+                                                                ?.type ==
+                                                                'QUEUE' && {
+                                                                type: 'group',
+                                                            })}
+                                                            {...(item.menu7
+                                                                ?.type ==
+                                                                'SUBMENU' && {
+                                                                type: 'share',
+                                                            })}
+                                                        />
+                                                        <span class="tooltiptext">
+                                                            {item.menu7?.value}
+                                                        </span>
+                                                    </div>
                                                 ) : (
-                                                    <MyIcon
-                                                        {...(item.menu7_sp
-                                                            ?.type ==
-                                                            'FORWARD' && {
-                                                            type: 'phone',
-                                                        })}
-                                                        {...(item.menu7_sp
-                                                            ?.type == 'MSG' && {
-                                                            type: 'chat',
-                                                        })}
-                                                        {...(item.menu7_sp
-                                                            ?.type ==
-                                                            'QUEUE' && {
-                                                            type: 'group',
-                                                        })}
-                                                        {...(item.menu7_sp
-                                                            ?.type ==
-                                                            'SUBMENU' && {
-                                                            type: 'share',
-                                                        })}
-                                                    />
+                                                    <div class="tooltip">
+                                                        <MyIcon
+                                                            {...(item.menu7_sp
+                                                                ?.type ==
+                                                                'FORWARD' && {
+                                                                type: 'phone',
+                                                            })}
+                                                            {...(item.menu7_sp
+                                                                ?.type ==
+                                                                'MSG' && {
+                                                                type: 'chat',
+                                                            })}
+                                                            {...(item.menu7_sp
+                                                                ?.type ==
+                                                                'QUEUE' && {
+                                                                type: 'group',
+                                                            })}
+                                                            {...(item.menu7_sp
+                                                                ?.type ==
+                                                                'SUBMENU' && {
+                                                                type: 'share',
+                                                            })}
+                                                        />
+                                                        <span class="tooltiptext">
+                                                            {item.menu7?.value}
+                                                        </span>
+                                                    </div>
                                                 )}
                                             </>
                                         ),
@@ -1366,46 +1477,61 @@ function ViewContactCenter() {
                                                 8
                                                 {!showSpanish ||
                                                 !item?.presentlangoption ? (
-                                                    <MyIcon
-                                                        {...(item.menu8?.type ==
-                                                            'FORWARD' && {
-                                                            type: 'phone',
-                                                        })}
-                                                        {...(item.menu8?.type ==
-                                                            'MSG' && {
-                                                            type: 'chat',
-                                                        })}
-                                                        {...(item.menu8?.type ==
-                                                            'QUEUE' && {
-                                                            type: 'group',
-                                                        })}
-                                                        {...(item.menu8?.type ==
-                                                            'SUBMENU' && {
-                                                            type: 'share',
-                                                        })}
-                                                    />
+                                                    <div class="tooltip">
+                                                        <MyIcon
+                                                            {...(item.menu8
+                                                                ?.type ==
+                                                                'FORWARD' && {
+                                                                type: 'phone',
+                                                            })}
+                                                            {...(item.menu8
+                                                                ?.type ==
+                                                                'MSG' && {
+                                                                type: 'chat',
+                                                            })}
+                                                            {...(item.menu8
+                                                                ?.type ==
+                                                                'QUEUE' && {
+                                                                type: 'group',
+                                                            })}
+                                                            {...(item.menu8
+                                                                ?.type ==
+                                                                'SUBMENU' && {
+                                                                type: 'share',
+                                                            })}
+                                                        />
+                                                        <span class="tooltiptext">
+                                                            {item.menu8?.value}
+                                                        </span>
+                                                    </div>
                                                 ) : (
-                                                    <MyIcon
-                                                        {...(item.menu8_sp
-                                                            ?.type ==
-                                                            'FORWARD' && {
-                                                            type: 'phone',
-                                                        })}
-                                                        {...(item.menu8_sp
-                                                            ?.type == 'MSG' && {
-                                                            type: 'chat',
-                                                        })}
-                                                        {...(item.menu8_sp
-                                                            ?.type ==
-                                                            'QUEUE' && {
-                                                            type: 'group',
-                                                        })}
-                                                        {...(item.menu8_sp
-                                                            ?.type ==
-                                                            'SUBMENU' && {
-                                                            type: 'share',
-                                                        })}
-                                                    />
+                                                    <div class="tooltip">
+                                                        <MyIcon
+                                                            {...(item.menu8_sp
+                                                                ?.type ==
+                                                                'FORWARD' && {
+                                                                type: 'phone',
+                                                            })}
+                                                            {...(item.menu8_sp
+                                                                ?.type ==
+                                                                'MSG' && {
+                                                                type: 'chat',
+                                                            })}
+                                                            {...(item.menu8_sp
+                                                                ?.type ==
+                                                                'QUEUE' && {
+                                                                type: 'group',
+                                                            })}
+                                                            {...(item.menu8_sp
+                                                                ?.type ==
+                                                                'SUBMENU' && {
+                                                                type: 'share',
+                                                            })}
+                                                        />
+                                                        <span class="tooltiptext">
+                                                            {item.menu8?.value}
+                                                        </span>
+                                                    </div>
                                                 )}
                                             </>
                                         ),
@@ -1442,46 +1568,61 @@ function ViewContactCenter() {
                                                 9
                                                 {!showSpanish ||
                                                 !item?.presentlangoption ? (
-                                                    <MyIcon
-                                                        {...(item.menu9?.type ==
-                                                            'FORWARD' && {
-                                                            type: 'phone',
-                                                        })}
-                                                        {...(item.menu9?.type ==
-                                                            'MSG' && {
-                                                            type: 'chat',
-                                                        })}
-                                                        {...(item.menu9?.type ==
-                                                            'QUEUE' && {
-                                                            type: 'group',
-                                                        })}
-                                                        {...(item.menu9?.type ==
-                                                            'SUBMENU' && {
-                                                            type: 'share',
-                                                        })}
-                                                    />
+                                                    <div class="tooltip">
+                                                        <MyIcon
+                                                            {...(item.menu9
+                                                                ?.type ==
+                                                                'FORWARD' && {
+                                                                type: 'phone',
+                                                            })}
+                                                            {...(item.menu9
+                                                                ?.type ==
+                                                                'MSG' && {
+                                                                type: 'chat',
+                                                            })}
+                                                            {...(item.menu9
+                                                                ?.type ==
+                                                                'QUEUE' && {
+                                                                type: 'group',
+                                                            })}
+                                                            {...(item.menu9
+                                                                ?.type ==
+                                                                'SUBMENU' && {
+                                                                type: 'share',
+                                                            })}
+                                                        />
+                                                        <span class="tooltiptext">
+                                                            {item.menu9?.value}
+                                                        </span>
+                                                    </div>
                                                 ) : (
-                                                    <MyIcon
-                                                        {...(item.menu9_sp
-                                                            ?.type ==
-                                                            'FORWARD' && {
-                                                            type: 'phone',
-                                                        })}
-                                                        {...(item.menu9_sp
-                                                            ?.type == 'MSG' && {
-                                                            type: 'chat',
-                                                        })}
-                                                        {...(item.menu9_sp
-                                                            ?.type ==
-                                                            'QUEUE' && {
-                                                            type: 'group',
-                                                        })}
-                                                        {...(item.menu9_sp
-                                                            ?.type ==
-                                                            'SUBMENU' && {
-                                                            type: 'share',
-                                                        })}
-                                                    />
+                                                    <div class="tooltip">
+                                                        <MyIcon
+                                                            {...(item.menu9_sp
+                                                                ?.type ==
+                                                                'FORWARD' && {
+                                                                type: 'phone',
+                                                            })}
+                                                            {...(item.menu9_sp
+                                                                ?.type ==
+                                                                'MSG' && {
+                                                                type: 'chat',
+                                                            })}
+                                                            {...(item.menu9_sp
+                                                                ?.type ==
+                                                                'QUEUE' && {
+                                                                type: 'group',
+                                                            })}
+                                                            {...(item.menu9_sp
+                                                                ?.type ==
+                                                                'SUBMENU' && {
+                                                                type: 'share',
+                                                            })}
+                                                        />
+                                                        <span class="tooltiptext">
+                                                            {item.menu9?.value}
+                                                        </span>
+                                                    </div>
                                                 )}
                                             </>
                                         ),
@@ -1518,46 +1659,73 @@ function ViewContactCenter() {
                                                 0
                                                 {!showSpanish ||
                                                 !item?.presentlangoption ? (
-                                                    <MyIcon
-                                                        {...(item.menu0?.type ==
-                                                            'FORWARD' && {
-                                                            type: 'phone',
-                                                        })}
-                                                        {...(item.menu0?.type ==
-                                                            'MSG' && {
-                                                            type: 'chat',
-                                                        })}
-                                                        {...(item.menu0?.type ==
-                                                            'QUEUE' && {
-                                                            type: 'group',
-                                                        })}
-                                                        {...(item.menu0?.type ==
-                                                            'SUBMENU' && {
-                                                            type: 'share',
-                                                        })}
-                                                    />
+                                                    <div class="tooltip">
+                                                        <MyIcon
+                                                            {...(item.menu0
+                                                                ?.type ==
+                                                                'FORWARD' && {
+                                                                type: 'phone',
+                                                            })}
+                                                            {...(item.menu0
+                                                                ?.type ==
+                                                                'MSG' && {
+                                                                type: 'chat',
+                                                            })}
+                                                            {...(item.menu0
+                                                                ?.type ==
+                                                                'QUEUE' && {
+                                                                type: 'group',
+                                                            })}
+                                                            {...(item.menu0
+                                                                ?.type ==
+                                                                'SUBMENU' && {
+                                                                type: 'share',
+                                                            })}
+                                                        />
+                                                    <span
+                                                            {...(item.menu0
+                                                                ?.value !=
+                                                                null && {
+                                                                class: 'tooltiptext',
+                                                            })}
+                                                        >
+                                                            {item.menu0?.value}
+                                                        </span>
+                                                    </div>
                                                 ) : (
-                                                    <MyIcon
-                                                        {...(item.menu0_sp
-                                                            ?.type ==
-                                                            'FORWARD' && {
-                                                            type: 'phone',
-                                                        })}
-                                                        {...(item.menu0_sp
-                                                            ?.type == 'MSG' && {
-                                                            type: 'chat',
-                                                        })}
-                                                        {...(item.menu0_sp
-                                                            ?.type ==
-                                                            'QUEUE' && {
-                                                            type: 'group',
-                                                        })}
-                                                        {...(item.menu0_sp
-                                                            ?.type ==
-                                                            'SUBMENU' && {
-                                                            type: 'share',
-                                                        })}
-                                                    />
+                                                    <div class="tooltip">
+                                                        <MyIcon
+                                                            {...(item.menu0_sp
+                                                                ?.type ==
+                                                                'FORWARD' && {
+                                                                type: 'phone',
+                                                            })}
+                                                            {...(item.menu0_sp
+                                                                ?.type ==
+                                                                'MSG' && {
+                                                                type: 'chat',
+                                                            })}
+                                                            {...(item.menu0_sp
+                                                                ?.type ==
+                                                                'QUEUE' && {
+                                                                type: 'group',
+                                                            })}
+                                                            {...(item.menu0_sp
+                                                                ?.type ==
+                                                                'SUBMENU' && {
+                                                                type: 'share',
+                                                            })}
+                                                        />
+                                                        <span
+                                                            {...(item.menu0
+                                                                ?.value ==
+                                                                null && {
+                                                                class: 'tooltiptext',
+                                                            })}
+                                                        >
+                                                            {item.menu0?.value}
+                                                        </span>
+                                                    </div>
                                                 )}
                                             </>
                                         ),
