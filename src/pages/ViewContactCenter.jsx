@@ -1682,13 +1682,7 @@ function ViewContactCenter() {
                                                                 type: 'share',
                                                             })}
                                                         />
-                                                    <span
-                                                            {...(item.menu0
-                                                                ?.value !=
-                                                                null && {
-                                                                class: 'tooltiptext',
-                                                            })}
-                                                        >
+                                                        <span class="tooltiptext">
                                                             {item.menu0?.value}
                                                         </span>
                                                     </div>
@@ -1716,13 +1710,7 @@ function ViewContactCenter() {
                                                                 type: 'share',
                                                             })}
                                                         />
-                                                        <span
-                                                            {...(item.menu0
-                                                                ?.value ==
-                                                                null && {
-                                                                class: 'tooltiptext',
-                                                            })}
-                                                        >
+                                                        <span class="tooltiptext">
                                                             {item.menu0?.value}
                                                         </span>
                                                     </div>
