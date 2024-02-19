@@ -256,9 +256,10 @@ type EagerContactCenterModel = {
   readonly menu7?: MenuType | null;
   readonly menu8?: MenuType | null;
   readonly menu9?: MenuType | null;
+  readonly usecorporateholidays?: boolean | null;
   readonly holiday?: (string | null)[] | null;
-  readonly secondarytodopen?: (string | null)[] | null;
   readonly secondarytodclose?: (string | null)[] | null;
+  readonly secondarytodopen?: (string | null)[] | null;
   readonly daystodopen?: (string | null)[] | null;
   readonly daystodclose?: (string | null)[] | null;
   readonly daysopen?: (string | null)[] | null;
@@ -332,9 +333,10 @@ type LazyContactCenterModel = {
   readonly menu7?: MenuType | null;
   readonly menu8?: MenuType | null;
   readonly menu9?: MenuType | null;
+  readonly usecorporateholidays?: boolean | null;
   readonly holiday?: (string | null)[] | null;
-  readonly secondarytodopen?: (string | null)[] | null;
   readonly secondarytodclose?: (string | null)[] | null;
+  readonly secondarytodopen?: (string | null)[] | null;
   readonly daystodopen?: (string | null)[] | null;
   readonly daystodclose?: (string | null)[] | null;
   readonly daysopen?: (string | null)[] | null;

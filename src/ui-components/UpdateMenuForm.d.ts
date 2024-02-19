@@ -31,6 +31,7 @@ export declare type UpdateMenuFormInputValues = {
     isafterhours?: boolean;
     issecondaryclosed?: boolean;
     epiccontext?: string;
+    usecorporateholidays?: boolean;
     submenu1?: string;
     submenu3?: string;
     submenu4?: string;
@@ -59,6 +60,7 @@ export declare type UpdateMenuFormValidationValues = {
     isafterhours?: ValidationFunction<boolean>;
     issecondaryclosed?: ValidationFunction<boolean>;
     epiccontext?: ValidationFunction<string>;
+    usecorporateholidays?: ValidationFunction<boolean>;
     submenu1?: ValidationFunction<string>;
     submenu3?: ValidationFunction<string>;
     submenu4?: ValidationFunction<string>;
@@ -89,6 +91,7 @@ export declare type UpdateMenuFormOverridesProps = {
     isafterhours?: PrimitiveOverrideProps<SwitchFieldProps>;
     issecondaryclosed?: PrimitiveOverrideProps<SwitchFieldProps>;
     epiccontext?: PrimitiveOverrideProps<TextFieldProps>;
+    usecorporateholidays?: PrimitiveOverrideProps<SwitchFieldProps>;
     submenu1?: PrimitiveOverrideProps<TextAreaFieldProps>;
     submenu3?: PrimitiveOverrideProps<TextAreaFieldProps>;
     submenu4?: PrimitiveOverrideProps<TextAreaFieldProps>;

@@ -194,12 +194,16 @@ export default function UpdateOverrideForm(props) {
   const initialValues = {
     isoverride: false,
     presentlangoption: false,
+    usecorporateholidays: false,
     holiday: [],
     epiccontext: "",
   };
   const [isoverride, setIsoverride] = React.useState(initialValues.isoverride);
   const [presentlangoption, setPresentlangoption] = React.useState(
     initialValues.presentlangoption
+  );
+  const [usecorporateholidays, setUsecorporateholidays] = React.useState(
+    initialValues.usecorporateholidays
   );
   const [holiday, setHoliday] = React.useState(initialValues.holiday);
   const [epiccontext, setEpiccontext] = React.useState(
@@ -212,6 +216,7 @@ export default function UpdateOverrideForm(props) {
       : initialValues;
     setIsoverride(cleanValues.isoverride);
     setPresentlangoption(cleanValues.presentlangoption);
+    setUsecorporateholidays(cleanValues.usecorporateholidays);
     setHoliday(cleanValues.holiday ?? []);
     setCurrentHolidayValue("");
     setEpiccontext(cleanValues.epiccontext);
@@ -234,6 +239,7 @@ export default function UpdateOverrideForm(props) {
   const validations = {
     isoverride: [],
     presentlangoption: [],
+    usecorporateholidays: [],
     holiday: [],
     epiccontext: [],
   };
@@ -265,6 +271,7 @@ export default function UpdateOverrideForm(props) {
         let modelFields = {
           isoverride,
           presentlangoption,
+          usecorporateholidays,
           holiday,
           epiccontext,
         };
@@ -324,6 +331,7 @@ export default function UpdateOverrideForm(props) {
             const modelFields = {
               isoverride: value,
               presentlangoption,
+              usecorporateholidays,
               holiday,
               epiccontext,
             };
@@ -351,6 +359,7 @@ export default function UpdateOverrideForm(props) {
             const modelFields = {
               isoverride,
               presentlangoption: value,
+              usecorporateholidays,
               holiday,
               epiccontext,
             };
@@ -373,6 +382,36 @@ export default function UpdateOverrideForm(props) {
         orientation="horizontal"
         {...getOverrideProps(overrides, "SectionalElement0")}
       ></Divider>
+      <SwitchField
+        label="Use Corporate Holidays"
+        defaultChecked={false}
+        isDisabled={false}
+        isChecked={usecorporateholidays}
+        onChange={(e) => {
+          let value = e.target.checked;
+          if (onChange) {
+            const modelFields = {
+              isoverride,
+              presentlangoption,
+              usecorporateholidays: value,
+              holiday,
+              epiccontext,
+            };
+            const result = onChange(modelFields);
+            value = result?.usecorporateholidays ?? value;
+          }
+          if (errors.usecorporateholidays?.hasError) {
+            runValidationTasks("usecorporateholidays", value);
+          }
+          setUsecorporateholidays(value);
+        }}
+        onBlur={() =>
+          runValidationTasks("usecorporateholidays", usecorporateholidays)
+        }
+        errorMessage={errors.usecorporateholidays?.errorMessage}
+        hasError={errors.usecorporateholidays?.hasError}
+        {...getOverrideProps(overrides, "usecorporateholidays")}
+      ></SwitchField>
       <ArrayField
         onChange={async (items) => {
           let values = items;
@@ -380,6 +419,7 @@ export default function UpdateOverrideForm(props) {
             const modelFields = {
               isoverride,
               presentlangoption,
+              usecorporateholidays,
               holiday: values,
               epiccontext,
             };
@@ -423,6 +463,10 @@ export default function UpdateOverrideForm(props) {
           {...getOverrideProps(overrides, "holiday")}
         ></TextField>
       </ArrayField>
+      <Divider
+        orientation="horizontal"
+        {...getOverrideProps(overrides, "SectionalElement1")}
+      ></Divider>
       <SelectField
         label="EPIC Screen Pop Context"
         placeholder="Please select an option"
@@ -434,6 +478,7 @@ export default function UpdateOverrideForm(props) {
             const modelFields = {
               isoverride,
               presentlangoption,
+              usecorporateholidays,
               holiday,
               epiccontext: value,
             };
@@ -451,19 +496,14 @@ export default function UpdateOverrideForm(props) {
         {...getOverrideProps(overrides, "epiccontext")}
       >
         <option
-          children=""
-          value=""
-          {...getOverrideProps(overrides, "epiccontextoption0")}
-        ></option>
-        <option
           children="Call Hub"
           value="Call Hub"
-          {...getOverrideProps(overrides, "epiccontextoption1")}
+          {...getOverrideProps(overrides, "epiccontextoption0")}
         ></option>
         <option
           children="Scheduling"
           value="Scheduling"
-          {...getOverrideProps(overrides, "epiccontextoption2")}
+          {...getOverrideProps(overrides, "epiccontextoption1")}
         ></option>
       </SelectField>
       <Flex

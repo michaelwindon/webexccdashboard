@@ -70,6 +70,7 @@ export declare type ContactCenterModelUpdateFormInputValues = {
     Managers?: ManagerModel[];
     AssignedGroup?: GroupModel;
     override?: string;
+    usecorporateholidays?: boolean;
     secondaryclose?: string;
     updateduser?: string;
     submenu1?: string;
@@ -139,6 +140,7 @@ export declare type ContactCenterModelUpdateFormValidationValues = {
     Managers?: ValidationFunction<ManagerModel>;
     AssignedGroup?: ValidationFunction<GroupModel>;
     override?: ValidationFunction<string>;
+    usecorporateholidays?: ValidationFunction<boolean>;
     secondaryclose?: ValidationFunction<string>;
     updateduser?: ValidationFunction<string>;
     submenu1?: ValidationFunction<string>;
@@ -210,6 +212,7 @@ export declare type ContactCenterModelUpdateFormOverridesProps = {
     Managers?: PrimitiveOverrideProps<AutocompleteProps>;
     AssignedGroup?: PrimitiveOverrideProps<AutocompleteProps>;
     override?: PrimitiveOverrideProps<TextAreaFieldProps>;
+    usecorporateholidays?: PrimitiveOverrideProps<SwitchFieldProps>;
     secondaryclose?: PrimitiveOverrideProps<TextAreaFieldProps>;
     updateduser?: PrimitiveOverrideProps<TextFieldProps>;
     submenu1?: PrimitiveOverrideProps<TextAreaFieldProps>;

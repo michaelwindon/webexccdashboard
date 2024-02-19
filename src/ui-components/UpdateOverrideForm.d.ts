@@ -25,12 +25,14 @@ export declare type ValidationFunction<T> = (value: T, validationResponse: Valid
 export declare type UpdateOverrideFormInputValues = {
     isoverride?: boolean;
     presentlangoption?: boolean;
+    usecorporateholidays?: boolean;
     holiday?: string[];
     epiccontext?: string;
 };
 export declare type UpdateOverrideFormValidationValues = {
     isoverride?: ValidationFunction<boolean>;
     presentlangoption?: ValidationFunction<boolean>;
+    usecorporateholidays?: ValidationFunction<boolean>;
     holiday?: ValidationFunction<string>;
     epiccontext?: ValidationFunction<string>;
 };
@@ -40,7 +42,9 @@ export declare type UpdateOverrideFormOverridesProps = {
     isoverride?: PrimitiveOverrideProps<SwitchFieldProps>;
     presentlangoption?: PrimitiveOverrideProps<SwitchFieldProps>;
     SectionalElement0?: PrimitiveOverrideProps<DividerProps>;
+    usecorporateholidays?: PrimitiveOverrideProps<SwitchFieldProps>;
     holiday?: PrimitiveOverrideProps<TextFieldProps>;
+    SectionalElement1?: PrimitiveOverrideProps<DividerProps>;
     epiccontext?: PrimitiveOverrideProps<SelectFieldProps>;
 } & EscapeHatchProps;
 export declare type UpdateOverrideFormProps = React.PropsWithChildren<{

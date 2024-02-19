@@ -39,6 +39,7 @@ export default function UpdateMenuForm(props) {
     isafterhours: false,
     issecondaryclosed: false,
     epiccontext: "",
+    usecorporateholidays: false,
     submenu1: "",
     submenu3: "",
     submenu4: "",
@@ -73,6 +74,9 @@ export default function UpdateMenuForm(props) {
   );
   const [epiccontext, setEpiccontext] = React.useState(
     initialValues.epiccontext
+  );
+  const [usecorporateholidays, setUsecorporateholidays] = React.useState(
+    initialValues.usecorporateholidays
   );
   const [submenu1, setSubmenu1] = React.useState(initialValues.submenu1);
   const [submenu3, setSubmenu3] = React.useState(initialValues.submenu3);
@@ -127,6 +131,7 @@ export default function UpdateMenuForm(props) {
     setIsafterhours(cleanValues.isafterhours);
     setIssecondaryclosed(cleanValues.issecondaryclosed);
     setEpiccontext(cleanValues.epiccontext);
+    setUsecorporateholidays(cleanValues.usecorporateholidays);
     setSubmenu1(
       typeof cleanValues.submenu1 === "string" || cleanValues.submenu1 === null
         ? cleanValues.submenu1
@@ -249,6 +254,7 @@ export default function UpdateMenuForm(props) {
     isafterhours: [],
     issecondaryclosed: [],
     epiccontext: [],
+    usecorporateholidays: [],
     submenu1: [{ type: "JSON" }],
     submenu3: [{ type: "JSON" }],
     submenu4: [{ type: "JSON" }],
@@ -302,6 +308,7 @@ export default function UpdateMenuForm(props) {
           isafterhours,
           issecondaryclosed,
           epiccontext,
+          usecorporateholidays,
           submenu1,
           submenu3,
           submenu4,
@@ -355,6 +362,7 @@ export default function UpdateMenuForm(props) {
             isafterhours: modelFields.isafterhours,
             issecondaryclosed: modelFields.issecondaryclosed,
             epiccontext: modelFields.epiccontext,
+            usecorporateholidays: modelFields.usecorporateholidays,
             menu0: modelFields.menu0
               ? JSON.parse(modelFields.menu0)
               : modelFields.menu0,
@@ -448,6 +456,7 @@ export default function UpdateMenuForm(props) {
               isafterhours,
               issecondaryclosed,
               epiccontext,
+              usecorporateholidays,
               submenu1,
               submenu3,
               submenu4,
@@ -496,6 +505,7 @@ export default function UpdateMenuForm(props) {
               isafterhours,
               issecondaryclosed,
               epiccontext,
+              usecorporateholidays,
               submenu1,
               submenu3,
               submenu4,
@@ -564,6 +574,7 @@ export default function UpdateMenuForm(props) {
               isafterhours,
               issecondaryclosed,
               epiccontext,
+              usecorporateholidays,
               submenu1,
               submenu3,
               submenu4,
@@ -613,6 +624,7 @@ export default function UpdateMenuForm(props) {
               isafterhours,
               issecondaryclosed,
               epiccontext,
+              usecorporateholidays,
               submenu1,
               submenu3,
               submenu4,
@@ -664,6 +676,7 @@ export default function UpdateMenuForm(props) {
               isafterhours,
               issecondaryclosed,
               epiccontext,
+              usecorporateholidays,
               submenu1,
               submenu3,
               submenu4,
@@ -713,6 +726,7 @@ export default function UpdateMenuForm(props) {
               isafterhours: value,
               issecondaryclosed,
               epiccontext,
+              usecorporateholidays,
               submenu1,
               submenu3,
               submenu4,
@@ -762,6 +776,7 @@ export default function UpdateMenuForm(props) {
               isafterhours,
               issecondaryclosed: value,
               epiccontext,
+              usecorporateholidays,
               submenu1,
               submenu3,
               submenu4,
@@ -813,6 +828,7 @@ export default function UpdateMenuForm(props) {
               isafterhours,
               issecondaryclosed,
               epiccontext: value,
+              usecorporateholidays,
               submenu1,
               submenu3,
               submenu4,
@@ -845,6 +861,58 @@ export default function UpdateMenuForm(props) {
         hasError={errors.epiccontext?.hasError}
         {...getOverrideProps(overrides, "epiccontext")}
       ></TextField>
+      <SwitchField
+        label="Usecorporateholidays"
+        defaultChecked={false}
+        isDisabled={false}
+        isChecked={usecorporateholidays}
+        onChange={(e) => {
+          let value = e.target.checked;
+          if (onChange) {
+            const modelFields = {
+              menu0,
+              Field0,
+              Field1,
+              presentlangoption,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
+              epiccontext,
+              usecorporateholidays: value,
+              submenu1,
+              submenu3,
+              submenu4,
+              submenu5,
+              submenu6,
+              submenu7,
+              submenu8,
+              submenu9,
+              submenu0,
+              submenu1_sp,
+              submenu3_sp,
+              submenu4_sp,
+              submenu5_sp,
+              submenu6_sp,
+              submenu7_sp,
+              submenu8_sp,
+              submenu9_sp,
+              submenu0_sp,
+            };
+            const result = onChange(modelFields);
+            value = result?.usecorporateholidays ?? value;
+          }
+          if (errors.usecorporateholidays?.hasError) {
+            runValidationTasks("usecorporateholidays", value);
+          }
+          setUsecorporateholidays(value);
+        }}
+        onBlur={() =>
+          runValidationTasks("usecorporateholidays", usecorporateholidays)
+        }
+        errorMessage={errors.usecorporateholidays?.errorMessage}
+        hasError={errors.usecorporateholidays?.hasError}
+        {...getOverrideProps(overrides, "usecorporateholidays")}
+      ></SwitchField>
       <TextAreaField
         label="Submenu1"
         isRequired={false}
@@ -862,6 +930,7 @@ export default function UpdateMenuForm(props) {
               isafterhours,
               issecondaryclosed,
               epiccontext,
+              usecorporateholidays,
               submenu1: value,
               submenu3,
               submenu4,
@@ -911,6 +980,7 @@ export default function UpdateMenuForm(props) {
               isafterhours,
               issecondaryclosed,
               epiccontext,
+              usecorporateholidays,
               submenu1,
               submenu3: value,
               submenu4,
@@ -960,6 +1030,7 @@ export default function UpdateMenuForm(props) {
               isafterhours,
               issecondaryclosed,
               epiccontext,
+              usecorporateholidays,
               submenu1,
               submenu3,
               submenu4: value,
@@ -1009,6 +1080,7 @@ export default function UpdateMenuForm(props) {
               isafterhours,
               issecondaryclosed,
               epiccontext,
+              usecorporateholidays,
               submenu1,
               submenu3,
               submenu4,
@@ -1058,6 +1130,7 @@ export default function UpdateMenuForm(props) {
               isafterhours,
               issecondaryclosed,
               epiccontext,
+              usecorporateholidays,
               submenu1,
               submenu3,
               submenu4,
@@ -1107,6 +1180,7 @@ export default function UpdateMenuForm(props) {
               isafterhours,
               issecondaryclosed,
               epiccontext,
+              usecorporateholidays,
               submenu1,
               submenu3,
               submenu4,
@@ -1156,6 +1230,7 @@ export default function UpdateMenuForm(props) {
               isafterhours,
               issecondaryclosed,
               epiccontext,
+              usecorporateholidays,
               submenu1,
               submenu3,
               submenu4,
@@ -1205,6 +1280,7 @@ export default function UpdateMenuForm(props) {
               isafterhours,
               issecondaryclosed,
               epiccontext,
+              usecorporateholidays,
               submenu1,
               submenu3,
               submenu4,
@@ -1254,6 +1330,7 @@ export default function UpdateMenuForm(props) {
               isafterhours,
               issecondaryclosed,
               epiccontext,
+              usecorporateholidays,
               submenu1,
               submenu3,
               submenu4,
@@ -1303,6 +1380,7 @@ export default function UpdateMenuForm(props) {
               isafterhours,
               issecondaryclosed,
               epiccontext,
+              usecorporateholidays,
               submenu1,
               submenu3,
               submenu4,
@@ -1352,6 +1430,7 @@ export default function UpdateMenuForm(props) {
               isafterhours,
               issecondaryclosed,
               epiccontext,
+              usecorporateholidays,
               submenu1,
               submenu3,
               submenu4,
@@ -1401,6 +1480,7 @@ export default function UpdateMenuForm(props) {
               isafterhours,
               issecondaryclosed,
               epiccontext,
+              usecorporateholidays,
               submenu1,
               submenu3,
               submenu4,
@@ -1450,6 +1530,7 @@ export default function UpdateMenuForm(props) {
               isafterhours,
               issecondaryclosed,
               epiccontext,
+              usecorporateholidays,
               submenu1,
               submenu3,
               submenu4,
@@ -1499,6 +1580,7 @@ export default function UpdateMenuForm(props) {
               isafterhours,
               issecondaryclosed,
               epiccontext,
+              usecorporateholidays,
               submenu1,
               submenu3,
               submenu4,
@@ -1548,6 +1630,7 @@ export default function UpdateMenuForm(props) {
               isafterhours,
               issecondaryclosed,
               epiccontext,
+              usecorporateholidays,
               submenu1,
               submenu3,
               submenu4,
@@ -1597,6 +1680,7 @@ export default function UpdateMenuForm(props) {
               isafterhours,
               issecondaryclosed,
               epiccontext,
+              usecorporateholidays,
               submenu1,
               submenu3,
               submenu4,
@@ -1646,6 +1730,7 @@ export default function UpdateMenuForm(props) {
               isafterhours,
               issecondaryclosed,
               epiccontext,
+              usecorporateholidays,
               submenu1,
               submenu3,
               submenu4,
@@ -1695,6 +1780,7 @@ export default function UpdateMenuForm(props) {
               isafterhours,
               issecondaryclosed,
               epiccontext,
+              usecorporateholidays,
               submenu1,
               submenu3,
               submenu4,

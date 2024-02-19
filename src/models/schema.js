@@ -592,6 +592,13 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "usecorporateholidays": {
+                    "name": "usecorporateholidays",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "holiday": {
                     "name": "holiday",
                     "isArray": true,
@@ -600,16 +607,16 @@ export const schema = {
                     "attributes": [],
                     "isArrayNullable": true
                 },
-                "secondarytodopen": {
-                    "name": "secondarytodopen",
+                "secondarytodclose": {
+                    "name": "secondarytodclose",
                     "isArray": true,
                     "type": "String",
                     "isRequired": false,
                     "attributes": [],
                     "isArrayNullable": true
                 },
-                "secondarytodclose": {
-                    "name": "secondarytodclose",
+                "secondarytodopen": {
+                    "name": "secondarytodopen",
                     "isArray": true,
                     "type": "String",
                     "isRequired": false,
@@ -1389,5 +1396,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.4.4",
-    "version": "b848fb2ff004ba448020a41d101408ad"
+    "version": "ea3470b1dbb5f9a40a1a9c75c90fde10"
 };
