@@ -24,6 +24,7 @@ const UpdateSubmenuModal = (props) => {
     const {
         onClose,
         groupid,
+        showSpanish,
         open,
         optionnumber,
         contactcenter,
@@ -88,819 +89,1538 @@ const UpdateSubmenuModal = (props) => {
                         switch (optionnumber) {
                             case '1':
                                 if (menunumber == '1') {
-                                    update.submenu1 = {
-                                        ...update.submenu,
-                                        option1: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu1_sp = {
+                                            ...update.submenu,
+                                            option1: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu1 = {
+                                            ...update.submenu,
+                                            option1: updatedMenu,
+                                        }
                                     }
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '2') {
-                                    update.submenu2 = {
-                                        ...update.submenu2,
-                                        option1: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu2_sp = {
+                                            ...update.submenu2,
+                                            option1: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu2 = {
+                                            ...update.submenu2,
+                                            option1: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '3') {
-                                    update.submenu3 = {
-                                        ...update.submenu3,
-                                        option1: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu3_sp = {
+                                            ...update.submenu3,
+                                            option1: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu3 = {
+                                            ...update.submenu3,
+                                            option1: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '4') {
-                                    update.submenu4 = {
-                                        ...update.submenu4,
-                                        option1: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu4_sp = {
+                                            ...update.submenu4,
+                                            option1: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu4 = {
+                                            ...update.submenu4,
+                                            option1: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '5') {
-                                    update.submenu5 = {
-                                        ...update.submenu5,
-                                        option1: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu5_sp = {
+                                            ...update.submenu5,
+                                            option1: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu5 = {
+                                            ...update.submenu5,
+                                            option1: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '6') {
-                                    update.submenu6 = {
-                                        ...update.submenu6,
-                                        option1: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu6_sp = {
+                                            ...update.submenu6,
+                                            option1: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu6 = {
+                                            ...update.submenu6,
+                                            option1: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '7') {
-                                    update.submenu7 = {
-                                        ...update.submenu7,
-                                        option1: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu7_sp = {
+                                            ...update.submenu7,
+                                            option1: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu7 = {
+                                            ...update.submenu7,
+                                            option1: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '8') {
-                                    update.submenu8 = {
-                                        ...update.submenu8,
-                                        option1: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu8_sp = {
+                                            ...update.submenu8,
+                                            option1: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu8 = {
+                                            ...update.submenu8,
+                                            option1: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '9') {
-                                    update.submenu9 = {
-                                        ...update.submenu9,
-                                        option1: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu9_sp = {
+                                            ...update.submenu9,
+                                            option1: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu9 = {
+                                            ...update.submenu9,
+                                            option1: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '0') {
-                                    update.submenu0 = {
-                                        ...update.submenu0,
-                                        option1: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu0_sp = {
+                                            ...update.submenu0,
+                                            option1: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu0 = {
+                                            ...update.submenu0,
+                                            option1: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                             case '2':
                                 if (menunumber == '1') {
-                                    update.submenu1 = {
-                                        ...update.submenu1,
-                                        option2: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu1_sp = {
+                                            ...update.submenu1,
+                                            option2: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu1 = {
+                                            ...update.submenu1,
+                                            option2: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '2') {
-                                    update.submenu2 = {
-                                        ...update.submenu2,
-                                        option2: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu2_sp = {
+                                            ...update.submenu2,
+                                            option2: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu2 = {
+                                            ...update.submenu2,
+                                            option2: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '3') {
-                                    update.submenu3 = {
-                                        ...update.submenu3,
-                                        option2: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu3_sp = {
+                                            ...update.submenu3,
+                                            option2: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu3 = {
+                                            ...update.submenu3,
+                                            option2: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '4') {
-                                    update.submenu4 = {
-                                        ...update.submenu4,
-                                        option2: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu4_sp = {
+                                            ...update.submenu4,
+                                            option2: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu4 = {
+                                            ...update.submenu4,
+                                            option2: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '5') {
-                                    update.submenu5 = {
-                                        ...update.submenu5,
-                                        option2: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu5_sp = {
+                                            ...update.submenu5,
+                                            option2: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu5 = {
+                                            ...update.submenu5,
+                                            option2: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '6') {
-                                    update.submenu6 = {
-                                        ...update.submenu6,
-                                        option2: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu6_sp = {
+                                            ...update.submenu6,
+                                            option2: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu6 = {
+                                            ...update.submenu6,
+                                            option2: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '7') {
-                                    update.submenu7 = {
-                                        ...update.submenu7,
-                                        option2: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu7_sp = {
+                                            ...update.submenu7,
+                                            option2: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu7 = {
+                                            ...update.submenu7,
+                                            option2: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '8') {
-                                    update.submenu8 = {
-                                        ...update.submenu8,
-                                        option2: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu8_sp = {
+                                            ...update.submenu8,
+                                            option2: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu8 = {
+                                            ...update.submenu8,
+                                            option2: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '9') {
-                                    update.submenu9 = {
-                                        ...update.submenu9,
-                                        option2: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu9_sp = {
+                                            ...update.submenu9,
+                                            option2: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu9 = {
+                                            ...update.submenu9,
+                                            option2: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '0') {
-                                    update.submenu0 = {
-                                        ...update.submenu0,
-                                        option2: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu0_sp = {
+                                            ...update.submenu0,
+                                            option2: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu0 = {
+                                            ...update.submenu0,
+                                            option2: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                             case '3':
                                 if (menunumber == '1') {
-                                    update.submenu1 = {
-                                        ...update.submenu1,
-                                        option3: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu1_sp = {
+                                            ...update.submenu1,
+                                            option3: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu1 = {
+                                            ...update.submenu1,
+                                            option3: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '2') {
-                                    update.submenu2 = {
-                                        ...update.submenu2,
-                                        option3: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu2_sp = {
+                                            ...update.submenu2,
+                                            option3: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu2 = {
+                                            ...update.submenu2,
+                                            option3: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '3') {
-                                    update.submenu3 = {
-                                        ...update.submenu3,
-                                        option3: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu3_sp = {
+                                            ...update.submenu3,
+                                            option3: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu3 = {
+                                            ...update.submenu3,
+                                            option3: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '4') {
-                                    update.submenu4 = {
-                                        ...update.submenu4,
-                                        option3: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu4_sp = {
+                                            ...update.submenu4,
+                                            option3: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu4 = {
+                                            ...update.submenu4,
+                                            option3: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '5') {
-                                    update.submenu5 = {
-                                        ...update.submenu5,
-                                        option3: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu5_sp = {
+                                            ...update.submenu5,
+                                            option3: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu5 = {
+                                            ...update.submenu5,
+                                            option3: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '6') {
-                                    update.submenu6 = {
-                                        ...update.submenu6,
-                                        option3: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu6_sp = {
+                                            ...update.submenu6,
+                                            option3: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu6 = {
+                                            ...update.submenu6,
+                                            option3: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '7') {
-                                    update.submenu7 = {
-                                        ...update.submenu7,
-                                        option3: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu7_sp = {
+                                            ...update.submenu7,
+                                            option3: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu7 = {
+                                            ...update.submenu7,
+                                            option3: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '8') {
-                                    update.submenu8 = {
-                                        ...update.submenu8,
-                                        option3: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu8_sp = {
+                                            ...update.submenu8,
+                                            option3: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu8 = {
+                                            ...update.submenu8,
+                                            option3: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '9') {
-                                    update.submenu9 = {
-                                        ...update.submenu9,
-                                        option3: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu9_sp = {
+                                            ...update.submenu9,
+                                            option3: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu9 = {
+                                            ...update.submenu9,
+                                            option3: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '0') {
-                                    update.submenu0 = {
-                                        ...update.submenu0,
-                                        option3: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu0_sp = {
+                                            ...update.submenu0,
+                                            option3: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu0 = {
+                                            ...update.submenu0,
+                                            option3: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                             case '4':
                                 if (menunumber == '1') {
-                                    update.submenu1 = {
-                                        ...update.submenu1,
-                                        option4: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu1_sp = {
+                                            ...update.submenu1,
+                                            option4: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu1 = {
+                                            ...update.submenu1,
+                                            option4: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '2') {
-                                    update.submenu2 = {
-                                        ...update.submenu2,
-                                        option4: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu2_sp = {
+                                            ...update.submenu2,
+                                            option4: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu2 = {
+                                            ...update.submenu2,
+                                            option4: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '3') {
-                                    update.submenu3 = {
-                                        ...update.submenu3,
-                                        option4: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu3_sp = {
+                                            ...update.submenu3,
+                                            option4: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu3 = {
+                                            ...update.submenu3,
+                                            option4: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '4') {
-                                    update.submenu4 = {
-                                        ...update.submenu4,
-                                        option4: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu4_sp = {
+                                            ...update.submenu4,
+                                            option4: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu4 = {
+                                            ...update.submenu4,
+                                            option4: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '5') {
-                                    update.submenu5 = {
-                                        ...update.submenu5,
-                                        option4: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu5_sp = {
+                                            ...update.submenu5,
+                                            option4: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu5 = {
+                                            ...update.submenu5,
+                                            option4: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '6') {
-                                    update.submenu6 = {
-                                        ...update.submenu6,
-                                        option4: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu6_sp = {
+                                            ...update.submenu6,
+                                            option4: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu6 = {
+                                            ...update.submenu6,
+                                            option4: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '7') {
-                                    update.submenu7 = {
-                                        ...update.submenu7,
-                                        option4: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu7_sp = {
+                                            ...update.submenu7,
+                                            option4: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu7 = {
+                                            ...update.submenu7,
+                                            option4: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '8') {
-                                    update.submenu8 = {
-                                        ...update.submenu8,
-                                        option4: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu8_sp = {
+                                            ...update.submenu8,
+                                            option4: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu8 = {
+                                            ...update.submenu8,
+                                            option4: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '9') {
-                                    update.submenu9 = {
-                                        ...update.submenu9,
-                                        option4: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu9_sp = {
+                                            ...update.submenu9,
+                                            option4: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu9 = {
+                                            ...update.submenu9,
+                                            option4: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '0') {
-                                    update.submenu0 = {
-                                        ...update.submenu0,
-                                        option4: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu0_sp = {
+                                            ...update.submenu0,
+                                            option4: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu0 = {
+                                            ...update.submenu0,
+                                            option4: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                             case '5':
                                 if (menunumber == '1') {
-                                    update.submenu1 = {
-                                        ...update.submenu1,
-                                        option5: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu1_sp = {
+                                            ...update.submenu1,
+                                            option5: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu1 = {
+                                            ...update.submenu1,
+                                            option5: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '2') {
-                                    update.submenu2 = {
-                                        ...update.submenu2,
-                                        option5: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu2_sp = {
+                                            ...update.submenu2,
+                                            option5: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu2 = {
+                                            ...update.submenu2,
+                                            option5: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '3') {
-                                    update.submenu3 = {
-                                        ...update.submenu3,
-                                        option5: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu3_sp = {
+                                            ...update.submenu3,
+                                            option5: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu3 = {
+                                            ...update.submenu3,
+                                            option5: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '4') {
-                                    update.submenu4 = {
-                                        ...update.submenu4,
-                                        option5: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu4_sp = {
+                                            ...update.submenu4,
+                                            option5: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu4 = {
+                                            ...update.submenu4,
+                                            option5: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '5') {
-                                    update.submenu5 = {
-                                        ...update.submenu5,
-                                        option5: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu5_sp = {
+                                            ...update.submenu5,
+                                            option5: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu5 = {
+                                            ...update.submenu5,
+                                            option5: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '6') {
-                                    update.submenu6 = {
-                                        ...update.submenu6,
-                                        option5: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu6_sp = {
+                                            ...update.submenu6,
+                                            option5: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu6 = {
+                                            ...update.submenu6,
+                                            option5: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '7') {
-                                    update.submenu7 = {
-                                        ...update.submenu7,
-                                        option5: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu7_sp = {
+                                            ...update.submenu7,
+                                            option5: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu7 = {
+                                            ...update.submenu7,
+                                            option5: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '8') {
-                                    update.submenu8 = {
-                                        ...update.submenu8,
-                                        option5: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu8_sp = {
+                                            ...update.submenu8,
+                                            option5: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu8 = {
+                                            ...update.submenu8,
+                                            option5: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '9') {
-                                    update.submenu9 = {
-                                        ...update.submenu9,
-                                        option5: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu9_sp = {
+                                            ...update.submenu9,
+                                            option5: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu9 = {
+                                            ...update.submenu9,
+                                            option5: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '0') {
-                                    update.submenu0 = {
-                                        ...update.submenu0,
-                                        option5: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu0_sp = {
+                                            ...update.submenu0,
+                                            option5: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu0 = {
+                                            ...update.submenu0,
+                                            option5: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                             case '6':
                                 if (menunumber == '1') {
-                                    update.submenu1 = {
-                                        ...update.submenu1,
-                                        option6: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu1_sp = {
+                                            ...update.submenu1,
+                                            option6: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu1 = {
+                                            ...update.submenu1,
+                                            option6: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '2') {
-                                    update.submenu2 = {
-                                        ...update.submenu2,
-                                        option6: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu2_sp = {
+                                            ...update.submenu2,
+                                            option6: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu2 = {
+                                            ...update.submenu2,
+                                            option6: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '3') {
-                                    update.submenu3 = {
-                                        ...update.submenu3,
-                                        option6: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu3_sp = {
+                                            ...update.submenu3,
+                                            option6: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu3 = {
+                                            ...update.submenu3,
+                                            option6: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '4') {
-                                    update.submenu4 = {
-                                        ...update.submenu4,
-                                        option6: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu4_sp = {
+                                            ...update.submenu4,
+                                            option6: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu4 = {
+                                            ...update.submenu4,
+                                            option6: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '5') {
-                                    update.submenu5 = {
-                                        ...update.submenu5,
-                                        option6: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu5_sp = {
+                                            ...update.submenu5,
+                                            option6: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu5 = {
+                                            ...update.submenu5,
+                                            option6: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '6') {
-                                    update.submenu6 = {
-                                        ...update.submenu6,
-                                        option6: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu6_sp = {
+                                            ...update.submenu6,
+                                            option6: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu6 = {
+                                            ...update.submenu6,
+                                            option6: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '7') {
-                                    update.submenu7 = {
-                                        ...update.submenu7,
-                                        option6: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu7_sp = {
+                                            ...update.submenu7,
+                                            option6: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu7 = {
+                                            ...update.submenu7,
+                                            option6: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '8') {
-                                    update.submenu8 = {
-                                        ...update.submenu8,
-                                        option6: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu8_sp = {
+                                            ...update.submenu8,
+                                            option6: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu8 = {
+                                            ...update.submenu8,
+                                            option6: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '9') {
-                                    update.submenu9 = {
-                                        ...update.submenu9,
-                                        option6: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu9_sp = {
+                                            ...update.submenu9,
+                                            option6: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu9 = {
+                                            ...update.submenu9,
+                                            option6: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '0') {
-                                    update.submenu0 = {
-                                        ...update.submenu0,
-                                        option6: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu0_sp = {
+                                            ...update.submenu0,
+                                            option6: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu0 = {
+                                            ...update.submenu0,
+                                            option6: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                             case '7':
                                 if (menunumber == '1') {
-                                    update.submenu1 = {
-                                        ...update.submenu1,
-                                        option7: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu1_sp = {
+                                            ...update.submenu1,
+                                            option7: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu1 = {
+                                            ...update.submenu1,
+                                            option7: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '2') {
-                                    update.submenu2 = {
-                                        ...update.submenu2,
-                                        option7: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu2_sp = {
+                                            ...update.submenu2,
+                                            option7: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu2 = {
+                                            ...update.submenu2,
+                                            option7: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '3') {
-                                    update.submenu3 = {
-                                        ...update.submenu3,
-                                        option7: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu3_sp = {
+                                            ...update.submenu3,
+                                            option7: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu3 = {
+                                            ...update.submenu3,
+                                            option7: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '4') {
-                                    update.submenu4 = {
-                                        ...update.submenu4,
-                                        option7: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu4_sp = {
+                                            ...update.submenu4,
+                                            option7: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu4 = {
+                                            ...update.submenu4,
+                                            option7: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '5') {
-                                    update.submenu5 = {
-                                        ...update.submenu5,
-                                        option7: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu5_sp = {
+                                            ...update.submenu5,
+                                            option7: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu5 = {
+                                            ...update.submenu5,
+                                            option7: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '6') {
-                                    update.submenu6 = {
-                                        ...update.submenu6,
-                                        option7: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu6_sp = {
+                                            ...update.submenu6,
+                                            option7: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu6 = {
+                                            ...update.submenu6,
+                                            option7: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '7') {
-                                    update.submenu7 = {
-                                        ...update.submenu7,
-                                        option7: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu7_sp = {
+                                            ...update.submenu7,
+                                            option7: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu7 = {
+                                            ...update.submenu7,
+                                            option7: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '8') {
-                                    update.submenu8 = {
-                                        ...update.submenu8,
-                                        option7: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu8_sp = {
+                                            ...update.submenu8,
+                                            option7: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu8 = {
+                                            ...update.submenu8,
+                                            option7: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '9') {
-                                    update.submenu9 = {
-                                        ...update.submenu9,
-                                        option7: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu9_sp = {
+                                            ...update.submenu9,
+                                            option7: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu9 = {
+                                            ...update.submenu9,
+                                            option7: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '0') {
-                                    update.submenu0 = {
-                                        ...update.submenu0,
-                                        option7: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu0_sp = {
+                                            ...update.submenu0,
+                                            option7: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu0 = {
+                                            ...update.submenu0,
+                                            option7: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                             case '8':
                                 if (menunumber == '1') {
-                                    update.submenu1 = {
-                                        ...update.submenu1,
-                                        option8: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu1_sp = {
+                                            ...update.submenu1,
+                                            option8: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu1 = {
+                                            ...update.submenu1,
+                                            option8: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '2') {
-                                    update.submenu2 = {
-                                        ...update.submenu2,
-                                        option8: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu2_sp = {
+                                            ...update.submenu2,
+                                            option8: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu2 = {
+                                            ...update.submenu2,
+                                            option8: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '3') {
-                                    update.submenu3 = {
-                                        ...update.submenu3,
-                                        option8: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu3_sp = {
+                                            ...update.submenu3,
+                                            option8: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu3 = {
+                                            ...update.submenu3,
+                                            option8: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '4') {
-                                    update.submenu4 = {
-                                        ...update.submenu4,
-                                        option8: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu4_sp = {
+                                            ...update.submenu4,
+                                            option8: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu4 = {
+                                            ...update.submenu4,
+                                            option8: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '5') {
-                                    update.submenu5 = {
-                                        ...update.submenu5,
-                                        option8: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu5_sp = {
+                                            ...update.submenu5,
+                                            option8: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu5 = {
+                                            ...update.submenu5,
+                                            option8: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '6') {
-                                    update.submenu6 = {
-                                        ...update.submenu6,
-                                        option8: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu6_sp = {
+                                            ...update.submenu6,
+                                            option8: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu6 = {
+                                            ...update.submenu6,
+                                            option8: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '7') {
-                                    update.submenu7 = {
-                                        ...update.submenu7,
-                                        option8: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu7_sp = {
+                                            ...update.submenu7,
+                                            option8: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu7 = {
+                                            ...update.submenu7,
+                                            option8: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '8') {
-                                    update.submenu8 = {
-                                        ...update.submenu8,
-                                        option8: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu8_sp = {
+                                            ...update.submenu8,
+                                            option8: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu8 = {
+                                            ...update.submenu8,
+                                            option8: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '9') {
-                                    update.submenu9 = {
-                                        ...update.submenu9,
-                                        option8: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu9_sp = {
+                                            ...update.submenu9,
+                                            option8: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu9 = {
+                                            ...update.submenu9,
+                                            option8: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '0') {
-                                    update.submenu0 = {
-                                        ...update.submenu0,
-                                        option8: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu0_sp = {
+                                            ...update.submenu0,
+                                            option8: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu0 = {
+                                            ...update.submenu0,
+                                            option8: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                             case '9':
                                 if (menunumber == '1') {
-                                    update.submenu1 = {
-                                        ...update.submenu1,
-                                        option9: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu1_sp = {
+                                            ...update.submenu1,
+                                            option9: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu1 = {
+                                            ...update.submenu1,
+                                            option9: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '2') {
-                                    update.submenu2 = {
-                                        ...update.submenu2,
-                                        option9: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu2_sp = {
+                                            ...update.submenu2,
+                                            option9: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu2 = {
+                                            ...update.submenu2,
+                                            option9: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '3') {
-                                    update.submenu3 = {
-                                        ...update.submenu3,
-                                        option9: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu3_sp = {
+                                            ...update.submenu3,
+                                            option9: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu3 = {
+                                            ...update.submenu3,
+                                            option9: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '4') {
-                                    update.submenu4 = {
-                                        ...update.submenu4,
-                                        option9: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu4_sp = {
+                                            ...update.submenu4,
+                                            option9: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu4 = {
+                                            ...update.submenu4,
+                                            option9: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '5') {
-                                    update.submenu5 = {
-                                        ...update.submenu5,
-                                        option9: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu5_sp = {
+                                            ...update.submenu5,
+                                            option9: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu5 = {
+                                            ...update.submenu5,
+                                            option9: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '6') {
-                                    update.submenu6 = {
-                                        ...update.submenu6,
-                                        option9: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu6_sp = {
+                                            ...update.submenu6,
+                                            option9: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu6 = {
+                                            ...update.submenu6,
+                                            option9: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '7') {
-                                    update.submenu7 = {
-                                        ...update.submenu7,
-                                        option9: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu7_sp = {
+                                            ...update.submenu7,
+                                            option9: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu7 = {
+                                            ...update.submenu7,
+                                            option9: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '8') {
-                                    update.submenu8 = {
-                                        ...update.submenu8,
-                                        option9: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu8_sp = {
+                                            ...update.submenu8,
+                                            option9: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu8 = {
+                                            ...update.submenu8,
+                                            option9: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '9') {
-                                    update.submenu9 = {
-                                        ...update.submenu9,
-                                        option9: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu9_sp = {
+                                            ...update.submenu9,
+                                            option9: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu9 = {
+                                            ...update.submenu9,
+                                            option9: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '0') {
-                                    update.submenu0 = {
-                                        ...update.submenu0,
-                                        option9: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu0_sp = {
+                                            ...update.submenu0,
+                                            option9: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu0 = {
+                                            ...update.submenu0,
+                                            option9: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
@@ -908,91 +1628,171 @@ const UpdateSubmenuModal = (props) => {
                                 break
                             case '0':
                                 if (menunumber == '1') {
-                                    update.submenu1 = {
-                                        ...update.submenu1,
-                                        option0: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu1_sp = {
+                                            ...update.submenu1,
+                                            option0: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu1 = {
+                                            ...update.submenu1,
+                                            option0: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '2') {
-                                    update.submenu2 = {
-                                        ...update.submenu2,
-                                        option0: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu2_sp = {
+                                            ...update.submenu2,
+                                            option0: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu2 = {
+                                            ...update.submenu2,
+                                            option0: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '3') {
-                                    update.submenu3 = {
-                                        ...update.submenu3,
-                                        option0: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu3_sp = {
+                                            ...update.submenu3,
+                                            option0: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu3 = {
+                                            ...update.submenu3,
+                                            option0: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '4') {
-                                    update.submenu4 = {
-                                        ...update.submenu4,
-                                        option0: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu4_sp = {
+                                            ...update.submenu4,
+                                            option0: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu4 = {
+                                            ...update.submenu4,
+                                            option0: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '5') {
-                                    update.submenu5 = {
-                                        ...update.submenu5,
-                                        option0: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu5_sp = {
+                                            ...update.submenu5,
+                                            option0: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu5 = {
+                                            ...update.submenu5,
+                                            option0: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '6') {
-                                    update.submenu6 = {
-                                        ...update.submenu6,
-                                        option0: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu6_sp = {
+                                            ...update.submenu6,
+                                            option0: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu6 = {
+                                            ...update.submenu6,
+                                            option0: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '7') {
-                                    update.submenu7 = {
-                                        ...update.submenu7,
-                                        option0: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu7_sp = {
+                                            ...update.submenu7,
+                                            option0: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu7 = {
+                                            ...update.submenu7,
+                                            option0: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '8') {
-                                    update.submenu8 = {
-                                        ...update.submenu8,
-                                        option0: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu8_sp = {
+                                            ...update.submenu8,
+                                            option0: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu8 = {
+                                            ...update.submenu8,
+                                            option0: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '9') {
-                                    update.submenu9 = {
-                                        ...update.submenu9,
-                                        option0: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu9_sp = {
+                                            ...update.submenu9,
+                                            option0: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu9 = {
+                                            ...update.submenu9,
+                                            option0: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break
                                 }
                                 if (menunumber == '0') {
-                                    update.submenu0 = {
-                                        ...update.submenu0,
-                                        option0: updatedMenu,
+                                    if (showSpanish) {
+                                        update.submenu0_sp = {
+                                            ...update.submenu0,
+                                            option0: updatedMenu,
+                                        }
+                                    } else {
+                                        update.submenu0 = {
+                                            ...update.submenu0,
+                                            option0: updatedMenu,
+                                        }
                                     }
+
                                     update.updateduser = user.username
 
                                     break

@@ -396,6 +396,7 @@ const UpdateMenuModal = (props) => {
         <>
             <UpdateSubmenuModal
                 open={submenuOpen}
+                showSpanish={showSpanish}
                 onClose={setSubmenuOpen}
                 groupid={groupid}
                 submenu={submenu}
