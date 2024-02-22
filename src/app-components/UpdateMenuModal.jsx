@@ -990,14 +990,14 @@ const UpdateMenuModal = (props) => {
                                     <Button
                                         variation="primary"
                                         onClick={handleSubmit}
-                                        isDisabled={
+                                        /*  isDisabled={
                                             showMessage ||
                                             showForward ||
                                             showQueue ||
                                             showSubmenu
                                                 ? false
                                                 : true
-                                        }
+                                        } */
                                     >
                                         Submit
                                     </Button>
