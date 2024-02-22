@@ -1738,6 +1738,7 @@ function ViewContactCenter() {
                                         children: (
                                             <>
                                                 Override
+                                                <div class="tooltip">
                                                 <MyIcon
                                                     {...(item.override?.type ==
                                                         'FORWARD' && {
@@ -1756,6 +1757,10 @@ function ViewContactCenter() {
                                                         type: 'share',
                                                     })}
                                                 />
+                                                 <span class="tooltiptext">
+                                                            {item.menu0?.value}
+                                                        </span>
+                                                    </div>
                                             </>
                                         ),
                                     },

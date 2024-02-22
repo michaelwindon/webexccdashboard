@@ -222,7 +222,7 @@ const UpdateMenuModal = (props) => {
                                 if (isdefault) {
                                     update.defaultroute = '1'
                                 } else {
-                                    update.defaultroute = null
+                                    //update.defaultroute = null
                                 }
                                 break
                             case '2':
@@ -235,7 +235,7 @@ const UpdateMenuModal = (props) => {
                                 if (isdefault) {
                                     update.defaultroute = '2'
                                 } else {
-                                    update.defaultroute = null
+                                   // update.defaultroute = null
                                 }
                                 break
                             case '3':
@@ -248,7 +248,7 @@ const UpdateMenuModal = (props) => {
                                 if (isdefault) {
                                     update.defaultroute = '3'
                                 } else {
-                                    update.defaultroute = null
+                                   // update.defaultroute = null
                                 }
                                 break
                             case '4':
@@ -261,7 +261,7 @@ const UpdateMenuModal = (props) => {
                                 if (isdefault) {
                                     update.defaultroute = '4'
                                 } else {
-                                    update.defaultroute = null
+                                    //update.defaultroute = null
                                 }
                                 break
                             case '5':
@@ -274,7 +274,7 @@ const UpdateMenuModal = (props) => {
                                 if (isdefault) {
                                     update.defaultroute = '5'
                                 } else {
-                                    update.defaultroute = null
+                                   // update.defaultroute = null
                                 }
                                 break
                             case '6':
@@ -287,7 +287,7 @@ const UpdateMenuModal = (props) => {
                                 if (isdefault) {
                                     update.defaultroute = '6'
                                 } else {
-                                    update.defaultroute = null
+                                   // update.defaultroute = null
                                 }
                                 break
 
@@ -301,7 +301,7 @@ const UpdateMenuModal = (props) => {
                                 if (isdefault) {
                                     update.defaultroute = '7'
                                 } else {
-                                    update.defaultroute = null
+                                   // update.defaultroute = null
                                 }
                                 break
 
@@ -315,7 +315,7 @@ const UpdateMenuModal = (props) => {
                                 if (isdefault) {
                                     update.defaultroute = '8'
                                 } else {
-                                    update.defaultroute = null
+                                    //update.defaultroute = null
                                 }
                                 break
 
@@ -329,7 +329,7 @@ const UpdateMenuModal = (props) => {
                                 if (isdefault) {
                                     update.defaultroute = '9'
                                 } else {
-                                    update.defaultroute = null
+                                   // update.defaultroute = null
                                 }
                                 break
 
@@ -343,7 +343,7 @@ const UpdateMenuModal = (props) => {
                                 if (isdefault) {
                                     update.defaultroute = '0'
                                 } else {
-                                    update.defaultroute = null
+                                    //update.defaultroute = null
                                 }
                                 break
 
