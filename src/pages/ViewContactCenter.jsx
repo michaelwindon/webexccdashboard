@@ -882,7 +882,7 @@ function ViewContactCenter() {
                                                             })}
                                                         />
                                                         <span class="tooltiptext">
-                                                            {item.menu1?.value}
+                                                            {item.menu1_sp?.value}
                                                         </span>
                                                     </div>
                                                 )}
@@ -983,7 +983,7 @@ function ViewContactCenter() {
                                                             })}
                                                         />
                                                         <span class="tooltiptext">
-                                                            {item.menu2?.value}
+                                                            {item.menu2_sp?.value}
                                                         </span>
                                                     </div>
                                                 )}
@@ -1074,7 +1074,7 @@ function ViewContactCenter() {
                                                             })}
                                                         />
                                                         <span class="tooltiptext">
-                                                            {item.menu3?.value}
+                                                            {item.menu3_sp?.value}
                                                         </span>
                                                     </div>
                                                 )}
@@ -1165,7 +1165,7 @@ function ViewContactCenter() {
                                                             })}
                                                         />
                                                         <span class="tooltiptext">
-                                                            {item.menu4?.value}
+                                                            {item.menu4_sp?.value}
                                                         </span>
                                                     </div>
                                                 )}
@@ -1256,7 +1256,7 @@ function ViewContactCenter() {
                                                             })}
                                                         />
                                                         <span class="tooltiptext">
-                                                            {item.menu5?.value}
+                                                            {item.menu5_sp?.value}
                                                         </span>
                                                     </div>
                                                 )}
@@ -1347,7 +1347,7 @@ function ViewContactCenter() {
                                                             })}
                                                         />
                                                         <span class="tooltiptext">
-                                                            {item.menu6?.value}
+                                                            {item.menu6_sp?.value}
                                                         </span>
                                                     </div>
                                                 )}
@@ -1438,7 +1438,7 @@ function ViewContactCenter() {
                                                             })}
                                                         />
                                                         <span class="tooltiptext">
-                                                            {item.menu7?.value}
+                                                            {item.menu7_sp?.value}
                                                         </span>
                                                     </div>
                                                 )}
@@ -1529,7 +1529,7 @@ function ViewContactCenter() {
                                                             })}
                                                         />
                                                         <span class="tooltiptext">
-                                                            {item.menu8?.value}
+                                                            {item.menu8_sp?.value}
                                                         </span>
                                                     </div>
                                                 )}
@@ -1620,7 +1620,7 @@ function ViewContactCenter() {
                                                             })}
                                                         />
                                                         <span class="tooltiptext">
-                                                            {item.menu9?.value}
+                                                            {item.menu9_sp?.value}
                                                         </span>
                                                     </div>
                                                 )}
@@ -1711,7 +1711,7 @@ function ViewContactCenter() {
                                                             })}
                                                         />
                                                         <span class="tooltiptext">
-                                                            {item.menu0?.value}
+                                                            {item.menu0_sp?.value}
                                                         </span>
                                                     </div>
                                                 )}
