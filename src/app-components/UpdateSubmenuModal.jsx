@@ -91,12 +91,12 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '1') {
                                     if (showSpanish) {
                                         update.submenu1_sp = {
-                                            ...update.submenu,
+                                            ...update.submenu1_sp,
                                             option1: updatedMenu,
                                         }
                                     } else {
                                         update.submenu1 = {
-                                            ...update.submenu,
+                                            ...update.submenu1,
                                             option1: updatedMenu,
                                         }
                                     }
@@ -107,7 +107,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '2') {
                                     if (showSpanish) {
                                         update.submenu2_sp = {
-                                            ...update.submenu2,
+                                            ...update.submenu2_sp,
                                             option1: updatedMenu,
                                         }
                                     } else {
@@ -124,7 +124,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '3') {
                                     if (showSpanish) {
                                         update.submenu3_sp = {
-                                            ...update.submenu3,
+                                            ...update.submenu3_sp,
                                             option1: updatedMenu,
                                         }
                                     } else {
@@ -141,7 +141,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '4') {
                                     if (showSpanish) {
                                         update.submenu4_sp = {
-                                            ...update.submenu4,
+                                            ...update.submenu4_sp,
                                             option1: updatedMenu,
                                         }
                                     } else {
@@ -158,7 +158,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '5') {
                                     if (showSpanish) {
                                         update.submenu5_sp = {
-                                            ...update.submenu5,
+                                            ...update.submenu5_sp,
                                             option1: updatedMenu,
                                         }
                                     } else {
@@ -175,7 +175,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '6') {
                                     if (showSpanish) {
                                         update.submenu6_sp = {
-                                            ...update.submenu6,
+                                            ...update.submenu6_sp,
                                             option1: updatedMenu,
                                         }
                                     } else {
@@ -192,7 +192,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '7') {
                                     if (showSpanish) {
                                         update.submenu7_sp = {
-                                            ...update.submenu7,
+                                            ...update.submenu7_sp,
                                             option1: updatedMenu,
                                         }
                                     } else {
@@ -209,7 +209,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '8') {
                                     if (showSpanish) {
                                         update.submenu8_sp = {
-                                            ...update.submenu8,
+                                            ...update.submenu8_sp,
                                             option1: updatedMenu,
                                         }
                                     } else {
@@ -226,7 +226,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '9') {
                                     if (showSpanish) {
                                         update.submenu9_sp = {
-                                            ...update.submenu9,
+                                            ...update.submenu9_sp,
                                             option1: updatedMenu,
                                         }
                                     } else {
@@ -243,7 +243,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '0') {
                                     if (showSpanish) {
                                         update.submenu0_sp = {
-                                            ...update.submenu0,
+                                            ...update.submenu0_sp,
                                             option1: updatedMenu,
                                         }
                                     } else {
@@ -261,7 +261,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '1') {
                                     if (showSpanish) {
                                         update.submenu1_sp = {
-                                            ...update.submenu1,
+                                            ...update.submenu1_sp,
                                             option2: updatedMenu,
                                         }
                                     } else {
@@ -278,7 +278,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '2') {
                                     if (showSpanish) {
                                         update.submenu2_sp = {
-                                            ...update.submenu2,
+                                            ...update.submenu2_sp,
                                             option2: updatedMenu,
                                         }
                                     } else {
@@ -295,7 +295,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '3') {
                                     if (showSpanish) {
                                         update.submenu3_sp = {
-                                            ...update.submenu3,
+                                            ...update.submenu3_sp,
                                             option2: updatedMenu,
                                         }
                                     } else {
@@ -312,7 +312,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '4') {
                                     if (showSpanish) {
                                         update.submenu4_sp = {
-                                            ...update.submenu4,
+                                            ...update.submenu4_sp,
                                             option2: updatedMenu,
                                         }
                                     } else {
@@ -329,7 +329,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '5') {
                                     if (showSpanish) {
                                         update.submenu5_sp = {
-                                            ...update.submenu5,
+                                            ...update.submenu5_sp,
                                             option2: updatedMenu,
                                         }
                                     } else {
@@ -346,7 +346,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '6') {
                                     if (showSpanish) {
                                         update.submenu6_sp = {
-                                            ...update.submenu6,
+                                            ...update.submenu6_sp,
                                             option2: updatedMenu,
                                         }
                                     } else {
@@ -363,7 +363,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '7') {
                                     if (showSpanish) {
                                         update.submenu7_sp = {
-                                            ...update.submenu7,
+                                            ...update.submenu7_sp,
                                             option2: updatedMenu,
                                         }
                                     } else {
@@ -380,7 +380,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '8') {
                                     if (showSpanish) {
                                         update.submenu8_sp = {
-                                            ...update.submenu8,
+                                            ...update.submenu8_sp,
                                             option2: updatedMenu,
                                         }
                                     } else {
@@ -397,7 +397,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '9') {
                                     if (showSpanish) {
                                         update.submenu9_sp = {
-                                            ...update.submenu9,
+                                            ...update.submenu9_sp,
                                             option2: updatedMenu,
                                         }
                                     } else {
@@ -414,7 +414,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '0') {
                                     if (showSpanish) {
                                         update.submenu0_sp = {
-                                            ...update.submenu0,
+                                            ...update.submenu0_sp,
                                             option2: updatedMenu,
                                         }
                                     } else {
@@ -432,7 +432,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '1') {
                                     if (showSpanish) {
                                         update.submenu1_sp = {
-                                            ...update.submenu1,
+                                            ...update.submenu1_sp,
                                             option3: updatedMenu,
                                         }
                                     } else {
@@ -449,7 +449,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '2') {
                                     if (showSpanish) {
                                         update.submenu2_sp = {
-                                            ...update.submenu2,
+                                            ...update.submenu2_sp,
                                             option3: updatedMenu,
                                         }
                                     } else {
@@ -466,7 +466,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '3') {
                                     if (showSpanish) {
                                         update.submenu3_sp = {
-                                            ...update.submenu3,
+                                            ...update.submenu3_sp,
                                             option3: updatedMenu,
                                         }
                                     } else {
@@ -483,7 +483,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '4') {
                                     if (showSpanish) {
                                         update.submenu4_sp = {
-                                            ...update.submenu4,
+                                            ...update.submenu4_sp,
                                             option3: updatedMenu,
                                         }
                                     } else {
@@ -500,7 +500,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '5') {
                                     if (showSpanish) {
                                         update.submenu5_sp = {
-                                            ...update.submenu5,
+                                            ...update.submenu5_sp,
                                             option3: updatedMenu,
                                         }
                                     } else {
@@ -517,7 +517,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '6') {
                                     if (showSpanish) {
                                         update.submenu6_sp = {
-                                            ...update.submenu6,
+                                            ...update.submenu6_sp,
                                             option3: updatedMenu,
                                         }
                                     } else {
@@ -534,7 +534,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '7') {
                                     if (showSpanish) {
                                         update.submenu7_sp = {
-                                            ...update.submenu7,
+                                            ...update.submenu7_sp,
                                             option3: updatedMenu,
                                         }
                                     } else {
@@ -551,7 +551,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '8') {
                                     if (showSpanish) {
                                         update.submenu8_sp = {
-                                            ...update.submenu8,
+                                            ...update.submenu8_sp,
                                             option3: updatedMenu,
                                         }
                                     } else {
@@ -568,7 +568,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '9') {
                                     if (showSpanish) {
                                         update.submenu9_sp = {
-                                            ...update.submenu9,
+                                            ...update.submenu9_sp,
                                             option3: updatedMenu,
                                         }
                                     } else {
@@ -585,7 +585,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '0') {
                                     if (showSpanish) {
                                         update.submenu0_sp = {
-                                            ...update.submenu0,
+                                            ...update.submenu0_sp,
                                             option3: updatedMenu,
                                         }
                                     } else {
@@ -603,7 +603,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '1') {
                                     if (showSpanish) {
                                         update.submenu1_sp = {
-                                            ...update.submenu1,
+                                            ...update.submenu1_sp,
                                             option4: updatedMenu,
                                         }
                                     } else {
@@ -620,7 +620,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '2') {
                                     if (showSpanish) {
                                         update.submenu2_sp = {
-                                            ...update.submenu2,
+                                            ...update.submenu2_sp,
                                             option4: updatedMenu,
                                         }
                                     } else {
@@ -637,7 +637,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '3') {
                                     if (showSpanish) {
                                         update.submenu3_sp = {
-                                            ...update.submenu3,
+                                            ...update.submenu3_sp,
                                             option4: updatedMenu,
                                         }
                                     } else {
@@ -654,7 +654,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '4') {
                                     if (showSpanish) {
                                         update.submenu4_sp = {
-                                            ...update.submenu4,
+                                            ...update.submenu4_sp,
                                             option4: updatedMenu,
                                         }
                                     } else {
@@ -671,7 +671,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '5') {
                                     if (showSpanish) {
                                         update.submenu5_sp = {
-                                            ...update.submenu5,
+                                            ...update.submenu5_sp,
                                             option4: updatedMenu,
                                         }
                                     } else {
@@ -688,7 +688,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '6') {
                                     if (showSpanish) {
                                         update.submenu6_sp = {
-                                            ...update.submenu6,
+                                            ...update.submenu6_sp,
                                             option4: updatedMenu,
                                         }
                                     } else {
@@ -705,7 +705,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '7') {
                                     if (showSpanish) {
                                         update.submenu7_sp = {
-                                            ...update.submenu7,
+                                            ...update.submenu7_sp,
                                             option4: updatedMenu,
                                         }
                                     } else {
@@ -722,7 +722,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '8') {
                                     if (showSpanish) {
                                         update.submenu8_sp = {
-                                            ...update.submenu8,
+                                            ...update.submenu8_sp,
                                             option4: updatedMenu,
                                         }
                                     } else {
@@ -739,7 +739,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '9') {
                                     if (showSpanish) {
                                         update.submenu9_sp = {
-                                            ...update.submenu9,
+                                            ...update.submenu9_sp,
                                             option4: updatedMenu,
                                         }
                                     } else {
@@ -756,7 +756,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '0') {
                                     if (showSpanish) {
                                         update.submenu0_sp = {
-                                            ...update.submenu0,
+                                            ...update.submenu0_sp,
                                             option4: updatedMenu,
                                         }
                                     } else {
@@ -774,7 +774,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '1') {
                                     if (showSpanish) {
                                         update.submenu1_sp = {
-                                            ...update.submenu1,
+                                            ...update.submenu1_sp,
                                             option5: updatedMenu,
                                         }
                                     } else {
@@ -791,7 +791,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '2') {
                                     if (showSpanish) {
                                         update.submenu2_sp = {
-                                            ...update.submenu2,
+                                            ...update.submenu2_sp,
                                             option5: updatedMenu,
                                         }
                                     } else {
@@ -808,7 +808,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '3') {
                                     if (showSpanish) {
                                         update.submenu3_sp = {
-                                            ...update.submenu3,
+                                            ...update.submenu3_sp,
                                             option5: updatedMenu,
                                         }
                                     } else {
@@ -825,7 +825,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '4') {
                                     if (showSpanish) {
                                         update.submenu4_sp = {
-                                            ...update.submenu4,
+                                            ...update.submenu4_sp,
                                             option5: updatedMenu,
                                         }
                                     } else {
@@ -842,7 +842,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '5') {
                                     if (showSpanish) {
                                         update.submenu5_sp = {
-                                            ...update.submenu5,
+                                            ...update.submenu5_sp,
                                             option5: updatedMenu,
                                         }
                                     } else {
@@ -859,7 +859,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '6') {
                                     if (showSpanish) {
                                         update.submenu6_sp = {
-                                            ...update.submenu6,
+                                            ...update.submenu6_sp,
                                             option5: updatedMenu,
                                         }
                                     } else {
@@ -876,7 +876,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '7') {
                                     if (showSpanish) {
                                         update.submenu7_sp = {
-                                            ...update.submenu7,
+                                            ...update.submenu7_sp,
                                             option5: updatedMenu,
                                         }
                                     } else {
@@ -893,7 +893,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '8') {
                                     if (showSpanish) {
                                         update.submenu8_sp = {
-                                            ...update.submenu8,
+                                            ...update.submenu8_sp,
                                             option5: updatedMenu,
                                         }
                                     } else {
@@ -910,7 +910,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '9') {
                                     if (showSpanish) {
                                         update.submenu9_sp = {
-                                            ...update.submenu9,
+                                            ...update.submenu9_sp,
                                             option5: updatedMenu,
                                         }
                                     } else {
@@ -927,7 +927,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '0') {
                                     if (showSpanish) {
                                         update.submenu0_sp = {
-                                            ...update.submenu0,
+                                            ...update.submenu0_sp,
                                             option5: updatedMenu,
                                         }
                                     } else {
@@ -945,7 +945,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '1') {
                                     if (showSpanish) {
                                         update.submenu1_sp = {
-                                            ...update.submenu1,
+                                            ...update.submenu1_sp,
                                             option6: updatedMenu,
                                         }
                                     } else {
@@ -962,7 +962,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '2') {
                                     if (showSpanish) {
                                         update.submenu2_sp = {
-                                            ...update.submenu2,
+                                            ...update.submenu2_sp,
                                             option6: updatedMenu,
                                         }
                                     } else {
@@ -979,7 +979,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '3') {
                                     if (showSpanish) {
                                         update.submenu3_sp = {
-                                            ...update.submenu3,
+                                            ...update.submenu3_sp,
                                             option6: updatedMenu,
                                         }
                                     } else {
@@ -996,7 +996,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '4') {
                                     if (showSpanish) {
                                         update.submenu4_sp = {
-                                            ...update.submenu4,
+                                            ...update.submenu4_sp,
                                             option6: updatedMenu,
                                         }
                                     } else {
@@ -1013,7 +1013,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '5') {
                                     if (showSpanish) {
                                         update.submenu5_sp = {
-                                            ...update.submenu5,
+                                            ...update.submenu5_sp,
                                             option6: updatedMenu,
                                         }
                                     } else {
@@ -1030,7 +1030,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '6') {
                                     if (showSpanish) {
                                         update.submenu6_sp = {
-                                            ...update.submenu6,
+                                            ...update.submenu6_sp,
                                             option6: updatedMenu,
                                         }
                                     } else {
@@ -1047,7 +1047,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '7') {
                                     if (showSpanish) {
                                         update.submenu7_sp = {
-                                            ...update.submenu7,
+                                            ...update.submenu7_sp,
                                             option6: updatedMenu,
                                         }
                                     } else {
@@ -1064,7 +1064,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '8') {
                                     if (showSpanish) {
                                         update.submenu8_sp = {
-                                            ...update.submenu8,
+                                            ...update.submenu8_sp,
                                             option6: updatedMenu,
                                         }
                                     } else {
@@ -1081,7 +1081,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '9') {
                                     if (showSpanish) {
                                         update.submenu9_sp = {
-                                            ...update.submenu9,
+                                            ...update.submenu9_sp,
                                             option6: updatedMenu,
                                         }
                                     } else {
@@ -1098,7 +1098,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '0') {
                                     if (showSpanish) {
                                         update.submenu0_sp = {
-                                            ...update.submenu0,
+                                            ...update.submenu0_sp,
                                             option6: updatedMenu,
                                         }
                                     } else {
@@ -1116,7 +1116,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '1') {
                                     if (showSpanish) {
                                         update.submenu1_sp = {
-                                            ...update.submenu1,
+                                            ...update.submenu1_sp,
                                             option7: updatedMenu,
                                         }
                                     } else {
@@ -1133,7 +1133,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '2') {
                                     if (showSpanish) {
                                         update.submenu2_sp = {
-                                            ...update.submenu2,
+                                            ...update.submenu2_sp,
                                             option7: updatedMenu,
                                         }
                                     } else {
@@ -1150,7 +1150,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '3') {
                                     if (showSpanish) {
                                         update.submenu3_sp = {
-                                            ...update.submenu3,
+                                            ...update.submenu3_sp,
                                             option7: updatedMenu,
                                         }
                                     } else {
@@ -1167,7 +1167,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '4') {
                                     if (showSpanish) {
                                         update.submenu4_sp = {
-                                            ...update.submenu4,
+                                            ...update.submenu4_sp,
                                             option7: updatedMenu,
                                         }
                                     } else {
@@ -1184,7 +1184,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '5') {
                                     if (showSpanish) {
                                         update.submenu5_sp = {
-                                            ...update.submenu5,
+                                            ...update.submenu5_sp,
                                             option7: updatedMenu,
                                         }
                                     } else {
@@ -1201,7 +1201,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '6') {
                                     if (showSpanish) {
                                         update.submenu6_sp = {
-                                            ...update.submenu6,
+                                            ...update.submenu6_sp,
                                             option7: updatedMenu,
                                         }
                                     } else {
@@ -1218,7 +1218,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '7') {
                                     if (showSpanish) {
                                         update.submenu7_sp = {
-                                            ...update.submenu7,
+                                            ...update.submenu7_sp,
                                             option7: updatedMenu,
                                         }
                                     } else {
@@ -1235,7 +1235,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '8') {
                                     if (showSpanish) {
                                         update.submenu8_sp = {
-                                            ...update.submenu8,
+                                            ...update.submenu8_sp,
                                             option7: updatedMenu,
                                         }
                                     } else {
@@ -1252,7 +1252,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '9') {
                                     if (showSpanish) {
                                         update.submenu9_sp = {
-                                            ...update.submenu9,
+                                            ...update.submenu9_sp,
                                             option7: updatedMenu,
                                         }
                                     } else {
@@ -1269,7 +1269,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '0') {
                                     if (showSpanish) {
                                         update.submenu0_sp = {
-                                            ...update.submenu0,
+                                            ...update.submenu0_sp,
                                             option7: updatedMenu,
                                         }
                                     } else {
@@ -1287,7 +1287,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '1') {
                                     if (showSpanish) {
                                         update.submenu1_sp = {
-                                            ...update.submenu1,
+                                            ...update.submenu1_sp,
                                             option8: updatedMenu,
                                         }
                                     } else {
@@ -1304,7 +1304,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '2') {
                                     if (showSpanish) {
                                         update.submenu2_sp = {
-                                            ...update.submenu2,
+                                            ...update.submenu2_sp,
                                             option8: updatedMenu,
                                         }
                                     } else {
@@ -1321,7 +1321,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '3') {
                                     if (showSpanish) {
                                         update.submenu3_sp = {
-                                            ...update.submenu3,
+                                            ...update.submenu3_sp,
                                             option8: updatedMenu,
                                         }
                                     } else {
@@ -1338,7 +1338,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '4') {
                                     if (showSpanish) {
                                         update.submenu4_sp = {
-                                            ...update.submenu4,
+                                            ...update.submenu4_sp,
                                             option8: updatedMenu,
                                         }
                                     } else {
@@ -1355,7 +1355,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '5') {
                                     if (showSpanish) {
                                         update.submenu5_sp = {
-                                            ...update.submenu5,
+                                            ...update.submenu5_sp,
                                             option8: updatedMenu,
                                         }
                                     } else {
@@ -1372,7 +1372,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '6') {
                                     if (showSpanish) {
                                         update.submenu6_sp = {
-                                            ...update.submenu6,
+                                            ...update.submenu6_sp,
                                             option8: updatedMenu,
                                         }
                                     } else {
@@ -1389,7 +1389,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '7') {
                                     if (showSpanish) {
                                         update.submenu7_sp = {
-                                            ...update.submenu7,
+                                            ...update.submenu7_sp,
                                             option8: updatedMenu,
                                         }
                                     } else {
@@ -1406,7 +1406,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '8') {
                                     if (showSpanish) {
                                         update.submenu8_sp = {
-                                            ...update.submenu8,
+                                            ...update.submenu8_sp,
                                             option8: updatedMenu,
                                         }
                                     } else {
@@ -1423,7 +1423,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '9') {
                                     if (showSpanish) {
                                         update.submenu9_sp = {
-                                            ...update.submenu9,
+                                            ...update.submenu9_sp,
                                             option8: updatedMenu,
                                         }
                                     } else {
@@ -1440,7 +1440,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '0') {
                                     if (showSpanish) {
                                         update.submenu0_sp = {
-                                            ...update.submenu0,
+                                            ...update.submenu0_sp,
                                             option8: updatedMenu,
                                         }
                                     } else {
@@ -1458,7 +1458,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '1') {
                                     if (showSpanish) {
                                         update.submenu1_sp = {
-                                            ...update.submenu1,
+                                            ...update.submenu1_sp,
                                             option9: updatedMenu,
                                         }
                                     } else {
@@ -1475,7 +1475,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '2') {
                                     if (showSpanish) {
                                         update.submenu2_sp = {
-                                            ...update.submenu2,
+                                            ...update.submenu2_sp,
                                             option9: updatedMenu,
                                         }
                                     } else {
@@ -1492,7 +1492,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '3') {
                                     if (showSpanish) {
                                         update.submenu3_sp = {
-                                            ...update.submenu3,
+                                            ...update.submenu3_sp,
                                             option9: updatedMenu,
                                         }
                                     } else {
@@ -1509,7 +1509,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '4') {
                                     if (showSpanish) {
                                         update.submenu4_sp = {
-                                            ...update.submenu4,
+                                            ...update.submenu4_sp,
                                             option9: updatedMenu,
                                         }
                                     } else {
@@ -1526,7 +1526,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '5') {
                                     if (showSpanish) {
                                         update.submenu5_sp = {
-                                            ...update.submenu5,
+                                            ...update.submenu5_sp,
                                             option9: updatedMenu,
                                         }
                                     } else {
@@ -1543,7 +1543,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '6') {
                                     if (showSpanish) {
                                         update.submenu6_sp = {
-                                            ...update.submenu6,
+                                            ...update.submenu6_sp,
                                             option9: updatedMenu,
                                         }
                                     } else {
@@ -1560,7 +1560,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '7') {
                                     if (showSpanish) {
                                         update.submenu7_sp = {
-                                            ...update.submenu7,
+                                            ...update.submenu7_sp,
                                             option9: updatedMenu,
                                         }
                                     } else {
@@ -1577,7 +1577,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '8') {
                                     if (showSpanish) {
                                         update.submenu8_sp = {
-                                            ...update.submenu8,
+                                            ...update.submenu8_sp,
                                             option9: updatedMenu,
                                         }
                                     } else {
@@ -1594,7 +1594,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '9') {
                                     if (showSpanish) {
                                         update.submenu9_sp = {
-                                            ...update.submenu9,
+                                            ...update.submenu9_sp,
                                             option9: updatedMenu,
                                         }
                                     } else {
@@ -1611,7 +1611,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '0') {
                                     if (showSpanish) {
                                         update.submenu0_sp = {
-                                            ...update.submenu0,
+                                            ...update.submenu0_sp,
                                             option9: updatedMenu,
                                         }
                                     } else {
@@ -1630,7 +1630,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '1') {
                                     if (showSpanish) {
                                         update.submenu1_sp = {
-                                            ...update.submenu1,
+                                            ...update.submenu1_sp,
                                             option0: updatedMenu,
                                         }
                                     } else {
@@ -1647,7 +1647,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '2') {
                                     if (showSpanish) {
                                         update.submenu2_sp = {
-                                            ...update.submenu2,
+                                            ...update.submenu2_sp,
                                             option0: updatedMenu,
                                         }
                                     } else {
@@ -1664,7 +1664,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '3') {
                                     if (showSpanish) {
                                         update.submenu3_sp = {
-                                            ...update.submenu3,
+                                            ...update.submenu3_sp,
                                             option0: updatedMenu,
                                         }
                                     } else {
@@ -1681,7 +1681,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '4') {
                                     if (showSpanish) {
                                         update.submenu4_sp = {
-                                            ...update.submenu4,
+                                            ...update.submenu4_sp,
                                             option0: updatedMenu,
                                         }
                                     } else {
@@ -1698,7 +1698,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '5') {
                                     if (showSpanish) {
                                         update.submenu5_sp = {
-                                            ...update.submenu5,
+                                            ...update.submenu5_sp,
                                             option0: updatedMenu,
                                         }
                                     } else {
@@ -1715,7 +1715,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '6') {
                                     if (showSpanish) {
                                         update.submenu6_sp = {
-                                            ...update.submenu6,
+                                            ...update.submenu6_sp,
                                             option0: updatedMenu,
                                         }
                                     } else {
@@ -1732,7 +1732,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '7') {
                                     if (showSpanish) {
                                         update.submenu7_sp = {
-                                            ...update.submenu7,
+                                            ...update.submenu7_sp,
                                             option0: updatedMenu,
                                         }
                                     } else {
@@ -1749,7 +1749,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '8') {
                                     if (showSpanish) {
                                         update.submenu8_sp = {
-                                            ...update.submenu8,
+                                            ...update.submenu8_sp,
                                             option0: updatedMenu,
                                         }
                                     } else {
@@ -1766,7 +1766,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '9') {
                                     if (showSpanish) {
                                         update.submenu9_sp = {
-                                            ...update.submenu9,
+                                            ...update.submenu9_sp,
                                             option0: updatedMenu,
                                         }
                                     } else {
@@ -1783,7 +1783,7 @@ const UpdateSubmenuModal = (props) => {
                                 if (menunumber == '0') {
                                     if (showSpanish) {
                                         update.submenu0_sp = {
-                                            ...update.submenu0,
+                                            ...update.submenu0_sp,
                                             option0: updatedMenu,
                                         }
                                     } else {
