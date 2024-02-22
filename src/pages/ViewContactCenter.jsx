@@ -882,7 +882,10 @@ function ViewContactCenter() {
                                                             })}
                                                         />
                                                         <span class="tooltiptext">
-                                                            {item.menu1_sp?.value}
+                                                            {
+                                                                item.menu1_sp
+                                                                    ?.value
+                                                            }
                                                         </span>
                                                     </div>
                                                 )}
@@ -983,7 +986,10 @@ function ViewContactCenter() {
                                                             })}
                                                         />
                                                         <span class="tooltiptext">
-                                                            {item.menu2_sp?.value}
+                                                            {
+                                                                item.menu2_sp
+                                                                    ?.value
+                                                            }
                                                         </span>
                                                     </div>
                                                 )}
@@ -1074,7 +1080,10 @@ function ViewContactCenter() {
                                                             })}
                                                         />
                                                         <span class="tooltiptext">
-                                                            {item.menu3_sp?.value}
+                                                            {
+                                                                item.menu3_sp
+                                                                    ?.value
+                                                            }
                                                         </span>
                                                     </div>
                                                 )}
@@ -1165,7 +1174,10 @@ function ViewContactCenter() {
                                                             })}
                                                         />
                                                         <span class="tooltiptext">
-                                                            {item.menu4_sp?.value}
+                                                            {
+                                                                item.menu4_sp
+                                                                    ?.value
+                                                            }
                                                         </span>
                                                     </div>
                                                 )}
@@ -1256,7 +1268,10 @@ function ViewContactCenter() {
                                                             })}
                                                         />
                                                         <span class="tooltiptext">
-                                                            {item.menu5_sp?.value}
+                                                            {
+                                                                item.menu5_sp
+                                                                    ?.value
+                                                            }
                                                         </span>
                                                     </div>
                                                 )}
@@ -1347,7 +1362,10 @@ function ViewContactCenter() {
                                                             })}
                                                         />
                                                         <span class="tooltiptext">
-                                                            {item.menu6_sp?.value}
+                                                            {
+                                                                item.menu6_sp
+                                                                    ?.value
+                                                            }
                                                         </span>
                                                     </div>
                                                 )}
@@ -1438,7 +1456,10 @@ function ViewContactCenter() {
                                                             })}
                                                         />
                                                         <span class="tooltiptext">
-                                                            {item.menu7_sp?.value}
+                                                            {
+                                                                item.menu7_sp
+                                                                    ?.value
+                                                            }
                                                         </span>
                                                     </div>
                                                 )}
@@ -1529,7 +1550,10 @@ function ViewContactCenter() {
                                                             })}
                                                         />
                                                         <span class="tooltiptext">
-                                                            {item.menu8_sp?.value}
+                                                            {
+                                                                item.menu8_sp
+                                                                    ?.value
+                                                            }
                                                         </span>
                                                     </div>
                                                 )}
@@ -1620,7 +1644,10 @@ function ViewContactCenter() {
                                                             })}
                                                         />
                                                         <span class="tooltiptext">
-                                                            {item.menu9_sp?.value}
+                                                            {
+                                                                item.menu9_sp
+                                                                    ?.value
+                                                            }
                                                         </span>
                                                     </div>
                                                 )}
@@ -1711,7 +1738,10 @@ function ViewContactCenter() {
                                                             })}
                                                         />
                                                         <span class="tooltiptext">
-                                                            {item.menu0_sp?.value}
+                                                            {
+                                                                item.menu0_sp
+                                                                    ?.value
+                                                            }
                                                         </span>
                                                     </div>
                                                 )}
@@ -1739,28 +1769,31 @@ function ViewContactCenter() {
                                             <>
                                                 Override
                                                 <div class="tooltip">
-                                                <MyIcon
-                                                    {...(item.override?.type ==
-                                                        'FORWARD' && {
-                                                        type: 'phone',
-                                                    })}
-                                                    {...(item.override?.type ==
-                                                        'MSG' && {
-                                                        type: 'chat',
-                                                    })}
-                                                    {...(item.override?.type ==
-                                                        'QUEUE' && {
-                                                        type: 'group',
-                                                    })}
-                                                    {...(item.override?.type ==
-                                                        'SUBMENU' && {
-                                                        type: 'share',
-                                                    })}
-                                                />
-                                                 <span class="tooltiptext">
-                                                            {item.menu0?.value}
-                                                        </span>
-                                                    </div>
+                                                    <MyIcon
+                                                        {...(item.override
+                                                            ?.type ==
+                                                            'FORWARD' && {
+                                                            type: 'phone',
+                                                        })}
+                                                        {...(item.override
+                                                            ?.type == 'MSG' && {
+                                                            type: 'chat',
+                                                        })}
+                                                        {...(item.override
+                                                            ?.type ==
+                                                            'QUEUE' && {
+                                                            type: 'group',
+                                                        })}
+                                                        {...(item.override
+                                                            ?.type ==
+                                                            'SUBMENU' && {
+                                                            type: 'share',
+                                                        })}
+                                                    />
+                                                    <span class="tooltiptext">
+                                                        {item.override?.value}
+                                                    </span>
+                                                </div>
                                             </>
                                         ),
                                     },
@@ -1776,24 +1809,32 @@ function ViewContactCenter() {
                                         children: (
                                             <>
                                                 Afterhours
-                                                <MyIcon
-                                                    {...(item.afterhours
-                                                        ?.type == 'FORWARD' && {
-                                                        type: 'phone',
-                                                    })}
-                                                    {...(item.afterhours
-                                                        ?.type == 'MSG' && {
-                                                        type: 'chat',
-                                                    })}
-                                                    {...(item.afterhours
-                                                        ?.type == 'QUEUE' && {
-                                                        type: 'group',
-                                                    })}
-                                                    {...(item.afterhours
-                                                        ?.type == 'SUBMENU' && {
-                                                        type: 'share',
-                                                    })}
-                                                />
+                                                <div class="tooltip">
+                                                    <MyIcon
+                                                        {...(item.afterhours
+                                                            ?.type ==
+                                                            'FORWARD' && {
+                                                            type: 'phone',
+                                                        })}
+                                                        {...(item.afterhours
+                                                            ?.type == 'MSG' && {
+                                                            type: 'chat',
+                                                        })}
+                                                        {...(item.afterhours
+                                                            ?.type ==
+                                                            'QUEUE' && {
+                                                            type: 'group',
+                                                        })}
+                                                        {...(item.afterhours
+                                                            ?.type ==
+                                                            'SUBMENU' && {
+                                                            type: 'share',
+                                                        })}
+                                                    />
+                                                    <span class="tooltiptext">
+                                                        {item.afterhours?.value}
+                                                    </span>
+                                                </div>
                                             </>
                                         ),
                                     },
@@ -1809,24 +1850,35 @@ function ViewContactCenter() {
                                         children: (
                                             <>
                                                 Secondary
-                                                <MyIcon
-                                                    {...(item.secondaryclose
-                                                        ?.type == 'FORWARD' && {
-                                                        type: 'phone',
-                                                    })}
-                                                    {...(item.secondaryclose
-                                                        ?.type == 'MSG' && {
-                                                        type: 'chat',
-                                                    })}
-                                                    {...(item.secondaryclose
-                                                        ?.type == 'QUEUE' && {
-                                                        type: 'group',
-                                                    })}
-                                                    {...(item.secondaryclose
-                                                        ?.type == 'SUBMENU' && {
-                                                        type: 'share',
-                                                    })}
-                                                />
+                                                <div class="tooltip">
+                                                    <MyIcon
+                                                        {...(item.secondaryclose
+                                                            ?.type ==
+                                                            'FORWARD' && {
+                                                            type: 'phone',
+                                                        })}
+                                                        {...(item.secondaryclose
+                                                            ?.type == 'MSG' && {
+                                                            type: 'chat',
+                                                        })}
+                                                        {...(item.secondaryclose
+                                                            ?.type ==
+                                                            'QUEUE' && {
+                                                            type: 'group',
+                                                        })}
+                                                        {...(item.secondaryclose
+                                                            ?.type ==
+                                                            'SUBMENU' && {
+                                                            type: 'share',
+                                                        })}
+                                                    />
+                                                    <span class="tooltiptext">
+                                                        {
+                                                            item.secondaryclose
+                                                                ?.value
+                                                        }
+                                                    </span>
+                                                </div>
                                             </>
                                         ),
                                     },
@@ -1842,24 +1894,35 @@ function ViewContactCenter() {
                                         children: (
                                             <>
                                                 Holiday
-                                                <MyIcon
-                                                    {...(item.holidayoption
-                                                        ?.type == 'FORWARD' && {
-                                                        type: 'phone',
-                                                    })}
-                                                    {...(item.holidayoption
-                                                        ?.type == 'MSG' && {
-                                                        type: 'chat',
-                                                    })}
-                                                    {...(item.holidayoption
-                                                        ?.type == 'QUEUE' && {
-                                                        type: 'group',
-                                                    })}
-                                                    {...(item.holidayoption
-                                                        ?.type == 'SUBMENU' && {
-                                                        type: 'share',
-                                                    })}
-                                                />
+                                                <div class="tooltip">
+                                                    <MyIcon
+                                                        {...(item.holidayoption
+                                                            ?.type ==
+                                                            'FORWARD' && {
+                                                            type: 'phone',
+                                                        })}
+                                                        {...(item.holidayoption
+                                                            ?.type == 'MSG' && {
+                                                            type: 'chat',
+                                                        })}
+                                                        {...(item.holidayoption
+                                                            ?.type ==
+                                                            'QUEUE' && {
+                                                            type: 'group',
+                                                        })}
+                                                        {...(item.holidayoption
+                                                            ?.type ==
+                                                            'SUBMENU' && {
+                                                            type: 'share',
+                                                        })}
+                                                    />
+                                                    <span class="tooltiptext">
+                                                        {
+                                                            item.holidayoption
+                                                                ?.value
+                                                        }
+                                                    </span>
+                                                </div>
                                             </>
                                         ),
                                     },
