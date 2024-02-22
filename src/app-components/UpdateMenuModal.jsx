@@ -235,7 +235,7 @@ const UpdateMenuModal = (props) => {
                                 if (isdefault) {
                                     update.defaultroute = '2'
                                 } else {
-                                   // update.defaultroute = null
+                                    // update.defaultroute = null
                                 }
                                 break
                             case '3':
@@ -248,7 +248,7 @@ const UpdateMenuModal = (props) => {
                                 if (isdefault) {
                                     update.defaultroute = '3'
                                 } else {
-                                   // update.defaultroute = null
+                                    // update.defaultroute = null
                                 }
                                 break
                             case '4':
@@ -274,7 +274,7 @@ const UpdateMenuModal = (props) => {
                                 if (isdefault) {
                                     update.defaultroute = '5'
                                 } else {
-                                   // update.defaultroute = null
+                                    // update.defaultroute = null
                                 }
                                 break
                             case '6':
@@ -287,7 +287,7 @@ const UpdateMenuModal = (props) => {
                                 if (isdefault) {
                                     update.defaultroute = '6'
                                 } else {
-                                   // update.defaultroute = null
+                                    // update.defaultroute = null
                                 }
                                 break
 
@@ -301,7 +301,7 @@ const UpdateMenuModal = (props) => {
                                 if (isdefault) {
                                     update.defaultroute = '7'
                                 } else {
-                                   // update.defaultroute = null
+                                    // update.defaultroute = null
                                 }
                                 break
 
@@ -329,7 +329,7 @@ const UpdateMenuModal = (props) => {
                                 if (isdefault) {
                                     update.defaultroute = '9'
                                 } else {
-                                   // update.defaultroute = null
+                                    // update.defaultroute = null
                                 }
                                 break
 
@@ -555,14 +555,16 @@ const UpdateMenuModal = (props) => {
                                             }
                                         >
                                             <option value=""></option>
-                                            {queues.map((queue, index) => (
-                                                <option
-                                                    key={index}
-                                                    value={queue.name}
-                                                >
-                                                    {queue.name}
-                                                </option>
-                                            ))}
+                                            {queues
+                                                .sort()
+                                                .map((queue, index) => (
+                                                    <option
+                                                        key={index}
+                                                        value={queue.name}
+                                                    >
+                                                        {queue.name}
+                                                    </option>
+                                                ))}
                                         </SelectField>
                                     </Flex>
                                 )}
