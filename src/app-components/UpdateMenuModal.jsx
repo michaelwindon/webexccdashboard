@@ -152,34 +152,75 @@ const UpdateMenuModal = (props) => {
         //setup submenu
         switch (menunumber) {
             case '1':
-                setSubmenu(contactcenter?.submenu1)
+                if (showSpanish) {
+                    setSubmenu(contactcenter?.submenu1_sp)
+                } else {
+                    setSubmenu(contactcenter?.submenu1)
+                }
+
                 break
             case '2':
-                setSubmenu(contactcenter?.submenu2)
+                if (showSpanish) {
+                    setSubmenu(contactcenter?.submenu2_sp)
+                } else {
+                    setSubmenu(contactcenter?.submenu2)
+                }
                 break
             case '3':
-                setSubmenu(contactcenter?.submenu3)
+                if (showSpanish) {
+                    setSubmenu(contactcenter?.submenu3_sp)
+                } else {
+                    setSubmenu(contactcenter?.submenu3)
+                }
                 break
             case '4':
-                setSubmenu(contactcenter?.submenu4)
+                if (showSpanish) {
+                    setSubmenu(contactcenter?.submenu4_sp)
+                } else {
+                    setSubmenu(contactcenter?.submenu4)
+                }
                 break
             case '5':
-                setSubmenu(contactcenter?.submenu5)
+                if (showSpanish) {
+                    setSubmenu(contactcenter?.submenu5_sp)
+                } else {
+                    setSubmenu(contactcenter?.submenu5)
+                }
                 break
             case '6':
-                setSubmenu(contactcenter?.submenu6)
+                if (showSpanish) {
+                    setSubmenu(contactcenter?.submenu6_sp)
+                } else {
+                    setSubmenu(contactcenter?.submenu6)
+                }
                 break
             case '7':
-                setSubmenu(contactcenter?.submenu7)
+                if (showSpanish) {
+                    setSubmenu(contactcenter?.submenu7_sp)
+                } else {
+                    setSubmenu(contactcenter?.submenu7)
+                }
                 break
             case '8':
-                setSubmenu(contactcenter?.submenu8)
+                if (showSpanish) {
+                    setSubmenu(contactcenter?.submenu8_sp)
+                } else {
+                    setSubmenu(contactcenter?.submenu8)
+                }
                 break
             case '9':
-                setSubmenu(contactcenter?.submenu9)
+                if (showSpanish) {
+                    setSubmenu(contactcenter?.submenu9_sp)
+                } else {
+                    setSubmenu(contactcenter?.submenu9)
+                }
                 break
             case '0':
-                setSubmenu(contactcenter?.submenu0)
+                if (showSpanish) {
+                    setSubmenu(contactcenter?.submenu0_sp)
+                } else {
+                    setSubmenu(contactcenter?.submenu0)
+                }
                 break
             default:
                 break
