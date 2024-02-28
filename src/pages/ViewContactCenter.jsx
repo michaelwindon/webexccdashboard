@@ -204,7 +204,7 @@ function ViewContactCenter() {
                         user={user}
                         setShowSpanish={setShowSpanish}
                     />
-                    <Flex padding="25px" justifyContent="center">
+                    <Flex padding="25px">
                         <ContactCenterUICollection
                             items={authorizedItems}
                             overrideItems={({ item, index }) => ({

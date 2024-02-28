@@ -5,6 +5,7 @@ import {
     Button,
     Loader,
     Text,
+    View,
     Flex,
     useTheme,
     useAuthenticator,
@@ -51,8 +52,7 @@ function App() {
             .catch((err) => {
                 //console.log(err)
             })
-
-    } 
+    }
     const itemsFilterObj = {
         field: 'ManagerModel.email',
         operand: userAttributes?.email,
@@ -75,7 +75,9 @@ function App() {
     return (
         <>
             <Router>
-                <Navbar signOut={handleSignout} user={user} />
+                <View>
+                    <Navbar signOut={handleSignout} user={user} />
+                </View>
                 <Routes>
                     <Route
                         path="/admin/:ccid?"

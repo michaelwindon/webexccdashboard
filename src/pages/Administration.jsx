@@ -15,12 +15,12 @@ import {
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import SyncQueues from './SyncQueues'
+import AgentApplicationServices from './AgentApplicationServices'
 import { fetchUserAttributes } from 'aws-amplify/auth'
 
 const Administration = () => {
     const { user, signOut } = useAuthenticator()
 
-    
     var userAttributes
     fetchUserAttributes()
         .then((result) => {
@@ -30,8 +30,7 @@ const Administration = () => {
         .catch((err) => {
             console.log(err)
         })
-    
-   
+
     const handleonError = () => {
         showToastMessage(`Error Saving!`, 'error')
     }
@@ -57,8 +56,8 @@ const Administration = () => {
 
     return (
         <>
-            <Flex direction="row" justifyContent="center">
-                <View maxWidth="100%" width="70rem">
+            <Flex direction="row">
+                <View maxWidth="100%" width="80rem" padding="30px">
                     <h1>Administration</h1>
                     <Tabs
                         justifyContent="flex-start"
@@ -132,6 +131,15 @@ const Administration = () => {
                                     />
                                 ),
                             },
+                            {
+                                label: 'Agent Application Setting Update',
+                                value: 'agentsetting',
+                                content: (
+                                    <AgentApplicationServices
+                                        showToastMessage={showToastMessage}
+                                    />
+                                ),
+                            }, 
                         ]}
                     />
                     <ToastContainer />

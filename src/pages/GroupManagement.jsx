@@ -58,8 +58,8 @@ const GroupManagement = () => {
 
     return (
         <>
-            <Flex direction="row" justifyContent="center">
-                <View maxWidth="100%" width="40rem">
+            <Flex direction="row">
+                <View maxWidth="100%" width="40rem" padding="30px">
                     <h1>Group Management - Update Existing</h1>
                     <SelectField
                         label="Groups"
