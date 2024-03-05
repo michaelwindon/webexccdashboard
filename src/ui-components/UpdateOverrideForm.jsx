@@ -12,6 +12,7 @@ import {
   Divider,
   Flex,
   Grid,
+  Heading,
   Icon,
   ScrollView,
   SelectField,
@@ -197,6 +198,8 @@ export default function UpdateOverrideForm(props) {
     usecorporateholidays: false,
     holiday: [],
     epiccontext: "",
+    offerccb: false,
+    virtualvoicemail: "",
   };
   const [isoverride, setIsoverride] = React.useState(initialValues.isoverride);
   const [presentlangoption, setPresentlangoption] = React.useState(
@@ -209,6 +212,10 @@ export default function UpdateOverrideForm(props) {
   const [epiccontext, setEpiccontext] = React.useState(
     initialValues.epiccontext
   );
+  const [offerccb, setOfferccb] = React.useState(initialValues.offerccb);
+  const [virtualvoicemail, setVirtualvoicemail] = React.useState(
+    initialValues.virtualvoicemail
+  );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = contactCenterModelRecord
@@ -220,6 +227,8 @@ export default function UpdateOverrideForm(props) {
     setHoliday(cleanValues.holiday ?? []);
     setCurrentHolidayValue("");
     setEpiccontext(cleanValues.epiccontext);
+    setOfferccb(cleanValues.offerccb);
+    setVirtualvoicemail(cleanValues.virtualvoicemail);
     setErrors({});
   };
   const [contactCenterModelRecord, setContactCenterModelRecord] =
@@ -242,6 +251,8 @@ export default function UpdateOverrideForm(props) {
     usecorporateholidays: [],
     holiday: [],
     epiccontext: [],
+    offerccb: [],
+    virtualvoicemail: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -274,6 +285,8 @@ export default function UpdateOverrideForm(props) {
           usecorporateholidays,
           holiday,
           epiccontext,
+          offerccb,
+          virtualvoicemail,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -320,6 +333,10 @@ export default function UpdateOverrideForm(props) {
       {...getOverrideProps(overrides, "UpdateOverrideForm")}
       {...rest}
     >
+      <Heading
+        children="Override Settings"
+        {...getOverrideProps(overrides, "SectionalElement4")}
+      ></Heading>
       <SwitchField
         label="Isoverride"
         defaultChecked={false}
@@ -334,6 +351,8 @@ export default function UpdateOverrideForm(props) {
               usecorporateholidays,
               holiday,
               epiccontext,
+              offerccb,
+              virtualvoicemail,
             };
             const result = onChange(modelFields);
             value = result?.isoverride ?? value;
@@ -348,6 +367,10 @@ export default function UpdateOverrideForm(props) {
         hasError={errors.isoverride?.hasError}
         {...getOverrideProps(overrides, "isoverride")}
       ></SwitchField>
+      <Heading
+        children="Language Settings"
+        {...getOverrideProps(overrides, "SectionalElement5")}
+      ></Heading>
       <SwitchField
         label="Present Spanish Option"
         defaultChecked={false}
@@ -362,6 +385,8 @@ export default function UpdateOverrideForm(props) {
               usecorporateholidays,
               holiday,
               epiccontext,
+              offerccb,
+              virtualvoicemail,
             };
             const result = onChange(modelFields);
             value = result?.presentlangoption ?? value;
@@ -382,6 +407,10 @@ export default function UpdateOverrideForm(props) {
         orientation="horizontal"
         {...getOverrideProps(overrides, "SectionalElement0")}
       ></Divider>
+      <Heading
+        children="Holiday Config"
+        {...getOverrideProps(overrides, "SectionalElement3")}
+      ></Heading>
       <SwitchField
         label="Use Corporate Holidays"
         defaultChecked={false}
@@ -396,6 +425,8 @@ export default function UpdateOverrideForm(props) {
               usecorporateholidays: value,
               holiday,
               epiccontext,
+              offerccb,
+              virtualvoicemail,
             };
             const result = onChange(modelFields);
             value = result?.usecorporateholidays ?? value;
@@ -422,6 +453,8 @@ export default function UpdateOverrideForm(props) {
               usecorporateholidays,
               holiday: values,
               epiccontext,
+              offerccb,
+              virtualvoicemail,
             };
             const result = onChange(modelFields);
             values = result?.holiday ?? values;
@@ -467,6 +500,10 @@ export default function UpdateOverrideForm(props) {
         orientation="horizontal"
         {...getOverrideProps(overrides, "SectionalElement1")}
       ></Divider>
+      <Heading
+        children="Queue Settings"
+        {...getOverrideProps(overrides, "SectionalElement2")}
+      ></Heading>
       <SelectField
         label="EPIC Screen Pop Context"
         placeholder="Please select an option"
@@ -481,6 +518,8 @@ export default function UpdateOverrideForm(props) {
               usecorporateholidays,
               holiday,
               epiccontext: value,
+              offerccb,
+              virtualvoicemail,
             };
             const result = onChange(modelFields);
             value = result?.epiccontext ?? value;
@@ -506,6 +545,66 @@ export default function UpdateOverrideForm(props) {
           {...getOverrideProps(overrides, "epiccontextoption1")}
         ></option>
       </SelectField>
+      <SwitchField
+        label="Offer Call Back within Queue"
+        defaultChecked={false}
+        isDisabled={false}
+        isChecked={offerccb}
+        onChange={(e) => {
+          let value = e.target.checked;
+          if (onChange) {
+            const modelFields = {
+              isoverride,
+              presentlangoption,
+              usecorporateholidays,
+              holiday,
+              epiccontext,
+              offerccb: value,
+              virtualvoicemail,
+            };
+            const result = onChange(modelFields);
+            value = result?.offerccb ?? value;
+          }
+          if (errors.offerccb?.hasError) {
+            runValidationTasks("offerccb", value);
+          }
+          setOfferccb(value);
+        }}
+        onBlur={() => runValidationTasks("offerccb", offerccb)}
+        errorMessage={errors.offerccb?.errorMessage}
+        hasError={errors.offerccb?.hasError}
+        {...getOverrideProps(overrides, "offerccb")}
+      ></SwitchField>
+      <TextField
+        label="In Queue Virtual Voicemail Number"
+        isRequired={false}
+        isReadOnly={false}
+        value={virtualvoicemail}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              isoverride,
+              presentlangoption,
+              usecorporateholidays,
+              holiday,
+              epiccontext,
+              offerccb,
+              virtualvoicemail: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.virtualvoicemail ?? value;
+          }
+          if (errors.virtualvoicemail?.hasError) {
+            runValidationTasks("virtualvoicemail", value);
+          }
+          setVirtualvoicemail(value);
+        }}
+        onBlur={() => runValidationTasks("virtualvoicemail", virtualvoicemail)}
+        errorMessage={errors.virtualvoicemail?.errorMessage}
+        hasError={errors.virtualvoicemail?.hasError}
+        {...getOverrideProps(overrides, "virtualvoicemail")}
+      ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

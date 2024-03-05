@@ -89,6 +89,8 @@ export declare type ContactCenterModelCreateFormInputValues = {
     submenu9_sp?: string;
     submenu0_sp?: string;
     usecorporateholidays?: boolean;
+    offerccb?: boolean;
+    virtualvoicemail?: string;
 };
 export declare type ContactCenterModelCreateFormValidationValues = {
     ccname?: ValidationFunction<string>;
@@ -157,6 +159,8 @@ export declare type ContactCenterModelCreateFormValidationValues = {
     submenu9_sp?: ValidationFunction<string>;
     submenu0_sp?: ValidationFunction<string>;
     usecorporateholidays?: ValidationFunction<boolean>;
+    offerccb?: ValidationFunction<boolean>;
+    virtualvoicemail?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type ContactCenterModelCreateFormOverridesProps = {
@@ -227,6 +231,8 @@ export declare type ContactCenterModelCreateFormOverridesProps = {
     submenu9_sp?: PrimitiveOverrideProps<TextAreaFieldProps>;
     submenu0_sp?: PrimitiveOverrideProps<TextAreaFieldProps>;
     usecorporateholidays?: PrimitiveOverrideProps<SwitchFieldProps>;
+    offerccb?: PrimitiveOverrideProps<SwitchFieldProps>;
+    virtualvoicemail?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type ContactCenterModelCreateFormProps = React.PropsWithChildren<{
     overrides?: ContactCenterModelCreateFormOverridesProps | undefined | null;

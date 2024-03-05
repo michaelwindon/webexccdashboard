@@ -967,6 +967,20 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "offerccb": {
+                    "name": "offerccb",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "virtualvoicemail": {
+                    "name": "virtualvoicemail",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -1396,5 +1410,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.4.4",
-    "version": "ea3470b1dbb5f9a40a1a9c75c90fde10"
+    "version": "244880dcdf74c82ef582b1cce96a86a2"
 };

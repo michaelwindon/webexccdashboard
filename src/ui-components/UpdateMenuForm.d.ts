@@ -50,6 +50,8 @@ export declare type UpdateMenuFormInputValues = {
     submenu8_sp?: string;
     submenu9_sp?: string;
     submenu0_sp?: string;
+    offerccb?: boolean;
+    virtualvoicemail?: string;
 };
 export declare type UpdateMenuFormValidationValues = {
     menu0?: ValidationFunction<string>;
@@ -79,6 +81,8 @@ export declare type UpdateMenuFormValidationValues = {
     submenu8_sp?: ValidationFunction<string>;
     submenu9_sp?: ValidationFunction<string>;
     submenu0_sp?: ValidationFunction<string>;
+    offerccb?: ValidationFunction<boolean>;
+    virtualvoicemail?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type UpdateMenuFormOverridesProps = {
@@ -110,6 +114,8 @@ export declare type UpdateMenuFormOverridesProps = {
     submenu8_sp?: PrimitiveOverrideProps<TextAreaFieldProps>;
     submenu9_sp?: PrimitiveOverrideProps<TextAreaFieldProps>;
     submenu0_sp?: PrimitiveOverrideProps<TextAreaFieldProps>;
+    offerccb?: PrimitiveOverrideProps<SwitchFieldProps>;
+    virtualvoicemail?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type UpdateMenuFormProps = React.PropsWithChildren<{
     overrides?: UpdateMenuFormOverridesProps | undefined | null;

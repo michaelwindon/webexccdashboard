@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { DividerProps, GridProps, SelectFieldProps, SwitchFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { DividerProps, GridProps, HeadingProps, SelectFieldProps, SwitchFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
 import { ContactCenterModel } from "../models";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
@@ -28,6 +28,8 @@ export declare type UpdateOverrideFormInputValues = {
     usecorporateholidays?: boolean;
     holiday?: string[];
     epiccontext?: string;
+    offerccb?: boolean;
+    virtualvoicemail?: string;
 };
 export declare type UpdateOverrideFormValidationValues = {
     isoverride?: ValidationFunction<boolean>;
@@ -35,17 +37,25 @@ export declare type UpdateOverrideFormValidationValues = {
     usecorporateholidays?: ValidationFunction<boolean>;
     holiday?: ValidationFunction<string>;
     epiccontext?: ValidationFunction<string>;
+    offerccb?: ValidationFunction<boolean>;
+    virtualvoicemail?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type UpdateOverrideFormOverridesProps = {
     UpdateOverrideFormGrid?: PrimitiveOverrideProps<GridProps>;
+    SectionalElement4?: PrimitiveOverrideProps<HeadingProps>;
     isoverride?: PrimitiveOverrideProps<SwitchFieldProps>;
+    SectionalElement5?: PrimitiveOverrideProps<HeadingProps>;
     presentlangoption?: PrimitiveOverrideProps<SwitchFieldProps>;
     SectionalElement0?: PrimitiveOverrideProps<DividerProps>;
+    SectionalElement3?: PrimitiveOverrideProps<HeadingProps>;
     usecorporateholidays?: PrimitiveOverrideProps<SwitchFieldProps>;
     holiday?: PrimitiveOverrideProps<TextFieldProps>;
     SectionalElement1?: PrimitiveOverrideProps<DividerProps>;
+    SectionalElement2?: PrimitiveOverrideProps<HeadingProps>;
     epiccontext?: PrimitiveOverrideProps<SelectFieldProps>;
+    offerccb?: PrimitiveOverrideProps<SwitchFieldProps>;
+    virtualvoicemail?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type UpdateOverrideFormProps = React.PropsWithChildren<{
     overrides?: UpdateOverrideFormOverridesProps | undefined | null;

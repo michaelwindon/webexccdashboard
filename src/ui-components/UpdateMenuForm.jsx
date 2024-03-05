@@ -58,6 +58,8 @@ export default function UpdateMenuForm(props) {
     submenu8_sp: "",
     submenu9_sp: "",
     submenu0_sp: "",
+    offerccb: false,
+    virtualvoicemail: "",
   };
   const [menu0, setMenu0] = React.useState(initialValues.menu0);
   const [Field0, setField0] = React.useState(initialValues.Field0);
@@ -113,6 +115,10 @@ export default function UpdateMenuForm(props) {
   );
   const [submenu0_sp, setSubmenu0_sp] = React.useState(
     initialValues.submenu0_sp
+  );
+  const [offerccb, setOfferccb] = React.useState(initialValues.offerccb);
+  const [virtualvoicemail, setVirtualvoicemail] = React.useState(
+    initialValues.virtualvoicemail
   );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
@@ -231,6 +237,8 @@ export default function UpdateMenuForm(props) {
         ? cleanValues.submenu0_sp
         : JSON.stringify(cleanValues.submenu0_sp)
     );
+    setOfferccb(cleanValues.offerccb);
+    setVirtualvoicemail(cleanValues.virtualvoicemail);
     setErrors({});
   };
   const [contactCenterModelRecord, setContactCenterModelRecord] =
@@ -273,6 +281,8 @@ export default function UpdateMenuForm(props) {
     submenu8_sp: [{ type: "JSON" }],
     submenu9_sp: [{ type: "JSON" }],
     submenu0_sp: [{ type: "JSON" }],
+    offerccb: [],
+    virtualvoicemail: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -327,6 +337,8 @@ export default function UpdateMenuForm(props) {
           submenu8_sp,
           submenu9_sp,
           submenu0_sp,
+          offerccb,
+          virtualvoicemail,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -363,6 +375,8 @@ export default function UpdateMenuForm(props) {
             issecondaryclosed: modelFields.issecondaryclosed,
             epiccontext: modelFields.epiccontext,
             usecorporateholidays: modelFields.usecorporateholidays,
+            offerccb: modelFields.offerccb,
+            virtualvoicemail: modelFields.virtualvoicemail,
             menu0: modelFields.menu0
               ? JSON.parse(modelFields.menu0)
               : modelFields.menu0,
@@ -475,6 +489,8 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              offerccb,
+              virtualvoicemail,
             };
             const result = onChange(modelFields);
             value = result?.menu0 ?? value;
@@ -524,6 +540,8 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              offerccb,
+              virtualvoicemail,
             };
             const result = onChange(modelFields);
             value = result?.Field0 ?? value;
@@ -593,6 +611,8 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              offerccb,
+              virtualvoicemail,
             };
             const result = onChange(modelFields);
             value = result?.Field1 ?? value;
@@ -643,6 +663,8 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              offerccb,
+              virtualvoicemail,
             };
             const result = onChange(modelFields);
             value = result?.presentlangoption ?? value;
@@ -695,6 +717,8 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              offerccb,
+              virtualvoicemail,
             };
             const result = onChange(modelFields);
             value = result?.isholiday ?? value;
@@ -745,6 +769,8 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              offerccb,
+              virtualvoicemail,
             };
             const result = onChange(modelFields);
             value = result?.isafterhours ?? value;
@@ -795,6 +821,8 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              offerccb,
+              virtualvoicemail,
             };
             const result = onChange(modelFields);
             value = result?.issecondaryclosed ?? value;
@@ -847,6 +875,8 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              offerccb,
+              virtualvoicemail,
             };
             const result = onChange(modelFields);
             value = result?.epiccontext ?? value;
@@ -897,6 +927,8 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              offerccb,
+              virtualvoicemail,
             };
             const result = onChange(modelFields);
             value = result?.usecorporateholidays ?? value;
@@ -949,6 +981,8 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              offerccb,
+              virtualvoicemail,
             };
             const result = onChange(modelFields);
             value = result?.submenu1 ?? value;
@@ -999,6 +1033,8 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              offerccb,
+              virtualvoicemail,
             };
             const result = onChange(modelFields);
             value = result?.submenu3 ?? value;
@@ -1049,6 +1085,8 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              offerccb,
+              virtualvoicemail,
             };
             const result = onChange(modelFields);
             value = result?.submenu4 ?? value;
@@ -1099,6 +1137,8 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              offerccb,
+              virtualvoicemail,
             };
             const result = onChange(modelFields);
             value = result?.submenu5 ?? value;
@@ -1149,6 +1189,8 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              offerccb,
+              virtualvoicemail,
             };
             const result = onChange(modelFields);
             value = result?.submenu6 ?? value;
@@ -1199,6 +1241,8 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              offerccb,
+              virtualvoicemail,
             };
             const result = onChange(modelFields);
             value = result?.submenu7 ?? value;
@@ -1249,6 +1293,8 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              offerccb,
+              virtualvoicemail,
             };
             const result = onChange(modelFields);
             value = result?.submenu8 ?? value;
@@ -1299,6 +1345,8 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              offerccb,
+              virtualvoicemail,
             };
             const result = onChange(modelFields);
             value = result?.submenu9 ?? value;
@@ -1349,6 +1397,8 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              offerccb,
+              virtualvoicemail,
             };
             const result = onChange(modelFields);
             value = result?.submenu0 ?? value;
@@ -1399,6 +1449,8 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              offerccb,
+              virtualvoicemail,
             };
             const result = onChange(modelFields);
             value = result?.submenu1_sp ?? value;
@@ -1449,6 +1501,8 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              offerccb,
+              virtualvoicemail,
             };
             const result = onChange(modelFields);
             value = result?.submenu3_sp ?? value;
@@ -1499,6 +1553,8 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              offerccb,
+              virtualvoicemail,
             };
             const result = onChange(modelFields);
             value = result?.submenu4_sp ?? value;
@@ -1549,6 +1605,8 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              offerccb,
+              virtualvoicemail,
             };
             const result = onChange(modelFields);
             value = result?.submenu5_sp ?? value;
@@ -1599,6 +1657,8 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              offerccb,
+              virtualvoicemail,
             };
             const result = onChange(modelFields);
             value = result?.submenu6_sp ?? value;
@@ -1649,6 +1709,8 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp,
+              offerccb,
+              virtualvoicemail,
             };
             const result = onChange(modelFields);
             value = result?.submenu7_sp ?? value;
@@ -1699,6 +1761,8 @@ export default function UpdateMenuForm(props) {
               submenu8_sp: value,
               submenu9_sp,
               submenu0_sp,
+              offerccb,
+              virtualvoicemail,
             };
             const result = onChange(modelFields);
             value = result?.submenu8_sp ?? value;
@@ -1749,6 +1813,8 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp: value,
               submenu0_sp,
+              offerccb,
+              virtualvoicemail,
             };
             const result = onChange(modelFields);
             value = result?.submenu9_sp ?? value;
@@ -1799,6 +1865,8 @@ export default function UpdateMenuForm(props) {
               submenu8_sp,
               submenu9_sp,
               submenu0_sp: value,
+              offerccb,
+              virtualvoicemail,
             };
             const result = onChange(modelFields);
             value = result?.submenu0_sp ?? value;
@@ -1813,6 +1881,110 @@ export default function UpdateMenuForm(props) {
         hasError={errors.submenu0_sp?.hasError}
         {...getOverrideProps(overrides, "submenu0_sp")}
       ></TextAreaField>
+      <SwitchField
+        label="Offerccb"
+        defaultChecked={false}
+        isDisabled={false}
+        isChecked={offerccb}
+        onChange={(e) => {
+          let value = e.target.checked;
+          if (onChange) {
+            const modelFields = {
+              menu0,
+              Field0,
+              Field1,
+              presentlangoption,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
+              epiccontext,
+              usecorporateholidays,
+              submenu1,
+              submenu3,
+              submenu4,
+              submenu5,
+              submenu6,
+              submenu7,
+              submenu8,
+              submenu9,
+              submenu0,
+              submenu1_sp,
+              submenu3_sp,
+              submenu4_sp,
+              submenu5_sp,
+              submenu6_sp,
+              submenu7_sp,
+              submenu8_sp,
+              submenu9_sp,
+              submenu0_sp,
+              offerccb: value,
+              virtualvoicemail,
+            };
+            const result = onChange(modelFields);
+            value = result?.offerccb ?? value;
+          }
+          if (errors.offerccb?.hasError) {
+            runValidationTasks("offerccb", value);
+          }
+          setOfferccb(value);
+        }}
+        onBlur={() => runValidationTasks("offerccb", offerccb)}
+        errorMessage={errors.offerccb?.errorMessage}
+        hasError={errors.offerccb?.hasError}
+        {...getOverrideProps(overrides, "offerccb")}
+      ></SwitchField>
+      <TextField
+        label="Virtualvoicemail"
+        isRequired={false}
+        isReadOnly={false}
+        value={virtualvoicemail}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              menu0,
+              Field0,
+              Field1,
+              presentlangoption,
+              isholiday,
+              isafterhours,
+              issecondaryclosed,
+              epiccontext,
+              usecorporateholidays,
+              submenu1,
+              submenu3,
+              submenu4,
+              submenu5,
+              submenu6,
+              submenu7,
+              submenu8,
+              submenu9,
+              submenu0,
+              submenu1_sp,
+              submenu3_sp,
+              submenu4_sp,
+              submenu5_sp,
+              submenu6_sp,
+              submenu7_sp,
+              submenu8_sp,
+              submenu9_sp,
+              submenu0_sp,
+              offerccb,
+              virtualvoicemail: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.virtualvoicemail ?? value;
+          }
+          if (errors.virtualvoicemail?.hasError) {
+            runValidationTasks("virtualvoicemail", value);
+          }
+          setVirtualvoicemail(value);
+        }}
+        onBlur={() => runValidationTasks("virtualvoicemail", virtualvoicemail)}
+        errorMessage={errors.virtualvoicemail?.errorMessage}
+        hasError={errors.virtualvoicemail?.hasError}
+        {...getOverrideProps(overrides, "virtualvoicemail")}
+      ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

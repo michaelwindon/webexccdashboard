@@ -54,7 +54,7 @@ export default function ContactCenterUICollection(props) {
       templateColumns="1fr 1fr"
       autoFlow="row"
       alignItems="stretch"
-      justifyContent="center"
+      justifyContent="stretch"
       items={items || []}
       {...getOverrideProps(overrides, "ContactCenterUICollection")}
       {...rest}
