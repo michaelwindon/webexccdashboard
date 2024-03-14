@@ -408,7 +408,7 @@ export default function SyncQueues({ showToastMessage }) {
                             variant="outlined"
                             size="small"
                             onClick={handleCheckedLeft}
-                            disabled={rightChecked.length === 0}
+                            disabled={true} //{rightChecked.length === 0}
                             aria-label="move selected left"
                         >
                             &lt;
@@ -418,7 +418,7 @@ export default function SyncQueues({ showToastMessage }) {
                             variant="outlined"
                             size="small"
                             onClick={handleAllLeft}
-                            disabled={right.length === 0}
+                            disabled={true} //{right.length === 0}
                             aria-label="move all left"
                         >
                             ≪
